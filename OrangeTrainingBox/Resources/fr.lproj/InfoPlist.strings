@@ -1,0 +1,8 @@
+/* 
+  InfoPlist.strings
+  OrangeTrainingBox
+
+  Copyright © 2018 Orange. All rights reserved.
+*/
+
+"NSBluetoothPeripheralUsageDescription" = "Baah souhaite accéder au bluetooth pour se connecter à la BaahBox";

@@ -1,0 +1,150 @@
+/* 
+  Localizable.strings
+  OrangeTrainingBox
+
+  Created by Frederique Pinson on 22/10/2018.
+  Copyright © 2018 Orange. All rights reserved.
+*/
+
+"Generic.Cancel" = "Annuler";
+"Generic.Ok" = "OK";
+"Generic.Save" = "Sauvegarder";
+"Generic.Connect" = "Connexion";
+"Generic.Disconnect" = "Se déconnecter";
+"Generic.Activate" = "Activer";
+"Generic.End" = "TERMINER";
+"Generic.left" = "Gauche";
+"Generic.right" = "Droit";
+"Generic.both" = "Les 2";
+"Generic.low" = "Faible";
+"Generic.medium" = "Moyenne";
+"Generic.high" = "Forte";
+"Generic.slow" = "Lente";
+"Generic.regular" = "Normal";
+"Generic.fast" = " Rapide";
+"Generic.ble" = "Bluetooth";
+
+"Generic.No" = "Non";
+"Generic.Yes" = "Oui";
+
+"Dashboard.title" = "Baah!";
+"Dashboard.header" = "Choisis ton jeu";
+
+
+// BLE
+"Ble.Connection.Title" = "Paramètres de connexion";
+"Ble.Connection.PopupTitle" = "Sélectionnez votre BaahBox pour commencer l'entrainement";
+"Ble.Connection.BleSwitchON" = "Activez le Bluetooth pour vous connecter à la BaahBox.";
+"Ble.Connection.Header" = "Connectez votre BaahBox";
+"Ble.Connection.Descritpion" = "Sélectionnez une BaahBox dans la liste des BaahBox détectées.";
+
+
+// Parameters
+"MainParameters.connection" = "Connexion";
+"MainParameters.general" = "Général";
+"MainParameters.header.title" = "Paramètres";
+"MainParameters.connection.title" = "Gestion de votre connexion";
+"MainParameters.general.title" = "Gestion des paramètres globaux";
+
+"MainParameters.games.title" = "Gestion des jeux";
+"MainParameters.games.star" = "Fais briller l'étoile";
+"MainParameters.games.balloon" = "Gongle le ballon";
+"MainParameters.games.sheep" = "Saute mouton";
+"MainParameters.games.spaceShip" = "Bataille de l'espace";
+"MainParameters.games.taud" = "Gobe les mouches";
+
+"GeneralParameters.header.title" = "Général";
+"GeneralParameters.Section.Demo.title" = "Mode";
+"GeneralParameters.Section.Demo.subtitle" = "Sélectionnez le mode d'utilisation";
+"GeneralParameters.Section.Sensor.title" = "Type de capteur";
+"GeneralParameters.Section.Sensor.subtitle" = "Précisez le type de capteur utilisé";
+"GeneralParameters.Section.Muscle.title" = "Muscle de travail";
+"GeneralParameters.Section.Muscle.subtitle" = "Sélectionnez le ou les muscles à travailler";
+"GeneralParameters.Section.Sensitivity.title" = "Sensibilité";
+"GeneralParameters.Section.Sensitivity.subtitle" = "Paramétrez la sensibilité des capteurs";
+"GeneralParameters.Section.Detection.title" = "Seuil de détection";
+"GeneralParameters.Section.Detection.subtitle" = "Indiquez le seuil à partir duquel votre pression exercée est détectée";
+
+"GeneralParameters.Section.Demo.item1" = "Mode demo";
+"GeneralParameters.Section.Sensor.item1" = "Capteur utilisé";
+"GeneralParameters.Section.Muscle.item1" = "Muscle 1";
+"GeneralParameters.Section.Muscle.item2" = "Muscle 2";
+"GeneralParameters.Section.Sensitivity.item1" = "Sensibilité";
+
+"Parameters.Global.title" = "Paramètres globaux";
+"Parameters.Global.muscle" = "Muscle de travail";
+"Parameters.Global.sensor.muscle" = "Muscle";
+"Parameters.Global.sensor.joystick" = "Joystick";
+"Parameters.Global.sensor.button" = "Bouton";
+
+"Parameters.Global.sensitivity"  = "Sensibilité";
+"Parameters.Global.threshold" = "Seuil de détection";
+"Parameters.Sheep.title" = "Paramètres jeu saute mouton";
+"Parameters.Sheep.fence" = "Nombre de barrières";
+"Parameters.Sheep.speed" = "Vitesse";
+"Parameters.Ship.title" = "Paramètres Bataille de l'espace";
+"Parameters.Ship.number" = "Nombre de vaisseaux";
+"Parameters.Ship.speed" = "Vitesse des astéroïds";
+"Parameters.Ship.explosionStyle" = "Particules";
+"Parameters.Taud.title" = "Paramètres Gobe les mouches";
+"Parameters.Taud.number" = "Nombre de mouches";
+"Parameters.Taud.time" = "Temps pendant lequel la mouche ne bouge pas";
+"Parameters.Taud.timeValue" = "%@ s";
+
+"Parameters.Taud.shootStyle" = "Tirs automatiques";
+
+// Generic Game
+"Game.Start" = "Jouer";
+"Game.Stop" = "Arrêter";
+"Game.ReStart" = "Rejouer";
+"Game.WellDone" = "Bien joué !";
+"Game.Win" = "Gagné !";
+"Game.Go" = "C'est parti !";
+"Game.Hop" = "Hop !";
+"Game.Oops" = "Ooops!";
+"Game.TryAgain" = "Rejouer";
+"Game.Wahoo" = "Wouhaaa !";
+
+// Star Game
+"Game.Star.title" = "Fais briller l'étoile !";
+"Game.Star.header" = "Fais briller l'étoile";
+"Game.Star.subHeaderMuscle" = "en contractant ton muscle";
+"Game.Star.subHeaderJoystick" = "mets le joystick en haut";
+"Game.Star.text.keepGoing" = "Encore un petit effort !";
+"Game.Star.text.congrats" = "Bravo !!!";
+
+// Balloon Game
+"Game.Balloon.title" = "Fais exploser le ballon !";
+"Game.Balloon.text.first" = "Gonfle le ballon";
+"Game.Balloon.text.secondMuscle" = "en contractant ton muscle";
+"Game.Balloon.text.secondJoystick" = "mets le joystick vers le haut";
+"Game.Balloon.congrats.first" = "Whaoooo !";
+"Game.Balloon.congrats.second" = "Bravo !!!";
+
+// sheep Game
+"Game.Sheep.title" = "Saute, Mouton, Saute !";
+"Game.Sheep.score.start.one" = "Essaie de franchir 1 barrière";
+"Game.Sheep.score.start.many" = "Essaie de franchir %d barrières";
+"Game.Sheep.score.pending.one" = "Tu as franchi 1 barrière, il en reste encore %d!";
+"Game.Sheep.score.pending.many" = "Tu as franchi %d barrières, il en reste encore %d!";
+"Game.Sheep.score.result.win" = "Tu as franchi toutes les barrières !";
+"Game.Sheep.text.Jump.first" = "Fais sauter le mouton";
+"Game.Sheep.text.Jump.second" = "en contractant les muscles pour lui faire sauter la barrière.";
+
+// Space Game
+"Game.Space.title" = "La bataille de l'Espace !";
+"Game.Space.header" = "Essaie d'éviter les météorites";
+"Game.Space.subHeader" = "En contractant les muscles";
+"Game.Space.button.keepGoing" = "Continuer";
+
+// Frog Game
+"Game.Frog.title" = "Slurp !";
+
+// Notifications
+"Notif.BLE.Discovery" = "kBLEPeripheralDiscoveryNotification";
+"Notif.BLE.Connection" = "kBLEPeripheralConnectionNotification";
+"Notif.BLE.Disconnection" = "kBLEPeripheralDisconnectionNotification";
+"Notif.BLE.Up" = "kBLEUPNotification";
+"Notif.BLE.Down" = "kBLEUPNotification";
+"Notif.BLE.DataReceived" = "kBLEDataReceivedNotification";
+"Notif.Parameter.update" = "kParameterUpdate";

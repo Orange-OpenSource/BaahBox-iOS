@@ -1,0 +1,151 @@
+/* 
+  Localizable.strings
+  OrangeTrainingBox
+
+  Created by Frederique Pinson on 22/10/2018.
+  Copyright © 2018 Orange. All rights reserved.
+*/
+
+"Generic.Cancel" = "Cancel";
+"Generic.Ok" = "OK";
+"Generic.Save" = "Save";
+"Generic.Connect" = "Connection";
+"Generic.Disconnect" = "Disconnect";
+"Generic.Activate" = "Activate";
+"Generic.End" = "DONE";
+"Generic.left" = "Left";
+"Generic.right" = "Right";
+"Generic.both" = "Both";
+"Generic.low" = "Low";
+"Generic.medium" = "Medium";
+"Generic.high" = "High";
+"Generic.slow" = "Slow";
+"Generic.regular" = "Regular";
+"Generic.fast" = " Fast";
+"Generic.ble" = "Bluetooth";
+
+"Generic.No" = "No";
+"Generic.Yes" = "Yes";
+
+"Dashboard.title" = "Baah!";
+"Dashboard.header" = "Select your game";
+
+
+// BLE
+"Ble.Connection.Title" = "Connection settings";
+"Ble.Connection.PopupTitle" = "Please select your BaahBox and start practicing.";
+"Ble.Connection.BleSwitchON" = "Activate Bluetooth to connect to the BaahBox.";
+"Ble.Connection.Header" = "Connect your BaahBox";
+"Ble.Connection.Descritpion" = "Please select a BaahBox in the list below";
+
+
+// Parameters
+"MainParameters.connection" = "Connection";
+"MainParameters.general" = "General";
+"MainParameters.header.title" = "Parameters";
+"MainParameters.connection.title" = "Connection settings";
+"MainParameters.general.title" = "Global settings";
+
+"MainParameters.games.title" = "Game settings";
+"MainParameters.games.star" = "Make the star shine";
+"MainParameters.games.balloon" = "Inflate the balloon";
+"MainParameters.games.sheep" = "Jump, Sheep, Jump !";
+"MainParameters.games.spaceShip" = "Space Battle";
+"MainParameters.games.taud" = "Eat the flies";
+
+"GeneralParameters.header.title" = "General";
+"GeneralParameters.Section.Demo.title" = "Demo mode";
+"GeneralParameters.Section.Demo.subtitle" = "Select the mode";
+"GeneralParameters.Section.Sensor.title" = "Sensor type";
+"GeneralParameters.Section.Sensor.subtitle" = "Select the sensor you are using";
+"GeneralParameters.Section.Muscle.title" = "Working muscle";
+"GeneralParameters.Section.Muscle.subtitle" = "Select the muscle(s) you like to work with";
+"GeneralParameters.Section.Sensitivity.title" = "Sensitivity";
+"GeneralParameters.Section.Sensitivity.subtitle" = "Sets the sensitivity of the sensors";
+"GeneralParameters.Section.Detection.title" = "Pressure detection threshold";
+"GeneralParameters.Section.Detection.subtitle" = "Sets the threshold to detect the pressure";
+
+"GeneralParameters.Section.Demo.item1" = "Demo mode";
+"GeneralParameters.Section.Sensor.item1" = "Sensor";
+"GeneralParameters.Section.Muscle.item1" = "Muscle 1";
+"GeneralParameters.Section.Muscle.item2" = "Muscle 2";
+"GeneralParameters.Section.Sensitivity.item1" = "Sensitivity";
+
+"Parameters.Global.title" = "Global parameters";
+"Parameters.Global.muscle" = "Working muscle";
+"Parameters.Global.sensor.muscle" = "Muscle";
+"Parameters.Global.sensor.joystick" = "Joystick";
+"Parameters.Global.sensor.button" = "Button";
+
+"Parameters.Global.sensitivity"  = "Sensitivity";
+"Parameters.Global.threshold" = "Threshold level";
+"Parameters.Sheep.title" = "Saute-Mouton game parameters";
+"Parameters.Sheep.fence" = "Number of fences";
+"Parameters.Sheep.speed" = "Speed";
+"Parameters.Ship.title" = "Space Battle game parameters";
+"Parameters.Ship.number" = "Number of ships";
+"Parameters.Ship.speed" = "Speed of asteroids";
+"Parameters.Ship.explosionStyle" = "Particles";
+"Parameters.Taud.title" = "Taud game parameters";
+"Parameters.Taud.number" = "Number of flies";
+"Parameters.Taud.time" = "Time during which the fly does not move";
+"Parameters.Taud.timeValue" = "%@ s";
+"Parameters.Taud.shootStyle" = "Automatic shoots";
+
+// Generic Game
+"Game.Start" = "Start";
+"Game.Stop" = "Stop";
+"Game.ReStart" = "Restart";
+"Game.WellDone" = "Well done !";
+"Game.Win" = "You won !";
+"Game.Go" = "Let's play !";
+"Game.Hop" = "Hop !";
+"Game.Oops" = "Ooops!";
+"Game.TryAgain" = "Try again.";
+"Game.Wahoo" = "Wahoo !";
+
+// Star Game
+"Game.Star.title" = "Twinkle twinkle !";
+"Game.Star.header" = "Make the star shine";
+"Game.Star.subHeaderMuscle" = "by contracting your muscle";
+"Game.Star.subHeaderJoystick" = "with the joystick up";
+"Game.Star.text.keepGoing" = "Keep going !";
+"Game.Star.text.congrats" = "Great !!!";
+
+// Balloon Game
+"Game.Balloon.title" = "Blow me up !";
+"Game.Balloon.text.first" = "Inflate the balloon";
+"Game.Balloon.text.secondMuscle" = "by contracting your muscle";
+"Game.Balloon.text.secondJoystick" = "with the joystick up";
+"Game.Balloon.congrats.first" = "Whaoooo !";
+"Game.Balloon.congrats.second" = "Great !!!";
+
+// Sheep Game
+"Game.Sheep.title" = "Jump, Sheep, Jump !";
+"Game.Sheep.score.start.one" = "Try to jump over 1 fence";
+"Game.Sheep.score.start.many" = "Try to jump over %d fences";
+"Game.Sheep.score.pending.one" = "You jumped over 1 fence, still %d to go !";
+"Game.Sheep.score.pending.many" = "You jumped over %d fences, still %d to go !";
+"Game.Sheep.score.result.win" = "You jumped over all the fences !";
+"Game.Sheep.text.Jump.first" = "Make the sheep jump over the fences";
+"Game.Sheep.text.Jump.second" = "by contracting your muscle";
+
+// Space Game
+"Game.Space.title" = "Space Battle !";
+"Game.Space.header" = "Try to avoid collisions";
+"Game.Space.subHeader" = "by contracting your muscle";
+"Game.Space.button.keepGoing" = "Continue";
+
+// Frog Game
+"Game.Frog.title" = "Slurp !";
+
+// Notifications
+"Notif.BLE.Discovery" = "kBLEPeripheralDiscoveryNotification";
+"Notif.BLE.Connection" = "kBLEPeripheralConnectionNotification";
+"Notif.BLE.Disconnection" = "kBLEPeripheralDisconnectionNotification";
+"Notif.BLE.Up" = "kBLEUPNotification";
+"Notif.BLE.Down" = "kBLEUPNotification";
+"Notif.BLE.DataReceived" = "kBLEDataReceivedNotification";
+"Notif.Parameter.update" = "kParameterUpdate";
+
+

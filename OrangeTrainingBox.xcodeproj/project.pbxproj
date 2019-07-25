@@ -1,0 +1,950 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		465F8EC12201BECE00F99669 /* ExplosionParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 465F8EC02201BECE00F99669 /* ExplosionParticle.sks */; };
+		465F8EC3220208E900F99669 /* Star.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 465F8EC2220208E900F99669 /* Star.jpg */; };
+		466FB24F21A2EFC700F19C65 /* UINavigationController+navbarTint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466FB24E21A2EFC700F19C65 /* UINavigationController+navbarTint.swift */; };
+		467ED810217E1A7F006FB1DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 467ED80E217E1A7F006FB1DB /* Main.storyboard */; };
+		467ED811217E1A7F006FB1DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 467ED80F217E1A7F006FB1DB /* LaunchScreen.storyboard */; };
+		468CFC32217E170B00E0553E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 468CFC34217E170B00E0553E /* Localizable.strings */; };
+		468CFC3B217E17FE00E0553E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468CFC38217E17FE00E0553E /* Strings.swift */; };
+		468CFC3C217E17FE00E0553E /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468CFC39217E17FE00E0553E /* Assets.swift */; };
+		468CFC3D217E17FE00E0553E /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468CFC3A217E17FE00E0553E /* Storyboards.swift */; };
+		46AFC783217DCCF10052C063 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC782217DCCF10052C063 /* AppDelegate.swift */; };
+		46AFC78A217DCCF20052C063 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46AFC789217DCCF20052C063 /* Assets.xcassets */; };
+		46AFC798217DCCF20052C063 /* OrangeTrainingBoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC797217DCCF20052C063 /* OrangeTrainingBoxTests.swift */; };
+		46AFC7A3217DCCF20052C063 /* OrangeTrainingBoxUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7A2217DCCF20052C063 /* OrangeTrainingBoxUITests.swift */; };
+		46AFC7CB217DD4220052C063 /* ParameterDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7B3217DD4220052C063 /* ParameterDataManager.swift */; };
+		46AFC7CC217DD4220052C063 /* SettableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7B4217DD4220052C063 /* SettableVC.swift */; };
+		46AFC7CE217DD4220052C063 /* SheepGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7B7217DD4220052C063 /* SheepGameScene.swift */; };
+		46AFC7CF217DD4220052C063 /* BalloonGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7B8217DD4220052C063 /* BalloonGameScene.swift */; };
+		46AFC7D0217DD4220052C063 /* StarGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7B9217DD4220052C063 /* StarGameVC.swift */; };
+		46AFC7D1217DD4220052C063 /* BalloonGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7BA217DD4220052C063 /* BalloonGameVC.swift */; };
+		46AFC7D2217DD4220052C063 /* SheepGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7BB217DD4220052C063 /* SheepGameVC.swift */; };
+		46AFC7D3217DD4220052C063 /* StarGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7BC217DD4220052C063 /* StarGameScene.swift */; };
+		46AFC7D4217DD4220052C063 /* SpaceshipGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7BD217DD4220052C063 /* SpaceshipGameScene.swift */; };
+		46AFC7D5217DD4220052C063 /* SpaceshipGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7BE217DD4220052C063 /* SpaceshipGameVC.swift */; };
+		46AFC7DD217DD4230052C063 /* CGPointUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7C9217DD4220052C063 /* CGPointUtils.swift */; };
+		46AFC7DE217DD4230052C063 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7CA217DD4220052C063 /* Helper.swift */; };
+		46AFC7E3217DD43C0052C063 /* Games.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46AFC7E0217DD43C0052C063 /* Games.storyboard */; };
+		46D5E73221CCAB3600E85B9B /* UIButtonBordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5E73121CCAB3600E85B9B /* UIButtonBordered.swift */; };
+		46D5E73421CCADBD00E85B9B /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5E73321CCADBD00E85B9B /* GameState.swift */; };
+		46EBAB242215CC3600AA542D /* SensorInputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EBAB232215CC3600AA542D /* SensorInputManager.swift */; };
+		5C0173C00044C98BA436AB63 /* Pods_OrangeTrainingBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F68A8DF551A801AE28FE10EA /* Pods_OrangeTrainingBox.framework */; };
+		AC938FE3219A315A00F18672 /* CrapaudGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC938FE2219A315A00F18672 /* CrapaudGameVC.swift */; };
+		AC938FE5219A320E00F18672 /* CrapaudGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC938FE4219A320E00F18672 /* CrapaudGameScene.swift */; };
+		AC952092217F19EC00590D31 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC952091217F19EC00590D31 /* DashboardVC.swift */; };
+		AC952098217F264200590D31 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC952097217F264200590D31 /* GameCell.swift */; };
+		AC95209A217F3C7B00590D31 /* ButtonWithImageAndText.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC952099217F3C7A00590D31 /* ButtonWithImageAndText.swift */; };
+		EB06855A2181FB1200A07C3E /* ParametersDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0685592181FB1200A07C3E /* ParametersDefaults.swift */; };
+		EB38BBC721D9104E0012E3AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EB38BBC521D9104E0012E3AB /* InfoPlist.strings */; };
+		EB7A28F321CA5BED000DBA43 /* BTConnectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A28F221CA5BED000DBA43 /* BTConnectionVC.swift */; };
+		EB7A28F521CA5C0F000DBA43 /* MainParametersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A28F421CA5C0F000DBA43 /* MainParametersVC.swift */; };
+		EB7A28F721CA6A0A000DBA43 /* MainParameterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A28F621CA6A0A000DBA43 /* MainParameterCell.swift */; };
+		EB7A28FA21CA7BFD000DBA43 /* MainHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A28F921CA7BFD000DBA43 /* MainHeaderCell.swift */; };
+		EB7A28FC21CA9BF4000DBA43 /* GeneralParametersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A28FB21CA9BF4000DBA43 /* GeneralParametersVC.swift */; };
+		EB7A28FE21CA9F48000DBA43 /* GeneralSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A28FD21CA9F48000DBA43 /* GeneralSwitchCell.swift */; };
+		EB7A290021CA9F5C000DBA43 /* GeneralSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A28FF21CA9F5C000DBA43 /* GeneralSegmentCell.swift */; };
+		EB7A290221CA9F73000DBA43 /* GeneralSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A290121CA9F73000DBA43 /* GeneralSliderCell.swift */; };
+		EB7A290421CAB073000DBA43 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB7A290321CAB073000DBA43 /* Settings.storyboard */; };
+		EB7A290721CB9A40000DBA43 /* SheepGameParameterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A290621CB9A40000DBA43 /* SheepGameParameterVC.swift */; };
+		EB7A290921CB9E7D000DBA43 /* GeneralSliderPlusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A290821CB9E7D000DBA43 /* GeneralSliderPlusCell.swift */; };
+		EB7A290B21CBA6ED000DBA43 /* SpaceShipParameterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A290A21CBA6ED000DBA43 /* SpaceShipParameterVC.swift */; };
+		EB7A290D21CBACC7000DBA43 /* TaudGameParameterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A290C21CBACC7000DBA43 /* TaudGameParameterVC.swift */; };
+		EB83C67B21D3819600CACA48 /* GeneralButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB83C67A21D3819600CACA48 /* GeneralButtonCell.swift */; };
+		EBEFCAAB217F05E5006E20F6 /* BLEDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEFCAA2217F05E5006E20F6 /* BLEDiscovery.swift */; };
+		EBEFCAAC217F05E5006E20F6 /* BLEService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEFCAA3217F05E5006E20F6 /* BLEService.swift */; };
+		EBEFCAAE217F05E5006E20F6 /* BTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEFCAA6217F05E5006E20F6 /* BTCell.swift */; };
+		EBEFCAAF217F05E5006E20F6 /* BTHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEFCAA7217F05E5006E20F6 /* BTHeaderCell.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		46AFC794217DCCF20052C063 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46AFC777217DCCF10052C063 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 46AFC77E217DCCF10052C063;
+			remoteInfo = OrangeTrainingBox;
+		};
+		46AFC79F217DCCF20052C063 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46AFC777217DCCF10052C063 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 46AFC77E217DCCF10052C063;
+			remoteInfo = OrangeTrainingBox;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		07CB4CC121F1E21C0098D1AF /* MuscleReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuscleReader.swift; sourceTree = "<group>"; };
+		465F8EC02201BECE00F99669 /* ExplosionParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ExplosionParticle.sks; sourceTree = "<group>"; };
+		465F8EC2220208E900F99669 /* Star.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Star.jpg; sourceTree = "<group>"; };
+		466FB24E21A2EFC700F19C65 /* UINavigationController+navbarTint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+navbarTint.swift"; sourceTree = "<group>"; };
+		467ED80E217E1A7F006FB1DB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		467ED80F217E1A7F006FB1DB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		468CFC33217E170B00E0553E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		468CFC35217E170C00E0553E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		468CFC38217E17FE00E0553E /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		468CFC39217E17FE00E0553E /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		468CFC3A217E17FE00E0553E /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
+		46AFC77F217DCCF10052C063 /* OrangeTrainingBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrangeTrainingBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		46AFC782217DCCF10052C063 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		46AFC789217DCCF20052C063 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		46AFC78E217DCCF20052C063 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46AFC793217DCCF20052C063 /* OrangeTrainingBoxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrangeTrainingBoxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		46AFC797217DCCF20052C063 /* OrangeTrainingBoxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangeTrainingBoxTests.swift; sourceTree = "<group>"; };
+		46AFC799217DCCF20052C063 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46AFC79E217DCCF20052C063 /* OrangeTrainingBoxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrangeTrainingBoxUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		46AFC7A2217DCCF20052C063 /* OrangeTrainingBoxUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangeTrainingBoxUITests.swift; sourceTree = "<group>"; };
+		46AFC7A4217DCCF20052C063 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46AFC7B3217DD4220052C063 /* ParameterDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterDataManager.swift; sourceTree = "<group>"; };
+		46AFC7B4217DD4220052C063 /* SettableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettableVC.swift; sourceTree = "<group>"; };
+		46AFC7B7217DD4220052C063 /* SheepGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheepGameScene.swift; sourceTree = "<group>"; };
+		46AFC7B8217DD4220052C063 /* BalloonGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonGameScene.swift; sourceTree = "<group>"; };
+		46AFC7B9217DD4220052C063 /* StarGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarGameVC.swift; sourceTree = "<group>"; };
+		46AFC7BA217DD4220052C063 /* BalloonGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonGameVC.swift; sourceTree = "<group>"; };
+		46AFC7BB217DD4220052C063 /* SheepGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheepGameVC.swift; sourceTree = "<group>"; };
+		46AFC7BC217DD4220052C063 /* StarGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarGameScene.swift; sourceTree = "<group>"; };
+		46AFC7BD217DD4220052C063 /* SpaceshipGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceshipGameScene.swift; sourceTree = "<group>"; };
+		46AFC7BE217DD4220052C063 /* SpaceshipGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceshipGameVC.swift; sourceTree = "<group>"; };
+		46AFC7C9217DD4220052C063 /* CGPointUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPointUtils.swift; sourceTree = "<group>"; };
+		46AFC7CA217DD4220052C063 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		46AFC7E0217DD43C0052C063 /* Games.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Games.storyboard; sourceTree = "<group>"; };
+		46D5E73121CCAB3600E85B9B /* UIButtonBordered.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonBordered.swift; sourceTree = "<group>"; };
+		46D5E73321CCADBD00E85B9B /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		46EBAB232215CC3600AA542D /* SensorInputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorInputManager.swift; sourceTree = "<group>"; };
+		4EA3608B567524A4FAA6D3CC /* Pods-OrangeTrainingBox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrangeTrainingBox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OrangeTrainingBox/Pods-OrangeTrainingBox.debug.xcconfig"; sourceTree = "<group>"; };
+		9A556676A4824FC4756446E4 /* Pods-OrangeTrainingBox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrangeTrainingBox.release.xcconfig"; path = "Pods/Target Support Files/Pods-OrangeTrainingBox/Pods-OrangeTrainingBox.release.xcconfig"; sourceTree = "<group>"; };
+		AC938FE2219A315A00F18672 /* CrapaudGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrapaudGameVC.swift; sourceTree = "<group>"; };
+		AC938FE4219A320E00F18672 /* CrapaudGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrapaudGameScene.swift; sourceTree = "<group>"; };
+		AC952091217F19EC00590D31 /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
+		AC952097217F264200590D31 /* GameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
+		AC952099217F3C7A00590D31 /* ButtonWithImageAndText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonWithImageAndText.swift; sourceTree = "<group>"; };
+		EB0685592181FB1200A07C3E /* ParametersDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersDefaults.swift; sourceTree = "<group>"; };
+		EB38BBC621D9104E0012E3AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EB38BBC821D910840012E3AB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EB7A28F221CA5BED000DBA43 /* BTConnectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTConnectionVC.swift; sourceTree = "<group>"; };
+		EB7A28F421CA5C0F000DBA43 /* MainParametersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainParametersVC.swift; sourceTree = "<group>"; };
+		EB7A28F621CA6A0A000DBA43 /* MainParameterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainParameterCell.swift; sourceTree = "<group>"; };
+		EB7A28F921CA7BFD000DBA43 /* MainHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderCell.swift; sourceTree = "<group>"; };
+		EB7A28FB21CA9BF4000DBA43 /* GeneralParametersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralParametersVC.swift; sourceTree = "<group>"; };
+		EB7A28FD21CA9F48000DBA43 /* GeneralSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSwitchCell.swift; sourceTree = "<group>"; };
+		EB7A28FF21CA9F5C000DBA43 /* GeneralSegmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSegmentCell.swift; sourceTree = "<group>"; };
+		EB7A290121CA9F73000DBA43 /* GeneralSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSliderCell.swift; sourceTree = "<group>"; };
+		EB7A290321CAB073000DBA43 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		EB7A290621CB9A40000DBA43 /* SheepGameParameterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheepGameParameterVC.swift; sourceTree = "<group>"; };
+		EB7A290821CB9E7D000DBA43 /* GeneralSliderPlusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSliderPlusCell.swift; sourceTree = "<group>"; };
+		EB7A290A21CBA6ED000DBA43 /* SpaceShipParameterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceShipParameterVC.swift; sourceTree = "<group>"; };
+		EB7A290C21CBACC7000DBA43 /* TaudGameParameterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaudGameParameterVC.swift; sourceTree = "<group>"; };
+		EB83C67A21D3819600CACA48 /* GeneralButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralButtonCell.swift; sourceTree = "<group>"; };
+		EBEFCAA2217F05E5006E20F6 /* BLEDiscovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEDiscovery.swift; sourceTree = "<group>"; };
+		EBEFCAA3217F05E5006E20F6 /* BLEService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEService.swift; sourceTree = "<group>"; };
+		EBEFCAA6217F05E5006E20F6 /* BTCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCell.swift; sourceTree = "<group>"; };
+		EBEFCAA7217F05E5006E20F6 /* BTHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTHeaderCell.swift; sourceTree = "<group>"; };
+		F68A8DF551A801AE28FE10EA /* Pods_OrangeTrainingBox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OrangeTrainingBox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		46AFC77C217DCCF10052C063 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C0173C00044C98BA436AB63 /* Pods_OrangeTrainingBox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46AFC790217DCCF20052C063 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46AFC79B217DCCF20052C063 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FF12C42FD377E9E72ECC65 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F68A8DF551A801AE28FE10EA /* Pods_OrangeTrainingBox.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		343E44C786C6C23EDD343B4A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4EA3608B567524A4FAA6D3CC /* Pods-OrangeTrainingBox.debug.xcconfig */,
+				9A556676A4824FC4756446E4 /* Pods-OrangeTrainingBox.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		460AC53E21FB530200F02D13 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				07CB4CC121F1E21C0098D1AF /* MuscleReader.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		468CFC36217E17FE00E0553E /* CodeGen */ = {
+			isa = PBXGroup;
+			children = (
+				468CFC37217E17FE00E0553E /* Constants */,
+			);
+			path = CodeGen;
+			sourceTree = "<group>";
+		};
+		468CFC37217E17FE00E0553E /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				468CFC38217E17FE00E0553E /* Strings.swift */,
+				468CFC39217E17FE00E0553E /* Assets.swift */,
+				468CFC3A217E17FE00E0553E /* Storyboards.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		468CFC3E217E180D00E0553E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				465F8EC2220208E900F99669 /* Star.jpg */,
+				467ED80F217E1A7F006FB1DB /* LaunchScreen.storyboard */,
+				467ED80E217E1A7F006FB1DB /* Main.storyboard */,
+				46AFC7E0217DD43C0052C063 /* Games.storyboard */,
+				EB7A290321CAB073000DBA43 /* Settings.storyboard */,
+				46AFC789217DCCF20052C063 /* Assets.xcassets */,
+				468CFC34217E170B00E0553E /* Localizable.strings */,
+				EB38BBC521D9104E0012E3AB /* InfoPlist.strings */,
+				468CFC36217E17FE00E0553E /* CodeGen */,
+				465F8EC02201BECE00F99669 /* ExplosionParticle.sks */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		46AFC776217DCCF10052C063 = {
+			isa = PBXGroup;
+			children = (
+				46AFC781217DCCF10052C063 /* OrangeTrainingBox */,
+				46AFC796217DCCF20052C063 /* OrangeTrainingBoxTests */,
+				46AFC7A1217DCCF20052C063 /* OrangeTrainingBoxUITests */,
+				46AFC780217DCCF10052C063 /* Products */,
+				343E44C786C6C23EDD343B4A /* Pods */,
+				08FF12C42FD377E9E72ECC65 /* Frameworks */,
+				460AC53E21FB530200F02D13 /* Recovered References */,
+			);
+			sourceTree = "<group>";
+		};
+		46AFC780217DCCF10052C063 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				46AFC77F217DCCF10052C063 /* OrangeTrainingBox.app */,
+				46AFC793217DCCF20052C063 /* OrangeTrainingBoxTests.xctest */,
+				46AFC79E217DCCF20052C063 /* OrangeTrainingBoxUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		46AFC781217DCCF10052C063 /* OrangeTrainingBox */ = {
+			isa = PBXGroup;
+			children = (
+				46AFC782217DCCF10052C063 /* AppDelegate.swift */,
+				AC952091217F19EC00590D31 /* DashboardVC.swift */,
+				AC952099217F3C7A00590D31 /* ButtonWithImageAndText.swift */,
+				AC952097217F264200590D31 /* GameCell.swift */,
+				46EBAB232215CC3600AA542D /* SensorInputManager.swift */,
+				46AFC7BF217DD4220052C063 /* BLE */,
+				46AFC7B6217DD4220052C063 /* Games */,
+				468CFC3E217E180D00E0553E /* Resources */,
+				46AFC7C8217DD4220052C063 /* Helpers */,
+				46AFC7B2217DD4220052C063 /* Parameters */,
+				46AFC78E217DCCF20052C063 /* Info.plist */,
+			);
+			path = OrangeTrainingBox;
+			sourceTree = "<group>";
+		};
+		46AFC796217DCCF20052C063 /* OrangeTrainingBoxTests */ = {
+			isa = PBXGroup;
+			children = (
+				46AFC797217DCCF20052C063 /* OrangeTrainingBoxTests.swift */,
+				46AFC799217DCCF20052C063 /* Info.plist */,
+			);
+			path = OrangeTrainingBoxTests;
+			sourceTree = "<group>";
+		};
+		46AFC7A1217DCCF20052C063 /* OrangeTrainingBoxUITests */ = {
+			isa = PBXGroup;
+			children = (
+				46AFC7A2217DCCF20052C063 /* OrangeTrainingBoxUITests.swift */,
+				46AFC7A4217DCCF20052C063 /* Info.plist */,
+			);
+			path = OrangeTrainingBoxUITests;
+			sourceTree = "<group>";
+		};
+		46AFC7B2217DD4220052C063 /* Parameters */ = {
+			isa = PBXGroup;
+			children = (
+				46AFC7B3217DD4220052C063 /* ParameterDataManager.swift */,
+				46AFC7B4217DD4220052C063 /* SettableVC.swift */,
+				EB0685592181FB1200A07C3E /* ParametersDefaults.swift */,
+				EB7A290521CB9989000DBA43 /* Views */,
+				EB7A28F821CA6A0E000DBA43 /* Cells */,
+			);
+			path = Parameters;
+			sourceTree = "<group>";
+		};
+		46AFC7B6217DD4220052C063 /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				46AFC7B9217DD4220052C063 /* StarGameVC.swift */,
+				46AFC7BC217DD4220052C063 /* StarGameScene.swift */,
+				46AFC7BA217DD4220052C063 /* BalloonGameVC.swift */,
+				46AFC7B8217DD4220052C063 /* BalloonGameScene.swift */,
+				AC938FE2219A315A00F18672 /* CrapaudGameVC.swift */,
+				AC938FE4219A320E00F18672 /* CrapaudGameScene.swift */,
+				46AFC7BB217DD4220052C063 /* SheepGameVC.swift */,
+				46AFC7B7217DD4220052C063 /* SheepGameScene.swift */,
+				46AFC7BE217DD4220052C063 /* SpaceshipGameVC.swift */,
+				46AFC7BD217DD4220052C063 /* SpaceshipGameScene.swift */,
+			);
+			path = Games;
+			sourceTree = "<group>";
+		};
+		46AFC7BF217DD4220052C063 /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				EBEFCAA2217F05E5006E20F6 /* BLEDiscovery.swift */,
+				EBEFCAA3217F05E5006E20F6 /* BLEService.swift */,
+				EBEFCAA4217F05E5006E20F6 /* Cells */,
+				EBEFCAA8217F05E5006E20F6 /* Controllers */,
+			);
+			path = BLE;
+			sourceTree = "<group>";
+		};
+		46AFC7C8217DD4220052C063 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				46AFC7C9217DD4220052C063 /* CGPointUtils.swift */,
+				46AFC7CA217DD4220052C063 /* Helper.swift */,
+				46D5E73121CCAB3600E85B9B /* UIButtonBordered.swift */,
+				466FB24E21A2EFC700F19C65 /* UINavigationController+navbarTint.swift */,
+				46D5E73321CCADBD00E85B9B /* GameState.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		EB7A28F821CA6A0E000DBA43 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EB83C67A21D3819600CACA48 /* GeneralButtonCell.swift */,
+				EB7A28F621CA6A0A000DBA43 /* MainParameterCell.swift */,
+				EB7A28F921CA7BFD000DBA43 /* MainHeaderCell.swift */,
+				EB7A28FD21CA9F48000DBA43 /* GeneralSwitchCell.swift */,
+				EB7A28FF21CA9F5C000DBA43 /* GeneralSegmentCell.swift */,
+				EB7A290121CA9F73000DBA43 /* GeneralSliderCell.swift */,
+				EB7A290821CB9E7D000DBA43 /* GeneralSliderPlusCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		EB7A290521CB9989000DBA43 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EB7A28F421CA5C0F000DBA43 /* MainParametersVC.swift */,
+				EB7A28FB21CA9BF4000DBA43 /* GeneralParametersVC.swift */,
+				EB7A290621CB9A40000DBA43 /* SheepGameParameterVC.swift */,
+				EB7A290A21CBA6ED000DBA43 /* SpaceShipParameterVC.swift */,
+				EB7A290C21CBACC7000DBA43 /* TaudGameParameterVC.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EBEFCAA4217F05E5006E20F6 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EBEFCAA6217F05E5006E20F6 /* BTCell.swift */,
+				EBEFCAA7217F05E5006E20F6 /* BTHeaderCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		EBEFCAA8217F05E5006E20F6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EB7A28F221CA5BED000DBA43 /* BTConnectionVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		46AFC77E217DCCF10052C063 /* OrangeTrainingBox */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46AFC7A7217DCCF20052C063 /* Build configuration list for PBXNativeTarget "OrangeTrainingBox" */;
+			buildPhases = (
+				93CEBFB7BA3F7B32226DDBF6 /* [CP] Check Pods Manifest.lock */,
+				46C0CA8F217E0375007D3EE7 /* ShellScript */,
+				46AFC77B217DCCF10052C063 /* Sources */,
+				46AFC77C217DCCF10052C063 /* Frameworks */,
+				46AFC77D217DCCF10052C063 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OrangeTrainingBox;
+			productName = OrangeTrainingBox;
+			productReference = 46AFC77F217DCCF10052C063 /* OrangeTrainingBox.app */;
+			productType = "com.apple.product-type.application";
+		};
+		46AFC792217DCCF20052C063 /* OrangeTrainingBoxTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46AFC7AA217DCCF20052C063 /* Build configuration list for PBXNativeTarget "OrangeTrainingBoxTests" */;
+			buildPhases = (
+				46AFC78F217DCCF20052C063 /* Sources */,
+				46AFC790217DCCF20052C063 /* Frameworks */,
+				46AFC791217DCCF20052C063 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				46AFC795217DCCF20052C063 /* PBXTargetDependency */,
+			);
+			name = OrangeTrainingBoxTests;
+			productName = OrangeTrainingBoxTests;
+			productReference = 46AFC793217DCCF20052C063 /* OrangeTrainingBoxTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		46AFC79D217DCCF20052C063 /* OrangeTrainingBoxUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46AFC7AD217DCCF20052C063 /* Build configuration list for PBXNativeTarget "OrangeTrainingBoxUITests" */;
+			buildPhases = (
+				46AFC79A217DCCF20052C063 /* Sources */,
+				46AFC79B217DCCF20052C063 /* Frameworks */,
+				46AFC79C217DCCF20052C063 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				46AFC7A0217DCCF20052C063 /* PBXTargetDependency */,
+			);
+			name = OrangeTrainingBoxUITests;
+			productName = OrangeTrainingBoxUITests;
+			productReference = 46AFC79E217DCCF20052C063 /* OrangeTrainingBoxUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		46AFC777217DCCF10052C063 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1000;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = Orange;
+				TargetAttributes = {
+					46AFC77E217DCCF10052C063 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+					46AFC792217DCCF20052C063 = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = 46AFC77E217DCCF10052C063;
+					};
+					46AFC79D217DCCF20052C063 = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = 46AFC77E217DCCF10052C063;
+					};
+				};
+			};
+			buildConfigurationList = 46AFC77A217DCCF10052C063 /* Build configuration list for PBXProject "OrangeTrainingBox" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				fr,
+			);
+			mainGroup = 46AFC776217DCCF10052C063;
+			productRefGroup = 46AFC780217DCCF10052C063 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				46AFC77E217DCCF10052C063 /* OrangeTrainingBox */,
+				46AFC792217DCCF20052C063 /* OrangeTrainingBoxTests */,
+				46AFC79D217DCCF20052C063 /* OrangeTrainingBoxUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		46AFC77D217DCCF10052C063 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				468CFC32217E170B00E0553E /* Localizable.strings in Resources */,
+				465F8EC12201BECE00F99669 /* ExplosionParticle.sks in Resources */,
+				465F8EC3220208E900F99669 /* Star.jpg in Resources */,
+				EB38BBC721D9104E0012E3AB /* InfoPlist.strings in Resources */,
+				467ED810217E1A7F006FB1DB /* Main.storyboard in Resources */,
+				46AFC78A217DCCF20052C063 /* Assets.xcassets in Resources */,
+				EB7A290421CAB073000DBA43 /* Settings.storyboard in Resources */,
+				467ED811217E1A7F006FB1DB /* LaunchScreen.storyboard in Resources */,
+				46AFC7E3217DD43C0052C063 /* Games.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46AFC791217DCCF20052C063 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46AFC79C217DCCF20052C063 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		46C0CA8F217E0375007D3EE7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./swiftgen.sh\n";
+		};
+		93CEBFB7BA3F7B32226DDBF6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OrangeTrainingBox-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		46AFC77B217DCCF10052C063 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB7A28F321CA5BED000DBA43 /* BTConnectionVC.swift in Sources */,
+				46AFC7D0217DD4220052C063 /* StarGameVC.swift in Sources */,
+				468CFC3C217E17FE00E0553E /* Assets.swift in Sources */,
+				46AFC7CB217DD4220052C063 /* ParameterDataManager.swift in Sources */,
+				46AFC7CF217DD4220052C063 /* BalloonGameScene.swift in Sources */,
+				46AFC7D5217DD4220052C063 /* SpaceshipGameVC.swift in Sources */,
+				46AFC7CE217DD4220052C063 /* SheepGameScene.swift in Sources */,
+				46AFC7CC217DD4220052C063 /* SettableVC.swift in Sources */,
+				468CFC3D217E17FE00E0553E /* Storyboards.swift in Sources */,
+				EBEFCAAE217F05E5006E20F6 /* BTCell.swift in Sources */,
+				AC95209A217F3C7B00590D31 /* ButtonWithImageAndText.swift in Sources */,
+				466FB24F21A2EFC700F19C65 /* UINavigationController+navbarTint.swift in Sources */,
+				AC938FE3219A315A00F18672 /* CrapaudGameVC.swift in Sources */,
+				46AFC7D2217DD4220052C063 /* SheepGameVC.swift in Sources */,
+				EBEFCAAB217F05E5006E20F6 /* BLEDiscovery.swift in Sources */,
+				EB7A290221CA9F73000DBA43 /* GeneralSliderCell.swift in Sources */,
+				EB7A290D21CBACC7000DBA43 /* TaudGameParameterVC.swift in Sources */,
+				EB7A28F721CA6A0A000DBA43 /* MainParameterCell.swift in Sources */,
+				46D5E73221CCAB3600E85B9B /* UIButtonBordered.swift in Sources */,
+				EB7A28FE21CA9F48000DBA43 /* GeneralSwitchCell.swift in Sources */,
+				46AFC7DE217DD4230052C063 /* Helper.swift in Sources */,
+				AC938FE5219A320E00F18672 /* CrapaudGameScene.swift in Sources */,
+				46AFC7D1217DD4220052C063 /* BalloonGameVC.swift in Sources */,
+				46D5E73421CCADBD00E85B9B /* GameState.swift in Sources */,
+				46AFC783217DCCF10052C063 /* AppDelegate.swift in Sources */,
+				EBEFCAAF217F05E5006E20F6 /* BTHeaderCell.swift in Sources */,
+				EB06855A2181FB1200A07C3E /* ParametersDefaults.swift in Sources */,
+				46AFC7DD217DD4230052C063 /* CGPointUtils.swift in Sources */,
+				AC952092217F19EC00590D31 /* DashboardVC.swift in Sources */,
+				EB7A28F521CA5C0F000DBA43 /* MainParametersVC.swift in Sources */,
+				46AFC7D3217DD4220052C063 /* StarGameScene.swift in Sources */,
+				46EBAB242215CC3600AA542D /* SensorInputManager.swift in Sources */,
+				EB7A290921CB9E7D000DBA43 /* GeneralSliderPlusCell.swift in Sources */,
+				EBEFCAAC217F05E5006E20F6 /* BLEService.swift in Sources */,
+				46AFC7D4217DD4220052C063 /* SpaceshipGameScene.swift in Sources */,
+				EB7A290B21CBA6ED000DBA43 /* SpaceShipParameterVC.swift in Sources */,
+				EB7A290021CA9F5C000DBA43 /* GeneralSegmentCell.swift in Sources */,
+				EB7A28FA21CA7BFD000DBA43 /* MainHeaderCell.swift in Sources */,
+				468CFC3B217E17FE00E0553E /* Strings.swift in Sources */,
+				EB83C67B21D3819600CACA48 /* GeneralButtonCell.swift in Sources */,
+				EB7A290721CB9A40000DBA43 /* SheepGameParameterVC.swift in Sources */,
+				AC952098217F264200590D31 /* GameCell.swift in Sources */,
+				EB7A28FC21CA9BF4000DBA43 /* GeneralParametersVC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46AFC78F217DCCF20052C063 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46AFC798217DCCF20052C063 /* OrangeTrainingBoxTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46AFC79A217DCCF20052C063 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46AFC7A3217DCCF20052C063 /* OrangeTrainingBoxUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		46AFC795217DCCF20052C063 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 46AFC77E217DCCF10052C063 /* OrangeTrainingBox */;
+			targetProxy = 46AFC794217DCCF20052C063 /* PBXContainerItemProxy */;
+		};
+		46AFC7A0217DCCF20052C063 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 46AFC77E217DCCF10052C063 /* OrangeTrainingBox */;
+			targetProxy = 46AFC79F217DCCF20052C063 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		468CFC34217E170B00E0553E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				468CFC33217E170B00E0553E /* en */,
+				468CFC35217E170C00E0553E /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		EB38BBC521D9104E0012E3AB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB38BBC621D9104E0012E3AB /* en */,
+				EB38BBC821D910840012E3AB /* fr */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		46AFC7A5217DCCF20052C063 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		46AFC7A6217DCCF20052C063 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		46AFC7A8217DCCF20052C063 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4EA3608B567524A4FAA6D3CC /* Pods-OrangeTrainingBox.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MG2LSJNJB6;
+				INFOPLIST_FILE = OrangeTrainingBox/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = orange.OrangeTrainingBox;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		46AFC7A9217DCCF20052C063 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A556676A4824FC4756446E4 /* Pods-OrangeTrainingBox.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MG2LSJNJB6;
+				INFOPLIST_FILE = OrangeTrainingBox/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = orange.OrangeTrainingBox;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		46AFC7AB217DCCF20052C063 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MG2LSJNJB6;
+				INFOPLIST_FILE = OrangeTrainingBoxTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = orange.OrangeTrainingBoxTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OrangeTrainingBox.app/OrangeTrainingBox";
+			};
+			name = Debug;
+		};
+		46AFC7AC217DCCF20052C063 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MG2LSJNJB6;
+				INFOPLIST_FILE = OrangeTrainingBoxTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = orange.OrangeTrainingBoxTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OrangeTrainingBox.app/OrangeTrainingBox";
+			};
+			name = Release;
+		};
+		46AFC7AE217DCCF20052C063 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MG2LSJNJB6;
+				INFOPLIST_FILE = OrangeTrainingBoxUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = orange.OrangeTrainingBoxUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OrangeTrainingBox;
+			};
+			name = Debug;
+		};
+		46AFC7AF217DCCF20052C063 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MG2LSJNJB6;
+				INFOPLIST_FILE = OrangeTrainingBoxUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = orange.OrangeTrainingBoxUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OrangeTrainingBox;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		46AFC77A217DCCF10052C063 /* Build configuration list for PBXProject "OrangeTrainingBox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46AFC7A5217DCCF20052C063 /* Debug */,
+				46AFC7A6217DCCF20052C063 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		46AFC7A7217DCCF20052C063 /* Build configuration list for PBXNativeTarget "OrangeTrainingBox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46AFC7A8217DCCF20052C063 /* Debug */,
+				46AFC7A9217DCCF20052C063 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		46AFC7AA217DCCF20052C063 /* Build configuration list for PBXNativeTarget "OrangeTrainingBoxTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46AFC7AB217DCCF20052C063 /* Debug */,
+				46AFC7AC217DCCF20052C063 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		46AFC7AD217DCCF20052C063 /* Build configuration list for PBXNativeTarget "OrangeTrainingBoxUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46AFC7AE217DCCF20052C063 /* Debug */,
+				46AFC7AF217DCCF20052C063 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 46AFC777217DCCF10052C063 /* Project object */;
+}

@@ -1,0 +1,15 @@
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "AxC-Rf-5VB"; */
+"AxC-Rf-5VB.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Choisis ton jeu"; ObjectID = "Gdr-mi-rF5"; */
+"Gdr-mi-rF5.text" = "Choisis ton jeu";
+
+/* Class = "UIViewController"; title = "Main"; ObjectID = "YiS-qw-28E"; */
+"YiS-qw-28E.title" = "Main";
+
+/* Class = "UILabel"; text = "Ou teste tes muscles"; ObjectID = "gAL-Ow-vPI"; */
+"gAL-Ow-vPI.text" = "Ou teste tes muscles";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "iud-fI-mYe"; */
+"iud-fI-mYe.normalTitle" = "Button";
