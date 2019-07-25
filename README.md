@@ -21,20 +21,20 @@ Sensors and joystick have to be plugged to the box communicating with the apps u
 
 ## Pictures of the project
 
-### Some mockups of the Android app
+### Some mockups of the iOS app
 
 <table>
 	<tr>
 		<td>
 			<img
-				src="https://github.com/Orange-OpenSource/BaahBox-Android/blob/master/doc/img_device_menu.png" 
+				src="https://github.com/Orange-OpenSource/BaahBox-iOS/blob/master/doc/img_device_menu.png" 
 				title="The main menu"
 				alt="The main"
 				width="300">
 		</td>
 		<td>
 			<img
-				src="https://github.com/Orange-OpenSource/BaahBox-Android/blob/master/doc/img_device_game_space.png"
+				src="https://github.com/Orange-OpenSource/BaahBox-iOS/blob/master/doc/img_device_game_space.png"
 				title="The space game"
 				alt="The space game"
 				width="300">
@@ -49,7 +49,7 @@ Sensors and joystick have to be plugged to the box communicating with the apps u
 	<tr>
 		<td>
 			<img 
-				src="https://github.com/Orange-OpenSource/BaahBox-Android/blob/master/doc/img_baahbox.jpg"
+				src="https://github.com/Orange-OpenSource/BaahBox-iOS/blob/master/doc/img_baahbox.jpg"
 				title="The Baah Box with 3D-printable shield connected in BLE to apps"
 				alt="The Baah Box with 3D-printable shield connected in BLE to apps"
 				width="400">
@@ -64,14 +64,14 @@ Sensors and joystick have to be plugged to the box communicating with the apps u
 	<tr>
 		<td>
 			<img
-				src="https://github.com/Orange-OpenSource/BaahBox-Android/blob/master/doc/img_setup_sensors.jpg"
+				src="https://github.com/Orange-OpenSource/BaahBox-iOS/blob/master/doc/img_setup_sensors.jpg"
 				alt="Sensors on arm to train plugged to the box connected in BLE to iOS app"
 				title="Sensors on arm to train plugged to the box connected in BLE to iOS app"
 				width="500">
 		</td>
 		<td>
 			<img
-				src="https://github.com/Orange-OpenSource/BaahBox-Android/blob/master/doc/img_setup_joystick.jpeg"
+				src="https://github.com/Orange-OpenSource/BaahBox-iOS/blob/master/doc/img_setup_joystick.jpeg"
 				alt="Set up with plates and joystick plugged to the box connected to the iPad"
 				title="Set up with plates and joystick plugged to the box connected to the iPad"
 				width="500">
