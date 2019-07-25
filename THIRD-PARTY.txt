@@ -1,0 +1,6 @@
+================================================================================
+MIT License
+================================================================================
+Component: SwiftGen Copyright (c) 2019 SwiftGen
+License Text URL: licenses/LICENSE-swiftgen.txt
+Source Code: https://github.com/SwiftGen/SwiftGen
