@@ -1,0 +1,16 @@
+# Xcode
+# Picked from https://github.com/github/gitignore/blob/master/Global/Xcode.gitignore
+
+xcuserdata/
+build/
+DerivedData/
+*.xcworkspace
+
+# Swift
+.build/
+#Pods/
+#Carthage/Build
+#Dependencies/
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
