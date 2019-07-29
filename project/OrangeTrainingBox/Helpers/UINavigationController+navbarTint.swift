@@ -1,6 +1,6 @@
 //
 //  UINavigationController+navbarTint.swift
-//  Orange Training Box
+//  Orange Baah Box
 //
 //  Copyright (C) 2017 – 2019 Orange SA
 //
