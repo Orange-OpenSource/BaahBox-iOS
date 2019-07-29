@@ -1,6 +1,6 @@
 //
 //  MainParameterCell.swift
-//  Orange Baah Box
+//  Baah Box
 //
 //  Copyright (C) 2017 – 2019 Orange SA
 //
