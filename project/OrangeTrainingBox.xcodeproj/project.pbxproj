@@ -537,7 +537,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./swiftgen.sh\n";
+			shellScript = "./swiftgen.sh\n./check-assets.sh\n";
 		};
 		93CEBFB7BA3F7B32226DDBF6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
