@@ -9,8 +9,3 @@ DerivedData/
 # Swift
 .build/
 #Pods/
-#Carthage/Build
-#Dependencies/
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots/**/*.png
