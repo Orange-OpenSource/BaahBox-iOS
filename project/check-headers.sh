@@ -17,19 +17,23 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-# Run the program at TOOL_PATH to check if assets in TARGET contain LEGAL_NOTICE in metadata
-# https://github.com/Orange-OpenSource/Swift-AssetsLegalMentionsChecker
+# Run the program at TOOL_PATH to check recursively if source files in TARGET_FOLDER 
+# have HEADER_TEMPLATE. Ignore fire IGNORE lines and do not process files in EXCLUSIONS
+# https://github.com/Orange-OpenSource/Swift-SourcesHeaderChecker
 
-LEGAL_NOTICE="Baah Box, (c) Copyright Orange SA 2017-2019, CC-BY-SA 4.0 "
-TOOL_PATH="../tools/Swift-AssetsLegalMentionsChecker"
-TARGET="."
 
-$TOOL_PATH --folder "$TARGET" --mention "$LEGAL_NOTICE"
+TOOL_PATH="../tools/Swift-SourcesHeaderChecker"
+TARGET_FOLDER="."
+HEADER_TEMPLATE="../tools/.header-template.txt"
+IGNORE=2
+EXCLUSIONS="../tools/.excluding-list.txt"
+
+$TOOL_PATH --folder "$TARGET_FOLDER" --header "$HEADER_TEMPLATE" --ignoring "$IGNORE" --excluding "$EXCLUSIONS" --verbose
 result=$?
 
 if [ $result -eq 2 ]
 then
-	echo "✅ All assets contain legal notice in metadata."
+	echo "✅ All source files contain legal notice."
 	exit 0
 else
 	echo "🔴 Something wrong occured, see logs for further details."

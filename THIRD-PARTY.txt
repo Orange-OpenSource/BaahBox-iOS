@@ -8,3 +8,7 @@ Source Code: https://github.com/SwiftGen/SwiftGen
 Component: Swift-AssetsLegalMentionsChecker Copyright (c) 2019 Orange SA
 License Text URL: licenses/LICENSE-swift_assetslegalmentionschecker.txt
 Source Code: https://github.com/Orange-OpenSource/Swift-AssetsLegalMentionsChecker
+
+Component: Swift-SourcesHeaderChecker Copyright (c) 2019 Orange SA
+License Text URL: licenses/LICENSE-swift_sourcesheaderchecker.txt
+Source Code: https://github.com/Orange-OpenSource/Swift-SourcesHeaderChecker
