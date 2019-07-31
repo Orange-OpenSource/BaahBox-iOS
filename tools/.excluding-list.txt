@@ -1,0 +1,3 @@
+./project/OrangeTrainingBox/Resources/CodeGen/Constants/Strings.swift
+./project/OrangeTrainingBox/Resources/CodeGen/Constants/Assets.swift
+./project/OrangeTrainingBox/Resources/CodeGen/Constants/Storyboards.swift
