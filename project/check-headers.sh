@@ -22,13 +22,13 @@
 # https://github.com/Orange-OpenSource/Swift-SourcesHeaderChecker
 
 
-TOOL_PATH="../tools/check-headers.sh"
+TOOL_PATH="../tools/Swift-SourcesHeaderChecker"
 TARGET_FOLDER="."
 HEADER_TEMPLATE="../tools/.header-template.txt"
 IGNORE=2
 EXCLUSIONS="../tools/.excluding-list.txt"
 
-$TOOL_PATH --folder "$TARGET_FOLDER" --header "$HEADER_TEMPLATE" --ignoring "$IGNORE" --excluding "$EXCLUSIONS"
+$TOOL_PATH --folder "$TARGET_FOLDER" --header "$HEADER_TEMPLATE" --ignoring "$IGNORE" --excluding "$EXCLUSIONS" --verbose
 result=$?
 
 if [ $result -eq 2 ]
