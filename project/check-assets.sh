@@ -17,7 +17,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-# Run the program at TOOL_PATH to check if assets in TARGER contain LEGAL_NOTICE in metadata
+# Run the program at TOOL_PATH to check if assets in TARGET contain LEGAL_NOTICE in metadata
 # https://github.com/Orange-OpenSource/Swift-AssetsLegalMentionsChecker
 
 LEGAL_NOTICE="Baah Box, (c) Copyright Orange SA 2017-2019, CC-BY-SA 4.0 "
