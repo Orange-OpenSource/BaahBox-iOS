@@ -24,7 +24,7 @@ class SensorInputManager {
     static let sharedInstance = SensorInputManager()
     private init() {}
     
-    var musclesInput: (muscle1: Int, muscle2: Int) = (0,0)
+    var musclesInput: (muscle1: Int, muscle2: Int) = (0, 0)
     var joystickInput: (up: Bool, down: Bool, left: Bool, right: Bool) = (false, false, false, false)
     
     // Frame format:

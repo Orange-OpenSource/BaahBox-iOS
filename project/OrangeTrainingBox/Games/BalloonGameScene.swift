@@ -25,7 +25,7 @@ class BalloonGameScene: SKScene, ParametersDefaultable {
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
     var isGameStarted = false
-    var strengthValue : Int = 0
+    var strengthValue: Int = 0
     var startY: CGFloat = CGFloat (0)
     var gameDelegate: BalloonGameInteractable?
     let balloon = SKSpriteNode(imageNamed: Asset.Games.BalloonGame.balloon00.name)
@@ -75,7 +75,7 @@ class BalloonGameScene: SKScene, ParametersDefaultable {
         let balloonImage = UIImage(named: Asset.Games.BalloonGame.balloon00.name)
         balloon.texture = SKTexture (image: balloonImage!)
         let imageSize = balloon.texture!.size()
-        balloon.position = CGPoint(x: size.width/2 , y: size.height/2 + imageSize.height/4)
+        balloon.position = CGPoint(x: size.width/2, y: size.height/2 + imageSize.height/4)
         addChild(balloon)
         setNotifications()
     }
@@ -189,4 +189,3 @@ class BalloonGameScene: SKScene, ParametersDefaultable {
         sceneTouched(touchLocation: touchLocation)
     }
 }
-

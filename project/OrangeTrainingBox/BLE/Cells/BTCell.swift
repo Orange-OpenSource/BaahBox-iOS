@@ -29,7 +29,7 @@ class BTCell: UITableViewCell {
     func configure (with peripheralName: String, shouldShowTick: Bool) {
         
         let text = NSMutableAttributedString(string: peripheralName,
-                                             attributes: [NSAttributedString.Key.font:  UIFont.systemFont(ofSize: 20)])
+                                             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)])
         
         label.attributedText = text
         checkImage.isHidden = !shouldShowTick

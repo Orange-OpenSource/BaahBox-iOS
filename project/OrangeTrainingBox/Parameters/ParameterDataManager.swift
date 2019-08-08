@@ -78,12 +78,12 @@ class ParameterDataManager: Codable {
     }
     
     // General parameters
-    var demoMode : Bool = false { didSet { self.archive() }}
-    var muscle1IsON : Bool = true { didSet { self.archive() }}
-    var muscle2IsON : Bool = false { didSet { self.archive() }}
-    var sensitivity : SensitivitySelection = .low { didSet { self.archive() }}
-    var threshold : Int = 250 { didSet { self.archive() }}
-    var sensorType : SensorType = .joystick {
+    var demoMode: Bool = false { didSet { self.archive() }}
+    var muscle1IsON: Bool = true { didSet { self.archive() }}
+    var muscle2IsON: Bool = false { didSet { self.archive() }}
+    var sensitivity: SensitivitySelection = .low { didSet { self.archive() }}
+    var threshold: Int = 250 { didSet { self.archive() }}
+    var sensorType: SensorType = .joystick {
         didSet {
             self.archive()
             print("sensorType: \(sensorType)")
@@ -91,18 +91,18 @@ class ParameterDataManager: Codable {
     }
 
     // Sheep game
-    var numberOfFences : Int = 1 { didSet { self.archive() }}
-    var fenceVelocity : VelocitySelection = .slow { didSet { self.archive() }}
+    var numberOfFences: Int = 1 { didSet { self.archive() }}
+    var fenceVelocity: VelocitySelection = .slow { didSet { self.archive() }}
     
     // Space Battle game
-    var asteriodVelocity : VelocitySelection = .slow { didSet { self.archive() }}
-    var numberOfSpaceShips : Int = 5 { didSet { self.archive() }}
-    var explosionType : ExplosionType = .animatedCrash { didSet { self.archive() }}
+    var asteriodVelocity: VelocitySelection = .slow { didSet { self.archive() }}
+    var numberOfSpaceShips: Int = 5 { didSet { self.archive() }}
+    var explosionType: ExplosionType = .animatedCrash { didSet { self.archive() }}
 
     // Taud game
-    var numberOfFlies : Int = 5 { didSet { self.archive() }}
-    var flySteadyTime : Int = 5 { didSet { self.archive() }}
-    var shootingType : ShootingType = .automatic { didSet { self.archive() }}
+    var numberOfFlies: Int = 5 { didSet { self.archive() }}
+    var flySteadyTime: Int = 5 { didSet { self.archive() }}
+    var shootingType: ShootingType = .automatic { didSet { self.archive() }}
 }
 
 
@@ -137,7 +137,7 @@ extension ParameterDataManager {
         }
     }
     
-    static func archivePath(_ fileName:String) -> String {
+    static func archivePath(_ fileName: String) -> String {
         return NSTemporaryDirectory() + fileName
     }
 }

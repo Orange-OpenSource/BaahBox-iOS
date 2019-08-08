@@ -36,7 +36,7 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
     var visibleWidth: CGFloat = 0
     var hidenMargin: CGFloat = 0
     
-    var gameDelegate : CrapaudGameInteractable!
+    var gameDelegate: CrapaudGameInteractable!
     
     
     let crapaud = SKSpriteNode(imageNamed: Asset.Games.CrapaudGame.toad.name)
@@ -56,7 +56,7 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
     var isFlyThere = false
     
     override init(size: CGSize) {
-        crapaudBottomPosition = CGPoint(x: size.width/2 , y: size.height/4)
+        crapaudBottomPosition = CGPoint(x: size.width/2, y: size.height/4)
         crapaud.anchorPoint = CGPoint(x: 0.5, y: 0)
         crapaud.texture = SKTexture (imageNamed: Asset.Games.CrapaudGame.toad.name)
         crapaud.position = crapaudBottomPosition
@@ -177,13 +177,13 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
     private var toadBlinkAnimation: SKAction {
         return .repeatForever(.sequence([
             .wait(forDuration:2.5),
-            .setTexture(SKTexture (imageNamed: Asset.Games.CrapaudGame.toadBlink.name)),
+            .setTexture(SKTexture(imageNamed: Asset.Games.CrapaudGame.toadBlink.name)),
             .wait(forDuration: 0.1),
-            .setTexture(SKTexture (imageNamed: Asset.Games.CrapaudGame.toad.name)),
+            .setTexture(SKTexture(imageNamed: Asset.Games.CrapaudGame.toad.name)),
             .wait(forDuration: 0.3),
-            .setTexture(SKTexture (imageNamed: Asset.Games.CrapaudGame.toadBlink.name)),
+            .setTexture(SKTexture(imageNamed: Asset.Games.CrapaudGame.toadBlink.name)),
             .wait(forDuration: 0.1),
-            .setTexture(SKTexture (imageNamed: Asset.Games.CrapaudGame.toad.name)),
+            .setTexture(SKTexture(imageNamed: Asset.Games.CrapaudGame.toad.name))
         ]))
     }
     
@@ -257,11 +257,11 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
                 .move(to: stopPosition, duration: gameConstants.flyDisappearTime),
                 .scale(to: 0, duration: gameConstants.flyDisappearTime)
             ]),
-            .wait(forDuration: 0.1),
+            .wait(forDuration: 0.1)
             ])) { [weak self] in self?.flyAnimation() }
     }
     
-    private func limitedAsin(_ value: Double, angleLimit: Double = Double.pi/2) -> Double{
+    private func limitedAsin(_ value: Double, angleLimit: Double = Double.pi/2) -> Double {
         guard value < 1 else {
             return angleLimit
         }
@@ -340,7 +340,7 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
         fly.run(.sequence([
             .wait(forDuration: gameConstants.toadJumpTime),
             .scale(to: 0, duration: 0.03),
-            .wait(forDuration: 0.1),
+            .wait(forDuration: 0.1)
             ])) {
                 [weak self] in
                 self?.flyAnimation()
@@ -356,7 +356,7 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
             .move(to: crapaudBottomPosition, duration: 0),
             .scale(to: 1, duration: 0.03),
             .move(to: endPosition, duration: 0.5),
-            .wait(forDuration: 0.1),
+            .wait(forDuration: 0.1)
             ])) {
                 [weak self] in
                 if self?.isGameStarted ?? false {
@@ -433,8 +433,8 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
     }
     
     @objc func updateData(_ notification: Notification) {
-        var leftAction : Bool = false
-        var rightAction : Bool = false
+        var leftAction: Bool = false
+        var rightAction: Bool = false
         
         switch ParameterDataManager.sharedInstance.sensorType {
         case .joystick:
@@ -462,4 +462,3 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
     }
 
 }
-

@@ -33,7 +33,7 @@ class BLEService: NSObject, CBPeripheralDelegate {
     var peripheral: CBPeripheral?
     var txPositionCharacteristic: CBCharacteristic?
     var rxPositionCharacteristic: CBCharacteristic?
-    var rxData : [UInt8] = [0]
+    var rxData: [UInt8] = [0]
     var inputData: [UInt8] = []
 
     #if TEST_BANDWIDTH
@@ -68,7 +68,7 @@ class BLEService: NSObject, CBPeripheralDelegate {
         peripheral = nil
     }
     
-    // Mark: - CBPeripheralDelegate
+    // MARK: - CBPeripheralDelegate
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         
@@ -160,7 +160,8 @@ class BLEService: NSObject, CBPeripheralDelegate {
         }
     }
     
-    // Mark: - Private
+    // MARK: - Private
+    
     func writeCommand(_ command: Data) {
         
         if let txPositionCharacteristic = txPositionCharacteristic {
@@ -169,7 +170,7 @@ class BLEService: NSObject, CBPeripheralDelegate {
     }
     
     func sendNotificationPeripheralConnected() {
-        let connectionDetails = ["peripheralName" : peripheral?.name ?? "empty value" ]
+        let connectionDetails = ["peripheralName": peripheral?.name ?? "empty value" ]
         NotificationCenter.default.post(name: Notification.Name(rawValue: L10n.Notif.Ble.connection), object: self, userInfo: connectionDetails)
     }
 }

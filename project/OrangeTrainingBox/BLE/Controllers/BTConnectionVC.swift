@@ -24,8 +24,8 @@ import CoreBluetooth
 class BTConnectionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var btPeripherals = Array<CBPeripheral>()
-    var btPeriperalNames : [CBPeripheral?:String] = [:]
-    var selectedCells : [String: Bool] = [:]
+    var btPeriperalNames: [CBPeripheral?: String] = [:]
+    var selectedCells: [String: Bool] = [:]
     let btManager = BLEDiscovery.shared()
     var selectedPeripheralIndex = -1
     var headerCellIndex = 0
@@ -39,9 +39,12 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         title =  L10n.Ble.Connection.title
-        NotificationCenter.default.addObserver(self, selector: #selector(peripheralDiscovered(_:)), name: NSNotification.Name(rawValue: L10n.Notif.Ble.discovery), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(peripheralConnected(_:)), name: NSNotification.Name(rawValue: L10n.Notif.Ble.connection), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(peripheralDisconnected(_:)), name: NSNotification.Name(rawValue: L10n.Notif.Ble.disconnection), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(peripheralDiscovered(_:)),
+                                               name: NSNotification.Name(rawValue: L10n.Notif.Ble.discovery), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(peripheralConnected(_:)),
+                                               name: NSNotification.Name(rawValue: L10n.Notif.Ble.connection), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(peripheralDisconnected(_:)),
+                                               name: NSNotification.Name(rawValue: L10n.Notif.Ble.disconnection), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,10 +60,11 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
         btManager.stopScanning()
     }
     
-    func updateNavBar (shouldShowAnimation : Bool = false) {
+    func updateNavBar(shouldShowAnimation: Bool = false) {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 34, height: 15))
         let title = NSMutableAttributedString(string: L10n.Generic.ok,
-                                              attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 20), NSAttributedString.Key.foregroundColor : Asset.Colors.pinky.color])
+                                              attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20),
+                                                           NSAttributedString.Key.foregroundColor: Asset.Colors.pinky.color])
         if selectedPeripheralIndex != -1 {
             button.setAttributedTitle(title, for: .normal)
             button.setTitleColor(UIColor.red, for: .normal)
@@ -132,7 +136,7 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
         footerCellIndex = btPeripherals.count + 1
     }
     
-    //MARK: - TableView delegates
+    // MARK: - TableView delegates
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -212,15 +216,15 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
         
         let index = getPeripheralIndex (at: indexPath)
         let peripheralName = getPeripheralName(at: index)
-        cell.configure(with: peripheralName,shouldShowTick: selectedCells[peripheralName] ?? false)
+        cell.configure(with: peripheralName, shouldShowTick: selectedCells[peripheralName] ?? false)
         return cell
     }
     
-    func getPeripheralIndex(at indexPath : IndexPath) -> Int {
+    func getPeripheralIndex(at indexPath: IndexPath) -> Int {
         return indexPath.row - 1
     }
     
-    func getPeripheralName (at index : Int) -> String {
+    func getPeripheralName(at index: Int) -> String {
         guard index >= 0  else { return "" }
     
         let peripheral =  btPeripherals[index]

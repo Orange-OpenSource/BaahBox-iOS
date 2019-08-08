@@ -40,8 +40,8 @@ class StarGameVC: SettableVC, StarGameInteractable {
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     
-    var scene : StarGameScene?
-    var lastValue : Int = 0
+    var scene: StarGameScene?
+    var lastValue: Int = 0
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,7 +93,7 @@ class StarGameVC: SettableVC, StarGameInteractable {
     }
     
     func configureScene() {
-        scene = StarGameScene(size:CGSize(width: 1536, height: 2048))
+        scene = StarGameScene(size: CGSize(width: 1536, height: 2048))
         scene?.gameDelegate = self
         scene?.scaleMode = .aspectFill
         //scene.size = self.node.size
@@ -138,7 +138,7 @@ class StarGameVC: SettableVC, StarGameInteractable {
 
     func configureBottomView() {
         let text = NSMutableAttributedString(string: L10n.Game.start,
-                                             attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 27)])
+                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
         
         text.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSRange(location: 0, length: text.length))
         startButton.setAttributedTitle(text, for: .normal)
@@ -172,7 +172,7 @@ class StarGameVC: SettableVC, StarGameInteractable {
     
     func swelling () {
         let text = NSMutableAttributedString(string: L10n.Game.Star.Text.keepGoing,
-                                             attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 32
+                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 32
                                                 )])
         feedbackLabel.attributedText = text
         feedbackLabel.isHidden = false
@@ -180,7 +180,7 @@ class StarGameVC: SettableVC, StarGameInteractable {
     
     func win() {
         let text = NSMutableAttributedString(string: L10n.Game.Star.Text.congrats + "\n",
-                                             attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 60)])
+                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 60)])
         
         text.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSRange(location: 0, length: text.length))
         feedbackLabel.attributedText = text

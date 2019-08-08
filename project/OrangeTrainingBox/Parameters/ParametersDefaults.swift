@@ -27,7 +27,7 @@ enum DefaultHardnessValue: Double {
 }
 
 protocol ParametersDefaultable {
-    var hardnessCoeff : Double { get }
+    var hardnessCoeff: Double { get }
 }
 
 extension ParametersDefaultable {

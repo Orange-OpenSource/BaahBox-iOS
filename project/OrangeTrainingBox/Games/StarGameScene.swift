@@ -25,7 +25,7 @@ class StarGameScene: SKScene, ParametersDefaultable {
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
     var isGameStarted = false
-    var strengthValue : Int = 0
+    var strengthValue: Int = 0
     let strenghThreshold: Double = 50
     var gameDelegate: StarGameInteractable?
 
@@ -73,7 +73,7 @@ class StarGameScene: SKScene, ParametersDefaultable {
         star.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         star.texture = SKTexture (imageNamed: Asset.Games.StarGame.starLow.name)
         let imageSize = star.texture!.size()
-        star.position = CGPoint(x: size.width/2 , y: size.height/2 + imageSize.height/4)
+        star.position = CGPoint(x: size.width/2, y: size.height/2 + imageSize.height/4)
         addChild(star)
         setupNotificationCenter()
       //  startStarAnimation()
@@ -207,4 +207,3 @@ class StarGameScene: SKScene, ParametersDefaultable {
         sceneTouched(touchLocation: touchLocation)
     }
 }
-

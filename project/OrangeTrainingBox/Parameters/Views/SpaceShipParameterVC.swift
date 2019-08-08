@@ -20,7 +20,7 @@
 
 import UIKit
 
-class SpaceShipParameterVC: UIViewController , UITableViewDelegate, UITableViewDataSource {
+class SpaceShipParameterVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let dataManager = ParameterDataManager.sharedInstance
     @IBOutlet weak var tableView: UITableView!
@@ -31,7 +31,7 @@ class SpaceShipParameterVC: UIViewController , UITableViewDelegate, UITableViewD
         title = L10n.Parameters.Ship.title
     }
     
-    // MARK:- Tableview management
+    // MARK: - Tableview management
     
     func configureTableView () {
         tableView.tableFooterView = UIView()
@@ -60,13 +60,14 @@ class SpaceShipParameterVC: UIViewController , UITableViewDelegate, UITableViewD
             }
             
             let text = NSMutableAttributedString(string: L10n.Parameters.Ship.number,
-                                                 attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 16)])
+                                                 attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
             
             cell.title.attributedText = text
             cell.sliderItem.value = Float (dataManager.numberOfSpaceShips)
             
             let val = NSMutableAttributedString(string: cell.sliderItem.value.clean,
-                                                attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor : Asset.Colors.pinky.color])
+                                                attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16),
+                                                             NSAttributedString.Key.foregroundColor: Asset.Colors.pinky.color])
             
             cell.value.attributedText = val
             return cell
@@ -77,7 +78,7 @@ class SpaceShipParameterVC: UIViewController , UITableViewDelegate, UITableViewD
             }
             
             let text = NSMutableAttributedString(string: L10n.Parameters.Ship.speed,
-                                                 attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 16)])
+                                                 attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
             cell.label.attributedText = text
             
             cell.segmentItem.removeAllSegments()
@@ -102,7 +103,7 @@ class SpaceShipParameterVC: UIViewController , UITableViewDelegate, UITableViewD
             }
             
             let text = NSMutableAttributedString(string: L10n.Parameters.Ship.explosionStyle,
-                                                 attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 16)])
+                                                 attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
             cell.label.attributedText = text
             cell.switchItem.isOn = dataManager.explosionType == .particles ? true : false
             

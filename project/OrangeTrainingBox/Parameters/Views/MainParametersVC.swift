@@ -23,7 +23,7 @@ import UIKit
 class MainParametersVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     
-    enum SectionDescription : Int {
+    enum SectionDescription: Int {
         case connection = 0
         case general = 1
         case games = 2
@@ -66,7 +66,8 @@ class MainParametersVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
         super.viewDidLoad()
         configureTableView()
         title = L10n.MainParameters.Header.title
-        NotificationCenter.default.addObserver(self, selector: #selector(peripheralDisconnected(_:)), name: NSNotification.Name(rawValue: L10n.Notif.Ble.disconnection), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(peripheralDisconnected(_:)),
+                                               name: NSNotification.Name(rawValue: L10n.Notif.Ble.disconnection), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,9 +121,12 @@ class MainParametersVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
         let headerView = UIView (frame: CGRect (x: 0, y: 0, width: frame.size.width, height: 50))
         headerView.addSubview(title)
 
-        headerView.addConstraint(NSLayoutConstraint (item: title, attribute: .leading, relatedBy: .equal, toItem: headerView, attribute: .leading, multiplier: 1, constant: 15))
-        headerView.addConstraint(NSLayoutConstraint (item: title, attribute: .trailing, relatedBy: .equal, toItem: headerView, attribute: .trailing, multiplier: 1, constant: -15))
-        headerView.addConstraint(NSLayoutConstraint (item: title, attribute: .top, relatedBy: .equal, toItem: headerView, attribute: .top, multiplier: 1, constant: 5))
+        headerView.addConstraint(NSLayoutConstraint(item: title, attribute: .leading, relatedBy: .equal,
+                                                     toItem: headerView, attribute: .leading, multiplier: 1, constant: 15))
+        headerView.addConstraint(NSLayoutConstraint(item: title, attribute: .trailing, relatedBy: .equal,
+                                                     toItem: headerView, attribute: .trailing, multiplier: 1, constant: -15))
+        headerView.addConstraint(NSLayoutConstraint(item: title, attribute: .top, relatedBy: .equal,
+                                                     toItem: headerView, attribute: .top, multiplier: 1, constant: 5))
         
         headerView.backgroundColor = UIColor (displayP3Red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
         return headerView
@@ -143,8 +147,9 @@ class MainParametersVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
             cell.headerLabel.text = SectionDescription.connection.subtitle.first
             
             let text = NSMutableAttributedString(string: btManager.getCurrentPeripheralName(),
-                                             attributes: [NSAttributedString.Key.font:  UIFont.systemFont(ofSize: 14),
-                                                          NSAttributedString.Key.foregroundColor:UIColor(displayP3Red: 0.6, green: 0.6, blue: 0.6, alpha: 1)])
+                                             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
+                                                          NSAttributedString.Key.foregroundColor: UIColor(displayP3Red: 0.6,
+                                                                                        green: 0.6, blue: 0.6, alpha: 1)])
             
             cell.boxLabel.attributedText = text
             

@@ -29,7 +29,7 @@ class SheepGameParameterVC: UIViewController, UITableViewDelegate, UITableViewDa
         title = L10n.Parameters.Sheep.title
     }
     
-    // MARK:- Tableview management
+    // MARK: - Tableview management
     
     func configureTableView () {
         tableView.tableFooterView = UIView()
@@ -58,13 +58,14 @@ class SheepGameParameterVC: UIViewController, UITableViewDelegate, UITableViewDa
             }
             
             let text = NSMutableAttributedString(string: L10n.Parameters.Sheep.fence,
-                                                attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 16)])
+                                                attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
             
             cell.title.attributedText = text
             cell.sliderItem.value = Float (ParameterDataManager.sharedInstance.numberOfFences)
             
             let val = NSMutableAttributedString(string: cell.sliderItem.value.clean,
-                                                 attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor : Asset.Colors.pinky.color])
+                                                 attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16),
+                                                              NSAttributedString.Key.foregroundColor: Asset.Colors.pinky.color])
             
             cell.value.attributedText = val
             return cell
@@ -75,7 +76,7 @@ class SheepGameParameterVC: UIViewController, UITableViewDelegate, UITableViewDa
             }
             
             let text = NSMutableAttributedString(string: L10n.Parameters.Sheep.speed,
-                                                 attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 16)])
+                                                 attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
             cell.label.attributedText = text
             
             cell.segmentItem.removeAllSegments()

@@ -20,12 +20,12 @@
 
 import UIKit
 
-class SettableVC : UIViewController {
+class SettableVC: UIViewController {
     let btManager = BLEDiscovery.shared()
     let dataManager = ParameterDataManager.sharedInstance
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    var navTintColor : UIColor = UIColor.black {
+    var navTintColor: UIColor = UIColor.black {
         didSet {
             configureNavBar()
         }
@@ -34,8 +34,10 @@ class SettableVC : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(bleUp(_:)), name: NSNotification.Name(rawValue: L10n.Notif.Ble.up), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(bleDown(_:)), name: NSNotification.Name(rawValue: L10n.Notif.Ble.down), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(bleUp(_:)),
+                                               name: NSNotification.Name(rawValue: L10n.Notif.Ble.up), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(bleDown(_:)),
+                                               name: NSNotification.Name(rawValue: L10n.Notif.Ble.down), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,20 +69,20 @@ class SettableVC : UIViewController {
     }
 
     func configureRightBarButtons () {
-        var buttons : [UIBarButtonItem] = []
+        var buttons: [UIBarButtonItem] = []
         
         let parameterButton = UIBarButtonItem (image: Asset.Dashboard.settingsIcon.image,
                                                style: UIBarButtonItem.Style.plain,
-                                               target: self, action:#selector (onParameterButton))
+                                               target: self, action: #selector (onParameterButton))
         parameterButton.tintColor = navTintColor
         
         buttons.append(parameterButton)
 
         if btManager.getBTState() != .poweredOff {
         
-            let btParameterButton = UIBarButtonItem (image: Asset.Dashboard.bluetooth.image,
+            let btParameterButton = UIBarButtonItem(image: Asset.Dashboard.bluetooth.image,
                                                style: UIBarButtonItem.Style.plain,
-                                               target: self, action:#selector (onBTButton))
+                                               target: self, action: #selector (onBTButton))
             btParameterButton.tintColor = navTintColor
            
             buttons.append(btParameterButton)
@@ -152,17 +154,17 @@ class SettableVC : UIViewController {
     
     func presentConnectionPopup () {
         
-        let alert = UIAlertController(title: L10n.Generic.connect, message: L10n.Ble.Connection.popupTitle, preferredStyle: .alert);
+        let alert = UIAlertController(title: L10n.Generic.connect, message: L10n.Ble.Connection.popupTitle, preferredStyle: .alert)
         
         alert.view.tintColor = Asset.Colors.pinky.color
         
-        alert.addAction(UIAlertAction(title: L10n.Generic.cancel, style: .cancel, handler: {(action:UIAlertAction) in
+        alert.addAction(UIAlertAction(title: L10n.Generic.cancel, style: .cancel, handler: {(action: UIAlertAction) in
             self.dataManager.demoMode = true
             self.appDelegate.shouldPresentConnectionPannel = false
             self.configureNavBar()
         }))
         
-        alert.addAction(UIAlertAction(title: L10n.Generic.connect, style: .default, handler: {(action:UIAlertAction) in
+        alert.addAction(UIAlertAction(title: L10n.Generic.connect, style: .default, handler: {(action: UIAlertAction) in
             
             if self.btManager.getBTState() == .poweredOff {
                 self.appDelegate.shouldPresentConnectionPannel = true
@@ -179,16 +181,16 @@ class SettableVC : UIViewController {
     
     func presentBLEConnectionPopup () {
         
-        let alert = UIAlertController(title: L10n.Generic.ble, message: L10n.Ble.Connection.bleSwitchON, preferredStyle: .alert);
+        let alert = UIAlertController(title: L10n.Generic.ble, message: L10n.Ble.Connection.bleSwitchON, preferredStyle: .alert)
         
         alert.view.tintColor = Asset.Colors.pinky.color
         
-        alert.addAction(UIAlertAction(title: L10n.Generic.cancel, style: .cancel, handler: {(action:UIAlertAction) in
+        alert.addAction(UIAlertAction(title: L10n.Generic.cancel, style: .cancel, handler: {(action: UIAlertAction) in
             self.dataManager.demoMode = true
             self.appDelegate.shouldPresentConnectionPannel = false
         }))
         
-        alert.addAction(UIAlertAction(title: L10n.Generic.activate, style: .default, handler: {(action:UIAlertAction) in
+        alert.addAction(UIAlertAction(title: L10n.Generic.activate, style: .default, handler: {(action: UIAlertAction) in
             self.presentBTSettingPanel()
         }))
         
