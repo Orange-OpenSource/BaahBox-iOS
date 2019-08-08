@@ -25,8 +25,8 @@ import CoreBluetooth
 let BLEServiceUUID = CBUUID(string: "6E400001-B5A3-F393-E0A9-E50E24DCCA9E")
 
 // Characteristics for UART service
-let TxPositionCharUUID = CBUUID(string: "6E400002-B5A3-F393-E0A9-E50E24DCCA9E")
-let RxPositionCharUUID = CBUUID(string: "6E400003-B5A3-F393-E0A9-E50E24DCCA9E")
+let txPositionCharUUID = CBUUID(string: "6E400002-B5A3-F393-E0A9-E50E24DCCA9E")
+let rxPositionCharUUID = CBUUID(string: "6E400003-B5A3-F393-E0A9-E50E24DCCA9E")
 
 
 class BLEService: NSObject, CBPeripheralDelegate {
@@ -88,7 +88,7 @@ class BLEService: NSObject, CBPeripheralDelegate {
         let _ = peripheralServices.map {service in
             
             if service.uuid == BLEServiceUUID {
-                peripheral.discoverCharacteristics([TxPositionCharUUID, RxPositionCharUUID], for: service)
+                peripheral.discoverCharacteristics([txPositionCharUUID, rxPositionCharUUID], for: service)
             }
         }
     }
@@ -110,13 +110,13 @@ class BLEService: NSObject, CBPeripheralDelegate {
             
             for characteristic in characteristics {
                 
-                if characteristic.uuid == RxPositionCharUUID {
+                if characteristic.uuid == rxPositionCharUUID {
                     numberOfDiscoverdCharacteristics += 1
                     peripheral.setNotifyValue(true, for: characteristic)
                     rxPositionCharacteristic = characteristic
                 }
                 
-                if characteristic.uuid == TxPositionCharUUID {
+                if characteristic.uuid == txPositionCharUUID {
                     numberOfDiscoverdCharacteristics += 1
                     txPositionCharacteristic = characteristic
                 }

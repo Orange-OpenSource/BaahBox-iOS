@@ -132,7 +132,8 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
         
         let title = UILabel (frame: CGRect (x: 0, y: 0, width: frame.size.width, height: 10))
         
-        let textContent = NSMutableAttributedString(string: (SectionDescription.init(rawValue: section)?.title())!, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
+        let textContent = NSMutableAttributedString(string: (SectionDescription.init(rawValue: section)?.title())!,
+                                                    attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
         
         title.attributedText = textContent
         title.numberOfLines = 0
@@ -142,7 +143,9 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
         
         let subTitle = UILabel (frame: CGRect (x: 0, y: 0, width: frame.size.width, height: 25))
         
-        let textContent2 = NSMutableAttributedString(string: (SectionDescription.init(rawValue: section)?.subtitle())!, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor (displayP3Red: 0.6, green: 0.6, blue: 0.6, alpha: 1)])
+        let textContent2 = NSMutableAttributedString(string: (SectionDescription.init(rawValue: section)?.subtitle())!,
+                            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular),
+                                         NSAttributedString.Key.foregroundColor: UIColor (displayP3Red: 0.6, green: 0.6, blue: 0.6, alpha: 1)])
         
         subTitle.attributedText = textContent2
         subTitle.numberOfLines = 0

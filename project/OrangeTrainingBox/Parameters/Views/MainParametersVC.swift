@@ -111,7 +111,8 @@ class MainParametersVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
         
         let title = UILabel (frame: CGRect (x: 0, y: 0, width: frame.size.width, height: 10))
         
-        let textContent = NSMutableAttributedString(string: (SectionDescription.init(rawValue: section)?.title)!, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
+        let textContent = NSMutableAttributedString(string: (SectionDescription.init(rawValue: section)?.title)!,
+                                                    attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
         
         title.attributedText = textContent
         title.numberOfLines = 0
