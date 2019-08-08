@@ -127,7 +127,7 @@ class StarGameScene: SKScene, ParametersDefaultable {
                 guard SensorInputManager.sharedInstance.joystickInput.up && strengthValue  <= Int(95*hardnessCoeff) else {
                     return
                 }
-                strengthValue  = strengthValue + 1
+                strengthValue = strengthValue + 1
                 
                 
                 print("updateData : Strength : \(strengthValue)")

@@ -104,25 +104,25 @@ class BLEService: NSObject, CBPeripheralDelegate {
             return
         }
         
-        var numberOfDiscoverdCharacteristics = 0
+        var discoverdCharacteristicsCount = 0
         
         if let characteristics = service.characteristics {
             
             for characteristic in characteristics {
                 
                 if characteristic.uuid == rxPositionCharUUID {
-                    numberOfDiscoverdCharacteristics += 1
+                    discoverdCharacteristicsCount += 1
                     peripheral.setNotifyValue(true, for: characteristic)
                     rxPositionCharacteristic = characteristic
                 }
                 
                 if characteristic.uuid == txPositionCharUUID {
-                    numberOfDiscoverdCharacteristics += 1
+                    discoverdCharacteristicsCount += 1
                     txPositionCharacteristic = characteristic
                 }
             }
             
-            if numberOfDiscoverdCharacteristics == 2 {
+            if discoverdCharacteristicsCount == 2 {
                 sendNotificationPeripheralConnected()
             }
         }
@@ -152,7 +152,7 @@ class BLEService: NSObject, CBPeripheralDelegate {
                 inputData.append(rxChar)
             } else {
                 #if TEST_BANDWIDTH
-                    self.counter = self.counter+1
+                    self.counter = self.counter + 1
                 #endif
                 SensorInputManager.sharedInstance.analyseCompressedRawInput(inputData)
                 inputData = []
