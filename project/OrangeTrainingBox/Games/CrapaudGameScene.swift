@@ -140,7 +140,7 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
 //        print("3 flyAngle \(flyAngle)  --  crapaudOrientation \(crapaud.zRotation)")
         isFlyThere = /*(hypot(fly.position.x - flyPosition.x, fly.position.y - flyPosition.y) < 0.1) &&*/ (fly.xScale > 0.99)
         isToadJumping = (crapaud.position.y - crapaudBottomPosition.y) > 1
-        if abs(-crapaud.zRotation - flyAngle) < 0.011 && flyAngle != flyCaughtAngle && isFlyThere && !isToadJumping && autoShoot{
+        if abs(-crapaud.zRotation - flyAngle) < 0.011 && flyAngle != flyCaughtAngle && isFlyThere && !isToadJumping && autoShoot {
             print("-----> FLY 1! ")
             shootTongue(angle: flyAngle)
             flyCaughtAngle = flyAngle
@@ -251,7 +251,7 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
             .scale(to: 0, duration: 0),
             .move(to: flyPosition, duration: 0),
             .scale(to: 1, duration: gameConstants.flyAppearTime),
-            .run{self.turnToad()},
+            .run { self.turnToad() },
             .wait(forDuration: flyStayingTime),
             .group([
                 .move(to: stopPosition, duration: gameConstants.flyDisappearTime),
@@ -410,7 +410,7 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
             }
             return
         }
-        if leftAction && !isToadJumping  {
+        if leftAction && !isToadJumping {
             turnLeft()
             return
         }

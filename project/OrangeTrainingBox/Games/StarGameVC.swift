@@ -131,7 +131,7 @@ class StarGameVC: SettableVC, StarGameInteractable {
             stopButton.isHidden = true
             resetButton.isHidden = false
             scene?.isGameStarted = false
-       default:
+        default:
             print("should not happen")
         }
     }

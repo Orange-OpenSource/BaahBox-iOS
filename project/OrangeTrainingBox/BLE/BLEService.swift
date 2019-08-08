@@ -72,7 +72,7 @@ class BLEService: NSObject, CBPeripheralDelegate {
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         
-        if (peripheral != self.peripheral) {
+        if peripheral != self.peripheral {
             return
         }
         
@@ -95,7 +95,7 @@ class BLEService: NSObject, CBPeripheralDelegate {
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         
-        if (peripheral != self.peripheral) {
+        if peripheral != self.peripheral {
             return
         }
         
@@ -122,7 +122,7 @@ class BLEService: NSObject, CBPeripheralDelegate {
                 }
             }
             
-            if (numberOfDiscoverdCharacteristics == 2) {
+            if numberOfDiscoverdCharacteristics == 2 {
                 sendNotificationPeripheralConnected()
             }
         }
@@ -131,7 +131,7 @@ class BLEService: NSObject, CBPeripheralDelegate {
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         
-        if (peripheral != self.peripheral) {
+        if peripheral != self.peripheral {
             return
         }
         

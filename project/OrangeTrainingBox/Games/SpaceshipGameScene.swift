@@ -264,8 +264,7 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
     //===============================
     
     func didBegin(_ contact: SKPhysicsContact) {
-        if case .onGoing = self.gameState
-        {
+        if case .onGoing = self.gameState {
             _ = self.animateCrash()
             checkLifes()
         }

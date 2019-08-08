@@ -317,8 +317,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
             case 1:  dataManager.sensitivity = .average
             default: dataManager.sensitivity = .high
             }
-        }
-        else if sender.tag == sensorTypeTag {
+        } else if sender.tag == sensorTypeTag {
             switch sender.selectedSegmentIndex {
             case 2:  dataManager.sensorType = .buttons
             case 1:  dataManager.sensorType = .joystick

@@ -182,7 +182,7 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         
-        if (peripheral == currentPeripheral) {
+        if peripheral == currentPeripheral {
             bleService = BLEService (with: peripheral)
         }
 
@@ -204,7 +204,7 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
     }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        switch (central.state) {
+        switch central.state {
         case .poweredOff:
             clearDevices()
         case .resetting:
@@ -218,7 +218,7 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
     
     func shouldIgnorePeripheral(for localName: String, peripheral: CBPeripheral) -> Bool {
 
-        if (localName == "" || localName == "Adafruit Bluefruit LE") && !peripherals.contains(peripheral) {
+        if (localName.isEmpty || localName == "Adafruit Bluefruit LE") && !peripherals.contains(peripheral) {
             return true
         }
         

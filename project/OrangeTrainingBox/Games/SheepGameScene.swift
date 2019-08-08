@@ -363,7 +363,7 @@ class SheepGameScene: SKScene, ParametersDefaultable {
     func sceneTouched(touchLocation: CGPoint) {
         
         let  position = boundsCheckForSheep(touchLocation)
-        if !(gate.frame.intersects(sheep.frame)) && position.y > ground.position.y  {
+        if !(gate.frame.intersects(sheep.frame)) && position.y > ground.position.y {
             jumpTo(sprite: sheep, height: getNewPosition(from: position))
         }
     }
@@ -405,7 +405,7 @@ class SheepGameScene: SKScene, ParametersDefaultable {
             
             if sheep.position.y == groundPosition.y {
                 
-                if isJumping && isGameStarted  && gate.position.x < size.width/2{
+                if isJumping && isGameStarted  && gate.position.x < size.width/2 {
                     successfullJumps += 1
                     
                     if successfullJumps == gameObjective {
@@ -436,10 +436,9 @@ class SheepGameScene: SKScene, ParametersDefaultable {
     //======================================
     private func boundsCheckForSheep(_ location: CGPoint) -> CGPoint {
         var position  = location
-        if position.y < groundPosition.y  {
+        if position.y < groundPosition.y {
             position.y = groundPosition.y
-        }
-        else if position.y > size.height - sheep.size.height   {
+        } else if position.y > size.height - sheep.size.height {
             position.y = size.height - sheep.size.height
         }
         return position

@@ -85,11 +85,11 @@ class SheepGameParameterVC: UIViewController, UITableViewDelegate, UITableViewDa
             cell.segmentItem.insertSegment(withTitle: L10n.Generic.high, at: 2, animated: false)
             
             switch ParameterDataManager.sharedInstance.fenceVelocity {
-                case .slow:
+            case .slow:
                 cell.segmentItem.selectedSegmentIndex = 0
-                case .average:
+            case .average:
                 cell.segmentItem.selectedSegmentIndex = 1
-                default:
+            default:
                 cell.segmentItem.selectedSegmentIndex = 2
             }
             
