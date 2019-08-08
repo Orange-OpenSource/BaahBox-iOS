@@ -92,8 +92,6 @@ class CrapaudGameVC: SettableVC, CrapaudGameInteractable {
     }
 
     
-
-        
     private func addScoreViews() {
         for scoreView in scoreViews {
             scoreView.removeFromSuperview()

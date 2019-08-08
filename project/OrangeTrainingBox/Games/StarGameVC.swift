@@ -28,8 +28,6 @@ public protocol StarGameInteractable {
     func configureScreen(forState state: GameState)
 }
 
-
-
 class StarGameVC: SettableVC, StarGameInteractable {
    
     @IBOutlet weak var headerLabel: UILabel!
@@ -147,8 +145,6 @@ class StarGameVC: SettableVC, StarGameInteractable {
         stopButton.setTitle(L10n.Game.stop, for: .normal)
     }
     
-    
-   
     
     @IBAction func onStartButtonPressed(_ sender: Any) {
         configureScreen(forState: .onGoing)

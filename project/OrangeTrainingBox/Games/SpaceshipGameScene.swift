@@ -52,13 +52,11 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
     var meteorSpawnAction = SKAction()
     
     
-    
     //  let asteroidCollisionSoundAction = SKAction.playSoundFileNamed(
     // "SNCRASH1.wav", waitForCompletion: false)
     var crash = SKSpriteNode(imageNamed: Asset.Games.SpaceshipGame.crash.name)
     var crashAnimation = SKAction()
 
-    
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -84,8 +82,6 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
-    
-    
     override func willMove(from view: SKView) {
         super.willMove(from: view)
         print("space Scene willMoveFromView")
@@ -100,8 +96,6 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         gameDelegate = nil
         NotificationCenter.default.removeObserver(self)
     }
-    
-    
     
     
     override func didMove(to view: SKView) {
@@ -432,7 +426,6 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
-    
     //=======================
     // MARK: - touch handling
     //=======================
@@ -458,7 +451,6 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         let touchLocation = touch.location(in: self)
         sceneTouched(touchLocation: touchLocation)
     }
-    
     
     
     //  stars..

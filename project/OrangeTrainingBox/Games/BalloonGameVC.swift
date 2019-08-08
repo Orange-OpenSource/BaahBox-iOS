@@ -93,14 +93,10 @@ class BalloonGameVC: SettableVC, BalloonGameInteractable {
     }
     
     
-    
     @objc func onParameterUpdate() {
         // update parameters
     }
     
-    
-   
-   
     
     @IBAction func onStartButtonPressed(_ sender: Any) {
         scene.isGameStarted = true

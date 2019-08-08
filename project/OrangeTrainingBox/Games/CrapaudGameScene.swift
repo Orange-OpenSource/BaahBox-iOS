@@ -220,8 +220,7 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
         ])
     }
     
-    
-    
+
     // ---------- //
     // Animations //
     // ---------- //
@@ -454,7 +453,6 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
         }
         analyseActions(leftAction: leftAction, rightAction: rightAction)
     }
-    
     
     
     @objc func loadParameters () {

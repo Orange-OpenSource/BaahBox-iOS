@@ -117,7 +117,6 @@ class StarGameScene: SKScene, ParametersDefaultable {
     }
     
     
-    
     // Data update
     //
     
@@ -163,13 +162,6 @@ class StarGameScene: SKScene, ParametersDefaultable {
             return 0
         }
     }
-    
-    
-    
-    
-    
-    
-    
     
     
     // ======================

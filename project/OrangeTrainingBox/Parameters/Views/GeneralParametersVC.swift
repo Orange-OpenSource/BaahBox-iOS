@@ -173,7 +173,6 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         var result: CGFloat = 60.0
