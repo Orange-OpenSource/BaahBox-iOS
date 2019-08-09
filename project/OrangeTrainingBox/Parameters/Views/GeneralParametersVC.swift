@@ -29,7 +29,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
     let sensorTypeTag = 1001
     let sensitivityTag  = 1002
     
-    enum SectionDescription : Int {
+    enum SectionDescription: Int {
         case demo = 0
         case sensor = 1
         case muscle = 2
@@ -132,7 +132,8 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
         
         let title = UILabel (frame: CGRect (x: 0, y: 0, width: frame.size.width, height: 10))
         
-        let textContent = NSMutableAttributedString(string: (SectionDescription.init(rawValue: section)?.title())!, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
+        let textContent = NSMutableAttributedString(string: (SectionDescription.init(rawValue: section)?.title())!,
+                                                    attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
         
         title.attributedText = textContent
         title.numberOfLines = 0
@@ -142,7 +143,9 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
         
         let subTitle = UILabel (frame: CGRect (x: 0, y: 0, width: frame.size.width, height: 25))
         
-        let textContent2 = NSMutableAttributedString(string: (SectionDescription.init(rawValue: section)?.subtitle())!, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular), NSAttributedString.Key.foregroundColor : UIColor (displayP3Red: 0.6, green: 0.6, blue: 0.6, alpha: 1)])
+        let textContent2 = NSMutableAttributedString(string: (SectionDescription.init(rawValue: section)?.subtitle())!,
+                            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular),
+                                         NSAttributedString.Key.foregroundColor: UIColor (displayP3Red: 0.6, green: 0.6, blue: 0.6, alpha: 1)])
         
         subTitle.attributedText = textContent2
         subTitle.numberOfLines = 0
@@ -154,18 +157,23 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
         headerView.addSubview(subTitle)
         
         
-        headerView.addConstraint(NSLayoutConstraint (item: title, attribute: .leading, relatedBy: .equal, toItem: headerView, attribute: .leading, multiplier: 1, constant: 15))
-        headerView.addConstraint(NSLayoutConstraint (item: title, attribute: .trailing, relatedBy: .equal, toItem: headerView, attribute: .trailing, multiplier: 1, constant: -15))
-        headerView.addConstraint(NSLayoutConstraint (item: title, attribute: .top, relatedBy: .equal, toItem: headerView, attribute: .top, multiplier: 1, constant: 5))
+        headerView.addConstraint(NSLayoutConstraint(item: title, attribute: .leading, relatedBy: .equal, toItem: headerView,
+                                                    attribute: .leading, multiplier: 1, constant: 15))
+        headerView.addConstraint(NSLayoutConstraint(item: title, attribute: .trailing, relatedBy: .equal, toItem: headerView,
+                                                    attribute: .trailing, multiplier: 1, constant: -15))
+        headerView.addConstraint(NSLayoutConstraint(item: title, attribute: .top, relatedBy: .equal, toItem: headerView,
+                                                    attribute: .top, multiplier: 1, constant: 5))
 
-        headerView.addConstraint(NSLayoutConstraint (item: subTitle, attribute: .leading, relatedBy: .equal, toItem: headerView, attribute: .leading, multiplier: 1, constant: 15))
-        headerView.addConstraint(NSLayoutConstraint (item: subTitle, attribute: .trailing, relatedBy: .equal, toItem: headerView, attribute: .trailing, multiplier: 1, constant: -15))
-        headerView.addConstraint(NSLayoutConstraint (item: subTitle, attribute: .top, relatedBy: .equal, toItem: title, attribute: .bottom, multiplier: 1, constant: 5))
+        headerView.addConstraint(NSLayoutConstraint(item: subTitle, attribute: .leading, relatedBy: .equal, toItem: headerView,
+                                                    attribute: .leading, multiplier: 1, constant: 15))
+        headerView.addConstraint(NSLayoutConstraint(item: subTitle, attribute: .trailing, relatedBy: .equal, toItem: headerView,
+                                                    attribute: .trailing, multiplier: 1, constant: -15))
+        headerView.addConstraint(NSLayoutConstraint(item: subTitle, attribute: .top, relatedBy: .equal, toItem: title,
+                                                    attribute: .bottom, multiplier: 1, constant: 5))
 
         headerView.backgroundColor = UIColor (displayP3Red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
         return headerView
     }
-    
     
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -191,7 +199,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
             let text = NSMutableAttributedString(string: SectionDescription.demo.items()[indexPath.row],
-                                                 attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 16)])
+                                                 attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
             cell.label.attributedText = text
             cell.switchItem.isOn = dataManager.demoMode
             cell.switchItem.tag  = demoModeTag
@@ -204,7 +212,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 
                 let text = NSMutableAttributedString(string: SectionDescription.sensor.items()[indexPath.row],
-                                                     attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 16)])
+                                                     attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
                 
                 cell.label.attributedText = text
                 
@@ -233,7 +241,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
             let text = NSMutableAttributedString(string: SectionDescription.muscle.items()[indexPath.row],
-                                                 attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 16)])
+                                                 attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
             
             cell.label.attributedText = text
             cell.switchItem.isOn = indexPath.row == 0 ? dataManager.muscle1IsON : dataManager.muscle2IsON
@@ -247,7 +255,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
             let text = NSMutableAttributedString(string: SectionDescription.sensitivity.items()[indexPath.row],
-                                                 attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 16)])
+                                                 attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
             
             cell.label.attributedText = text
             
@@ -276,7 +284,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
             cell.sliderItem.value = Float (dataManager.threshold)
             
             let text = NSMutableAttributedString(string: cell.sliderItem.value.clean,
-                                                 attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 16)])
+                                                 attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
             
             cell.label.attributedText = text
             
@@ -311,8 +319,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
             case 1:  dataManager.sensitivity = .average
             default: dataManager.sensitivity = .high
             }
-        }
-        else if sender.tag == sensorTypeTag {
+        } else if sender.tag == sensorTypeTag {
             switch sender.selectedSegmentIndex {
             case 2:  dataManager.sensorType = .buttons
             case 1:  dataManager.sensorType = .joystick
@@ -328,4 +335,3 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.reloadData()
     }
 }
-

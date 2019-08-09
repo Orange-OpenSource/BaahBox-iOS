@@ -19,7 +19,7 @@
 //
 import SpriteKit
 
-struct gameConstants {
+struct GameConstants {
     static let toadJumpTime = Double(0.1)
     static let flyAppearTime = Double(0.3)
     static let flyDisappearTime = Double(0.3)
@@ -36,7 +36,7 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
     var visibleWidth: CGFloat = 0
     var hidenMargin: CGFloat = 0
     
-    var gameDelegate : CrapaudGameInteractable!
+    var gameDelegate: CrapaudGameInteractable!
     
     
     let crapaud = SKSpriteNode(imageNamed: Asset.Games.CrapaudGame.toad.name)
@@ -56,7 +56,7 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
     var isFlyThere = false
     
     override init(size: CGSize) {
-        crapaudBottomPosition = CGPoint(x: size.width/2 , y: size.height/4)
+        crapaudBottomPosition = CGPoint(x: size.width/2, y: size.height/4)
         crapaud.anchorPoint = CGPoint(x: 0.5, y: 0)
         crapaud.texture = SKTexture (imageNamed: Asset.Games.CrapaudGame.toad.name)
         crapaud.position = crapaudBottomPosition
@@ -140,7 +140,7 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
 //        print("3 flyAngle \(flyAngle)  --  crapaudOrientation \(crapaud.zRotation)")
         isFlyThere = /*(hypot(fly.position.x - flyPosition.x, fly.position.y - flyPosition.y) < 0.1) &&*/ (fly.xScale > 0.99)
         isToadJumping = (crapaud.position.y - crapaudBottomPosition.y) > 1
-        if abs(-crapaud.zRotation - flyAngle) < 0.011 && flyAngle != flyCaughtAngle && isFlyThere && !isToadJumping && autoShoot{
+        if abs(-crapaud.zRotation - flyAngle) < 0.011 && flyAngle != flyCaughtAngle && isFlyThere && !isToadJumping && autoShoot {
             print("-----> FLY 1! ")
             shootTongue(angle: flyAngle)
             flyCaughtAngle = flyAngle
@@ -177,13 +177,13 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
     private var toadBlinkAnimation: SKAction {
         return .repeatForever(.sequence([
             .wait(forDuration:2.5),
-            .setTexture(SKTexture (imageNamed: Asset.Games.CrapaudGame.toadBlink.name)),
+            .setTexture(SKTexture(imageNamed: Asset.Games.CrapaudGame.toadBlink.name)),
             .wait(forDuration: 0.1),
-            .setTexture(SKTexture (imageNamed: Asset.Games.CrapaudGame.toad.name)),
+            .setTexture(SKTexture(imageNamed: Asset.Games.CrapaudGame.toad.name)),
             .wait(forDuration: 0.3),
-            .setTexture(SKTexture (imageNamed: Asset.Games.CrapaudGame.toadBlink.name)),
+            .setTexture(SKTexture(imageNamed: Asset.Games.CrapaudGame.toadBlink.name)),
             .wait(forDuration: 0.1),
-            .setTexture(SKTexture (imageNamed: Asset.Games.CrapaudGame.toad.name)),
+            .setTexture(SKTexture(imageNamed: Asset.Games.CrapaudGame.toad.name))
         ]))
     }
     
@@ -220,8 +220,7 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
         ])
     }
     
-    
-    
+
     // ---------- //
     // Animations //
     // ---------- //
@@ -235,7 +234,7 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
         visibleWidth = size.height * view.bounds.width / view.bounds.height
         hidenMargin = (size.width - visibleWidth) / 2
         flyDistance = CGFloat.random(min: size.height / 3, max: 17 * size.height / 24)
-        let angleMax = CGFloat(limitedAsin(Double((visibleWidth / 2 - flyMaxSize.width) / flyDistance), angleLimit: gameConstants.toadMaxAngle - 0.1))
+        let angleMax = CGFloat(limitedAsin(Double((visibleWidth / 2 - flyMaxSize.width) / flyDistance), angleLimit: GameConstants.toadMaxAngle - 0.1))
         flyAngle = CGFloat.random(min: -angleMax, max: angleMax)
         let stopPosition = CGPoint(
             x: CGFloat.random(
@@ -250,18 +249,18 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
         fly.run(.sequence([
             .scale(to: 0, duration: 0),
             .move(to: flyPosition, duration: 0),
-            .scale(to: 1, duration: gameConstants.flyAppearTime),
-            .run{self.turnToad()},
+            .scale(to: 1, duration: GameConstants.flyAppearTime),
+            .run { self.turnToad() },
             .wait(forDuration: flyStayingTime),
             .group([
-                .move(to: stopPosition, duration: gameConstants.flyDisappearTime),
-                .scale(to: 0, duration: gameConstants.flyDisappearTime)
+                .move(to: stopPosition, duration: GameConstants.flyDisappearTime),
+                .scale(to: 0, duration: GameConstants.flyDisappearTime)
             ]),
-            .wait(forDuration: 0.1),
+            .wait(forDuration: 0.1)
             ])) { [weak self] in self?.flyAnimation() }
     }
     
-    private func limitedAsin(_ value: Double, angleLimit: Double = Double.pi/2) -> Double{
+    private func limitedAsin(_ value: Double, angleLimit: Double = Double.pi/2) -> Double {
         guard value < 1 else {
             return angleLimit
         }
@@ -303,11 +302,11 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
     }
     
     private func turnLeft() {
-        crapaud.zRotation = min(crapaud.zRotation + 0.02, CGFloat(gameConstants.toadMaxAngle))
+        crapaud.zRotation = min(crapaud.zRotation + 0.02, CGFloat(GameConstants.toadMaxAngle))
     }
     
     private func turnRight() {
-        crapaud.zRotation = max(crapaud.zRotation - 0.02, CGFloat(-gameConstants.toadMaxAngle))
+        crapaud.zRotation = max(crapaud.zRotation - 0.02, CGFloat(-GameConstants.toadMaxAngle))
     }
     
     private func shootTongue(angle: CGFloat) {
@@ -322,10 +321,10 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
         let jump1 = CGVector(dx: sin(angle) * jumpLength, dy: cos(angle) * jumpLength)
         let jump2 = CGVector(dx: -jump1.dx, dy: -jump1.dy)
         
-        let jumpUp = SKAction.move(by: jump1, duration: gameConstants.toadJumpTime)
-        let jumpDown = SKAction.move(by: jump2, duration: gameConstants.toadJumpTime)
+        let jumpUp = SKAction.move(by: jump1, duration: GameConstants.toadJumpTime)
+        let jumpDown = SKAction.move(by: jump2, duration: GameConstants.toadJumpTime)
         crapaud.run(.sequence([jumpUp, jumpDown]))
-        crapaudLangue.run(.sequence([jumpUp, jumpDown, .scale(to: 0, duration: gameConstants.toadJumpTime)]))
+        crapaudLangue.run(.sequence([jumpUp, jumpDown, .scale(to: 0, duration: GameConstants.toadJumpTime)]))
         if abs(angle - flyAngle) < 0.05 && isFlyThere {
             if isGameStarted {
                 flyCaught()
@@ -338,9 +337,9 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
     private func flyRestart() {
         fly.removeAllActions()
         fly.run(.sequence([
-            .wait(forDuration: gameConstants.toadJumpTime),
+            .wait(forDuration: GameConstants.toadJumpTime),
             .scale(to: 0, duration: 0.03),
-            .wait(forDuration: 0.1),
+            .wait(forDuration: 0.1)
             ])) {
                 [weak self] in
                 self?.flyAnimation()
@@ -351,12 +350,12 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
         fly.removeAllActions()
         let endPosition = gameDelegate.nextScoreFlyCenterScenePosition
         fly.run(.sequence([
-            .wait(forDuration: gameConstants.toadJumpTime),
+            .wait(forDuration: GameConstants.toadJumpTime),
             .scale(to: 0, duration: 0.03),
             .move(to: crapaudBottomPosition, duration: 0),
             .scale(to: 1, duration: 0.03),
             .move(to: endPosition, duration: 0.5),
-            .wait(forDuration: 0.1),
+            .wait(forDuration: 0.1)
             ])) {
                 [weak self] in
                 if self?.isGameStarted ?? false {
@@ -403,14 +402,14 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
         if leftAction && rightAction {
             let currentTime = DispatchTime.now()
             let shootInterval = Double(currentTime.uptimeNanoseconds - lastShootTime.uptimeNanoseconds) / 1_000_000_000
-            if !isToadJumping && !autoShoot && shootInterval > 3 * gameConstants.toadJumpTime {
+            if !isToadJumping && !autoShoot && shootInterval > 3 * GameConstants.toadJumpTime {
                 lastShootTime = currentTime
                 print("-----> FLY 2! ")
                 shootTongue(angle: -crapaud.zRotation)
             }
             return
         }
-        if leftAction && !isToadJumping  {
+        if leftAction && !isToadJumping {
             turnLeft()
             return
         }
@@ -433,8 +432,8 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
     }
     
     @objc func updateData(_ notification: Notification) {
-        var leftAction : Bool = false
-        var rightAction : Bool = false
+        var leftAction: Bool = false
+        var rightAction: Bool = false
         
         switch ParameterDataManager.sharedInstance.sensorType {
         case .joystick:
@@ -456,10 +455,8 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
     }
     
     
-    
     @objc func loadParameters () {
 
     }
 
 }
-

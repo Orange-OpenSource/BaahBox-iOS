@@ -92,8 +92,6 @@ class CrapaudGameVC: SettableVC, CrapaudGameInteractable {
     }
 
     
-
-        
     private func addScoreViews() {
         for scoreView in scoreViews {
             scoreView.removeFromSuperview()
@@ -150,12 +148,12 @@ class CrapaudGameVC: SettableVC, CrapaudGameInteractable {
     }
     
     private func configureScene () {
-        scene = CrapaudGameScene(size:CGSize(width: 1536, height: 2048))
+        scene = CrapaudGameScene(size: CGSize(width: 1536, height: 2048))
         scene.gameDelegate = self
         scene.scaleMode = .aspectFill
     }
     
-    private func configureBottomView (showStartGame : Bool) {
+    private func configureBottomView(showStartGame: Bool) {
         startButton.isHidden = !showStartGame
         textLabel.isHidden = showStartGame
         
@@ -166,8 +164,9 @@ class CrapaudGameVC: SettableVC, CrapaudGameInteractable {
     
     func setButtonText(_ text: String) {
         let attributedText = NSMutableAttributedString(string: text,
-                                             attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 27)])
-        attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSRange(location: 0, length: attributedText.length))
+                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
+        attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white,
+                                    range: NSRange(location: 0, length: attributedText.length))
         startButton.setAttributedTitle(attributedText, for: .normal)
     }
     
@@ -181,7 +180,8 @@ class CrapaudGameVC: SettableVC, CrapaudGameInteractable {
                 self.displayTimer.invalidate()
             }
             self.scene.startGame()
-            self.displayTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.onDisplayTimerExpiration), userInfo: nil, repeats: false);
+            self.displayTimer = Timer.scheduledTimer(timeInterval: 1, target: self,
+                                                     selector: #selector(self.onDisplayTimerExpiration), userInfo: nil, repeats: false)
         }
     }
     
@@ -208,7 +208,7 @@ class CrapaudGameVC: SettableVC, CrapaudGameInteractable {
     private func gameOver() {
 //        hideScoreViews()
         let text = NSMutableAttributedString(string: L10n.Game.wahoo + "\n",
-                                             attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 27)])
+                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
         
         text.append(NSMutableAttributedString(string: L10n.Game.wellDone,
                                               attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 27, weight: .light)]))
@@ -221,5 +221,3 @@ class CrapaudGameVC: SettableVC, CrapaudGameInteractable {
 
     }
 }
-
-

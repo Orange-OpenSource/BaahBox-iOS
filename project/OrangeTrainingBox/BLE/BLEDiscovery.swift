@@ -28,7 +28,7 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
     var currentPeripheralName: String = ""
     var pendingPeripheralToConnect: CBPeripheral?
     var peripherals = Array<CBPeripheral>()
-    var peripheralNames : [CBPeripheral?: String] = [:]
+    var peripheralNames: [CBPeripheral?: String] = [:]
     var discoveryTimer: Timer!
 
 
@@ -71,7 +71,8 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
                     self.discoveryTimer.invalidate()
                 }
                 
-                self.discoveryTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.onDiscoveryTimerExpiration), userInfo: nil, repeats: true);
+                self.discoveryTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.onDiscoveryTimerExpiration),
+                                                           userInfo: nil, repeats: true)
             }
             
             peripherals.removeAll()
@@ -84,7 +85,7 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
                 peripherals.append(currentPeripheral!)
             }
             
-            central.scanForPeripherals(withServices: [BLEServiceUUID], options:[ CBCentralManagerScanOptionAllowDuplicatesKey:true])
+            central.scanForPeripherals(withServices: [BLEServiceUUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
         }
     }
     
@@ -147,10 +148,10 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
         central.cancelPeripheralConnection(currentPeripheral)
     }
     
-    //MARK: - Timer management
+    // MARK: - Timer management
     
     @objc func onDiscoveryTimerExpiration() {
-        let discoveredPeripherals = ["peripherals" : peripherals, "peripheralNames" : peripheralNames] as [String:Any]
+        let discoveredPeripherals = ["peripherals": peripherals, "peripheralNames": peripheralNames] as [String: Any]
         NotificationCenter.default.post(name: Notification.Name(rawValue: L10n.Notif.Ble.discovery), object: self, userInfo: discoveredPeripherals)
     }
     
@@ -165,7 +166,7 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
     
     // MARK: - CBCentralManagerDelegate
     
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
       
         let localName = advertisementData["kCBAdvDataLocalName"] as? String ?? ""
 
@@ -181,7 +182,7 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         
-        if (peripheral == currentPeripheral) {
+        if peripheral == currentPeripheral {
             bleService = BLEService (with: peripheral)
         }
 
@@ -196,14 +197,14 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
         }
 
         if peripheral == currentPeripheral {
-            bleService = nil;
-            currentPeripheral = nil;
-            NotificationCenter.default.post(name: Notification.Name(rawValue:L10n.Notif.Ble.disconnection), object: self, userInfo: nil)
+            bleService = nil
+            currentPeripheral = nil
+            NotificationCenter.default.post(name: Notification.Name(rawValue: L10n.Notif.Ble.disconnection), object: self, userInfo: nil)
         }
     }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        switch (central.state) {
+        switch central.state {
         case .poweredOff:
             clearDevices()
         case .resetting:
@@ -215,9 +216,9 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
     
     // MARK: - Private
     
-    func shouldIgnorePeripheral (for localName : String, peripheral: CBPeripheral) -> Bool {
+    func shouldIgnorePeripheral(for localName: String, peripheral: CBPeripheral) -> Bool {
 
-        if (localName == "" || localName == "Adafruit Bluefruit LE") && !peripherals.contains(peripheral) {
+        if (localName.isEmpty || localName == "Adafruit Bluefruit LE") && !peripherals.contains(peripheral) {
             return true
         }
         

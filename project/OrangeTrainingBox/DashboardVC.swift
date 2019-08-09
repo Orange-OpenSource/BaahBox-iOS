@@ -11,7 +11,7 @@
 //
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PUR POSE. See the
 //  GNU General Public License for more details.
 //
 //  You should have received a copy of the GNU General Public License
@@ -20,7 +20,7 @@
 
 import UIKit
 
-struct game {
+struct Game {
     let title: String
     let icon: UIImage
     let gameId: String
@@ -42,8 +42,8 @@ class DashboardVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var games: [game] = []
-    var allGames: [game] = []
+    var games: [Game] = []
+    var allGames: [Game] = []
     var iconHeight: CGFloat = 0
     
     // =================
@@ -55,11 +55,16 @@ class DashboardVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
         
         tableView.tableFooterView = UIView()
         
-        allGames.append(game(title: L10n.Game.Star.title, icon: Asset.Dashboard.starMenu.image, gameId: StoryboardScene.Games.starGameVC.identifier, color: Asset.Colors.violet.color))
-        allGames.append(game(title: L10n.Game.Balloon.title, icon: Asset.Dashboard.balloonMenu.image, gameId: StoryboardScene.Games.balloonGameVC.identifier, color: Asset.Colors.orange.color))
-        allGames.append(game(title: L10n.Game.Sheep.title, icon: Asset.Dashboard.sheepMenu.image, gameId: StoryboardScene.Games.sheepGameVC.identifier, color: Asset.Colors.pinky.color))
-        allGames.append(game(title: L10n.Game.Space.title, icon: Asset.Dashboard.spaceshipMenu.image, gameId: StoryboardScene.Games.spaceshipGameVC.identifier, color: Asset.Colors.blueGreen.color))
-        allGames.append(game(title: L10n.Game.Frog.title, icon: Asset.Dashboard.toadMenu.image, gameId: StoryboardScene.Games.crapaudGameVC.identifier, color: Asset.Colors.greyGreen.color))
+        allGames.append(Game(title: L10n.Game.Star.title, icon: Asset.Dashboard.starMenu.image,
+                             gameId: StoryboardScene.Games.starGameVC.identifier, color: Asset.Colors.violet.color))
+        allGames.append(Game(title: L10n.Game.Balloon.title, icon: Asset.Dashboard.balloonMenu.image,
+                             gameId: StoryboardScene.Games.balloonGameVC.identifier, color: Asset.Colors.orange.color))
+        allGames.append(Game(title: L10n.Game.Sheep.title, icon: Asset.Dashboard.sheepMenu.image,
+                             gameId: StoryboardScene.Games.sheepGameVC.identifier, color: Asset.Colors.pinky.color))
+        allGames.append(Game(title: L10n.Game.Space.title, icon: Asset.Dashboard.spaceshipMenu.image,
+                             gameId: StoryboardScene.Games.spaceshipGameVC.identifier, color: Asset.Colors.blueGreen.color))
+        allGames.append(Game(title: L10n.Game.Frog.title, icon: Asset.Dashboard.toadMenu.image,
+                             gameId: StoryboardScene.Games.crapaudGameVC.identifier, color: Asset.Colors.greyGreen.color))
 
         title = L10n.Dashboard.title
      
@@ -120,4 +125,3 @@ class DashboardVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
         navigationController?.pushViewController(newViewController, animated: true)
     }
 }
-

@@ -31,7 +31,8 @@ class ButtonWithImageAndText: UIButton {
             let verticalMargin: CGFloat = 10
             let imageHeight = bounds.height - 2 * verticalMargin
             let imageWidth = imageHeight * imageRatioWidthHeight
-            imageEdgeInsets = UIEdgeInsets(top: verticalMargin, left: horizontalMargin, bottom: verticalMargin, right: bounds.width - horizontalMargin - imageWidth)
+            imageEdgeInsets = UIEdgeInsets(top: verticalMargin, left: horizontalMargin, bottom: verticalMargin,
+                                           right: bounds.width - horizontalMargin - imageWidth)
             if var titleFrame = titleLabel?.frame {
                 titleFrame.origin.x = 2 * horizontalMargin + imageWidth
                 titleFrame.size.width = bounds.width - 3 * horizontalMargin - imageWidth

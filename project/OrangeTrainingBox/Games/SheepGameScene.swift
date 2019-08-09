@@ -22,10 +22,10 @@ import SpriteKit
 
 class SheepGameScene: SKScene, ParametersDefaultable {
     
-    var gameDelegate : SheepGameInteractable?
+    var gameDelegate: SheepGameInteractable?
     
     let welcomeSheep = SKSpriteNode(imageNamed: Asset.Games.SheepGame.sheepWelcome.name)
-    let sheep = SKSpriteNode(imageNamed:  Asset.Games.SheepGame.sheep1.name)
+    let sheep = SKSpriteNode(imageNamed: Asset.Games.SheepGame.sheep1.name)
     let gate = SKSpriteNode(imageNamed: Asset.Games.SheepGame.sheepGate.name)
     let ground = SKSpriteNode(imageNamed: Asset.Games.SheepGame.sheepGround.name)
     let bang = SKSpriteNode(imageNamed: Asset.Games.SheepGame.sheepBang.name)
@@ -33,7 +33,7 @@ class SheepGameScene: SKScene, ParametersDefaultable {
     let sheepJumpImage = UIImage(named: Asset.Games.SheepGame.sheepJump.name)
     let sheepGameOverImage = UIImage(named: Asset.Games.SheepGame.sheepWelcome.name)
     
-    var sheepBumpTexture:  SKTexture?
+    var sheepBumpTexture: SKTexture?
     var sheepJumpTexture: SKTexture?
     var sheepGameOverTexture: SKTexture?
     
@@ -41,15 +41,15 @@ class SheepGameScene: SKScene, ParametersDefaultable {
     let sheepWelcomeAnimation: SKAction
     
     var isGameStarted = false
-    var gameObjective : Int = 1
+    var gameObjective: Int = 1
     var successfullJumps = 0
     var isJumping = false
     
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
     var velocity = CGPoint.zero
-    var threshold : Int = 0
-    var speedCoef : Int = 1
+    var threshold: Int = 0
+    var speedCoef: Int = 1
     var maxHeigthJump: CGFloat
     let groundPosition = CGPoint(x: 0, y: 768.0)
     // AKA CGPoint(x: size.width/2 - ground.size.width/2, y: size.height/2 - size.height/8)
@@ -66,8 +66,8 @@ class SheepGameScene: SKScene, ParametersDefaultable {
     //======================================
     
     override init(size: CGSize) {
-        let walkImage1 = UIImage(named:Asset.Games.SheepGame.sheep1.name)
-        let walkImage2 = UIImage(named:Asset.Games.SheepGame.sheep2.name)
+        let walkImage1 = UIImage(named: Asset.Games.SheepGame.sheep1.name)
+        let walkImage2 = UIImage(named: Asset.Games.SheepGame.sheep2.name)
         let sheepWalkTextures = [SKTexture(image: walkImage1!),
                                  SKTexture(image: walkImage2!)]
         sheepWalkAnimation = SKAction.animate(with: sheepWalkTextures,
@@ -115,9 +115,9 @@ class SheepGameScene: SKScene, ParametersDefaultable {
     override func didMove(to view: SKView) {
         backgroundColor = Asset.Colors.pinky.color
         ground.anchorPoint = CGPoint.zero
-        welcomeSheep.anchorPoint = CGPoint(x:0.0, y:1.0)
-        sheepBumpTexture =  SKTexture(image: sheepBumpImage!)
-        sheepJumpTexture =  SKTexture(image: sheepJumpImage!)
+        welcomeSheep.anchorPoint = CGPoint(x: 0.0, y: 1.0)
+        sheepBumpTexture = SKTexture(image: sheepBumpImage!)
+        sheepJumpTexture = SKTexture(image: sheepJumpImage!)
         sheepGameOverTexture = SKTexture(image: sheepGameOverImage!)
 
         sheep.anchorPoint = CGPoint.zero
@@ -182,11 +182,11 @@ class SheepGameScene: SKScene, ParametersDefaultable {
         welcomeSheep.isHidden = false
         
         
-        welcomeSheep.size.height = ( welcomeSheep.texture?.size().height)! * 1.2
-        welcomeSheep.size.width = ( welcomeSheep.texture?.size().width)! * 1.2
-        welcomeSheep.position = CGPoint(x:(welcomeSheep.texture?.size().width)! * 0.5, y: size.height)
+        welcomeSheep.size.height = (welcomeSheep.texture?.size().height)! * 1.2
+        welcomeSheep.size.width = (welcomeSheep.texture?.size().width)! * 1.2
+        welcomeSheep.position = CGPoint(x: (welcomeSheep.texture?.size().width)! * 0.5, y: size.height)
         
-        welcomeSheep.anchorPoint  = CGPoint(x: 0.5 , y: 1.0)
+        welcomeSheep.anchorPoint = CGPoint(x: 0.5, y: 1.0)
         welcomeSheep.run(sheepWelcomeAnimation)
         welcomeSheep.run(SKAction.wait(forDuration: 3.0))
         startSheepWelcomeAnimation()
@@ -347,7 +347,7 @@ class SheepGameScene: SKScene, ParametersDefaultable {
         welcomeSheep.removeAction(forKey: "sheepWelcomeAnimation")
     }
     
-    func getNewPosition(from position : CGPoint) -> CGFloat {
+    func getNewPosition(from position: CGPoint) -> CGFloat {
         
         let heightConstraint = CGFloat (300 * hardnessCoeff)
         var newPosition = position.y - heightConstraint
@@ -363,7 +363,7 @@ class SheepGameScene: SKScene, ParametersDefaultable {
     func sceneTouched(touchLocation: CGPoint) {
         
         let  position = boundsCheckForSheep(touchLocation)
-        if !(gate.frame.intersects(sheep.frame)) && position.y > ground.position.y  {
+        if !(gate.frame.intersects(sheep.frame)) && position.y > ground.position.y {
             jumpTo(sprite: sheep, height: getNewPosition(from: position))
         }
     }
@@ -405,7 +405,7 @@ class SheepGameScene: SKScene, ParametersDefaultable {
             
             if sheep.position.y == groundPosition.y {
                 
-                if isJumping && isGameStarted  && gate.position.x < size.width/2{
+                if isJumping && isGameStarted  && gate.position.x < size.width/2 {
                     successfullJumps += 1
                     
                     if successfullJumps == gameObjective {
@@ -436,10 +436,9 @@ class SheepGameScene: SKScene, ParametersDefaultable {
     //======================================
     private func boundsCheckForSheep(_ location: CGPoint) -> CGPoint {
         var position  = location
-        if position.y < groundPosition.y  {
+        if position.y < groundPosition.y {
             position.y = groundPosition.y
-        }
-        else if position.y > size.height - sheep.size.height   {
+        } else if position.y > size.height - sheep.size.height {
             position.y = size.height - sheep.size.height
         }
         return position

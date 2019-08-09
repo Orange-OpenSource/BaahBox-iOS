@@ -40,7 +40,7 @@ extension UIImage {
     func imageByAddingBorder(borderWidth width: CGFloat, borderColor color: UIColor) -> UIImage {
         UIGraphicsBeginImageContext(self.size)
         let imageRect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
-        self.draw(in:imageRect)
+        self.draw(in: imageRect)
         
         let ctx = UIGraphicsGetCurrentContext()!
         let borderRect = imageRect.insetBy(dx: width / 2, dy: width / 2)
@@ -90,8 +90,3 @@ extension Float {
         //return String(format: "%.2f", self)
     }
 }
-
-
-
-
-

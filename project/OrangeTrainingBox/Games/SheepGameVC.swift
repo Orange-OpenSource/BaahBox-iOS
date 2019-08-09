@@ -82,7 +82,7 @@ class SheepGameVC: SettableVC, SheepGameInteractable {
     
     func configureBottomView () {
         var text = NSMutableAttributedString(string: L10n.Game.Sheep.Text.Jump.first + "\n",
-                                             attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 27)])
+                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
         
         text.append(NSMutableAttributedString(string: L10n.Game.Sheep.Text.Jump.second,
                                               attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 27, weight: .light)]))
@@ -93,7 +93,7 @@ class SheepGameVC: SettableVC, SheepGameInteractable {
         configureScore(with: 0)
         
         text = NSMutableAttributedString(string: L10n.Game.start,
-                                        attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 27)])
+                                        attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
         
         text.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSRange(location: 0, length: text.length))
         startButton.setAttributedTitle(text, for: .normal)
@@ -103,25 +103,26 @@ class SheepGameVC: SettableVC, SheepGameInteractable {
     
     func configureScore (with score: Int) {
         
-        let text : NSMutableAttributedString
+        let text: NSMutableAttributedString
         
         switch score {
         case 0:
             if scene.gameObjective  == 1 {
                 text = NSMutableAttributedString(string: L10n.Game.Sheep.Score.Start.one,
-                    attributes: [NSAttributedString.Key.font:  UIFont.systemFont(ofSize: 20, weight: .light)])
+                    attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .light)])
             } else {
                 text = NSMutableAttributedString(string: L10n.Game.Sheep.Score.Start.many(scene.gameObjective),
-                    attributes: [NSAttributedString.Key.font:  UIFont.systemFont(ofSize: 20, weight: .light)])
+                    attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .light)])
             }
             
         case 1:
             text = NSMutableAttributedString(string: L10n.Game.Sheep.Score.Pending.one(scene.gameObjective - scene.successfullJumps),
-                attributes: [NSAttributedString.Key.font:  UIFont.systemFont(ofSize: 20, weight: .light)])
+                attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .light)])
             
         default:
-            text = NSMutableAttributedString(string: L10n.Game.Sheep.Score.Pending.many(scene.successfullJumps, scene.gameObjective - scene.successfullJumps),
-                attributes: [NSAttributedString.Key.font:  UIFont.systemFont(ofSize: 20, weight: .light)])
+            text = NSMutableAttributedString(string: L10n.Game.Sheep.Score.Pending.many(
+                scene.successfullJumps, scene.gameObjective - scene.successfullJumps),
+                attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .light)])
         }
         
         text.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSRange(location: 0, length: text.length))
@@ -146,7 +147,7 @@ class SheepGameVC: SettableVC, SheepGameInteractable {
     
     func collisionOccured() {
         var text = NSMutableAttributedString(string: L10n.Game.oops + "\n",
-                                             attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 27)])
+                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
         
         text.append(NSMutableAttributedString(string: L10n.Game.tryAgain,
                                               attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 27, weight: .light)]))
@@ -155,7 +156,7 @@ class SheepGameVC: SettableVC, SheepGameInteractable {
         textLabel.attributedText = text
         
         text = NSMutableAttributedString(string: L10n.Game.reStart + "\n",
-                                         attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 27)])
+                                         attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
         
         text.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSRange(location: 0, length: text.length))
         
@@ -166,7 +167,7 @@ class SheepGameVC: SettableVC, SheepGameInteractable {
     
     func walking() {
         let text = NSMutableAttributedString(string: L10n.Game.Sheep.Text.Jump.first + "\n",
-                                             attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 27)])
+                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
        
         text.append(NSMutableAttributedString(string: L10n.Game.Sheep.Text.Jump.second,
                                               attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 27, weight: .light)]))
@@ -176,7 +177,7 @@ class SheepGameVC: SettableVC, SheepGameInteractable {
     
     func jumpInProgress () {
         let text = NSMutableAttributedString(string: L10n.Game.hop + "\n",
-                                             attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 27)])
+                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
         
         text.append(NSMutableAttributedString(string: L10n.Game.wellDone,
                                               attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 27, weight: .light)]))
@@ -195,7 +196,7 @@ class SheepGameVC: SettableVC, SheepGameInteractable {
         scoreLabel.isHidden = true
         
         var text = NSMutableAttributedString(string: L10n.Game.win + "\n",
-                                             attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 27)])
+                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
         
         text.append(NSMutableAttributedString(string: L10n.Game.Sheep.Score.Result.win,
                                               attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 27, weight: .light)]))
@@ -204,7 +205,7 @@ class SheepGameVC: SettableVC, SheepGameInteractable {
         textLabel.attributedText = text
         
         text = NSMutableAttributedString(string: L10n.Game.reStart + "\n",
-                                             attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 27)])
+                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
         
         text.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSRange(location: 0, length: text.length))
         
@@ -212,12 +213,12 @@ class SheepGameVC: SettableVC, SheepGameInteractable {
         startButton.isHidden = false
     }
     
-    // MARK : - User's interactions
+    // MARK: - User's interactions
     
     @IBAction func onStartButton(_ sender: Any) {
         
         let text = NSMutableAttributedString(string: L10n.Game.go + "\n",
-                                             attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 27)])
+                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
         
         text.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSRange(location: 0, length: text.length))
             
@@ -228,7 +229,8 @@ class SheepGameVC: SettableVC, SheepGameInteractable {
                 self.displayTimer.invalidate()
             }
             
-            self.displayTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.onDisplayTimerExpiration), userInfo: nil, repeats: false);
+            self.displayTimer = Timer.scheduledTimer(timeInterval: 1, target: self,
+                                    selector: #selector(self.onDisplayTimerExpiration), userInfo: nil, repeats: false)
         }
     }
     

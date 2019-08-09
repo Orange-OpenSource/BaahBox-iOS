@@ -74,17 +74,17 @@ class BalloonGameVC: SettableVC, BalloonGameInteractable {
     }
     
     func configureScene () {
-        scene = BalloonGameScene(size:CGSize(width: 1536, height: 2048))
+        scene = BalloonGameScene(size: CGSize(width: 1536, height: 2048))
         scene.gameDelegate = self
         scene.scaleMode = .aspectFill
     }
     
-    func configureBottomView (showStartGame : Bool, replay: Bool = false) {
+    func configureBottomView(showStartGame: Bool, replay: Bool = false) {
         startButton.isHidden = !showStartGame
         textLabel.isHidden = showStartGame
         let startText = replay ?  L10n.Game.reStart :  L10n.Game.start
         let text = NSMutableAttributedString(string: startText,
-                                             attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 27)])
+                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
         
         text.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSRange(location: 0, length: text.length))
         if showStartGame {
@@ -93,14 +93,10 @@ class BalloonGameVC: SettableVC, BalloonGameInteractable {
     }
     
     
-    
     @objc func onParameterUpdate() {
         // update parameters
     }
     
-    
-   
-   
     
     @IBAction func onStartButtonPressed(_ sender: Any) {
         scene.isGameStarted = true
@@ -113,7 +109,7 @@ class BalloonGameVC: SettableVC, BalloonGameInteractable {
         var secondLineText = L10n.Game.Balloon.Text.secondMuscle
         
         let text = NSMutableAttributedString(string: L10n.Game.Balloon.Text.first +  "\n",
-                                             attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 27)])
+                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
        
         switch ParameterDataManager.sharedInstance.sensorType {
         case .joystick:
@@ -132,7 +128,7 @@ class BalloonGameVC: SettableVC, BalloonGameInteractable {
     
     func gameOver() {
         let text = NSMutableAttributedString(string: L10n.Game.Balloon.Congrats.first + "\n",
-                                             attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 27)])
+                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
         
         text.append(NSMutableAttributedString(string: L10n.Game.Balloon.Congrats.second,
                                               attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 27, weight: .light)]))
@@ -153,5 +149,3 @@ class BalloonGameVC: SettableVC, BalloonGameInteractable {
     }
  
 }
-
-

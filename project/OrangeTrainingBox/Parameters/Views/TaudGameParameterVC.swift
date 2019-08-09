@@ -32,7 +32,7 @@ class TaudGameParameterVC: UIViewController, UITableViewDelegate, UITableViewDat
         title = L10n.Parameters.Taud.title
     }
     
-    // MARK:- Tableview management
+    // MARK: - Tableview management
     
     func configureTableView () {
         tableView.tableFooterView = UIView()
@@ -61,13 +61,14 @@ class TaudGameParameterVC: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
             let text = NSMutableAttributedString(string: L10n.Parameters.Taud.number,
-                                                 attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 16)])
+                                                 attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
             
             cell.title.attributedText = text
             cell.sliderItem.value = Float (dataManager.numberOfFlies)
             
             let val = NSMutableAttributedString(string: cell.sliderItem.value.clean,
-                                                attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor : Asset.Colors.pinky.color])
+                                                attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16),
+                                                             NSAttributedString.Key.foregroundColor: Asset.Colors.pinky.color])
             
             cell.value.attributedText = val
             return cell
@@ -78,14 +79,15 @@ class TaudGameParameterVC: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
             let text = NSMutableAttributedString(string: L10n.Parameters.Taud.time,
-                                                 attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 16)])
+                                                 attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
             
             cell.title.attributedText = text
             cell.sliderItem.value = Float (dataManager.flySteadyTime)
             
             let value = L10n.Parameters.Taud.timeValue(cell.sliderItem.value.clean)
             let val = NSMutableAttributedString(string: value,
-                                                attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor : Asset.Colors.pinky.color])
+                                                attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16),
+                                                             NSAttributedString.Key.foregroundColor: Asset.Colors.pinky.color])
             cell.value.attributedText = val
             return cell
         
@@ -95,7 +97,7 @@ class TaudGameParameterVC: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
             let text = NSMutableAttributedString(string: L10n.Parameters.Taud.shootStyle,
-                                                 attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 16)])
+                                                 attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
             cell.label.attributedText = text
             cell.switchItem.isOn = dataManager.shootingType == .automatic ? true : false
             

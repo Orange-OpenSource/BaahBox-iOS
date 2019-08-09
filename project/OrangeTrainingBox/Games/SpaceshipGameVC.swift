@@ -75,7 +75,7 @@ class SpaceshipGameVC: SettableVC, SpaceShipGameInteractable {
     }
    
     func configureScene() {
-        scene = SpaceshipGameScene(size:CGSize(width: 1536, height: 2048))
+        scene = SpaceshipGameScene(size: CGSize(width: 1536, height: 2048))
         scene!.gameDelegate = self
         scene!.scaleMode = .aspectFill
     }
@@ -125,7 +125,7 @@ class SpaceshipGameVC: SettableVC, SpaceShipGameInteractable {
     
     func configureButtonWithText (_ text: String = L10n.Game.start) {
         let text = NSMutableAttributedString(string: text,
-                                             attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 27)])
+                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
         text.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSRange(location: 0, length: text.length))
         startButton.setAttributedTitle(text, for: .normal)
     }
@@ -215,5 +215,3 @@ class SpaceshipGameVC: SettableVC, SpaceShipGameInteractable {
         })
     }
 }
-
-

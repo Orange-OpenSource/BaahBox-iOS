@@ -27,13 +27,12 @@ class BTHeaderCell: UITableViewCell {
     
     func configure() {
         var text = NSMutableAttributedString(string: L10n.Ble.Connection.header,
-                                             attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 24)])
+                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 24)])
         headerLabel.attributedText = text
         
         text = NSMutableAttributedString(string: L10n.Ble.Connection.descritpion,
-                                         attributes: [NSAttributedString.Key.font:  UIFont.systemFont(ofSize: 14),
-                                                      
-                                                      NSAttributedString.Key.foregroundColor:UIColor(displayP3Red: 0.6, green: 0.6, blue: 0.6, alpha: 1)])
+                                         attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
+                                         NSAttributedString.Key.foregroundColor: UIColor(displayP3Red: 0.6, green: 0.6, blue: 0.6, alpha: 1)])
         
         descriptionLabel.attributedText = text
         backgroundColor = UIColor (displayP3Red: 0.9, green: 0.9, blue: 0.9, alpha: 1)

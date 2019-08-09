@@ -25,15 +25,15 @@ import CoreBluetooth
 let BLEServiceUUID = CBUUID(string: "6E400001-B5A3-F393-E0A9-E50E24DCCA9E")
 
 // Characteristics for UART service
-let TxPositionCharUUID = CBUUID(string: "6E400002-B5A3-F393-E0A9-E50E24DCCA9E")
-let RxPositionCharUUID = CBUUID(string: "6E400003-B5A3-F393-E0A9-E50E24DCCA9E")
+let txPositionCharUUID = CBUUID(string: "6E400002-B5A3-F393-E0A9-E50E24DCCA9E")
+let rxPositionCharUUID = CBUUID(string: "6E400003-B5A3-F393-E0A9-E50E24DCCA9E")
 
 
 class BLEService: NSObject, CBPeripheralDelegate {
     var peripheral: CBPeripheral?
     var txPositionCharacteristic: CBCharacteristic?
     var rxPositionCharacteristic: CBCharacteristic?
-    var rxData : [UInt8] = [0]
+    var rxData: [UInt8] = [0]
     var inputData: [UInt8] = []
 
     #if TEST_BANDWIDTH
@@ -68,11 +68,11 @@ class BLEService: NSObject, CBPeripheralDelegate {
         peripheral = nil
     }
     
-    // Mark: - CBPeripheralDelegate
+    // MARK: - CBPeripheralDelegate
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         
-        if (peripheral != self.peripheral) {
+        if peripheral != self.peripheral {
             return
         }
         
@@ -88,14 +88,14 @@ class BLEService: NSObject, CBPeripheralDelegate {
         let _ = peripheralServices.map {service in
             
             if service.uuid == BLEServiceUUID {
-                peripheral.discoverCharacteristics([TxPositionCharUUID, RxPositionCharUUID], for: service)
+                peripheral.discoverCharacteristics([txPositionCharUUID, rxPositionCharUUID], for: service)
             }
         }
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         
-        if (peripheral != self.peripheral) {
+        if peripheral != self.peripheral {
             return
         }
         
@@ -104,25 +104,25 @@ class BLEService: NSObject, CBPeripheralDelegate {
             return
         }
         
-        var numberOfDiscoverdCharacteristics = 0
+        var discoverdCharacteristicsCount = 0
         
         if let characteristics = service.characteristics {
             
             for characteristic in characteristics {
                 
-                if characteristic.uuid == RxPositionCharUUID {
-                    numberOfDiscoverdCharacteristics += 1
+                if characteristic.uuid == rxPositionCharUUID {
+                    discoverdCharacteristicsCount += 1
                     peripheral.setNotifyValue(true, for: characteristic)
                     rxPositionCharacteristic = characteristic
                 }
                 
-                if characteristic.uuid == TxPositionCharUUID {
-                    numberOfDiscoverdCharacteristics += 1
+                if characteristic.uuid == txPositionCharUUID {
+                    discoverdCharacteristicsCount += 1
                     txPositionCharacteristic = characteristic
                 }
             }
             
-            if (numberOfDiscoverdCharacteristics == 2) {
+            if discoverdCharacteristicsCount == 2 {
                 sendNotificationPeripheralConnected()
             }
         }
@@ -131,7 +131,7 @@ class BLEService: NSObject, CBPeripheralDelegate {
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         
-        if (peripheral != self.peripheral) {
+        if peripheral != self.peripheral {
             return
         }
         
@@ -152,7 +152,7 @@ class BLEService: NSObject, CBPeripheralDelegate {
                 inputData.append(rxChar)
             } else {
                 #if TEST_BANDWIDTH
-                    self.counter = self.counter+1
+                    self.counter = self.counter + 1
                 #endif
                 SensorInputManager.sharedInstance.analyseCompressedRawInput(inputData)
                 inputData = []
@@ -160,7 +160,8 @@ class BLEService: NSObject, CBPeripheralDelegate {
         }
     }
     
-    // Mark: - Private
+    // MARK: - Private
+    
     func writeCommand(_ command: Data) {
         
         if let txPositionCharacteristic = txPositionCharacteristic {
@@ -169,7 +170,7 @@ class BLEService: NSObject, CBPeripheralDelegate {
     }
     
     func sendNotificationPeripheralConnected() {
-        let connectionDetails = ["peripheralName" : peripheral?.name ?? "empty value" ]
+        let connectionDetails = ["peripheralName": peripheral?.name ?? "empty value" ]
         NotificationCenter.default.post(name: Notification.Name(rawValue: L10n.Notif.Ble.connection), object: self, userInfo: connectionDetails)
     }
 }

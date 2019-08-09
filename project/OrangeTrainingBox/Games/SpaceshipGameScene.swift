@@ -25,7 +25,7 @@ let collisionMeteorCategory: UInt32 = 0x1 << 1
 
 class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
     
-    var gameDelegate : SpaceShipGameInteractable?
+    var gameDelegate: SpaceShipGameInteractable?
     
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
@@ -38,7 +38,7 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
     var lastScoreTime: TimeInterval = 0
     
     let spaceShipScale: CGFloat = 0.75
-    var spaceShipInitialPosition = CGPoint(x:0, y:0)
+    var spaceShipInitialPosition = CGPoint(x: 0, y: 0)
     let spaceShipNMLImage = UIImage(named: Asset.Games.SpaceshipGame.spaceshipNml.name)
     let spaceShipLFTImage = UIImage(named: Asset.Games.SpaceshipGame.spaceshipLeft.name)
     let spaceShipRGTImage = UIImage(named: Asset.Games.SpaceshipGame.spaceshipRight.name)
@@ -52,13 +52,11 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
     var meteorSpawnAction = SKAction()
     
     
-    
     //  let asteroidCollisionSoundAction = SKAction.playSoundFileNamed(
     // "SNCRASH1.wav", waitForCompletion: false)
     var crash = SKSpriteNode(imageNamed: Asset.Games.SpaceshipGame.crash.name)
     var crashAnimation = SKAction()
 
-    
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -84,8 +82,6 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
-    
-    
     override func willMove(from view: SKView) {
         super.willMove(from: view)
         print("space Scene willMoveFromView")
@@ -102,15 +98,13 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
-    
-    
     override func didMove(to view: SKView) {
         backgroundColor = Asset.Colors.blueGreen.color
         gameState = .notStarted
         spaceShip.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         // spaceShip.texture = shipRightTexture//SKTexture (imageNamed: Asset.Games.SpaceshipGame.spaceshipNml.name)
         spaceShip.setScale(spaceShipScale)
-        spaceShipInitialPosition = CGPoint(x: size.width/2 , y: size.height/4 + spaceShip.size.height)
+        spaceShipInitialPosition = CGPoint(x: size.width/2, y: size.height/4 + spaceShip.size.height)
         spaceShip.position = spaceShipInitialPosition
         spaceShip.setScale(spaceShipScale)
         spaceShip.name = "ship"
@@ -264,8 +258,7 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
     //===============================
     
     func didBegin(_ contact: SKPhysicsContact) {
-        if case .onGoing = self.gameState
-        {
+        if case .onGoing = self.gameState {
             _ = self.animateCrash()
             checkLifes()
         }
@@ -414,8 +407,8 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
     
     
     @objc func updateData(_ notification: Notification) {
-        var leftAction : Bool = false
-        var rightAction : Bool = false
+        var leftAction: Bool = false
+        var rightAction: Bool = false
         
         switch ParameterDataManager.sharedInstance.sensorType {
         case .joystick:
@@ -431,7 +424,6 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         
         analyseActions(leftAction: leftAction, rightAction: rightAction)
     }
-    
     
     
     //=======================
@@ -459,7 +451,6 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         let touchLocation = touch.location(in: self)
         sceneTouched(touchLocation: touchLocation)
     }
-    
     
     
     //  stars..
@@ -502,4 +493,3 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
 }
-
