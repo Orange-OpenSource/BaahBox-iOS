@@ -2,7 +2,7 @@
 //  Localizable.strings
 //  Baah Box
 //
-//  Copyright (C) 2017 – 2019 Orange SA
+//  Copyright (C) 2017 – 2020 Orange SA
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -45,7 +45,7 @@
 
 // BLE
 "Ble.Connection.Title" = "Paramètres de connexion";
-"Ble.Connection.PopupTitle" = "Sélectionnez votre BaahBox pour commencer l'entrainement";
+"Ble.Connection.PopupTitle" = "Sélectionnez votre BaahBox pour commencer l'entraînement";
 "Ble.Connection.BleSwitchON" = "Activez le Bluetooth pour vous connecter à la BaahBox.";
 "Ble.Connection.Header" = "Connectez votre BaahBox";
 "Ble.Connection.Descritpion" = "Sélectionnez une BaahBox dans la liste des BaahBox détectées.";
@@ -60,7 +60,7 @@
 
 "MainParameters.games.title" = "Gestion des jeux";
 "MainParameters.games.star" = "Fais briller l'étoile";
-"MainParameters.games.balloon" = "Gongle le ballon";
+"MainParameters.games.balloon" = "Gonfle le ballon";
 "MainParameters.games.sheep" = "Saute mouton";
 "MainParameters.games.spaceShip" = "Bataille de l'espace";
 "MainParameters.games.taud" = "Gobe les mouches";
@@ -116,32 +116,37 @@
 "Game.Oops" = "Ooops!";
 "Game.TryAgain" = "Rejouer";
 "Game.Wahoo" = "Wouhaaa !";
+"Game.KeepGoing" = "Encore un petit effort !";
+"Game.Congrats" = "Bravo !";
 
 // Star Game
 "Game.Star.title" = "Fais briller l'étoile !";
 "Game.Star.header" = "Fais briller l'étoile";
 "Game.Star.subHeaderMuscle" = "en contractant ton muscle";
-"Game.Star.subHeaderJoystick" = "mets le joystick en haut";
-"Game.Star.text.keepGoing" = "Encore un petit effort !";
-"Game.Star.text.congrats" = "Bravo !!!";
+"Game.Star.subHeaderJoystick" = "pousse le joystick en haut";
+
 
 // Balloon Game
 "Game.Balloon.title" = "Fais exploser le ballon !";
 "Game.Balloon.text.first" = "Gonfle le ballon";
 "Game.Balloon.text.secondMuscle" = "en contractant ton muscle";
 "Game.Balloon.text.secondJoystick" = "mets le joystick vers le haut";
-"Game.Balloon.congrats.first" = "Whaoooo !";
-"Game.Balloon.congrats.second" = "Bravo !!!";
+"Game.Balloon.text.letsGo" = "C'est parti !";
+"Game.Balloon.text.almostDone" = "On y est presque !";
+"Game.Balloon.text.congrats" = "Bien Joué !";
+
 
 // sheep Game
 "Game.Sheep.title" = "Saute, Mouton, Saute !";
-"Game.Sheep.score.start.one" = "Essaie de franchir 1 barrière";
-"Game.Sheep.score.start.many" = "Essaie de franchir %d barrières";
-"Game.Sheep.score.pending.one" = "Tu as franchi 1 barrière, il en reste encore %d!";
-"Game.Sheep.score.pending.many" = "Tu as franchi %d barrières, il en reste encore %d!";
-"Game.Sheep.score.result.win" = "Tu as franchi toutes les barrières !";
+"Game.Sheep.score.start.one" = "Essaie de sauter 1 barrière";
+"Game.Sheep.score.start.many" = "Essaie de sauter %d barrières";
+"Game.Sheep.score.pending.one" = "Tu as sauté 1 barrière sur %d!";
+"Game.Sheep.score.pending.many" = "Tu as sauté %d barrières sur %d!";
+"Game.Sheep.score.result.win" = "Tu as sauté toutes les barrières !";
 "Game.Sheep.text.Jump.first" = "Fais sauter le mouton";
-"Game.Sheep.text.Jump.second" = "en contractant les muscles pour lui faire sauter la barrière.";
+"Game.Sheep.score.result.notEnough" = "Tu n'as sauté que %d barrière(s) sur %d!";
+"Game.Sheep.text.Jump.second" = "en contractant les muscles";
+"Game.Sheep.text.Jump.secondJoystick" = "en poussant le joystick en haut";
 
 // Space Game
 "Game.Space.title" = "La bataille de l'Espace !";

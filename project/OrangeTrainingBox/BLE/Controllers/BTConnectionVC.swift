@@ -2,7 +2,7 @@
 //  BTConnectionViewController.swift
 //  Baah Box
 //
-//  Copyright (C) 2017 – 2019 Orange SA
+//  Copyright (C) 2017 – 2020 Orange SA
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -23,6 +23,10 @@ import CoreBluetooth
 
 class BTConnectionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // ==================
+    // MARK: - Properties
+    // ==================
+    
     var btPeripherals = Array<CBPeripheral>()
     var btPeriperalNames: [CBPeripheral?: String] = [:]
     var selectedCells: [String: Bool] = [:]
@@ -35,6 +39,10 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var tableView: UITableView!
     
+    
+    // ======================
+    // MARK: - View Lifecycle
+    // ======================
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +68,10 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
         btManager.stopScanning()
     }
     
+    // ======================
+    // MARK: - Configuration
+    // ======================
+    
     func updateNavBar(shouldShowAnimation: Bool = false) {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 34, height: 15))
         let title = NSMutableAttributedString(string: L10n.Generic.ok,
@@ -73,54 +85,17 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
         } else {
             
             if shouldShowAnimation {
-                navigationItem.rightBarButtonItem = getStartInidcatorButton()
+                navigationItem.rightBarButtonItem = getStartIndicatorButton()
             } else {
                 navigationItem.rightBarButtonItem = nil
             }
         }
     }
     
-    func configureSelectedCells () {
     
-        for index in 0..<btPeripherals.count {
-            let peripheralName = getPeripheralName(at: index)
-            let connectedPeripheralName = btManager.peripheralNames[btManager.currentPeripheral]
-            
-            if selectedCells[peripheralName] == nil {
-                selectedCells[peripheralName] = peripheralName == connectedPeripheralName ? true : false
-            }
-        }
-    }
-    
-    func resetSelectedCells () {
-        
-        for item in selectedCells {
-            selectedCells[item.key] = false
-        }
-    }
-    
-    func resetSelectedItem () {
-        selectedPeripheralIndex = -1
-    }
-    
-    func toogleSelectedCells(with name: String) {
-    
-        for item in selectedCells {
-         
-            if item.key == name {
-                selectedCells[item.key] = !item.value
-            } else {
-                selectedCells[item.key] = false
-            }
-        }
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
     
     @objc func doConnection(sender: UIBarButtonItem) {
-        navigationItem.rightBarButtonItem = getStartInidcatorButton()
+        navigationItem.rightBarButtonItem = getStartIndicatorButton()
         btManager.btConnect(btPeripherals[selectedPeripheralIndex])
     }
     
@@ -136,7 +111,11 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
         footerCellIndex = btPeripherals.count + 1
     }
     
-    // MARK: - TableView delegates
+    
+    // ===========================
+    // MARK: - TableView delegate
+    // ===========================
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -160,7 +139,7 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
         
         switch indexPath.row {
         case footerCellIndex:
-            navigationItem.rightBarButtonItem = getStartInidcatorButton()
+            navigationItem.rightBarButtonItem = getStartIndicatorButton()
             btManager.btDisconnect()
         default:
             let newIndex = getPeripheralIndex (at: indexPath)
@@ -174,14 +153,75 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     
+    func getStartIndicatorButton () -> UIBarButtonItem {
+        let customView = UIButton ()
+        
+        customView.frame = CGRect (x: 0, y: 0, width: 40, height: 40)
+        customView.isUserInteractionEnabled = false
+        
+        
+        actInd.frame = CGRect (x: 0, y: 0, width: 40, height: 40)
+        actInd.center = customView.center
+        actInd.hidesWhenStopped = true
+        actInd.style = .gray
+        
+        customView.addSubview(actInd)
+        
+        actInd.startAnimating()
+        
+        let button = UIBarButtonItem (customView: customView)
+        button.isEnabled = false
+        
+        return button
+    }
+    
+    
+    
+    // ===========================
     // MARK: - Cell configuration
+    // ===========================
+    
+    func configureSelectedCells () {
+        
+        for index in 0..<btPeripherals.count {
+            let peripheralName = getPeripheralName(at: index)
+            let connectedPeripheralName = btManager.peripheralNames[btManager.currentPeripheral]
+            
+            if selectedCells[peripheralName] == nil {
+                selectedCells[peripheralName] = peripheralName == connectedPeripheralName ? true : false
+            }
+        }
+    }
+    
+    func resetSelectedCells () {
+        
+        for item in selectedCells {
+            selectedCells[item.key] = false
+        }
+    }
+    
+    func resetSelectedItem () {
+        selectedPeripheralIndex = -1
+    }
+    
+    func toogleSelectedCells(with name: String) {
+        
+        for item in selectedCells {
+            
+            if item.key == name {
+                selectedCells[item.key] = !item.value
+            } else {
+                selectedCells[item.key] = false
+            }
+        }
+    }
     
     func configureHeaderCell(at indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "btHeaderCell", for: indexPath) as? BTHeaderCell else {
             return UITableViewCell()
         }
-    
+        
         cell.configure()
         return cell
     }
@@ -197,10 +237,10 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
             let activeCells = selectedCells.filter { item -> Bool in
                 return item.value
             }
-
+            
             let connectedPeripheralName = btManager.peripheralNames[btManager.currentPeripheral]
             cell.configure (activeButton: activeCells.first?.key == connectedPeripheralName)
-
+            
         } else {
             cell.isHidden = true
         }
@@ -226,12 +266,16 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
     
     func getPeripheralName(at index: Int) -> String {
         guard index >= 0  else { return "" }
-    
+        
         let peripheral =  btPeripherals[index]
         return btPeriperalNames[peripheral] ?? ""
     }
     
+    
+    
+    // ==============================
     // MARK: - Notification handling
+    // ==============================
     
     @objc func peripheralDiscovered(_ notification: Notification) {
         
@@ -240,13 +284,12 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
             if let newPeripherals = userInfo["peripherals"] as? Array<CBPeripheral> {
                 btPeripherals = newPeripherals
             }
-
+            
             if let newPeripheralNames = userInfo["peripheralNames"] as? [CBPeripheral?:String] {
                 btPeriperalNames = newPeripheralNames
             }
-
+            
         }
-        
         configureSelectedCells()
         updateFooterIndex()
         
@@ -262,12 +305,14 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
     
     @objc func peripheralConnected(_ notification: Notification) {
         DispatchQueue.main.async {
+            ParameterDataManager.sharedInstance.demoMode = false
             self.navigationController?.popViewController(animated: true)
         }
     }
     
     @objc func peripheralDisconnected(_ notification: Notification) {
         DispatchQueue.main.async {
+            ParameterDataManager.sharedInstance.demoMode = true
             self.resetSelectedCells()
             self.resetSelectedItem()
             self.updateFooterIndex()
@@ -277,27 +322,9 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     
-    func getStartInidcatorButton () -> UIBarButtonItem {
-        let customView = UIButton ()
-        
-        customView.frame = CGRect (x: 0, y: 0, width: 40, height: 40)
-        customView.isUserInteractionEnabled = false
-        
-       
-        actInd.frame = CGRect (x: 0, y: 0, width: 40, height: 40)
-        actInd.center = customView.center
-        actInd.hidesWhenStopped = true
-        actInd.style = .gray
-        
-        customView.addSubview(actInd)
-        
-        actInd.startAnimating()
-        
-        let button = UIBarButtonItem (customView: customView)
-        button.isEnabled = false
-        
-        return button
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
-
 }

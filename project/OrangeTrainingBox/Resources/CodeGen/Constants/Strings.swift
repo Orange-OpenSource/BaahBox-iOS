@@ -35,10 +35,14 @@ internal enum L10n {
   }
 
   internal enum Game {
+    /// Great !
+    internal static let congrats = L10n.tr("Localizable", "Game.Congrats")
     /// Let's play !
     internal static let go = L10n.tr("Localizable", "Game.Go")
     /// Hop !
     internal static let hop = L10n.tr("Localizable", "Game.Hop")
+    /// Keep going !
+    internal static let keepGoing = L10n.tr("Localizable", "Game.KeepGoing")
     /// Ooops!
     internal static let oops = L10n.tr("Localizable", "Game.Oops")
     /// Restart
@@ -47,7 +51,7 @@ internal enum L10n {
     internal static let start = L10n.tr("Localizable", "Game.Start")
     /// Stop
     internal static let stop = L10n.tr("Localizable", "Game.Stop")
-    /// Try again.
+    /// Try again
     internal static let tryAgain = L10n.tr("Localizable", "Game.TryAgain")
     /// Wahoo !
     internal static let wahoo = L10n.tr("Localizable", "Game.Wahoo")
@@ -65,8 +69,14 @@ internal enum L10n {
         internal static let second = L10n.tr("Localizable", "Game.Balloon.congrats.second")
       }
       internal enum Text {
+        /// Almost there !
+        internal static let almostDone = L10n.tr("Localizable", "Game.Balloon.text.almostDone")
+        /// Well Done !
+        internal static let congrats = L10n.tr("Localizable", "Game.Balloon.text.congrats")
         /// Inflate the balloon
         internal static let first = L10n.tr("Localizable", "Game.Balloon.text.first")
+        /// Let's go !
+        internal static let letsGo = L10n.tr("Localizable", "Game.Balloon.text.letsGo")
         /// with the joystick up
         internal static let secondJoystick = L10n.tr("Localizable", "Game.Balloon.text.secondJoystick")
         /// by contracting your muscle
@@ -82,16 +92,20 @@ internal enum L10n {
       internal static let title = L10n.tr("Localizable", "Game.Sheep.title")
       internal enum Score {
         internal enum Pending {
-          /// You jumped over %d fences, still %d to go !
+          /// You jumped over %d fences out of %d 
           internal static func many(_ p1: Int, _ p2: Int) -> String {
             return L10n.tr("Localizable", "Game.Sheep.score.pending.many", p1, p2)
           }
-          /// You jumped over 1 fence, still %d to go !
+          /// You jumped over 1 fence out of %d 
           internal static func one(_ p1: Int) -> String {
             return L10n.tr("Localizable", "Game.Sheep.score.pending.one", p1)
           }
         }
         internal enum Result {
+          /// You only jumped %d fences out of %d!
+          internal static func notEnough(_ p1: Int, _ p2: Int) -> String {
+            return L10n.tr("Localizable", "Game.Sheep.score.result.notEnough", p1, p2)
+          }
           /// You jumped over all the fences !
           internal static let win = L10n.tr("Localizable", "Game.Sheep.score.result.win")
         }
@@ -110,6 +124,8 @@ internal enum L10n {
           internal static let first = L10n.tr("Localizable", "Game.Sheep.text.Jump.first")
           /// by contracting your muscle
           internal static let second = L10n.tr("Localizable", "Game.Sheep.text.Jump.second")
+          /// with the joystick up
+          internal static let secondJoystick = L10n.tr("Localizable", "Game.Sheep.text.Jump.secondJoystick")
         }
       }
     }

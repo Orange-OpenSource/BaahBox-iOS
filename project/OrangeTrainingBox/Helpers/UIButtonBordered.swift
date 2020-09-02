@@ -2,7 +2,7 @@
 //  UIButtonBordered.swift
 //  Baah Box
 //
-//  Copyright (C) 2017 – 2019 Orange SA
+//  Copyright (C) 2017 – 2020 Orange SA
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 import UIKit
 
 
-@IBDesignable class UIButtonBordered: UIButton {
+@IBDesignable public class UIButtonBordered: UIButton {
     
     
     @IBInspectable var borderColor: UIColor = .clear {

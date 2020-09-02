@@ -2,7 +2,7 @@
 //  BLEDiscovery.swift
 //  Baah Box
 //
-//  Copyright (C) 2017 – 2019 Orange SA
+//  Copyright (C) 2017 – 2020 Orange SA
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -35,7 +35,8 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
     override init() {
         super.init()
         let centralQueue = DispatchQueue(label: "com.orange", attributes: [])
-        centralManager = CBCentralManager(delegate: self, queue: centralQueue, options: [CBCentralManagerOptionShowPowerAlertKey: false])
+        centralManager = CBCentralManager(delegate: self, queue: centralQueue,
+                                          options: [CBCentralManagerOptionShowPowerAlertKey: false])
     }
     
     static let sharedInstance: BLEDiscovery = {
@@ -71,7 +72,8 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
                     self.discoveryTimer.invalidate()
                 }
                 
-                self.discoveryTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.onDiscoveryTimerExpiration),
+                self.discoveryTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self,
+                                                           selector: #selector(self.onDiscoveryTimerExpiration),
                                                            userInfo: nil, repeats: true)
             }
             
@@ -148,7 +150,10 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
         central.cancelPeripheralConnection(currentPeripheral)
     }
     
+    // =========================
     // MARK: - Timer management
+    // =========================
+    
     
     @objc func onDiscoveryTimerExpiration() {
         let discoveredPeripherals = ["peripherals": peripherals, "peripheralNames": peripheralNames] as [String: Any]
@@ -164,7 +169,10 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
         }
     }
     
+    // =================================
     // MARK: - CBCentralManagerDelegate
+    // =================================
+
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
       
@@ -214,7 +222,10 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
         }
     }
     
+    // ================
     // MARK: - Private
+    // ================
+
     
     func shouldIgnorePeripheral(for localName: String, peripheral: CBPeripheral) -> Bool {
 
