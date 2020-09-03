@@ -151,8 +151,9 @@
 
 // Space Game
 "Game.Space.title" = "Space Battle !";
-"Game.Space.header" = "Try to avoid collisions";
-"Game.Space.subHeader" = "by contracting your muscle";
+"Game.Space.text.first" = "Try to avoid collisions";
+"Game.Space.text.secondMuscle" = "by contracting your left and right muscles";
+"Game.Space.text.secondJoystick" = "by moving the joystick";
 "Game.Space.button.keepGoing" = "Continue";
 
 // Frog Game

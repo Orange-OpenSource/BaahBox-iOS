@@ -24,7 +24,10 @@ import SpriteKit
 
 class SheepGameVC: GameVC, GameSceneDelegate {
     
+    
+    // =======================
     // MARK: - Properties
+    // =======================
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
@@ -36,7 +39,9 @@ class SheepGameVC: GameVC, GameSceneDelegate {
     var scene: SheepGameScene!
     
     
+    // =======================
     // MARK: - View Lifecycle
+    // =======================
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,19 +63,22 @@ class SheepGameVC: GameVC, GameSceneDelegate {
     }
     
     
+    // ===============
     // MARK: - Scene
-
+    // ===============
+    
     func configureScene () {
         scene = SheepGameScene (size: CGSize(width: 1536, height: 2048))
         scene?.configure(title: titleLabel, subtitle: subtitleLabel, feedback: feedbackLabel, score: scoreLabel, button: button, delegate: self)
         scene.scaleMode = .aspectFill
-        let skView = configureSkView(showData: true)
+        let skView = configureSkView()
         skView?.presentScene(scene)
     }
     
     
-    
+    // =============================
     // MARK : - User's interactions
+    // =============================
     
     @IBAction func onButtonPressed(_ sender: Any) {
         scene?.onButtonPressed()
@@ -85,7 +93,9 @@ class SheepGameVC: GameVC, GameSceneDelegate {
     }
     
     
+    // ==================
     // MARK: - Internals
+    // ==================
     
     @objc func onDisplayTimerExpiration () {
         displayTimer.invalidate()
@@ -96,8 +106,10 @@ class SheepGameVC: GameVC, GameSceneDelegate {
     }
     
     
+    // =================
     // MARK: - Settings
-    
+    // =================
+
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }

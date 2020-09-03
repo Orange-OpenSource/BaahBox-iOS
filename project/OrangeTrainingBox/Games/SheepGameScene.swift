@@ -51,17 +51,17 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
     let walkingSheepAnimation: SKAction
     let gameWonAnimation: SKAction
     
-    var gameObjective : Int = 1
+    var gameObjective: Int = 1
     var successfullJumps: Int = 0
     var hasSheepStartedJumping = false
-    var nbDisplayedFences : Int = 0
-    var strengthValue : Int = 0
+    var nbDisplayedFences: Int = 0
+    var strengthValue: Int = 0
     
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
     var velocity = CGPoint.zero
-    var threshold : Int = 0
-    var speedRate : Int = 1
+    var threshold: Int = 0
+    var speedRate: Int = 1
     var maxHeigthJump: CGFloat
     let groundPosition = CGPoint(x: 0, y: 768.0)
     // AKA CGPoint(x: size.width/2 - ground.size.width/2, y: size.height/2 - size.height/8)
@@ -91,19 +91,22 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
             case .halted: // should not occur in this game
                 break
                 
-            case .ended(let Score):
-                if Score.total >= 0 {
+            case .ended(let score):
+                if score.total >= 0 {
                     gameOver()
                 }
-                else if Score.total == -1 {
+                else if score.total == -1 {
                     bang.isHidden = false
                     configureLabelsForCollision()
-                    }
+                }
             }
         }
     }
     
+    
+    // =============
     // MARK: - init
+    // =============
     
     override init(size: CGSize) {
         
@@ -132,13 +135,14 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
     }
     
     
+    // ===============
     // MARK: - SKView
+    // ===============
+    
     override func willMove(from view: SKView) {
         super.willMove(from: view)
         removeAllActions()
-        for node in self.children {
-            node.removeFromParent()
-        }
+        removeAllChildren()
         unloadTextures()
         unsetNotifications()
     }
@@ -155,22 +159,9 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
         maxHeigthJump = size.height - sheep.size.height - groundPosition.y
         startWalkingSheepAnimation()
         loadTextures()
-        setupNotificationCenter()
+        setupNotifications()
     }
     
-    func loadTextures() {
-        sheepWalkingTexture = SKTexture (imageNamed: Asset.Games.SheepGame.sheep1.name)
-        sheepBumpTexture = SKTexture(imageNamed: Asset.Games.SheepGame.sheepBump.name)
-        sheepJumpTexture = SKTexture(imageNamed: Asset.Games.SheepGame.sheepJump.name)
-        sheepGameOverTexture = SKTexture(imageNamed: Asset.Games.SheepGame.bigSheep.name)
-    }
-    
-    func unloadTextures() {
-        sheepWalkingTexture = nil
-        sheepBumpTexture = nil
-        sheepJumpTexture = nil
-        sheepGameOverTexture = nil
-    }
     
     func configureSpritesForStart() {
         ground.anchorPoint = CGPoint.zero
@@ -199,7 +190,10 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
     }
     
     
+    // ============================
     // MARK: - User's interactions
+    // ============================
+    
     func onButtonPressed() {
         button?.setTitle(L10n.Game.go, for: .normal)
         startGame()
@@ -215,7 +209,10 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
         state = .onGoing
     }
     
+    
+    // ===================
     // MARK: - Game loop
+    // ===================
     
     override func update(_ currentTime: TimeInterval) {
         if lastUpdateTime > 0 {
@@ -259,18 +256,18 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
     func checkDisplayedFences() {
         if nbDisplayedFences == gameObjective {
             print("GAME OVER : \(successfullJumps)")
-         state = .ended(Score(won: true, total: successfullJumps))
+            state = .ended(Score(won: true, total: successfullJumps))
         }
     }
     func checkSheepAndFencePositions() {
         if isSheepOnGround() {
             if isSheepBeyondTheFence() && hasSheepStartedJumping {
                 successfullJumps += 1
-//                if successfullJumps == gameObjective {
-//                    state = .ended(Score(won: true, total: successfullJumps))
-//                } else {
-                    configureScoreLabel(with: successfullJumps)
-                    configureLabelsForWalking()
+                //                if successfullJumps == gameObjective {
+                //                    state = .ended(Score(won: true, total: successfullJumps))
+                //                } else {
+                configureScoreLabel(with: successfullJumps)
+                configureLabelsForWalking()
                 //}
             } else {
                 configureLabelsForWalking()
@@ -286,7 +283,7 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
     func moveFence() {
         ensureFenceIsWithinBounds()
         //if nbDisplayedFences < gameObjective {
-            fence.position.x -= CGFloat(2 * speedRate)
+        fence.position.x -= CGFloat(2 * speedRate)
         //}
         
     }
@@ -336,7 +333,9 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
     
     
     
+    // =========================
     // MARK: - data processing
+    // =========================
     
     private func getMuscleStrength() -> Int {
         if ParameterDataManager.sharedInstance.muscle1IsON {
@@ -379,7 +378,9 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
         }
     }
     
+    // ==============================
     // MARK: - Labels configuration
+    // ==============================
     
     func configureScoreLabel(with score: Int) {
         switch score {
@@ -437,8 +438,8 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
             title?.text = L10n.Game.congrats
             subtitle?.text = L10n.Game.Sheep.Score.Result.win
         } else {
-          title?.text = L10n.Game.oops
-          subtitle?.text = L10n.Game.Sheep.Score.Result.notEnough(successfullJumps, gameObjective)
+            title?.text = L10n.Game.oops
+            subtitle?.text = L10n.Game.Sheep.Score.Result.notEnough(successfullJumps, gameObjective)
         }
         configureScoreLabel(with: 0)
         scoreLabel?.isHidden = true
@@ -448,7 +449,30 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
         button?.isHidden = false
     }
     
+    
+    
+    // =================
+    // MARK: - Textures
+    // =================
+    
+    func loadTextures() {
+        sheepWalkingTexture = SKTexture (imageNamed: Asset.Games.SheepGame.sheep1.name)
+        sheepBumpTexture = SKTexture(imageNamed: Asset.Games.SheepGame.sheepBump.name)
+        sheepJumpTexture = SKTexture(imageNamed: Asset.Games.SheepGame.sheepJump.name)
+        sheepGameOverTexture = SKTexture(imageNamed: Asset.Games.SheepGame.bigSheep.name)
+    }
+    
+    func unloadTextures() {
+        sheepWalkingTexture = nil
+        sheepBumpTexture = nil
+        sheepJumpTexture = nil
+        sheepGameOverTexture = nil
+    }
+    
+    
+    // ======================
     // MARK: - sprite moves
+    // ======================
     
     func move(sprite: SKSpriteNode, velocity: CGPoint) {
         let amountToMove = CGPoint(x: velocity.x * CGFloat(dt), y: velocity.y * CGFloat(dt))
@@ -473,7 +497,7 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
         sprite.run(sequence)
     }
     
-    func getNewPosition(from position : CGPoint) -> CGFloat {
+    func getNewPosition(from position: CGPoint) -> CGFloat {
         
         let heightConstraint = CGFloat (300 * hardnessCoeff)
         var newPosition = position.y - heightConstraint
@@ -517,7 +541,9 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
     
     
     
+    // ================
     // MARK: - helpers
+    // ================
     
     private func ensureSheepIsWithinBounds(_ location: CGPoint) -> CGPoint {
         var position  = location
@@ -531,9 +557,11 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
     }
     
     
+    // ============================
     // MARK: - Notification Center
+    // ============================
     
-    private func setupNotificationCenter() {
+    private func setupNotifications() {
         //data from sensors
         NotificationCenter.default.addObserver(self, selector: #selector(updateData(_:)),
                                                name: Notification.Name(rawValue: L10n.Notif.Ble.dataReceived),
@@ -551,7 +579,9 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
     
     
     
+    // =======================
     // MARK: - touch handling
+    // =======================
     
     func sceneTouched(touchLocation: CGPoint) {
         guard isGameOnGoing && ParameterDataManager.sharedInstance.demoMode else {
@@ -581,9 +611,11 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
     }
     
     
+    // ===================
     // MARK: - Parameters
+    // ===================
     
-    @objc func loadParameters () {
+    @objc func loadParameters() {
         threshold = ParameterDataManager.sharedInstance.threshold
         gameObjective = ParameterDataManager.sharedInstance.numberOfFences
         
@@ -600,4 +632,5 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
             configureScoreLabel(with: 0)
         }
     }
+    
 }
