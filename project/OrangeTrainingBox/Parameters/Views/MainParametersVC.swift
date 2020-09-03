@@ -20,7 +20,7 @@
 
 import UIKit
 
-class MainParametersVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
+class MainParametersVC: GameVC, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     
     enum SectionDescription: Int {

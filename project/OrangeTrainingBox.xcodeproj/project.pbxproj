@@ -21,7 +21,6 @@
 		46AFC798217DCCF20052C063 /* OrangeTrainingBoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC797217DCCF20052C063 /* OrangeTrainingBoxTests.swift */; };
 		46AFC7A3217DCCF20052C063 /* OrangeTrainingBoxUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7A2217DCCF20052C063 /* OrangeTrainingBoxUITests.swift */; };
 		46AFC7CB217DD4220052C063 /* ParameterDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7B3217DD4220052C063 /* ParameterDataManager.swift */; };
-		46AFC7CC217DD4220052C063 /* SettableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7B4217DD4220052C063 /* SettableVC.swift */; };
 		46AFC7CE217DD4220052C063 /* SheepGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7B7217DD4220052C063 /* SheepGameScene.swift */; };
 		46AFC7CF217DD4220052C063 /* BalloonGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7B8217DD4220052C063 /* BalloonGameScene.swift */; };
 		46AFC7D0217DD4220052C063 /* StarGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7B9217DD4220052C063 /* StarGameVC.swift */; };
@@ -33,6 +32,7 @@
 		46AFC7DD217DD4230052C063 /* CGPointUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7C9217DD4220052C063 /* CGPointUtils.swift */; };
 		46AFC7DE217DD4230052C063 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC7CA217DD4220052C063 /* Helper.swift */; };
 		46AFC7E3217DD43C0052C063 /* Games.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46AFC7E0217DD43C0052C063 /* Games.storyboard */; };
+		46B38EF32500EC2700B75C88 /* SpriteKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B38EF22500EC2700B75C88 /* SpriteKitHelper.swift */; };
 		46D5E73221CCAB3600E85B9B /* UIButtonBordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5E73121CCAB3600E85B9B /* UIButtonBordered.swift */; };
 		46D5E73421CCADBD00E85B9B /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5E73321CCADBD00E85B9B /* GameState.swift */; };
 		46E5A95724FFA25D00F6EECD /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E5A95624FFA25D00F6EECD /* GameVC.swift */; };
@@ -106,7 +106,6 @@
 		46AFC7A2217DCCF20052C063 /* OrangeTrainingBoxUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangeTrainingBoxUITests.swift; sourceTree = "<group>"; };
 		46AFC7A4217DCCF20052C063 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46AFC7B3217DD4220052C063 /* ParameterDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterDataManager.swift; sourceTree = "<group>"; };
-		46AFC7B4217DD4220052C063 /* SettableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettableVC.swift; sourceTree = "<group>"; };
 		46AFC7B7217DD4220052C063 /* SheepGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheepGameScene.swift; sourceTree = "<group>"; };
 		46AFC7B8217DD4220052C063 /* BalloonGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonGameScene.swift; sourceTree = "<group>"; };
 		46AFC7B9217DD4220052C063 /* StarGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarGameVC.swift; sourceTree = "<group>"; };
@@ -118,6 +117,7 @@
 		46AFC7C9217DD4220052C063 /* CGPointUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPointUtils.swift; sourceTree = "<group>"; };
 		46AFC7CA217DD4220052C063 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		46AFC7E0217DD43C0052C063 /* Games.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Games.storyboard; sourceTree = "<group>"; };
+		46B38EF22500EC2700B75C88 /* SpriteKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteKitHelper.swift; sourceTree = "<group>"; };
 		46D5E73121CCAB3600E85B9B /* UIButtonBordered.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonBordered.swift; sourceTree = "<group>"; };
 		46D5E73321CCADBD00E85B9B /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		46E5A95624FFA25D00F6EECD /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
@@ -303,7 +303,6 @@
 			isa = PBXGroup;
 			children = (
 				46AFC7B3217DD4220052C063 /* ParameterDataManager.swift */,
-				46AFC7B4217DD4220052C063 /* SettableVC.swift */,
 				EB0685592181FB1200A07C3E /* ParametersDefaults.swift */,
 				EB7A290521CB9989000DBA43 /* Views */,
 				EB7A28F821CA6A0E000DBA43 /* Cells */,
@@ -349,6 +348,7 @@
 				46D5E73121CCAB3600E85B9B /* UIButtonBordered.swift */,
 				466FB24E21A2EFC700F19C65 /* UINavigationController+navbarTint.swift */,
 				46D5E73321CCADBD00E85B9B /* GameState.swift */,
+				46B38EF22500EC2700B75C88 /* SpriteKitHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -597,7 +597,6 @@
 				46AFC7CF217DD4220052C063 /* BalloonGameScene.swift in Sources */,
 				46AFC7D5217DD4220052C063 /* SpaceshipGameVC.swift in Sources */,
 				46AFC7CE217DD4220052C063 /* SheepGameScene.swift in Sources */,
-				46AFC7CC217DD4220052C063 /* SettableVC.swift in Sources */,
 				468CFC3D217E17FE00E0553E /* Storyboards.swift in Sources */,
 				EBEFCAAE217F05E5006E20F6 /* BTCell.swift in Sources */,
 				AC95209A217F3C7B00590D31 /* ButtonWithImageAndText.swift in Sources */,
@@ -605,6 +604,7 @@
 				AC938FE3219A315A00F18672 /* CrapaudGameVC.swift in Sources */,
 				46AFC7D2217DD4220052C063 /* SheepGameVC.swift in Sources */,
 				EBEFCAAB217F05E5006E20F6 /* BLEDiscovery.swift in Sources */,
+				46B38EF32500EC2700B75C88 /* SpriteKitHelper.swift in Sources */,
 				EB7A290221CA9F73000DBA43 /* GeneralSliderCell.swift in Sources */,
 				EB7A290D21CBACC7000DBA43 /* TaudGameParameterVC.swift in Sources */,
 				EB7A28F721CA6A0A000DBA43 /* MainParameterCell.swift in Sources */,

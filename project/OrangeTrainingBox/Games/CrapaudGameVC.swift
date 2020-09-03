@@ -18,6 +18,14 @@
 //  along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 
+//
+//  CrapaudGameVC.swift
+//  Orange Training Box
+//
+//  Created by Frederique Pinson on 04/09/2018.
+//  Copyright © 2018 Orange. All rights reserved.
+//
+
 import UIKit
 import SpriteKit
 
@@ -27,7 +35,7 @@ public protocol CrapaudGameInteractable {
 }
 
 
-class CrapaudGameVC: SettableVC, CrapaudGameInteractable {
+class CrapaudGameVC: GameVC, CrapaudGameInteractable {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var startButtonBottomConstraint: NSLayoutConstraint!
@@ -71,7 +79,9 @@ class CrapaudGameVC: SettableVC, CrapaudGameInteractable {
         super.viewWillAppear(animated)
         numberOfFlys = ParameterDataManager.sharedInstance.numberOfFlies
         configureScene()
-        configureSkView()
+        let skView = configureSkView()
+        skView?.presentScene(scene)
+        
         configureBottomView(showStartGame: true)
         addScoreViews()
         showScoreViews()
@@ -84,14 +94,14 @@ class CrapaudGameVC: SettableVC, CrapaudGameInteractable {
     
     
     override func viewWillDisappear(_ animated: Bool) {
-         super.viewWillDisappear(animated)
         scene.disableGame()
         scene = nil
-        let skView = view as! SKView
-        skView.presentScene(nil)
+        super.viewWillDisappear(animated)
     }
 
     
+
+        
     private func addScoreViews() {
         for scoreView in scoreViews {
             scoreView.removeFromSuperview()
@@ -139,21 +149,14 @@ class CrapaudGameVC: SettableVC, CrapaudGameInteractable {
         return false
     }
     
-    private func configureSkView () {
-        let skView = view as! SKView
-        skView.ignoresSiblingOrder = true
-        skView.showsFPS = true
-        skView.showsNodeCount = true
-        skView.presentScene(scene)
-    }
     
     private func configureScene () {
-        scene = CrapaudGameScene(size: CGSize(width: 1536, height: 2048))
+        scene = CrapaudGameScene(size:CGSize(width: 1536, height: 2048))
         scene.gameDelegate = self
         scene.scaleMode = .aspectFill
     }
     
-    private func configureBottomView(showStartGame: Bool) {
+    private func configureBottomView (showStartGame : Bool) {
         startButton.isHidden = !showStartGame
         textLabel.isHidden = showStartGame
         
@@ -164,9 +167,9 @@ class CrapaudGameVC: SettableVC, CrapaudGameInteractable {
     
     func setButtonText(_ text: String) {
         let attributedText = NSMutableAttributedString(string: text,
-                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
-        attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white,
-                                    range: NSRange(location: 0, length: attributedText.length))
+                                             attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 27)])
+        attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range:
+            NSRange(location: 0, length: attributedText.length))
         startButton.setAttributedTitle(attributedText, for: .normal)
     }
     
@@ -180,8 +183,8 @@ class CrapaudGameVC: SettableVC, CrapaudGameInteractable {
                 self.displayTimer.invalidate()
             }
             self.scene.startGame()
-            self.displayTimer = Timer.scheduledTimer(timeInterval: 1, target: self,
-                                                     selector: #selector(self.onDisplayTimerExpiration), userInfo: nil, repeats: false)
+            self.displayTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
+                #selector(self.onDisplayTimerExpiration), userInfo: nil, repeats: false);
         }
     }
     
@@ -203,7 +206,7 @@ class CrapaudGameVC: SettableVC, CrapaudGameInteractable {
         if score == numberOfFlys {
             gameOver()
         }
-    } 
+    }
     
     private func gameOver() {
 //        hideScoreViews()

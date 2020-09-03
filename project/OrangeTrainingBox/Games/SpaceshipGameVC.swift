@@ -28,7 +28,7 @@ public protocol SpaceShipGameInteractable {
     func refreshScore()
 }
 
-class SpaceshipGameVC: SettableVC, SpaceShipGameInteractable {
+class SpaceshipGameVC: GameVC, SpaceShipGameInteractable {
 
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -53,17 +53,17 @@ class SpaceshipGameVC: SettableVC, SpaceShipGameInteractable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureScene()
-        configureSkView()
+        let skView = configureSkView()
+        skView?.presentScene(scene)
         configureScreen(forState: .notStarted)
         showLifeViews()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         scene?.gameOver()
         scene = nil
-        let skView = view as! SKView
-        skView.presentScene(nil)
+        super.viewWillDisappear(animated)
+
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -75,19 +75,12 @@ class SpaceshipGameVC: SettableVC, SpaceShipGameInteractable {
     }
    
     func configureScene() {
-        scene = SpaceshipGameScene(size: CGSize(width: 1536, height: 2048))
+        scene = SpaceshipGameScene(size:CGSize(width: 1536, height: 2048))
         scene!.gameDelegate = self
         scene!.scaleMode = .aspectFill
     }
     
-    func configureSkView () {
-        let skView = view as! SKView
-        skView.ignoresSiblingOrder = true
-        skView.showsFPS = true
-        skView.showsNodeCount = true
-        skView.presentScene(scene)
-    }
-    
+
    
     private func showScore() {
         guard let scene = scene else { return }
@@ -125,7 +118,7 @@ class SpaceshipGameVC: SettableVC, SpaceShipGameInteractable {
     
     func configureButtonWithText (_ text: String = L10n.Game.start) {
         let text = NSMutableAttributedString(string: text,
-                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
+                                             attributes: [NSAttributedString.Key.font:  UIFont.boldSystemFont(ofSize: 27)])
         text.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSRange(location: 0, length: text.length))
         startButton.setAttributedTitle(text, for: .normal)
     }
@@ -142,22 +135,22 @@ class SpaceshipGameVC: SettableVC, SpaceShipGameInteractable {
     
     @IBAction func onStartButtonPressed(_ sender: Any) {
         guard let scene = scene else { return }
-       
-        switch scene.gameState {
-        case .notStarted:
-            scene.initGame()
-            configureScreen(forState: .onGoing)
-            scene.runGame()
-        case .halted:
-            configureScreen(forState: .onGoing)
-            scene.runGame()
-        case .lost:
-            scene.initGame()
-            configureScreen(forState: .onGoing)
-            scene.runGame()
-        default:
-            print("should not happen")
-        }
+//
+//        switch scene.gameState {
+//        case .notStarted:
+//            scene.initGame()
+//            configureScreen(forState: .onGoing)
+//            scene.runGame()
+//        case .halted:
+//            configureScreen(forState: .onGoing)
+//            scene.runGame()
+//        case .lost:
+//            scene.initGame()
+//            configureScreen(forState: .onGoing)
+//            scene.runGame()
+//        default:
+//            print("should not happen")
+//        }
     }
     
     // ==========================================
@@ -165,42 +158,42 @@ class SpaceshipGameVC: SettableVC, SpaceShipGameInteractable {
     // ==========================================
     
     func configureScreen(forState state: GameState) {
-        
-        switch state {
-        case .notStarted:
-            navigationController?.setNavigationBarHidden(true, animated: true)
-            configureButtonWithText(L10n.Game.start)
-            startButton.isHidden = false
-            scoreLabel.isHidden = true
-            stopButton.isHidden = true
-
-            scene?.startSpaceShipAnimation()
-            refreshScore()
-            
-        case .onGoing:
-            scene?.stopSpaceShipAnimation()
-            navigationController?.setNavigationBarHidden(true, animated: true)
-            scoreLabel.isHidden  = false
-            startButton.isHidden = true
-            stopButton.isHidden = false
-            refreshScore()
-            
-        case .halted:
-            navigationController?.setNavigationBarHidden(false, animated: true)
-            configureScreen(forState: .onGoing)
-            scene?.runGame()
-
-        case .lost:
-            navigationController?.setNavigationBarHidden(false, animated: true)
-            configureButtonWithText (L10n.Game.reStart)
-            startButton.isHidden = false
-            stopButton.isHidden = true
-
-            refreshScore()
-            
-        case .won:
-            print("WON : should not happen")
-        }
+//
+//        switch state {
+//        case .notStarted:
+//            navigationController?.setNavigationBarHidden(true, animated: true)
+//            configureButtonWithText(L10n.Game.start)
+//            startButton.isHidden = false
+//            scoreLabel.isHidden = true
+//            stopButton.isHidden = true
+//
+//            scene?.startSpaceShipAnimation()
+//            refreshScore()
+//
+//        case .onGoing:
+//            scene?.stopSpaceShipAnimation()
+//            navigationController?.setNavigationBarHidden(true, animated: true)
+//            scoreLabel.isHidden  = false
+//            startButton.isHidden = true
+//            stopButton.isHidden = false
+//            refreshScore()
+//
+//        case .halted:
+//            navigationController?.setNavigationBarHidden(false, animated: true)
+//            configureScreen(forState: .onGoing)
+//            scene?.runGame()
+//
+//        case .lost:
+//            navigationController?.setNavigationBarHidden(false, animated: true)
+//            configureButtonWithText (L10n.Game.reStart)
+//            startButton.isHidden = false
+//            stopButton.isHidden = true
+//
+//            refreshScore()
+//
+//        case .won:
+//            print("WON : should not happen")
+//        }
     }
     
     func collisionOccured() {
@@ -210,8 +203,10 @@ class SpaceshipGameVC: SettableVC, SpaceShipGameInteractable {
     }
     
     func gameOver() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-            self.configureScreen(forState: .lost)
-        })
+//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+//            self.configureScreen(forState: .lost)
+//        })
     }
 }
+
+

@@ -17,7 +17,6 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
-
 import SpriteKit
 
 let collisionSpaceShipCategory: UInt32 = 0x1 << 0
@@ -52,11 +51,13 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
     var meteorSpawnAction = SKAction()
     
     
+    
     //  let asteroidCollisionSoundAction = SKAction.playSoundFileNamed(
     // "SNCRASH1.wav", waitForCompletion: false)
     var crash = SKSpriteNode(imageNamed: Asset.Games.SpaceshipGame.crash.name)
     var crashAnimation = SKAction()
 
+    
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -165,31 +166,31 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        if lastUpdateTime > 0 {
-            dt = currentTime - lastUpdateTime
-        } else {
-            dt = 0
-        }
-        
-        if self.gameState != .onGoing {
-            lastScoreTime = currentTime
-        }
-        
-        // score is calculated on elapsed time (x seconds = 1 point)
-        if (currentTime - lastScoreTime) > secondPerScorePoint, gameState == .onGoing {
-            score += 1
-            lastScoreTime = currentTime
-            self.gameDelegate?.refreshScore()
-        }
-        
-        lastUpdateTime = currentTime
+//        if lastUpdateTime > 0 {
+//            dt = currentTime - lastUpdateTime
+//        } else {
+//            dt = 0
+//        }
+//
+//        if self.gameState != .onGoing {
+//          lastScoreTime = currentTime
+//        }
+//
+//        // score is calculated on elapsed time (x seconds = 1 point)
+//        if (currentTime - lastScoreTime) > secondPerScorePoint, gameState == .onGoing {
+//            score += 1
+//            lastScoreTime = currentTime
+//            self.gameDelegate?.refreshScore()
+//        }
+//
+//        lastUpdateTime = currentTime
     }
     
     
     private func analyseActions(leftAction: Bool, rightAction: Bool) {
-        if  gameState != .onGoing {
-            return
-        }
+//        if  gameState != .onGoing {
+//            return
+//        }
         if leftAction && rightAction {
             spaceShip.texture = shipNmlTexture
             spaceShip.size = shipNmlTexture!.size()
@@ -246,11 +247,11 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
     
     func gameOver() {
         print("game over")
-        gameState = .lost
-        gameDelegate?.gameOver()
-        removeAllActions()
-        removeMeteors()
-        NotificationCenter.default.removeObserver(self)
+//        gameState = .lost
+//        gameDelegate?.gameOver()
+//        removeAllActions()
+//        removeMeteors()
+//        NotificationCenter.default.removeObserver(self)
     }
     
     //===============================
@@ -426,14 +427,15 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
+    
     //=======================
     // MARK: - touch handling
     //=======================
     
     func sceneTouched(touchLocation: CGPoint) {
-        if  gameState == .onGoing && ParameterDataManager.sharedInstance.demoMode {
-            slideTo(sprite: spaceShip, x: touchLocation.x)
-        }
+//        if  gameState == .onGoing && ParameterDataManager.sharedInstance.demoMode {
+//            slideTo(sprite: spaceShip, x: touchLocation.x)
+//        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -451,6 +453,7 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         let touchLocation = touch.location(in: self)
         sceneTouched(touchLocation: touchLocation)
     }
+    
     
     
     //  stars..
@@ -493,3 +496,4 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
 }
+

@@ -77,6 +77,8 @@ internal enum Asset {
       internal static let tongue = ImageAsset(name: "Games/CrapaudGame/tongue")
     }
     internal enum SheepGame {
+      internal static let bigSheep = ImageAsset(name: "Games/SheepGame/bigSheep")
+      internal static let bigSheep2 = ImageAsset(name: "Games/SheepGame/bigSheep2")
       internal static let sheep1 = ImageAsset(name: "Games/SheepGame/sheep1")
       internal static let sheep2 = ImageAsset(name: "Games/SheepGame/sheep2")
       internal static let sheepBang = ImageAsset(name: "Games/SheepGame/sheep_bang")
@@ -85,8 +87,6 @@ internal enum Asset {
       internal static let sheepGate = ImageAsset(name: "Games/SheepGame/sheep_gate")
       internal static let sheepGround = ImageAsset(name: "Games/SheepGame/sheep_ground")
       internal static let sheepJump = ImageAsset(name: "Games/SheepGame/sheep_jump")
-      internal static let sheepWelcome = ImageAsset(name: "Games/SheepGame/sheep_welcome")
-      internal static let sheepWelcome2 = ImageAsset(name: "Games/SheepGame/sheep_welcome2")
     }
     internal enum SpaceshipGame {
       internal static let crash = ImageAsset(name: "Games/SpaceshipGame/crash")
