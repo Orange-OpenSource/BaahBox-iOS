@@ -143,7 +143,7 @@ internal enum L10n {
         internal static let first = L10n.tr("Localizable", "Game.Space.text.first")
         /// by moving the joystick
         internal static let secondJoystick = L10n.tr("Localizable", "Game.Space.text.secondJoystick")
-        /// by contracting your left and right muscles
+        /// by contracting your left or right muscle
         internal static let secondMuscle = L10n.tr("Localizable", "Game.Space.text.secondMuscle")
       }
     }

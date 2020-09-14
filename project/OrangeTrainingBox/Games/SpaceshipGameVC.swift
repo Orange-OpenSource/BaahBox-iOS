@@ -35,8 +35,8 @@ class SpaceshipGameVC: GameVC, GameSceneDelegate  {
     
     var lifeViews: [UIImageView] = []
     
-    @IBOutlet weak var buttonTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var buttonCenterXContraint: NSLayoutConstraint!
+    @IBOutlet var buttonTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet var buttonCenterXContraint: NSLayoutConstraint!
     @IBOutlet weak var buttonBottomConstraint: NSLayoutConstraint!
     
     // =======================
@@ -71,12 +71,13 @@ class SpaceshipGameVC: GameVC, GameSceneDelegate  {
     // ===============
     
     func configureScene() {
-        scene = SpaceshipGameScene(size:CGSize(width: 1536, height: 2048))
+        scene = SpaceshipGameScene(size: CGSize(width: 1536, height: 2048))
         scene!.scaleMode = .aspectFill
         scene?.configure(title: titleLabel, subtitle: subtitleLabel, feedback: nil, score: scoreLabel, button: button, delegate: self)
         let skView = configureSkView(showData: true)
         skView?.presentScene(scene)
         configureLifeViews()
+        setButtonLocation(forStart: true)
     }
     
 
@@ -169,11 +170,19 @@ class SpaceshipGameVC: GameVC, GameSceneDelegate  {
         // button alternates to stop/ start position
        }
        
+   
+    
     func setButtonLocation(forStart: Bool) {
-        buttonBottomConstraint.constant = (forStart ? 100 : 20)
-       // buttonCenterXContraint.isActive = (forStart ? true : false)
-        buttonTrailingConstraint.constant = (forStart ? 73: 10)
+        // removed the weak feature for those constraints for activation/deactivation.
+        // see https://developer.apple.com/forums/thread/126384
+        // Handling button move will improve when it will be a sprite instead of a UIButton.
+        
+        buttonBottomConstraint.constant = (forStart ? 125 : 15)
+        buttonCenterXContraint.isActive = (forStart ? true : false)
+        buttonTrailingConstraint.constant = 10
+        buttonTrailingConstraint.isActive = (forStart ? false : true)
     }
+    
     // =================
     // MARK: - Settings
     // =================

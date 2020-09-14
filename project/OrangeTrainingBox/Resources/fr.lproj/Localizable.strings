@@ -152,7 +152,7 @@
 // Space Game
 "Game.Space.title" = "La bataille de l'Espace !";
 "Game.Space.text.first" = "Evite les météorites";
-"Game.Space.text.secondMuscle" = "en contractant les muscles droit et gauche";
+"Game.Space.text.secondMuscle" = "en contractant le muscle droit ou gauche";
 "Game.Space.text.secondJoystick" = "en bougeant le joystick";
 "Game.Space.button.keepGoing" = "Continuer";
 

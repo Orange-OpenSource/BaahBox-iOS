@@ -153,7 +153,7 @@
 // Space Game
 "Game.Space.title" = "Space Battle !";
 "Game.Space.text.first" = "Try to avoid collisions";
-"Game.Space.text.secondMuscle" = "by contracting your left and right muscles";
+"Game.Space.text.secondMuscle" = "by contracting your left or right muscle";
 "Game.Space.text.secondJoystick" = "by moving the joystick";
 "Game.Space.button.keepGoing" = "Continue";
 
