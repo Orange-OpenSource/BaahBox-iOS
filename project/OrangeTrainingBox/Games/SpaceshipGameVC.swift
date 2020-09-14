@@ -59,7 +59,7 @@ class SpaceshipGameVC: GameVC, GameSceneDelegate  {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        scene?.gameOver()
+     //   scene?.gameOver()
         scene = nil
         super.viewWillDisappear(animated)
         
@@ -90,14 +90,14 @@ class SpaceshipGameVC: GameVC, GameSceneDelegate  {
             
         case .halted:
            break
-            collisionOccured()
-           // configureLifeViews()
-            //showLifeViews()
-            
+          //  collisionOccured()
+      
         default:
+          //  setNavigationBarHidden(false, animated: true)
             configureLifeViews()
             showLifeViews()
             setButtonLocation(forStart: false)
+            
         }
     }
     
@@ -134,17 +134,11 @@ class SpaceshipGameVC: GameVC, GameSceneDelegate  {
     }
     
    
-    func collisionOccured() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-            self.scene?.state = .onGoing
-        })
-    }
-    
-    func gameOver() {
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-                    self.scene?.state = .ended(Score(won: false, total: self.scene?.score ?? 0))
-                })
-    }
+//    func gameOver() {
+//                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+//                    self.scene?.state = .ended(Score(won: false, total: self.scene?.score ?? 0))
+//                })
+//    }
     
     // =============================
     // MARK : - User's interactions

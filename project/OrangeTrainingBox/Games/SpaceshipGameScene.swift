@@ -80,7 +80,6 @@ class SpaceshipGameScene: SKScene, GameScene, SKPhysicsContactDelegate {
                 refreshScore()
                 
             case .halted:
-                // setNavigationBarHidden(false, animated: true)
                 stopSpaceShipAnimation()
                 scoreLabel?.isHidden  = false
                 button?.isHidden = true
@@ -243,7 +242,7 @@ class SpaceshipGameScene: SKScene, GameScene, SKPhysicsContactDelegate {
     }
     
     func gameOver() {
-        state = .ended(Score(won:false, total: score))
+        self.state = .ended(Score(won:false, total: self.score))
         removeAllActions()
         removeMeteors()
         unsetNotifications()
