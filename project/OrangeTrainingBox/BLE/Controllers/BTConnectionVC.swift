@@ -47,12 +47,7 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         title =  L10n.Ble.Connection.title
-        NotificationCenter.default.addObserver(self, selector: #selector(peripheralDiscovered(_:)),
-                                               name: NSNotification.Name(rawValue: L10n.Notif.Ble.discovery), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(peripheralConnected(_:)),
-                                               name: NSNotification.Name(rawValue: L10n.Notif.Ble.connection), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(peripheralDisconnected(_:)),
-                                               name: NSNotification.Name(rawValue: L10n.Notif.Ble.disconnection), object: nil)
+        setupNotificationCenter()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,6 +61,7 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         btManager.stopScanning()
+        unsetNotifications()
     }
     
     // ======================
@@ -277,6 +273,25 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: - Notification handling
     // ==============================
     
+    
+    func setupNotificationCenter() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(peripheralDiscovered(_:)),
+                                               name: NSNotification.Name(rawValue: L10n.Notif.Ble.discovery), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(peripheralConnected(_:)),
+                                               name: NSNotification.Name(rawValue: L10n.Notif.Ble.connection), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(peripheralDisconnected(_:)),
+                                               name: NSNotification.Name(rawValue: L10n.Notif.Ble.disconnection), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(presentBLEAuthorizationPopup), name: NSNotification.Name(rawValue: L10n.Notif.Ble.authorization), object: nil)
+    }
+    
+    
+    func unsetNotifications() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
+    
     @objc func peripheralDiscovered(_ notification: Notification) {
         
         if let userInfo = (notification as NSNotification).userInfo {
@@ -322,9 +337,27 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     
+  @objc func presentBLEAuthorizationPopup() {
+        let alert = UIAlertController(title: L10n.Generic.ble, message: L10n.Ble.Connection.bleAuthorize, preferredStyle: .alert);
+        alert.view.tintColor = Asset.Colors.pinky.color
+    
+        alert.addAction(UIAlertAction(title: L10n.Generic.cancel, style: .cancel, handler: {(action:UIAlertAction) in
+            self.btManager.stopScanning()
+            ParameterDataManager.sharedInstance.demoMode = true
+            self.navigationController?.popViewController(animated: true)
+        }))
+    
+        alert.addAction(UIAlertAction(title: L10n.Generic.activate, style: .default, handler: {(action:UIAlertAction) in
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+        }))
+    
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        unsetNotifications()
     }
     
 }

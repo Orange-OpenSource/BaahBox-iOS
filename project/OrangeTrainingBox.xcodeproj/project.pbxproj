@@ -272,10 +272,10 @@
 				AC952097217F264200590D31 /* GameCell.swift */,
 				46EBAB232215CC3600AA542D /* SensorInputManager.swift */,
 				46AFC7BF217DD4220052C063 /* BLE */,
+				46AFC7B2217DD4220052C063 /* Parameters */,
 				46AFC7B6217DD4220052C063 /* Games */,
 				468CFC3E217E180D00E0553E /* Resources */,
 				46AFC7C8217DD4220052C063 /* Helpers */,
-				46AFC7B2217DD4220052C063 /* Parameters */,
 				46AFC78E217DCCF20052C063 /* Info.plist */,
 			);
 			path = OrangeTrainingBox;
