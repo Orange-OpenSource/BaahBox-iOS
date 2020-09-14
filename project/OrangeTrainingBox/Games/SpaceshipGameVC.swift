@@ -89,7 +89,8 @@ class SpaceshipGameVC: GameVC, GameSceneDelegate  {
             setButtonLocation(forStart: true)
             
         case .halted:
-            break
+           break
+            collisionOccured()
            // configureLifeViews()
             //showLifeViews()
             
@@ -117,7 +118,7 @@ class SpaceshipGameVC: GameVC, GameSceneDelegate  {
         let padding: CGFloat = 15.0
         let lifeHeight: CGFloat = 45.0
         let lifeWidthPadded: CGFloat = lifeWidth + padding
-        print("in show : lifes : \(String(describing: scene?.lifes))")
+        print("lifes : \(String(describing: scene?.lifes))")
 
         guard let lifeCount = scene?.lifes else { return }
         for i in 0 ..< lifeCount {
@@ -135,7 +136,7 @@ class SpaceshipGameVC: GameVC, GameSceneDelegate  {
    
     func collisionOccured() {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-            self.scene?.state = .halted
+            self.scene?.state = .onGoing
         })
     }
     
@@ -167,7 +168,6 @@ class SpaceshipGameVC: GameVC, GameSceneDelegate  {
        
        @objc func onDisplayTimerExpiration () {
            displayTimer.invalidate()
-        // button alternates to stop/ start position
        }
        
    

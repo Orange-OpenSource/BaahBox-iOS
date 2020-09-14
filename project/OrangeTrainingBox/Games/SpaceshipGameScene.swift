@@ -50,7 +50,8 @@ class SpaceshipGameScene: SKScene, GameScene, SKPhysicsContactDelegate {
     var score: Int = 0
     var lifes: Int = 0
     var lastScoreTime: TimeInterval = 0
-    
+    let waitOneSecAction = SKAction.wait(forDuration: 1.0)
+
     
     
     var isGameOnGoing: Bool {
@@ -62,7 +63,6 @@ class SpaceshipGameScene: SKScene, GameScene, SKPhysicsContactDelegate {
     
     var state: GameState {
         didSet {
-
             switch state {
             case .notStarted:
                 //setNavigationBarHidden(true, animated: true)
@@ -85,8 +85,7 @@ class SpaceshipGameScene: SKScene, GameScene, SKPhysicsContactDelegate {
                 scoreLabel?.isHidden  = false
                 button?.isHidden = true
                 refreshScore()
-                runGame()
-                
+            
             case .ended:
                 configureLabelsForGameOver()
                 refreshScore()
@@ -97,8 +96,7 @@ class SpaceshipGameScene: SKScene, GameScene, SKPhysicsContactDelegate {
         }
     }
     
-    //  let asteroidCollisionSoundAction = SKAction.playSoundFileNamed(
-    // "SNCRASH1.wav", waitForCompletion: false)
+      let asteroidCollisionSoundAction = SKAction.playSoundFileNamed( "SNCRASH1.wav", waitForCompletion: false)
     var crash = SKSpriteNode(imageNamed: Asset.Games.SpaceshipGame.crash.name)
     var crashAnimation = SKAction()
     
@@ -240,10 +238,11 @@ class SpaceshipGameScene: SKScene, GameScene, SKPhysicsContactDelegate {
     
     func gameHalt() {
         state = .halted
+        animateCrash()
+        self.run(SKAction.wait(forDuration: 1), completion: { self.runGame()})
     }
     
     func gameOver() {
-        
         state = .ended(Score(won:false, total: score))
         removeAllActions()
         removeMeteors()
@@ -324,6 +323,7 @@ class SpaceshipGameScene: SKScene, GameScene, SKPhysicsContactDelegate {
             return
         }
     }
+   
     
     private func goLeft() {
         
@@ -398,7 +398,6 @@ class SpaceshipGameScene: SKScene, GameScene, SKPhysicsContactDelegate {
     
     
     func configureLabelsForGameOver() {
-        //  setNavigationBarHidden(false, animated: true)
         button?.setTitle(L10n.Game.reStart, for: .normal)
         button?.isHidden = false
     }
@@ -432,7 +431,7 @@ class SpaceshipGameScene: SKScene, GameScene, SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
         if isGameOnGoing {
-            _ = self.animateCrash()
+            animateCrash()
             checkLifes()
         }
     }
@@ -449,7 +448,8 @@ class SpaceshipGameScene: SKScene, GameScene, SKPhysicsContactDelegate {
         }
     }
     
-    func animateCrash() -> Bool {
+    func animateCrash() {
+        
         stopSpaceShipAnimation()
         
         switch ParameterDataManager.sharedInstance.explosionType {
@@ -462,15 +462,14 @@ class SpaceshipGameScene: SKScene, GameScene, SKPhysicsContactDelegate {
             let sequence = [increase, decrease]
             crash.run(SKAction.sequence(sequence))
             crash.run(SKAction.wait(forDuration: 3.0))
-            //run(asteroidCollisionSoundAction)
-            //[SKAction group:@[SKAction1, SKAction2, SKAction3]];
+           // run(asteroidCollisionSoundAction)
+           // [SKAction group:@[SKAction1, SKAction2, SKAction3]];
             
         default:
             stopSpaceShipAnimation()
             explosion(pos: spaceShip.position)
             // run(asteroidCollisionSoundAction)
         }
-        return true
     }
     
     
