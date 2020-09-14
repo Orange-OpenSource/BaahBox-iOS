@@ -22,7 +22,7 @@ import UIKit
 import CoreBluetooth
 
 class BLEDiscovery: NSObject, CBCentralManagerDelegate {
-
+    
     var centralManager: CBCentralManager?
     var currentPeripheral: CBPeripheral?
     var currentPeripheralName: String = ""
@@ -30,8 +30,8 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
     var peripherals = Array<CBPeripheral>()
     var peripheralNames: [CBPeripheral?: String] = [:]
     var discoveryTimer: Timer!
-
-
+    
+    
     override init() {
         super.init()
         let centralQueue = DispatchQueue(label: "com.orange", attributes: [])
@@ -65,29 +65,35 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
             return
         }
         
-        if central.state == .poweredOn {
-            
+        switch central.state {
+       
+        case .poweredOn:
             DispatchQueue.main.async {
                 if self.discoveryTimer != nil {
                     self.discoveryTimer.invalidate()
                 }
-                
                 self.discoveryTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self,
                                                            selector: #selector(self.onDiscoveryTimerExpiration),
                                                            userInfo: nil, repeats: true)
             }
-            
-            peripherals.removeAll()
+            self.peripherals.removeAll()
             
             // If we start scanning while already connected to a device,
             // this current device won't be part of the discoverd devices list coming from the CBManager.
             // Force it into the array of peripherals.
             
-            if currentPeripheral != nil {
-                peripherals.append(currentPeripheral!)
+            if self.currentPeripheral != nil {
+                self.peripherals.append(self.currentPeripheral!)
             }
             
             central.scanForPeripherals(withServices: [BLEServiceUUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
+           
+            
+        case .unauthorized:
+            NotificationCenter.default.post(name: Notification.Name(rawValue: L10n.Notif.Ble.authorization), object: self, userInfo: nil)
+            
+        default:
+            break
         }
     }
     
@@ -217,6 +223,8 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
             clearDevices()
         case .resetting:
             clearDevices()
+        case .unauthorized:
+         break  // NotificationCenter.default.post(name: Notification.Name(rawValue: L10n.Notif.Ble.authorization), object: self, userInfo: nil)
         default:
             break
         }

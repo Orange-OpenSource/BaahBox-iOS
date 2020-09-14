@@ -30,7 +30,7 @@ class BTHeaderCell: UITableViewCell {
                                              attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 24)])
         headerLabel.attributedText = text
         
-        text = NSMutableAttributedString(string: L10n.Ble.Connection.descritpion,
+        text = NSMutableAttributedString(string: L10n.Ble.Connection.description,
                                          attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
                                          NSAttributedString.Key.foregroundColor: UIColor(displayP3Red: 0.6, green: 0.6, blue: 0.6, alpha: 1)])
         

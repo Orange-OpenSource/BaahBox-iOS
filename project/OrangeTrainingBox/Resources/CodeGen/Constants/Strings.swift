@@ -14,13 +14,15 @@ internal enum L10n {
 
   internal enum Ble {
     internal enum Connection {
-      /// Activate Bluetooth to connect to the BaahBox.
+      /// Please go to your settings to authorize Baah to use Bluetooth
+      internal static let bleAuthorize = L10n.tr("Localizable", "Ble.Connection.BleAuthorize")
+      /// Activate Bluetooth to connect to the BaahBox
       internal static let bleSwitchON = L10n.tr("Localizable", "Ble.Connection.BleSwitchON")
       /// Please select a BaahBox in the list below
-      internal static let descritpion = L10n.tr("Localizable", "Ble.Connection.Descritpion")
+      internal static let description = L10n.tr("Localizable", "Ble.Connection.Description")
       /// Connect your BaahBox
       internal static let header = L10n.tr("Localizable", "Ble.Connection.Header")
-      /// Please select your BaahBox and start practicing.
+      /// Please select your BaahBox and start practicing
       internal static let popupTitle = L10n.tr("Localizable", "Ble.Connection.PopupTitle")
       /// Connection settings
       internal static let title = L10n.tr("Localizable", "Ble.Connection.Title")
@@ -288,6 +290,8 @@ internal enum L10n {
 
   internal enum Notif {
     internal enum Ble {
+      /// kBLEPeripheralAuthorizationNotification
+      internal static let authorization = L10n.tr("Localizable", "Notif.BLE.Authorization")
       /// kBLEPeripheralConnectionNotification
       internal static let connection = L10n.tr("Localizable", "Notif.BLE.Connection")
       /// kBLEDataReceivedNotification

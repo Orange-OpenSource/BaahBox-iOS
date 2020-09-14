@@ -46,9 +46,10 @@
 // BLE
 "Ble.Connection.Title" = "Paramètres de connexion";
 "Ble.Connection.PopupTitle" = "Sélectionnez votre BaahBox pour commencer l'entraînement";
-"Ble.Connection.BleSwitchON" = "Activez le Bluetooth pour vous connecter à la BaahBox.";
+"Ble.Connection.BleSwitchON" = "Activez le Bluetooth pour vous connecter à la BaahBox";
+"Ble.Connection.BleAuthorize" = "Merci d'aller dans les réglages Bluetooth pour autoriser Baah à l'utiliser";
 "Ble.Connection.Header" = "Connectez votre BaahBox";
-"Ble.Connection.Descritpion" = "Sélectionnez une BaahBox dans la liste des BaahBox détectées.";
+"Ble.Connection.Description" = "Sélectionnez une BaahBox dans la liste des BaahBox détectées";
 
 
 // Parameters
@@ -161,6 +162,7 @@
 // Notifications
 "Notif.BLE.Discovery" = "kBLEPeripheralDiscoveryNotification";
 "Notif.BLE.Connection" = "kBLEPeripheralConnectionNotification";
+"Notif.BLE.Authorization" = "kBLEPeripheralAuthorizationNotification";
 "Notif.BLE.Disconnection" = "kBLEPeripheralDisconnectionNotification";
 "Notif.BLE.Up" = "kBLEUPNotification";
 "Notif.BLE.Down" = "kBLEUPNotification";
