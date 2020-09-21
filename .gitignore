@@ -11,4 +11,4 @@ DerivedData/
 
 # Pod
 Pods
-Podfile.lock
+project/Podfile.lock
