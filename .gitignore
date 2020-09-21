@@ -8,4 +8,7 @@ DerivedData/
 
 # Swift
 .build/
-#Pods/
+
+# Pod
+Pods
+Podfile.lock

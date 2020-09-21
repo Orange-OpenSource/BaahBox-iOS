@@ -1,6 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-
-
+source 'gitolite@www.forge.orange-labs.fr:orangecocoapods/public.git'
 
 platform :ios, '11.0'
 inhibit_all_warnings!
@@ -9,10 +8,10 @@ use_frameworks!
 
 def common_pods
     pod 'SwiftGen'
-
+    pod 'ESSAbout/Core'
 end
 
 
 target 'OrangeTrainingBox' do
     common_pods
-  end
+end

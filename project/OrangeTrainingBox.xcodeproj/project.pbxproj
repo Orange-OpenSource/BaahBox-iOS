@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -62,6 +62,10 @@
 		EBEFCAAC217F05E5006E20F6 /* BLEService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEFCAA3217F05E5006E20F6 /* BLEService.swift */; };
 		EBEFCAAE217F05E5006E20F6 /* BTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEFCAA6217F05E5006E20F6 /* BTCell.swift */; };
 		EBEFCAAF217F05E5006E20F6 /* BTHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEFCAA7217F05E5006E20F6 /* BTHeaderCell.swift */; };
+		FDA1E4442518A72500B6D399 /* cgu.html in Resources */ = {isa = PBXBuildFile; fileRef = FDA1E4462518A72500B6D399 /* cgu.html */; };
+		FDA1E44A2518A73300B6D399 /* legal_notices.html in Resources */ = {isa = PBXBuildFile; fileRef = FDA1E44C2518A73300B6D399 /* legal_notices.html */; };
+		FDA1E4502518A73900B6D399 /* news_app.html in Resources */ = {isa = PBXBuildFile; fileRef = FDA1E4522518A73900B6D399 /* news_app.html */; };
+		FDA1E4562518A73E00B6D399 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = FDA1E4582518A73E00B6D399 /* privacy.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +152,14 @@
 		EBEFCAA6217F05E5006E20F6 /* BTCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCell.swift; sourceTree = "<group>"; };
 		EBEFCAA7217F05E5006E20F6 /* BTHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTHeaderCell.swift; sourceTree = "<group>"; };
 		F68A8DF551A801AE28FE10EA /* Pods_OrangeTrainingBox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OrangeTrainingBox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDA1E4452518A72500B6D399 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/cgu.html; sourceTree = "<group>"; };
+		FDA1E44B2518A73300B6D399 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/legal_notices.html; sourceTree = "<group>"; };
+		FDA1E4512518A73900B6D399 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/news_app.html; sourceTree = "<group>"; };
+		FDA1E4572518A73E00B6D399 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/privacy.html; sourceTree = "<group>"; };
+		FDA1E45C2518A74200B6D399 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/cgu.html; sourceTree = "<group>"; };
+		FDA1E45D2518A74800B6D399 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/legal_notices.html; sourceTree = "<group>"; };
+		FDA1E45E2518A74C00B6D399 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/news_app.html; sourceTree = "<group>"; };
+		FDA1E45F2518A75000B6D399 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/privacy.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +234,7 @@
 		468CFC3E217E180D00E0553E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FDA1E41F2518A46B00B6D399 /* HTML */,
 				465F8EC2220208E900F99669 /* Star.jpg */,
 				467ED80F217E1A7F006FB1DB /* LaunchScreen.storyboard */,
 				467ED80E217E1A7F006FB1DB /* Main.storyboard */,
@@ -390,6 +403,17 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		FDA1E41F2518A46B00B6D399 /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				FDA1E4462518A72500B6D399 /* cgu.html */,
+				FDA1E4582518A73E00B6D399 /* privacy.html */,
+				FDA1E44C2518A73300B6D399 /* legal_notices.html */,
+				FDA1E4522518A73900B6D399 /* news_app.html */,
+			);
+			path = HTML;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -403,6 +427,7 @@
 				46AFC77C217DCCF10052C063 /* Frameworks */,
 				46AFC77D217DCCF10052C063 /* Resources */,
 				5192C01022FC3CDA000024E2 /* Check sources with SwftLint */,
+				D96CA639DFEA628B3C025572 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -500,10 +525,14 @@
 			files = (
 				468CFC32217E170B00E0553E /* Localizable.strings in Resources */,
 				465F8EC12201BECE00F99669 /* ExplosionParticle.sks in Resources */,
+				FDA1E4442518A72500B6D399 /* cgu.html in Resources */,
 				465F8EC3220208E900F99669 /* Star.jpg in Resources */,
+				FDA1E4502518A73900B6D399 /* news_app.html in Resources */,
+				FDA1E4562518A73E00B6D399 /* privacy.html in Resources */,
 				EB38BBC721D9104E0012E3AB /* InfoPlist.strings in Resources */,
 				467ED810217E1A7F006FB1DB /* Main.storyboard in Resources */,
 				46AFC78A217DCCF20052C063 /* Assets.xcassets in Resources */,
+				FDA1E44A2518A73300B6D399 /* legal_notices.html in Resources */,
 				EB7A290421CAB073000DBA43 /* Settings.storyboard in Resources */,
 				467ED811217E1A7F006FB1DB /* LaunchScreen.storyboard in Resources */,
 				46AFC7E3217DD43C0052C063 /* Games.storyboard in Resources */,
@@ -575,6 +604,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D96CA639DFEA628B3C025572 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OrangeTrainingBox/Pods-OrangeTrainingBox-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OrangeTrainingBox/Pods-OrangeTrainingBox-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OrangeTrainingBox/Pods-OrangeTrainingBox-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -678,6 +724,42 @@
 				EB38BBC821D910840012E3AB /* fr */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FDA1E4462518A72500B6D399 /* cgu.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FDA1E4452518A72500B6D399 /* en */,
+				FDA1E45C2518A74200B6D399 /* fr */,
+			);
+			name = cgu.html;
+			sourceTree = "<group>";
+		};
+		FDA1E44C2518A73300B6D399 /* legal_notices.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FDA1E44B2518A73300B6D399 /* en */,
+				FDA1E45D2518A74800B6D399 /* fr */,
+			);
+			name = legal_notices.html;
+			sourceTree = "<group>";
+		};
+		FDA1E4522518A73900B6D399 /* news_app.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FDA1E4512518A73900B6D399 /* en */,
+				FDA1E45E2518A74C00B6D399 /* fr */,
+			);
+			name = news_app.html;
+			sourceTree = "<group>";
+		};
+		FDA1E4582518A73E00B6D399 /* privacy.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FDA1E4572518A73E00B6D399 /* en */,
+				FDA1E45F2518A75000B6D399 /* fr */,
+			);
+			name = privacy.html;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
