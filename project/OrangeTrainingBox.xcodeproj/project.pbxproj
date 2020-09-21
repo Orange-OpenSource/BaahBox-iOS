@@ -66,6 +66,9 @@
 		FDA1E44A2518A73300B6D399 /* legal_notices.html in Resources */ = {isa = PBXBuildFile; fileRef = FDA1E44C2518A73300B6D399 /* legal_notices.html */; };
 		FDA1E4502518A73900B6D399 /* news_app.html in Resources */ = {isa = PBXBuildFile; fileRef = FDA1E4522518A73900B6D399 /* news_app.html */; };
 		FDA1E4562518A73E00B6D399 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = FDA1E4582518A73E00B6D399 /* privacy.html */; };
+		FDA1E46B2518CA6C00B6D399 /* check-assets.sh in Resources */ = {isa = PBXBuildFile; fileRef = FDA1E46A2518CA6C00B6D399 /* check-assets.sh */; };
+		FDA1E4702518CA8200B6D399 /* check-headers.sh in Resources */ = {isa = PBXBuildFile; fileRef = FDA1E46F2518CA8200B6D399 /* check-headers.sh */; };
+		FDA1E4752518CA9300B6D399 /* swiftgen.sh in Resources */ = {isa = PBXBuildFile; fileRef = FDA1E4742518CA9300B6D399 /* swiftgen.sh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +163,9 @@
 		FDA1E45D2518A74800B6D399 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/legal_notices.html; sourceTree = "<group>"; };
 		FDA1E45E2518A74C00B6D399 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/news_app.html; sourceTree = "<group>"; };
 		FDA1E45F2518A75000B6D399 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/privacy.html; sourceTree = "<group>"; };
+		FDA1E46A2518CA6C00B6D399 /* check-assets.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "check-assets.sh"; sourceTree = SOURCE_ROOT; };
+		FDA1E46F2518CA8200B6D399 /* check-headers.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "check-headers.sh"; sourceTree = SOURCE_ROOT; };
+		FDA1E4742518CA9300B6D399 /* swiftgen.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = swiftgen.sh; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +281,7 @@
 		46AFC781217DCCF10052C063 /* OrangeTrainingBox */ = {
 			isa = PBXGroup;
 			children = (
+				FDA1E4692518CA0E00B6D399 /* Scripts */,
 				46AFC782217DCCF10052C063 /* AppDelegate.swift */,
 				AC952091217F19EC00590D31 /* DashboardVC.swift */,
 				AC952099217F3C7A00590D31 /* ButtonWithImageAndText.swift */,
@@ -414,6 +421,16 @@
 			path = HTML;
 			sourceTree = "<group>";
 		};
+		FDA1E4692518CA0E00B6D399 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				FDA1E4742518CA9300B6D399 /* swiftgen.sh */,
+				FDA1E46F2518CA8200B6D399 /* check-headers.sh */,
+				FDA1E46A2518CA6C00B6D399 /* check-assets.sh */,
+			);
+			name = Scripts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -530,8 +547,11 @@
 				FDA1E4502518A73900B6D399 /* news_app.html in Resources */,
 				FDA1E4562518A73E00B6D399 /* privacy.html in Resources */,
 				EB38BBC721D9104E0012E3AB /* InfoPlist.strings in Resources */,
+				FDA1E4702518CA8200B6D399 /* check-headers.sh in Resources */,
 				467ED810217E1A7F006FB1DB /* Main.storyboard in Resources */,
+				FDA1E46B2518CA6C00B6D399 /* check-assets.sh in Resources */,
 				46AFC78A217DCCF20052C063 /* Assets.xcassets in Resources */,
+				FDA1E4752518CA9300B6D399 /* swiftgen.sh in Resources */,
 				FDA1E44A2518A73300B6D399 /* legal_notices.html in Resources */,
 				EB7A290421CAB073000DBA43 /* Settings.storyboard in Resources */,
 				467ED811217E1A7F006FB1DB /* LaunchScreen.storyboard in Resources */,
@@ -568,7 +588,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./swiftgen.sh\n./check-assets.sh\n./check-headers.sh\n";
+			shellScript = "./swiftgen.sh\n#./check-assets.sh\n#./check-headers.sh\n";
 		};
 		5192C01022FC3CDA000024E2 /* Check sources with SwftLint */ = {
 			isa = PBXShellScriptBuildPhase;

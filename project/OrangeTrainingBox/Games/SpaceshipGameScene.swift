@@ -2,7 +2,7 @@
 //  SpaceshipGameScene.swift
 //  Baah Box
 //
-//  Copyright (C) 2017 – 2019 Orange SA
+//  Copyright (C) 2017 – 2020 Orange SA
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -51,20 +51,16 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
     var meteorAccelerationFactor: Double = 1.0
     var meteorSpawnAction = SKAction()
     
-    
-    //  let asteroidCollisionSoundAction = SKAction.playSoundFileNamed(
-    // "SNCRASH1.wav", waitForCompletion: false)
     var crash = SKSpriteNode(imageNamed: Asset.Games.SpaceshipGame.crash.name)
     var crashAnimation = SKAction()
 
-    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override init(size: CGSize) {
         super.init(size: size)
-
+        
         shipNmlTexture = SKTexture(image: spaceShipNMLImage!)
         shipRightTexture = SKTexture(image: spaceShipRGTImage!)
         shipLeftTexture =  SKTexture(image: spaceShipLFTImage!)
@@ -77,10 +73,9 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         meteorSpawnAction = SKAction.repeatForever(
             SKAction.sequence([SKAction.run() { [weak self] in
                 self?.spawnMeteors()
-                },
-                               SKAction.wait(forDuration: 3.0)]))
+            },
+            SKAction.wait(forDuration: 3.0)]))
     }
-    
     
     override func willMove(from view: SKView) {
         super.willMove(from: view)
@@ -97,7 +92,6 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         NotificationCenter.default.removeObserver(self)
     }
     
-    
     override func didMove(to view: SKView) {
         backgroundColor = Asset.Colors.blueGreen.color
         gameState = .notStarted
@@ -108,7 +102,7 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         spaceShip.position = spaceShipInitialPosition
         spaceShip.setScale(spaceShipScale)
         spaceShip.name = "ship"
-        let collisionSize = spaceShip.size//CGSize(width: spaceShip.size.width * spaceShipScale, height: spaceShip.size.height * spaceShipScale)
+        let collisionSize = spaceShip.size
         
         // Add physics body for collision detection
         spaceShip.physicsBody?.isDynamic = true
@@ -133,15 +127,15 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         // – …
         // – Stars in back layer: dark, slow, small
         
-        var emitterNode = spaceStarEmitter(color: SKColor.lightGray, starSpeedY: 50, starsPerSecond: 1, starScaleFactor: 0.2)
+        var emitterNode = spaceStarEmitter(color: SKColor.lightGray, starSpeedY: 50, starsPerSecond: 1, starScaleFactor: 0.3)
         emitterNode.zPosition = -10
         self.addChild(emitterNode)
         
-        emitterNode = spaceStarEmitter(color: SKColor.gray, starSpeedY: 30, starsPerSecond: 2, starScaleFactor: 0.1)
+        emitterNode = spaceStarEmitter(color: SKColor.gray, starSpeedY: 30, starsPerSecond: 2, starScaleFactor: 0.2)
         emitterNode.zPosition = -11
         self.addChild(emitterNode)
         
-        emitterNode = spaceStarEmitter(color: SKColor.darkGray, starSpeedY: 15, starsPerSecond: 4, starScaleFactor: 0.05)
+        emitterNode = spaceStarEmitter(color: SKColor.darkGray, starSpeedY: 15, starsPerSecond: 4, starScaleFactor: 0.1)
         emitterNode.zPosition = -12
         self.addChild(emitterNode)
     }
@@ -185,7 +179,6 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         lastUpdateTime = currentTime
     }
     
-    
     private func analyseActions(leftAction: Bool, rightAction: Bool) {
         if  gameState != .onGoing {
             return
@@ -210,7 +203,6 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    
     private func goLeft() {
         
         let xPosition = spaceShip.position.x
@@ -221,7 +213,6 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
             let newXPosition = xPosition - 120 //- velocity * 1//8
             slideTo(sprite: spaceShip, x: newXPosition)
         }
-        //  spaceShip.run(SKAction.animate(with: [shipNmlTexture], timePerFrame: 1))
     }
     
     private func goRight() {
@@ -264,7 +255,6 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    
     func checkLifes() {
         print("Check Lifes !!!")
         stopMeteors()
@@ -290,18 +280,13 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
             let sequence = [increase, decrease]
             crash.run(SKAction.sequence(sequence))
             crash.run(SKAction.wait(forDuration: 3.0))
-            //run(asteroidCollisionSoundAction)
-            //[SKAction group:@[SKAction1, SKAction2, SKAction3]];
             
         default:
             stopSpaceShipAnimation()
             explosion(pos: spaceShip.position)
-            // run(asteroidCollisionSoundAction)
-            
         }
         return true
     }
-    
     
     func explosion(pos: CGPoint) {
         
@@ -405,7 +390,6 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    
     @objc func updateData(_ notification: Notification) {
         var leftAction: Bool = false
         var rightAction: Bool = false
@@ -424,7 +408,6 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         
         analyseActions(leftAction: leftAction, rightAction: rightAction)
     }
-    
     
     //=======================
     // MARK: - touch handling
@@ -452,7 +435,6 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         sceneTouched(touchLocation: touchLocation)
     }
     
-    
     //  stars..
     
     func spaceStarEmitter(color: SKColor, starSpeedY: CGFloat, starsPerSecond: CGFloat, starScaleFactor: CGFloat) -> SKEmitterNode {
@@ -478,9 +460,7 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         emitterNode.advanceSimulationTime(TimeInterval(lifetime))
         
         return emitterNode
-        
     }
-    
     
     @objc func loadParameters() {
         switch ParameterDataManager.sharedInstance.asteriodVelocity {

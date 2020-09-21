@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Baah Box
 //
-//  Copyright (C) 2017 – 2019 Orange SA
+//  Copyright (C) 2017 – 2020 Orange SA
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 //
 
 import UIKit
+import ESSAbout
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,6 +30,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Essential About component initialization
+        let configESSAbout = ESSAboutConfig()
+        
+        var elements = [ESSAboutElement]()
+        elements.append(ESSAboutElement(type: .html, titleKey: "ESSAbout.rubricTitle.AppNewFeaturesTitle", contentKey: "news_app.html", linkInBrowser: false))
+        elements.append(ESSAboutElement(type: .html, titleKey: "ESSAbout.rubricTitle.AppLegalInformationsTitle", contentKey: "legal_notices.html", linkInBrowser: false))
+        elements.append(ESSAboutElement(type: .html, titleKey: "ESSAbout.rubricTitle.AppTermOfUseTitle", contentKey: "cgu.html", linkInBrowser: false))
+        elements.append(ESSAboutElement(type: .html, titleKey: "ESSAbout.rubricTitle.AppPrivacypolicyTitle", contentKey: "privacy.html", linkInBrowser: false))
+        
+        configESSAbout.mainElements = elements
+        ESSAboutManager.with(configESSAbout)
+        
         return true
     }
 
