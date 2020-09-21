@@ -22,8 +22,8 @@
 	<string>2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Baah souhaite accéder au bluetooth pour se connecter à la BaahBox</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Baah would like to use bluetooth to connect to your Baah Box</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

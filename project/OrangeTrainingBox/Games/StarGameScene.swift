@@ -125,9 +125,7 @@ class StarGameScene: SKScene, GameScene, ParametersDefaultable {
     override func willMove(from view: SKView) {
         super.willMove(from: view)
         removeAllActions()
-        for node in self.children {
-            node.removeFromParent()
-        }
+        removeAllChildren()
         unsetNotifications()
     }
     

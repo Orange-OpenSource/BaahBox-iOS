@@ -103,9 +103,7 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
         super.willMove(from: view)
         print("Toad scene willMoveFromView")
         removeAllActions()
-        for node in self.children {
-            node.removeFromParent()
-        }
+        removeAllChildren()
 
         self.physicsWorld.contactDelegate = nil
         self.delegate = nil

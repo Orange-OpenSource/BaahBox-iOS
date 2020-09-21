@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rgr-Zr-uVy">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rgr-Zr-uVy">
+    <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17124"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,23 +14,23 @@
             <objects>
                 <viewController storyboardIdentifier="SheepGameVC" id="rgr-Zr-uVy" customClass="SheepGameVC" customModule="OrangeTrainingBox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uu6-Gj-M37" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ws-gQ-bZw" userLabel="title">
-                                <rect key="frame" x="10" y="572" width="355" height="32.5"/>
+                                <rect key="frame" x="10" y="929" width="748" height="32.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ojS-1d-j51" userLabel="subtitle">
-                                <rect key="frame" x="10" y="604.5" width="355" height="32.5"/>
+                                <rect key="frame" x="10" y="961.5" width="748" height="32.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="27"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oq7-Z3-5wQ" userLabel="Button" customClass="UIButtonBordered" customModule="OrangeTrainingBox" customModuleProvider="target">
-                                <rect key="frame" x="91" y="502" width="193" height="50"/>
+                                <rect key="frame" x="287.5" y="859" width="193" height="50"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <inset key="contentEdgeInsets" minX="30" minY="10" maxX="30" maxY="10"/>
                                 <state key="normal" title="Commencer">
@@ -55,7 +55,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Essaie de franchir 1 barrière" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k50-Ju-yoC">
-                                <rect key="frame" x="10" y="40" width="375" height="27.5"/>
+                                <rect key="frame" x="10" y="40" width="768" height="27.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -66,13 +66,14 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Label">
                                         <attributes>
-                                            <font key="NSFont" metaFont="system" size="17"/>
+                                            <font key="NSFont" metaFont="label" size="17"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="G7l-C2-2tK"/>
                         <color key="backgroundColor" name="Colors/Pinky"/>
                         <constraints>
                             <constraint firstItem="k50-Ju-yoC" firstAttribute="trailing" secondItem="G7l-C2-2tK" secondAttribute="trailing" constant="10" id="3qh-wE-LL6"/>
@@ -87,7 +88,6 @@
                             <constraint firstItem="oq7-Z3-5wQ" firstAttribute="centerX" secondItem="uu6-Gj-M37" secondAttribute="centerX" id="dNO-qc-bgc"/>
                             <constraint firstItem="9ws-gQ-bZw" firstAttribute="trailing" secondItem="ojS-1d-j51" secondAttribute="trailing" id="quL-4m-YTo"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="G7l-C2-2tK"/>
                     </view>
                     <connections>
                         <outlet property="button" destination="oq7-Z3-5wQ" id="VX1-8T-V6b"/>
@@ -106,29 +106,29 @@
             <objects>
                 <viewController storyboardIdentifier="StarGameVC" id="tDK-Co-5wP" customClass="StarGameVC" customModule="OrangeTrainingBox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VFn-tm-fzz" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fais briller l'étoile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSi-H2-HU1" userLabel="Title Label">
-                                <rect key="frame" x="25" y="472.5" width="327" height="36"/>
+                                <rect key="frame" x="25" y="829.5" width="720" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="En contractant ton muscle" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSM-NH-Dyi" userLabel="SubTitle Label">
-                                <rect key="frame" x="25" y="508.5" width="327" height="36"/>
+                                <rect key="frame" x="25" y="865.5" width="720" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Encore un petit effort" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sJ-wi-6C0">
-                                <rect key="frame" x="25" y="494" width="327" height="32.5"/>
+                                <rect key="frame" x="25" y="851" width="720" height="32.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vT4-cG-Ju4" userLabel="Start Button" customClass="UIButtonBordered" customModule="OrangeTrainingBox" customModuleProvider="target">
-                                <rect key="frame" x="73.5" y="589" width="228" height="53"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vT4-cG-Ju4" userLabel="Start Button" customClass="UIButtonBordered" customModule="OrangeTrainingBox" customModuleProvider="target">
+                                <rect key="frame" x="270" y="946" width="228" height="53"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="27"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="10" maxX="40" maxY="10"/>
                                 <state key="normal" title="Commencer">
@@ -139,6 +139,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="TgI-Wy-Djn"/>
                         <color key="backgroundColor" name="Colors/Violet"/>
                         <constraints>
                             <constraint firstItem="gSi-H2-HU1" firstAttribute="trailing" secondItem="OSM-NH-Dyi" secondAttribute="trailing" id="BYx-Ng-3jW"/>
@@ -153,7 +154,6 @@
                             <constraint firstItem="TgI-Wy-Djn" firstAttribute="bottom" secondItem="OSM-NH-Dyi" secondAttribute="bottom" constant="122.5" id="nuz-xD-2hR"/>
                             <constraint firstItem="gSi-H2-HU1" firstAttribute="leading" secondItem="OSM-NH-Dyi" secondAttribute="leading" id="sOh-Jm-WlB"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="TgI-Wy-Djn"/>
                     </view>
                     <connections>
                         <outlet property="button" destination="vT4-cG-Ju4" id="9tn-Sv-njR"/>
@@ -171,24 +171,24 @@
             <objects>
                 <viewController storyboardIdentifier="BalloonGameVC" id="UrA-iT-Iwn" customClass="BalloonGameVC" customModule="OrangeTrainingBox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="FZi-XH-RnL" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gonfle le ballon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFc-kr-Rbm" userLabel="title">
-                                <rect key="frame" x="25" y="475" width="335" height="36"/>
+                                <rect key="frame" x="25" y="832" width="728" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="en contractant ton muscle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzk-p4-fli" userLabel="subtitle">
-                                <rect key="frame" x="25" y="511" width="335" height="36"/>
+                                <rect key="frame" x="25" y="868" width="728" height="36"/>
                                 <color key="tintColor" name="Colors/Orange"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Encore un petit effort !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2B-Dk-HAh" userLabel="feedback">
-                                <rect key="frame" x="25" y="515.5" width="335" height="31.5"/>
+                                <rect key="frame" x="25" y="872.5" width="728" height="31.5"/>
                                 <color key="tintColor" name="Colors/Orange"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -199,8 +199,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kt3-o5-4Hb" userLabel="button " customClass="UIButtonBordered" customModule="OrangeTrainingBox" customModuleProvider="target">
-                                <rect key="frame" x="101.5" y="587" width="172" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kt3-o5-4Hb" userLabel="button " customClass="UIButtonBordered" customModule="OrangeTrainingBox" customModuleProvider="target">
+                                <rect key="frame" x="298" y="944" width="172" height="50"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="27"/>
                                 <color key="tintColor" name="Colors/Orange"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="15" maxX="40" maxY="15"/>
@@ -226,6 +226,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="lD8-hU-HHd"/>
                         <color key="backgroundColor" name="Colors/Orange"/>
                         <constraints>
                             <constraint firstItem="hzk-p4-fli" firstAttribute="trailing" secondItem="qFc-kr-Rbm" secondAttribute="trailing" id="29t-rU-Qfo"/>
@@ -242,7 +243,6 @@
                             <constraint firstItem="qFc-kr-Rbm" firstAttribute="bottom" secondItem="hzk-p4-fli" secondAttribute="top" id="snU-Jj-1D6"/>
                             <constraint firstItem="qFc-kr-Rbm" firstAttribute="leading" secondItem="lD8-hU-HHd" secondAttribute="leading" constant="25" id="uuz-zA-VdS"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="lD8-hU-HHd"/>
                     </view>
                     <connections>
                         <outlet property="button" destination="kt3-o5-4Hb" id="PkT-4B-YmR"/>
@@ -260,96 +260,91 @@
             <objects>
                 <viewController storyboardIdentifier="SpaceshipGameVC" id="MnG-em-VxA" customClass="SpaceshipGameVC" customModule="OrangeTrainingBox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9VR-bW-pPu" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W1Z-C5-lPa" userLabel="Button" customClass="UIButtonBordered" customModule="OrangeTrainingBox" customModuleProvider="target">
-                                <rect key="frame" x="62.5" y="492" width="250" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="TcS-eB-yv4"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <state key="normal" title="Commencer">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4px-8e-766" userLabel="button" customClass="UIButtonBordered" customModule="OrangeTrainingBox" customModuleProvider="target">
+                                <rect key="frame" x="112" y="492" width="150" height="50"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                <color key="tintColor" name="Colors/Orange"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="10" maxX="40" maxY="10"/>
+                                <state key="normal" title="Rejouer">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderW">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderW">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRd">
-                                        <real key="value" value="10"/>
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="onStartButtonPressed:" destination="MnG-em-VxA" eventType="touchUpInside" id="Z9Z-Uw-u2C"/>
-                                    <action selector="onStartButtonPressed:" destination="UrA-iT-Iwn" eventType="touchUpInside" id="eWm-HK-BeR"/>
-                                    <action selector="onStartButtonPressed:" destination="tDK-Co-5wP" eventType="touchUpInside" id="fzg-RH-RB5"/>
+                                    <action selector="onButtonPressed:" destination="MnG-em-VxA" eventType="touchUpInside" id="jv0-3f-Iid"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text=" @Score: 125" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rM-6A-xbL" userLabel="ScoreLabel">
-                                <rect key="frame" x="20" y="615" width="170" height="32"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="27"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evite les météorites" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdT-uZ-tDq" userLabel="title">
+                                <rect key="frame" x="20" y="919" width="738" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bla-k9-a7E" userLabel="StopButton" customClass="UIButtonBordered" customModule="OrangeTrainingBox" customModuleProvider="target">
-                                <rect key="frame" x="245" y="616" width="100" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="mlK-y1-DCw"/>
-                                    <constraint firstAttribute="height" constant="30" id="onS-qU-kZA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="  Stop  "/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderW">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRd">
-                                        <real key="value" value="14"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="onStopButtonPressed:" destination="MnG-em-VxA" eventType="touchUpInside" id="0Ne-9M-qi6"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="en contractant tes muscles  " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlS-yx-Bsv" userLabel="subtitle">
+                                <rect key="frame" x="20" y="955" width="738" height="30"/>
+                                <color key="tintColor" name="Colors/BlueGreen"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lb7-1T-klq">
-                                <rect key="frame" x="15" y="550" width="350" height="50"/>
+                                <rect key="frame" x="15" y="907" width="743" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="zrV-Bd-Egf"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text=" @Score: 125" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rM-6A-xbL" userLabel="ScoreLabel">
+                                <rect key="frame" x="20" y="972" width="168.5" height="32"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="27"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="WSH-TQ-pvX"/>
                         <color key="backgroundColor" name="Colors/BlueGreen"/>
                         <constraints>
-                            <constraint firstItem="W1Z-C5-lPa" firstAttribute="centerX" secondItem="WSH-TQ-pvX" secondAttribute="centerX" id="7WK-TQ-U7D"/>
+                            <constraint firstItem="4px-8e-766" firstAttribute="centerX" secondItem="WSH-TQ-pvX" secondAttribute="centerX" id="1Dw-Ka-jUU"/>
+                            <constraint firstItem="jlS-yx-Bsv" firstAttribute="trailing" secondItem="fdT-uZ-tDq" secondAttribute="trailing" id="6r5-us-SIm"/>
                             <constraint firstItem="9rM-6A-xbL" firstAttribute="top" secondItem="lb7-1T-klq" secondAttribute="bottom" constant="15" id="9ua-Mu-fJS"/>
                             <constraint firstItem="9rM-6A-xbL" firstAttribute="leading" secondItem="WSH-TQ-pvX" secondAttribute="leading" constant="20" id="B3D-X6-3BB"/>
+                            <constraint firstItem="jlS-yx-Bsv" firstAttribute="leading" secondItem="9rM-6A-xbL" secondAttribute="leading" id="KvH-XG-ypG"/>
                             <constraint firstItem="lb7-1T-klq" firstAttribute="leading" secondItem="WSH-TQ-pvX" secondAttribute="leading" constant="15" id="Pel-KR-YB6"/>
-                            <constraint firstItem="lb7-1T-klq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="W1Z-C5-lPa" secondAttribute="bottom" constant="10" id="TvC-3c-Ioq"/>
                             <constraint firstItem="WSH-TQ-pvX" firstAttribute="bottom" secondItem="9rM-6A-xbL" secondAttribute="bottom" constant="20" id="YCY-9m-mqq"/>
-                            <constraint firstItem="WSH-TQ-pvX" firstAttribute="trailing" secondItem="Bla-k9-a7E" secondAttribute="trailing" constant="30" id="bBE-5R-749"/>
-                            <constraint firstItem="WSH-TQ-pvX" firstAttribute="bottom" secondItem="W1Z-C5-lPa" secondAttribute="bottom" constant="130" id="iXw-et-Nl3"/>
+                            <constraint firstItem="fdT-uZ-tDq" firstAttribute="bottom" secondItem="jlS-yx-Bsv" secondAttribute="top" id="cTT-xS-us9"/>
+                            <constraint firstItem="fdT-uZ-tDq" firstAttribute="top" secondItem="4px-8e-766" secondAttribute="bottom" constant="20" id="kQp-6y-32e"/>
+                            <constraint firstItem="jlS-yx-Bsv" firstAttribute="leading" secondItem="fdT-uZ-tDq" secondAttribute="leading" id="kW4-Kq-7vX"/>
                             <constraint firstItem="WSH-TQ-pvX" firstAttribute="trailing" secondItem="lb7-1T-klq" secondAttribute="trailing" constant="10" id="ncv-aK-rRI"/>
-                            <constraint firstItem="Bla-k9-a7E" firstAttribute="centerY" secondItem="9rM-6A-xbL" secondAttribute="centerY" id="sXQ-S6-6cf"/>
+                            <constraint firstItem="fdT-uZ-tDq" firstAttribute="trailing" secondItem="lb7-1T-klq" secondAttribute="trailing" id="rGG-mT-Vwx"/>
+                            <constraint firstItem="WSH-TQ-pvX" firstAttribute="trailing" secondItem="4px-8e-766" secondAttribute="trailing" constant="113" id="utS-G5-XoQ"/>
+                            <constraint firstItem="WSH-TQ-pvX" firstAttribute="bottom" secondItem="4px-8e-766" secondAttribute="bottom" constant="125" id="yjb-cc-rYO"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="WSH-TQ-pvX"/>
                     </view>
                     <connections>
+                        <outlet property="button" destination="4px-8e-766" id="6Hb-1Q-0EI"/>
+                        <outlet property="buttonBottomConstraint" destination="yjb-cc-rYO" id="oRX-GN-V7P"/>
+                        <outlet property="buttonCenterXContraint" destination="1Dw-Ka-jUU" id="a6O-AY-Dyb"/>
+                        <outlet property="buttonTrailingConstraint" destination="utS-G5-XoQ" id="my5-9P-1gz"/>
                         <outlet property="lifeView" destination="lb7-1T-klq" id="DTk-0K-5Xc"/>
                         <outlet property="scoreLabel" destination="9rM-6A-xbL" id="QOZ-bx-TYA"/>
-                        <outlet property="startButton" destination="W1Z-C5-lPa" id="Ygx-C3-ql0"/>
-                        <outlet property="stopButton" destination="Bla-k9-a7E" id="6W9-oz-gyo"/>
+                        <outlet property="subtitleLabel" destination="jlS-yx-Bsv" id="38z-Wq-RLP"/>
+                        <outlet property="titleLabel" destination="fdT-uZ-tDq" id="9On-Os-CY1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uo5-62-y0m" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -361,11 +356,11 @@
             <objects>
                 <viewController storyboardIdentifier="CrapaudGameVC" id="XW2-0Z-Fto" customClass="CrapaudGameVC" customModule="OrangeTrainingBox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NTt-3I-2kd" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" alpha="0.34999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zoz-ay-yYM" userLabel="Start Button">
-                                <rect key="frame" x="85.5" y="602" width="204" height="45"/>
+                            <button opaque="NO" alpha="0.34999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zoz-ay-yYM" userLabel="Start Button">
+                                <rect key="frame" x="282" y="959" width="204" height="45"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <inset key="contentEdgeInsets" minX="30" minY="6" maxX="30" maxY="6"/>
@@ -384,12 +379,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gHT-yU-Ln5">
-                                <rect key="frame" x="15" y="317.5" width="345" height="32.5"/>
+                                <rect key="frame" x="15" y="496" width="738" height="32.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="27"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="jAk-eh-cQp"/>
                         <color key="backgroundColor" name="Colors/GreyGreen"/>
                         <constraints>
                             <constraint firstItem="jAk-eh-cQp" firstAttribute="bottom" secondItem="Zoz-ay-yYM" secondAttribute="bottom" constant="20" id="2kS-eD-dLD"/>
@@ -399,7 +395,6 @@
                             <constraint firstItem="gHT-yU-Ln5" firstAttribute="centerX" secondItem="NTt-3I-2kd" secondAttribute="centerX" id="aIZ-48-f2a"/>
                             <constraint firstItem="gHT-yU-Ln5" firstAttribute="leading" secondItem="jAk-eh-cQp" secondAttribute="leading" constant="15" id="re3-ED-Uyv"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="jAk-eh-cQp"/>
                     </view>
                     <connections>
                         <outlet property="startButton" destination="Zoz-ay-yYM" id="uWI-1h-QKS"/>
@@ -412,6 +407,20 @@
             <point key="canvasLocation" x="2134" y="588"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="4px-8e-766">
+            <size key="intrinsicContentSize" width="165" height="50"/>
+        </designable>
+        <designable name="kt3-o5-4Hb">
+            <size key="intrinsicContentSize" width="172" height="63"/>
+        </designable>
+        <designable name="oq7-Z3-5wQ">
+            <size key="intrinsicContentSize" width="193" height="50"/>
+        </designable>
+        <designable name="vT4-cG-Ju4">
+            <size key="intrinsicContentSize" width="228" height="53"/>
+        </designable>
+    </designables>
     <color key="tintColor" name="Colors/Pinky"/>
     <resources>
         <namedColor name="Colors/BlueGreen">

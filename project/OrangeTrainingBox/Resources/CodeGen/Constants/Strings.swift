@@ -132,15 +132,19 @@ internal enum L10n {
       }
     }
     internal enum Space {
-      /// Try to avoid collisions
-      internal static let header = L10n.tr("Localizable", "Game.Space.header")
-      /// by contracting your muscle
-      internal static let subHeader = L10n.tr("Localizable", "Game.Space.subHeader")
       /// Space Battle !
       internal static let title = L10n.tr("Localizable", "Game.Space.title")
       internal enum Button {
         /// Continue
         internal static let keepGoing = L10n.tr("Localizable", "Game.Space.button.keepGoing")
+      }
+      internal enum Text {
+        /// Try to avoid collisions
+        internal static let first = L10n.tr("Localizable", "Game.Space.text.first")
+        /// by moving the joystick
+        internal static let secondJoystick = L10n.tr("Localizable", "Game.Space.text.secondJoystick")
+        /// by contracting your left or right muscle
+        internal static let secondMuscle = L10n.tr("Localizable", "Game.Space.text.secondMuscle")
       }
     }
     internal enum Star {
