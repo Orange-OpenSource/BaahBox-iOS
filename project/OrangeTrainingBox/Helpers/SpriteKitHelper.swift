@@ -25,6 +25,6 @@ import SpriteKit
 
 public func createAnimationFromImages(imageNames: [String], timing: TimeInterval ) -> SKAction {
     let textures = imageNames.map {SKTexture(imageNamed: $0)}
-   return SKAction.animate(with: textures,                                          timePerFrame: timing)
+    return SKAction.animate(with: textures, timePerFrame: timing)
 }
 

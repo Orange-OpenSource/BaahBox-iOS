@@ -51,7 +51,6 @@ class BalloonGameVC: GameVC, GameSceneDelegate {
         super.viewWillDisappear(animated)
     }
     
-    
     // ===============
     // MARK: - Scene
     // ===============
@@ -69,8 +68,7 @@ class BalloonGameVC: GameVC, GameSceneDelegate {
     @IBAction func onButtonPressed(_ sender: Any) {
         scene?.onButtonPressed()
     }
-    
-    
+        
     // =================
     // MARK: - Settings
     // =================
@@ -82,6 +80,5 @@ class BalloonGameVC: GameVC, GameSceneDelegate {
     override var prefersStatusBarHidden: Bool {
         return false
     }
-    
 }
 

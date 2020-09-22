@@ -20,7 +20,6 @@
 
 import SpriteKit
 
-
 class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
     
     weak var title: UILabel?
@@ -77,8 +76,7 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
             }
         }
     }
-    
-    
+ 
     
     // =============================
     // MARK: - Init & configuration
@@ -117,8 +115,7 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
         balloon.size = (balloon.texture?.size())!
         balloon.position = CGPoint(x: size.width/2 , y: size.height/2 + balloon.size.height/4)
     }
-    
-    
+  
     
     // ===============
     // MARK: - SKView
@@ -140,7 +137,6 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
         setNotifications()
     }
     
-    
     // ================
     // MARK: - Actions
     // ================
@@ -155,7 +151,6 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
             state = .onGoing
         }
     }
-    
     
     // ==================
     // MARK: - Game loop
@@ -210,9 +205,7 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
             state = .ended(score)
         }
     }
-    
-    
-    
+      
     
     func inflateBalloon(using strenghtValue: Int) {
         let expansionCoeff = CGFloat (strengthValue + 30) / 100
@@ -225,9 +218,6 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
     // MARK: - Data processing
     // ========================
     
-    
-    
-    
     private func getMuscleStrength() -> Int {
         if ParameterDataManager.sharedInstance.muscle1IsON {
             return SensorInputManager.sharedInstance.musclesInput.muscle1
@@ -237,7 +227,6 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
             return 0
         }
     }
-    
     
     @objc func updateData(_ notification: Notification) {
         guard isOnGoing && !ParameterDataManager.sharedInstance.demoMode else {
@@ -249,7 +238,6 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
                 return
             }
             strengthValue  = strengthValue + 1
-            print("updateData : Strength : \(strengthValue)")
             
         default: // using Muscle inputs
             // The strength is in [0...1000] -> Have it fit into [0...100]
@@ -258,11 +246,9 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
     }
     
     
-    
     // ============================
     // MARK: - Notification Center
     // ============================
-    
     
     private func setNotifications() {
         //data from sensors
@@ -274,13 +260,11 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
     private func unsetNotifications() {
         NotificationCenter.default.removeObserver(self)
     }
-    
-    
+     
     
     // =========================
     // MARK: - Touch handling
     // =========================
-    
     
     func sceneTouched(touchLocation: CGPoint) {
         guard ParameterDataManager.sharedInstance.demoMode && isOnGoing else {

@@ -252,7 +252,7 @@ class SpaceshipGameScene: SKScene, GameScene, SKPhysicsContactDelegate {
         score = 0
         loadParameters()
         spaceShip.position = spaceShipInitialPosition
-        setupNotifications()
+        setNotifications()
     }
     
     func runGame() {
@@ -663,7 +663,7 @@ class SpaceshipGameScene: SKScene, GameScene, SKPhysicsContactDelegate {
     // MARK: - Notification Center
     //============================
     
-    private func setupNotifications() {
+    private func setNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(loadParameters),
                                                name: Notification.Name(rawValue: L10n.Notif.Parameter.update),
                                                object: nil)

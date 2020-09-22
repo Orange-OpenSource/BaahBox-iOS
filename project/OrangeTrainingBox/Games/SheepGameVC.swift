@@ -117,5 +117,4 @@ class SheepGameVC: GameVC, GameSceneDelegate {
     override var prefersStatusBarHidden: Bool {
         return false
     }
-    
 }

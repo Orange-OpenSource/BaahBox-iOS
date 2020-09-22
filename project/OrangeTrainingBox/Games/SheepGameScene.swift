@@ -159,7 +159,7 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
         maxHeigthJump = size.height - sheep.size.height - groundPosition.y
         startWalkingSheepAnimation()
         loadTextures()
-        setupNotifications()
+        setNotifications()
     }
     
     
@@ -561,7 +561,7 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
     // MARK: - Notification Center
     // ============================
     
-    private func setupNotifications() {
+    private func setNotifications() {
         //data from sensors
         NotificationCenter.default.addObserver(self, selector: #selector(updateData(_:)),
                                                name: Notification.Name(rawValue: L10n.Notif.Ble.dataReceived),
