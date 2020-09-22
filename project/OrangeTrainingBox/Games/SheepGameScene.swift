@@ -229,13 +229,12 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
             return
         }
         if updateFencePosition() {
-                if successfullJumps == gameObjective {
-                    if isSheepOnGround() {
-                        state = .ended(Score(won: true, total: successfullJumps))
-                    } else {
-                        state = .ended(Score(won: false, total: successfullJumps))
-                    }
-                }
+            if !isSheepOnGround() && !didJumpOverFence {
+                state = .ended(Score(won: false, total: successfullJumps))
+            }
+            else if successfullJumps == gameObjective {
+                    state = .ended(Score(won: true, total: successfullJumps))
+            }
             didJumpOverFence = false
         } else {
             if isThereCollision() {
@@ -432,7 +431,7 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
     func configureLabelsToGoDown() {
         scoreLabel?.isHidden = false
         title?.isHidden = false
-        title?.text = "il faut redescendre avant la prochaine barrière !"
+        title?.text = L10n.Game.Sheep.Text.goDown
         subtitle?.isHidden = true
         button?.isHidden = true
     }
@@ -441,6 +440,7 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
         title?.isHidden = true
         subtitle?.isHidden = true
         scoreLabel?.isHidden = true
+        configureScoreLabel(with: 0)
         button?.setTitle(L10n.Game.reStart, for: .normal)
         button?.isHidden = false
         
@@ -453,7 +453,9 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
             subtitle?.text = L10n.Game.Sheep.Score.Result.win
         } else {
             title?.text = L10n.Game.oops
-            subtitle?.text = L10n.Game.Sheep.Score.Result.notEnough(successfullJumps, gameObjective)
+            subtitle?.text = (successfullJumps == 0) ?
+                L10n.Game.Sheep.Score.Result.allMissed :
+                L10n.Game.Sheep.Score.Result.notEnough(successfullJumps, gameObjective)
         }
         configureScoreLabel(with: 0)
         scoreLabel?.isHidden = true
