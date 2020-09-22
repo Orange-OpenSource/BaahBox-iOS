@@ -142,10 +142,13 @@
 "Game.Sheep.title" = "Jump, Sheep, Jump !";
 "Game.Sheep.score.start.one" = "Try to jump over 1 fence";
 "Game.Sheep.score.start.many" = "Try to jump over %d fences";
-"Game.Sheep.score.pending.one" = "You jumped over 1 fence out of %d ";
-"Game.Sheep.score.pending.many" = "You jumped over %d fences out of %d ";
-"Game.Sheep.score.result.notEnough" = "You only jumped %d fences out of %d!";
+"Game.Sheep.score.pending.one" = "You jumped over 1 fence out of %d !";
+"Game.Sheep.score.pending.many" = "You jumped over %d fences out of %d !";
+"Game.Sheep.score.result.notEnough" = "You only jumped %d fences out of %d !";
+"Game.Sheep.score.result.allMissed" = "You forgot to jump over the fence !";
 "Game.Sheep.score.result.win" = "You jumped over all the fences !";
+"Game.Sheep.text.goDown" = "Land before the next fence !";
+
 "Game.Sheep.text.Jump.first" = "Make the sheep jump over the fences";
 "Game.Sheep.text.Jump.second" = "by contracting your muscle";
 "Game.Sheep.text.Jump.secondJoystick" = "with the joystick up";
