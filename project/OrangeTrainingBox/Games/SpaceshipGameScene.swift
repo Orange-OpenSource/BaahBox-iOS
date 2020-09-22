@@ -444,7 +444,7 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         
         // Create the emitter node
         let emitterNode = SKEmitterNode()
-        emitterNode.particleTexture = SKTexture(imageNamed: "Star.jpg")
+        emitterNode.particleTexture = SKTexture(imageNamed: Asset.Games.SpaceshipGame.spaceStar.name)
         emitterNode.particleBirthRate = starsPerSecond
         emitterNode.particleColor = SKColor.lightGray
         emitterNode.particleSpeed = starSpeedY * -1

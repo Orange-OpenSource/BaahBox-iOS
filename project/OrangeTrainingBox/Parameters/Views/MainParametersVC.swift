@@ -19,6 +19,7 @@
 //
 
 import UIKit
+import ESSAbout
 
 class MainParametersVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
@@ -27,6 +28,7 @@ class MainParametersVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
         case connection = 0
         case general = 1
         case games = 2
+        case about = 3
         
         var numberOfRows: Int {
             switch self {
@@ -36,6 +38,9 @@ class MainParametersVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
                 return 1
             case .games:
                 return 3
+            case .about:
+                return 1
+
             }
         }
         
@@ -47,6 +52,9 @@ class MainParametersVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
                 return " "
             case .games:
                 return L10n.MainParameters.Games.title
+            case .about:
+                return ""
+
             }
         }
         
@@ -58,6 +66,8 @@ class MainParametersVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
                 return [L10n.MainParameters.general]
             case .games:
                 return [L10n.MainParameters.Games.sheep, L10n.MainParameters.Games.spaceShip, L10n.MainParameters.Games.taud]
+            case .about:
+                return [L10n.MainParameters.about]
             }
         }
     }
@@ -99,7 +109,7 @@ class MainParametersVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
     // MARK: - Table view data source
 
       func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
 
       func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -170,6 +180,12 @@ class MainParametersVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell", for: indexPath)
             cell.textLabel?.text = SectionDescription.games.subtitle[indexPath.row]
             return cell
+            
+        case SectionDescription.about.rawValue:
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell", for: indexPath)
+                    cell.textLabel?.text = SectionDescription.about.subtitle[indexPath.row]
+                    return cell
+
         default:
             return UITableViewCell()
         }
@@ -201,7 +217,13 @@ class MainParametersVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
             default:
                 break
             }
-            
+        
+        case SectionDescription.about.rawValue:
+            let EssAboutRootViewControllerID = "ESSAboutNavigationViewController"
+            let storyboard = UIStoryboard(name: "ESSAbout", bundle: ESSAboutManager.bundle)
+            let viewController = storyboard.instantiateViewController(withIdentifier: EssAboutRootViewControllerID)
+            self.navigationController?.pushViewController(viewController, animated: true)
+
         default:
             break
         }

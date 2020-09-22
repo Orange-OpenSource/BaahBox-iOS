@@ -234,6 +234,8 @@ internal enum L10n {
   }
 
   internal enum MainParameters {
+    /// About
+    internal static let about = L10n.tr("Localizable", "MainParameters.about")
     /// Connection
     internal static let connection = L10n.tr("Localizable", "MainParameters.connection")
     /// General

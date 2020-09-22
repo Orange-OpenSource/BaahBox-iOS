@@ -57,6 +57,7 @@
 "MainParameters.header.title" = "Paramètres";
 "MainParameters.connection.title" = "Gestion de votre connexion";
 "MainParameters.general.title" = "Gestion des paramètres globaux";
+"MainParameters.about" = "A propos";
 
 "MainParameters.games.title" = "Gestion des jeux";
 "MainParameters.games.star" = "Fais briller l'étoile";
