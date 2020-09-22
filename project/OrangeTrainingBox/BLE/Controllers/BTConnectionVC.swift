@@ -39,7 +39,6 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var tableView: UITableView!
     
-    
     // ======================
     // MARK: - View Lifecycle
     // ======================
@@ -88,8 +87,6 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    
-    
     @objc func doConnection(sender: UIBarButtonItem) {
         navigationItem.rightBarButtonItem = getStartIndicatorButton()
         btManager.btConnect(btPeripherals[selectedPeripheralIndex])
@@ -107,11 +104,9 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
         footerCellIndex = btPeripherals.count + 1
     }
     
-    
     // ===========================
     // MARK: - TableView delegate
     // ===========================
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -148,13 +143,11 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    
     func getStartIndicatorButton () -> UIBarButtonItem {
         let customView = UIButton ()
         
         customView.frame = CGRect (x: 0, y: 0, width: 40, height: 40)
         customView.isUserInteractionEnabled = false
-        
         
         actInd.frame = CGRect (x: 0, y: 0, width: 40, height: 40)
         actInd.center = customView.center
@@ -170,8 +163,6 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
         
         return button
     }
-    
-    
     
     // ===========================
     // MARK: - Cell configuration
@@ -233,16 +224,14 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
             let activeCells = selectedCells.filter { item -> Bool in
                 return item.value
             }
-            
             let connectedPeripheralName = btManager.peripheralNames[btManager.currentPeripheral]
             cell.configure (activeButton: activeCells.first?.key == connectedPeripheralName)
-            
         } else {
             cell.isHidden = true
         }
-        
         return cell
     }
+    
     
     func configureBTPeripheralCell(at indexPath: IndexPath) -> UITableViewCell {
         
@@ -267,15 +256,11 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
         return btPeriperalNames[peripheral] ?? ""
     }
     
-    
-    
     // ==============================
     // MARK: - Notification handling
     // ==============================
     
-    
     func setupNotificationCenter() {
-        
         NotificationCenter.default.addObserver(self, selector: #selector(peripheralDiscovered(_:)),
                                                name: NSNotification.Name(rawValue: L10n.Notif.Ble.discovery), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(peripheralConnected(_:)),
@@ -285,12 +270,9 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
         NotificationCenter.default.addObserver(self, selector: #selector(presentBLEAuthorizationPopup), name: NSNotification.Name(rawValue: L10n.Notif.Ble.authorization), object: nil)
     }
     
-    
     func unsetNotifications() {
         NotificationCenter.default.removeObserver(self)
     }
-    
-    
     
     @objc func peripheralDiscovered(_ notification: Notification) {
         
@@ -303,7 +285,6 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
             if let newPeripheralNames = userInfo["peripheralNames"] as? [CBPeripheral?:String] {
                 btPeriperalNames = newPeripheralNames
             }
-            
         }
         configureSelectedCells()
         updateFooterIndex()
@@ -314,7 +295,6 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
         } else {
             updateNavBar(shouldShowAnimation: true)
         }
-        
         tableView.reloadData()
     }
     
@@ -336,7 +316,6 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    
   @objc func presentBLEAuthorizationPopup() {
         let alert = UIAlertController(title: L10n.Generic.ble, message: L10n.Ble.Connection.bleAuthorize, preferredStyle: .alert);
         alert.view.tintColor = Asset.Colors.pinky.color
@@ -352,12 +331,9 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
         }))
     
         present(alert, animated: true, completion: nil)
-        
     }
-    
     
     deinit {
         unsetNotifications()
     }
-    
 }

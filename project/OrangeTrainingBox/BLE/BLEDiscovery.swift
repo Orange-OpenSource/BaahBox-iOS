@@ -223,8 +223,6 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
             clearDevices()
         case .resetting:
             clearDevices()
-        case .unauthorized:
-         break  // NotificationCenter.default.post(name: Notification.Name(rawValue: L10n.Notif.Ble.authorization), object: self, userInfo: nil)
         default:
             break
         }
