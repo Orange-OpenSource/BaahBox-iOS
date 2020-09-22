@@ -1,5 +1,5 @@
 //
-//  GameState.swift
+//  SpriteKitHelper
 //  Baah Box
 //
 //  Copyright (C) 2017 – 2020 Orange SA
@@ -18,17 +18,13 @@
 //  along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 
+
 import Foundation
+import SpriteKit
 
 
-public enum GameState {
-    case notStarted
-    case onGoing
-    case halted
-    case ended(Score)
+public func createAnimationFromImages(imageNames: [String], timing: TimeInterval ) -> SKAction {
+    let textures = imageNames.map {SKTexture(imageNamed: $0)}
+    return SKAction.animate(with: textures, timePerFrame: timing)
 }
 
-public struct Score {
-    let won: Bool
-    let total: Int
-}

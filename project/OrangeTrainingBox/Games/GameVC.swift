@@ -1,8 +1,8 @@
 //
-//  SettableVC.swift
+//  GameVC.swift
 //  Baah Box
 //
-//  Copyright (C) 2017 – 2019 Orange SA
+//  Copyright (C) 2017 – 2020 Orange SA
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,9 +18,11 @@
 //  along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 
-import UIKit
 
-class SettableVC: UIViewController {
+import UIKit
+import SpriteKit
+
+class GameVC : UIViewController {
     let btManager = BLEDiscovery.shared()
     let dataManager = ParameterDataManager.sharedInstance
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -31,13 +33,14 @@ class SettableVC: UIViewController {
         }
     }
     
+    // =======================
+    // MARK: - View Lifecycle
+    // =======================
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(bleUp(_:)),
-                                               name: NSNotification.Name(rawValue: L10n.Notif.Ble.up), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(bleDown(_:)),
-                                               name: NSNotification.Name(rawValue: L10n.Notif.Ble.down), object: nil)
+        setupNotificationCenter()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,48 +51,74 @@ class SettableVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-       
+        unsetNotifications()
+        let skView = view as? SKView
+        skView?.presentScene(nil)
     }
     
-    deinit {
-         NotificationCenter.default.removeObserver(self)
+    // =================
+    // MARK: - SKView
+    // =================
+    
+    
+    func configureSkView(showData: Bool = false) -> SKView? {
+        let skView = view as? SKView
+        skView?.ignoresSiblingOrder = true
+        skView?.showsFPS = showData
+        skView?.showsNodeCount = showData
+        return skView
     }
+    
+    // ======================
+    // MARK: - Configuration
+    // ======================
     
     func configureBaahBox() {
-        
         if dataManager.demoMode {
             return
         }
-        
         if btManager.isConnected() {
             return
         }
-        
-       presentConnectionPopup()
+        presentConnectionPopup()
     }
-
-    func configureRightBarButtons () {
-        var buttons: [UIBarButtonItem] = []
-        
+    
+    
+    func configureBarButtons () {
+        var rightButtons: [UIBarButtonItem] = []
         let parameterButton = UIBarButtonItem (image: Asset.Dashboard.settingsIcon.image,
                                                style: UIBarButtonItem.Style.plain,
-                                               target: self, action: #selector (onParameterButton))
+                                               target: self, action:#selector (onParameterButton))
         parameterButton.tintColor = navTintColor
+        rightButtons.append(parameterButton)
         
-        buttons.append(parameterButton)
-
-        if btManager.getBTState() != .poweredOff {
+        let sensorIcon = configureSensorIcon()
+        sensorIcon.tintColor = navTintColor
+        rightButtons.append(sensorIcon)
         
-            let btParameterButton = UIBarButtonItem(image: Asset.Dashboard.bluetooth.image,
-                                               style: UIBarButtonItem.Style.plain,
-                                               target: self, action: #selector (onBTButton))
-            btParameterButton.tintColor = navTintColor
-           
-            buttons.append(btParameterButton)
-        }
-    
-        navigationItem.rightBarButtonItems = buttons
+        navigationItem.rightBarButtonItems = rightButtons
         navigationItem.rightBarButtonItem?.tintColor = navTintColor
+    }
+    
+    func configureSensorIcon() -> UIBarButtonItem {
+        var sensorIcon = UIBarButtonItem(image: Asset.Dashboard.demo.image,
+                                         style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+        
+        if !ParameterDataManager.sharedInstance.demoMode {
+            switch ParameterDataManager.sharedInstance.sensorType {
+            case .joystick:
+                sensorIcon = UIBarButtonItem(image: Asset.Dashboard.joystick.image,
+                                             style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+                
+            case .muscles:
+                sensorIcon = UIBarButtonItem(image: Asset.Dashboard.muscle.image,
+                                             style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+            case .buttons:
+                break
+            }
+        }
+        
+        return sensorIcon
     }
     
     func configureNavBar() {
@@ -103,41 +132,32 @@ class SettableVC: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.isHidden = false
         
-        configureRightBarButtons()
+        configureBarButtons()
     }
     
     
     @objc func onParameterButton(button: UIButton) {
-        
         let storyboard = UIStoryboard(name: "Settings", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "mainParametersVC") as! MainParametersVC
         navigationController?.pushViewController(controller, animated: true)
-        
-        
-//        DispatchQueue.main.async {
-//            UIView.beginAnimations("animation", context: nil)
-//            UIView.setAnimationDuration(0.5)
-//            self.navigationController!.pushViewController(controller, animated: false)
-//            UIView.setAnimationTransition(UIView.AnimationTransition.flipFromLeft, for: self.navigationController!.view, cache: false)
-//            UIView.commitAnimations()
-//        }
     }
     
     
+    // ======================
+    // MARK: - BT handling
+    // ======================
+    
     @objc func onBTButton(button: UIButton) {
-        
         let storyboard = UIStoryboard(name: "Settings", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "connectionVC")
         navigationController?.pushViewController(controller, animated: true)
     }
-
+    
     
     func presentBTSettingPanel () {
-        
         guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
             return
         }
-        
         DispatchQueue.main.async {
             if UIApplication.shared.canOpenURL(settingsUrl) {
                 UIApplication.shared.open(settingsUrl, completionHandler: nil)
@@ -153,18 +173,17 @@ class SettableVC: UIViewController {
     }
     
     func presentConnectionPopup () {
-        
-        let alert = UIAlertController(title: L10n.Generic.connect, message: L10n.Ble.Connection.popupTitle, preferredStyle: .alert)
+        let alert = UIAlertController(title: L10n.Generic.connect, message: L10n.Ble.Connection.popupTitle, preferredStyle: .alert);
         
         alert.view.tintColor = Asset.Colors.pinky.color
         
-        alert.addAction(UIAlertAction(title: L10n.Generic.cancel, style: .cancel, handler: {(action: UIAlertAction) in
+        alert.addAction(UIAlertAction(title: L10n.Generic.cancel, style: .cancel, handler: {(action:UIAlertAction) in
             self.dataManager.demoMode = true
             self.appDelegate.shouldPresentConnectionPannel = false
             self.configureNavBar()
         }))
         
-        alert.addAction(UIAlertAction(title: L10n.Generic.connect, style: .default, handler: {(action: UIAlertAction) in
+        alert.addAction(UIAlertAction(title: L10n.Generic.connect, style: .default, handler: {(action:UIAlertAction) in
             
             if self.btManager.getBTState() == .poweredOff {
                 self.appDelegate.shouldPresentConnectionPannel = true
@@ -175,31 +194,30 @@ class SettableVC: UIViewController {
                 self.presentConnectionPannel()
             }
         }))
-        
         present(alert, animated: true, completion: nil)
     }
     
+    
     func presentBLEConnectionPopup () {
-        
-        let alert = UIAlertController(title: L10n.Generic.ble, message: L10n.Ble.Connection.bleSwitchON, preferredStyle: .alert)
-        
+        let alert = UIAlertController(title: L10n.Generic.ble, message: L10n.Ble.Connection.bleSwitchON, preferredStyle: .alert);
         alert.view.tintColor = Asset.Colors.pinky.color
-        
-        alert.addAction(UIAlertAction(title: L10n.Generic.cancel, style: .cancel, handler: {(action: UIAlertAction) in
+        alert.addAction(UIAlertAction(title: L10n.Generic.cancel, style: .cancel, handler: {(action:UIAlertAction) in
             self.dataManager.demoMode = true
             self.appDelegate.shouldPresentConnectionPannel = false
         }))
-        
-        alert.addAction(UIAlertAction(title: L10n.Generic.activate, style: .default, handler: {(action: UIAlertAction) in
+        alert.addAction(UIAlertAction(title: L10n.Generic.activate, style: .default, handler: {(action:UIAlertAction) in
             self.presentBTSettingPanel()
         }))
-        
         present(alert, animated: true, completion: nil)
         
     }
-
     
-    // MARK: Notifications
+    
+    
+    // ========================
+    // MARK: BLE Notifications
+    // ========================
+    
     
     @objc func bleUp(_ notification: Notification) {
         DispatchQueue.main.async {
@@ -215,5 +233,24 @@ class SettableVC: UIViewController {
         DispatchQueue.main.async {
             self.configureNavBar()
         }
+    }
+    
+    
+    // ============================
+    // MARK: - Notification Center
+    // ============================
+    
+    func unsetNotifications() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func setupNotificationCenter(){
+        NotificationCenter.default.addObserver(self, selector: #selector(bleUp(_:)), name: NSNotification.Name(rawValue: L10n.Notif.Ble.up), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(bleDown(_:)), name: NSNotification.Name(rawValue: L10n.Notif.Ble.down), object: nil)
+    }
+    
+    deinit {
+        unsetNotifications()
     }
 }

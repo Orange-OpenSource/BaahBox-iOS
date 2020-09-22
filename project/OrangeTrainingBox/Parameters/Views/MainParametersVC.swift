@@ -2,7 +2,7 @@
 //  MainParametersTVC.swift
 //  Baah Box
 //
-//  Copyright (C) 2017 – 2019 Orange SA
+//  Copyright (C) 2017 – 2020 Orange SA
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 
 import UIKit
 
-class MainParametersVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
+class MainParametersVC: GameVC, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     
     enum SectionDescription: Int {

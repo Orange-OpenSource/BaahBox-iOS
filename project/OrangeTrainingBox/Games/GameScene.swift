@@ -1,5 +1,5 @@
 //
-//  GameState.swift
+//  GameScene.swift
 //  Baah Box
 //
 //  Copyright (C) 2017 – 2020 Orange SA
@@ -18,17 +18,25 @@
 //  along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import UIKit
+import SpriteKit
 
-
-public enum GameState {
-    case notStarted
-    case onGoing
-    case halted
-    case ended(Score)
+public protocol GameSceneDelegate: AnyObject{
+    func onChanged(state: GameState)
 }
 
-public struct Score {
-    let won: Bool
-    let total: Int
+extension GameSceneDelegate {
+    func onChanged(state: GameState) {
+        // nothing to do
+    }
 }
+
+public protocol GameScene {
+    var gameSceneDelegate: GameSceneDelegate? { get set }
+    var state: GameState { get }
+    
+    func configure(title: UILabel, subtitle: UILabel, feedback: UILabel?, score: UILabel?, button: UIButtonBordered, delegate: GameSceneDelegate)
+    func onButtonPressed()
+    
+}
+

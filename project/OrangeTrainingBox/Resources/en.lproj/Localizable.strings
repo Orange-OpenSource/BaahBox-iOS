@@ -2,7 +2,7 @@
  //  Localizable.strings
  //  Baah Box
  //
- //  Copyright (C) 2017 – 2019 Orange SA
+ //  Copyright (C) 2017 – 2020 Orange SA
  //
  //  This program is free software: you can redistribute it and/or modify
  //  it under the terms of the GNU General Public License as published by
@@ -45,10 +45,11 @@
 
 // BLE
 "Ble.Connection.Title" = "Connection settings";
-"Ble.Connection.PopupTitle" = "Please select your BaahBox and start practicing.";
-"Ble.Connection.BleSwitchON" = "Activate Bluetooth to connect to the BaahBox.";
+"Ble.Connection.PopupTitle" = "Please select your BaahBox and start practicing";
+"Ble.Connection.BleSwitchON" = "Activate Bluetooth to connect to the BaahBox";
+"Ble.Connection.BleAuthorize" = "Please go to your settings to authorize Baah to use Bluetooth";
 "Ble.Connection.Header" = "Connect your BaahBox";
-"Ble.Connection.Descritpion" = "Please select a BaahBox in the list below";
+"Ble.Connection.Description" = "Please select a BaahBox in the list below";
 
 
 // Parameters
@@ -113,8 +114,10 @@
 "Game.Go" = "Let's play !";
 "Game.Hop" = "Hop !";
 "Game.Oops" = "Ooops!";
-"Game.TryAgain" = "Try again.";
+"Game.TryAgain" = "Try again";
 "Game.Wahoo" = "Wahoo !";
+"Game.KeepGoing" = "Keep going !";
+"Game.Congrats" = "Great !";
 
 // Star Game
 "Game.Star.title" = "Twinkle twinkle !";
@@ -131,21 +134,27 @@
 "Game.Balloon.text.secondJoystick" = "with the joystick up";
 "Game.Balloon.congrats.first" = "Whaoooo !";
 "Game.Balloon.congrats.second" = "Great !!!";
+"Game.Balloon.text.letsGo" = "Let's go !";
+"Game.Balloon.text.almostDone" = "Almost there !";
+"Game.Balloon.text.congrats" = "Well Done !";
 
 // Sheep Game
 "Game.Sheep.title" = "Jump, Sheep, Jump !";
 "Game.Sheep.score.start.one" = "Try to jump over 1 fence";
 "Game.Sheep.score.start.many" = "Try to jump over %d fences";
-"Game.Sheep.score.pending.one" = "You jumped over 1 fence, still %d to go !";
-"Game.Sheep.score.pending.many" = "You jumped over %d fences, still %d to go !";
+"Game.Sheep.score.pending.one" = "You jumped over 1 fence out of %d ";
+"Game.Sheep.score.pending.many" = "You jumped over %d fences out of %d ";
+"Game.Sheep.score.result.notEnough" = "You only jumped %d fences out of %d!";
 "Game.Sheep.score.result.win" = "You jumped over all the fences !";
 "Game.Sheep.text.Jump.first" = "Make the sheep jump over the fences";
 "Game.Sheep.text.Jump.second" = "by contracting your muscle";
+"Game.Sheep.text.Jump.secondJoystick" = "with the joystick up";
 
 // Space Game
 "Game.Space.title" = "Space Battle !";
-"Game.Space.header" = "Try to avoid collisions";
-"Game.Space.subHeader" = "by contracting your muscle";
+"Game.Space.text.first" = "Try to avoid collisions";
+"Game.Space.text.secondMuscle" = "by contracting your left or right muscle";
+"Game.Space.text.secondJoystick" = "by moving the joystick";
 "Game.Space.button.keepGoing" = "Continue";
 
 // Frog Game
@@ -153,6 +162,7 @@
 
 // Notifications
 "Notif.BLE.Discovery" = "kBLEPeripheralDiscoveryNotification";
+"Notif.BLE.Authorization" = "kBLEPeripheralAuthorizationNotification";
 "Notif.BLE.Connection" = "kBLEPeripheralConnectionNotification";
 "Notif.BLE.Disconnection" = "kBLEPeripheralDisconnectionNotification";
 "Notif.BLE.Up" = "kBLEUPNotification";

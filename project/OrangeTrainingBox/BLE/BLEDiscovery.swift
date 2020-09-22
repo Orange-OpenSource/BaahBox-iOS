@@ -2,7 +2,7 @@
 //  BLEDiscovery.swift
 //  Baah Box
 //
-//  Copyright (C) 2017 – 2019 Orange SA
+//  Copyright (C) 2017 – 2020 Orange SA
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ import UIKit
 import CoreBluetooth
 
 class BLEDiscovery: NSObject, CBCentralManagerDelegate {
-
+    
     var centralManager: CBCentralManager?
     var currentPeripheral: CBPeripheral?
     var currentPeripheralName: String = ""
@@ -30,12 +30,13 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
     var peripherals = Array<CBPeripheral>()
     var peripheralNames: [CBPeripheral?: String] = [:]
     var discoveryTimer: Timer!
-
-
+    
+    
     override init() {
         super.init()
         let centralQueue = DispatchQueue(label: "com.orange", attributes: [])
-        centralManager = CBCentralManager(delegate: self, queue: centralQueue, options: [CBCentralManagerOptionShowPowerAlertKey: false])
+        centralManager = CBCentralManager(delegate: self, queue: centralQueue,
+                                          options: [CBCentralManagerOptionShowPowerAlertKey: false])
     }
     
     static let sharedInstance: BLEDiscovery = {
@@ -64,28 +65,35 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
             return
         }
         
-        if central.state == .poweredOn {
-            
+        switch central.state {
+       
+        case .poweredOn:
             DispatchQueue.main.async {
                 if self.discoveryTimer != nil {
                     self.discoveryTimer.invalidate()
                 }
-                
-                self.discoveryTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.onDiscoveryTimerExpiration),
+                self.discoveryTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self,
+                                                           selector: #selector(self.onDiscoveryTimerExpiration),
                                                            userInfo: nil, repeats: true)
             }
-            
-            peripherals.removeAll()
+            self.peripherals.removeAll()
             
             // If we start scanning while already connected to a device,
             // this current device won't be part of the discoverd devices list coming from the CBManager.
             // Force it into the array of peripherals.
             
-            if currentPeripheral != nil {
-                peripherals.append(currentPeripheral!)
+            if self.currentPeripheral != nil {
+                self.peripherals.append(self.currentPeripheral!)
             }
             
             central.scanForPeripherals(withServices: [BLEServiceUUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
+           
+            
+        case .unauthorized:
+            NotificationCenter.default.post(name: Notification.Name(rawValue: L10n.Notif.Ble.authorization), object: self, userInfo: nil)
+            
+        default:
+            break
         }
     }
     
@@ -148,7 +156,10 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
         central.cancelPeripheralConnection(currentPeripheral)
     }
     
+    // =========================
     // MARK: - Timer management
+    // =========================
+    
     
     @objc func onDiscoveryTimerExpiration() {
         let discoveredPeripherals = ["peripherals": peripherals, "peripheralNames": peripheralNames] as [String: Any]
@@ -164,7 +175,10 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
         }
     }
     
+    // =================================
     // MARK: - CBCentralManagerDelegate
+    // =================================
+
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
       
@@ -214,7 +228,10 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
         }
     }
     
+    // ================
     // MARK: - Private
+    // ================
+
     
     func shouldIgnorePeripheral(for localName: String, peripheral: CBPeripheral) -> Bool {
 

@@ -1,5 +1,5 @@
 // swiftlint:disable all
-// Generated using SwiftGen, by O.Halligon — https://github.com/SwiftGen/SwiftGen
+// Generated using SwiftGen — https://github.com/SwiftGen/SwiftGen
 
 #if os(OSX)
   import AppKit.NSImage
@@ -40,6 +40,9 @@ internal enum Asset {
     internal static let capteur = ImageAsset(name: "Dashboard/capteur")
     internal static let connectionHand = ImageAsset(name: "Dashboard/connectionHand")
     internal static let deconnectionHand = ImageAsset(name: "Dashboard/deconnectionHand")
+    internal static let demo = ImageAsset(name: "Dashboard/demo")
+    internal static let joystick = ImageAsset(name: "Dashboard/joystick")
+    internal static let muscle = ImageAsset(name: "Dashboard/muscle")
     internal static let settingsIcon = ImageAsset(name: "Dashboard/settings_icon")
     internal static let sheepMenu = ImageAsset(name: "Dashboard/sheep_menu")
     internal static let spaceshipMenu = ImageAsset(name: "Dashboard/spaceship_menu")
@@ -74,6 +77,8 @@ internal enum Asset {
       internal static let tongue = ImageAsset(name: "Games/CrapaudGame/tongue")
     }
     internal enum SheepGame {
+      internal static let bigSheep = ImageAsset(name: "Games/SheepGame/bigSheep")
+      internal static let bigSheep2 = ImageAsset(name: "Games/SheepGame/bigSheep2")
       internal static let sheep1 = ImageAsset(name: "Games/SheepGame/sheep1")
       internal static let sheep2 = ImageAsset(name: "Games/SheepGame/sheep2")
       internal static let sheepBang = ImageAsset(name: "Games/SheepGame/sheep_bang")
@@ -82,8 +87,6 @@ internal enum Asset {
       internal static let sheepGate = ImageAsset(name: "Games/SheepGame/sheep_gate")
       internal static let sheepGround = ImageAsset(name: "Games/SheepGame/sheep_ground")
       internal static let sheepJump = ImageAsset(name: "Games/SheepGame/sheep_jump")
-      internal static let sheepWelcome = ImageAsset(name: "Games/SheepGame/sheep_welcome")
-      internal static let sheepWelcome2 = ImageAsset(name: "Games/SheepGame/sheep_welcome2")
     }
     internal enum SpaceshipGame {
       internal static let crash = ImageAsset(name: "Games/SpaceshipGame/crash")
