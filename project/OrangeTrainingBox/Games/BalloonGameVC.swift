@@ -21,42 +21,58 @@
 import UIKit
 import SpriteKit
 
-public protocol BalloonGameInteractable {
-    func swelling ()
-    func gameOver ()
-}
-
-class BalloonGameVC: SettableVC, BalloonGameInteractable {
-
-    @IBOutlet weak var startButton: UIButton!
-    @IBOutlet weak var textLabel: UILabel!
+class BalloonGameVC: GameVC, GameSceneDelegate {
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var feedbackLabel: UILabel!
+    @IBOutlet weak var button: UIButtonBordered!
     
     var scene: BalloonGameScene!
     var lastValue: Int = 0
+    
+    // =======================
+    // MARK: - View Lifecycle
+    // =======================
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = L10n.Game.Balloon.title
         navTintColor = Asset.Colors.orange.color
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureScene()
-        configureSkView()
-        configureBottomView(showStartGame: true)
-        setupNotificationCenter()
     }
-    
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         scene = nil
-        NotificationCenter.default.removeObserver(self)
-        let skView = view as! SKView
-        skView.presentScene(nil)
+        super.viewWillDisappear(animated)
     }
-
+    
+    // ===============
+    // MARK: - Scene
+    // ===============
+    
+    func configureScene () {
+        scene = BalloonGameScene(size:CGSize(width: 1536, height: 2048))
+        scene?.configure(title: titleLabel, subtitle: subtitleLabel, feedback: feedbackLabel, score: nil, button: button, delegate: self)
+        scene.scaleMode = .aspectFill
+        let skView = configureSkView()
+        skView?.presentScene(scene)
+    }
+    
+    // MARK: - User's interactions
+    
+    @IBAction func onButtonPressed(_ sender: Any) {
+        scene?.onButtonPressed()
+    }
+        
+    // =================
+    // MARK: - Settings
+    // =================
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
@@ -64,88 +80,5 @@ class BalloonGameVC: SettableVC, BalloonGameInteractable {
     override var prefersStatusBarHidden: Bool {
         return false
     }
-    
-    func configureSkView () {
-        let skView = view as! SKView
-        skView.ignoresSiblingOrder = true
-        skView.showsFPS = false
-        skView.showsNodeCount = false
-        skView.presentScene(scene)
-    }
-    
-    func configureScene () {
-        scene = BalloonGameScene(size: CGSize(width: 1536, height: 2048))
-        scene.gameDelegate = self
-        scene.scaleMode = .aspectFill
-    }
-    
-    func configureBottomView(showStartGame: Bool, replay: Bool = false) {
-        startButton.isHidden = !showStartGame
-        textLabel.isHidden = showStartGame
-        let startText = replay ?  L10n.Game.reStart :  L10n.Game.start
-        let text = NSMutableAttributedString(string: startText,
-                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
-        
-        text.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSRange(location: 0, length: text.length))
-        if showStartGame {
-            startButton.setAttributedTitle(text, for: .normal)
-        }
-    }
-    
-    
-    @objc func onParameterUpdate() {
-        // update parameters
-    }
-    
-    
-    @IBAction func onStartButtonPressed(_ sender: Any) {
-        scene.isGameStarted = true
-        configureBottomView(showStartGame: false)
-    }
-    
-    // MARK: - BalloonGameInteractable protocol
-    
-    func swelling () {
-        var secondLineText = L10n.Game.Balloon.Text.secondMuscle
-        
-        let text = NSMutableAttributedString(string: L10n.Game.Balloon.Text.first +  "\n",
-                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
-       
-        switch ParameterDataManager.sharedInstance.sensorType {
-        case .joystick:
-            secondLineText = L10n.Game.Balloon.Text.secondJoystick
-        default:
-            secondLineText = L10n.Game.Balloon.Text.secondMuscle
-        }
-        
-        
-        text.append(NSMutableAttributedString(string: secondLineText,
-                                              attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 27, weight: .light)]))
-        
-        text.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSRange(location: 0, length: text.length))
-        textLabel.attributedText = text
-    }
-    
-    func gameOver() {
-        let text = NSMutableAttributedString(string: L10n.Game.Balloon.Congrats.first + "\n",
-                                             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 27)])
-        
-        text.append(NSMutableAttributedString(string: L10n.Game.Balloon.Congrats.second,
-                                              attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 27, weight: .light)]))
-        text.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSRange(location: 0, length: text.length))
-        textLabel.attributedText = text
-        
-        configureBottomView(showStartGame: true, replay: true)
-    }
-    
-    
-    // MARK: - Notification Center
-    
-    private func setupNotificationCenter() {
-    //   Parameter update
-        NotificationCenter.default.addObserver(self, selector: #selector(onParameterUpdate),
-                                               name: NSNotification.Name(rawValue: L10n.Notif.Parameter.update),
-                                               object: nil)
-    }
- 
 }
+

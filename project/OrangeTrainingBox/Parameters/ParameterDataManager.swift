@@ -83,10 +83,9 @@ class ParameterDataManager: Codable {
     var muscle2IsON: Bool = false { didSet { self.archive() }}
     var sensitivity: SensitivitySelection = .low { didSet { self.archive() }}
     var threshold: Int = 250 { didSet { self.archive() }}
-    var sensorType: SensorType = .joystick {
+    var sensorType: SensorType = .muscles {
         didSet {
             self.archive()
-            print("sensorType: \(sensorType)")
         }
     }
 

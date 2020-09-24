@@ -25,16 +25,18 @@ struct Game {
     let icon: UIImage
     let gameId: String
     let color: UIColor
+    let nbMuscles: Int
     
-    init(title: String, icon: UIImage, gameId: String, color: UIColor) {
+    init(title: String, icon: UIImage, gameId: String, color: UIColor, nbMuscles: Int) {
         self.title = title
         self.icon = icon
         self.gameId = gameId
         self.color = color
+        self.nbMuscles = nbMuscles
     }
 }
 
-class DashboardVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
+class DashboardVC: GameVC, UITableViewDelegate, UITableViewDataSource {
     
     // ==================
     // MARK: - Properties
@@ -46,37 +48,32 @@ class DashboardVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
     var allGames: [Game] = []
     var iconHeight: CGFloat = 0
     
-    // =================
-    // MARK: - Lifecycle
-    // =================
+    // ======================
+    // MARK: - View Lifecycle
+    // ======================
     
     open override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.tableFooterView = UIView()
         
-        allGames.append(Game(title: L10n.Game.Star.title, icon: Asset.Dashboard.starMenu.image,
-                             gameId: StoryboardScene.Games.starGameVC.identifier, color: Asset.Colors.violet.color))
-        allGames.append(Game(title: L10n.Game.Balloon.title, icon: Asset.Dashboard.balloonMenu.image,
-                             gameId: StoryboardScene.Games.balloonGameVC.identifier, color: Asset.Colors.orange.color))
-        allGames.append(Game(title: L10n.Game.Sheep.title, icon: Asset.Dashboard.sheepMenu.image,
-                             gameId: StoryboardScene.Games.sheepGameVC.identifier, color: Asset.Colors.pinky.color))
-        allGames.append(Game(title: L10n.Game.Space.title, icon: Asset.Dashboard.spaceshipMenu.image,
-                             gameId: StoryboardScene.Games.spaceshipGameVC.identifier, color: Asset.Colors.blueGreen.color))
-        allGames.append(Game(title: L10n.Game.Frog.title, icon: Asset.Dashboard.toadMenu.image,
-                             gameId: StoryboardScene.Games.crapaudGameVC.identifier, color: Asset.Colors.greyGreen.color))
-
+        allGames.append(Game(title: L10n.Game.Star.title, icon: Asset.Dashboard.starMenu.image, gameId: StoryboardScene.Games.starGameVC.identifier, color: Asset.Colors.violet.color, nbMuscles: 1))
+        allGames.append(Game(title: L10n.Game.Balloon.title, icon: Asset.Dashboard.balloonMenu.image, gameId: StoryboardScene.Games.balloonGameVC.identifier, color: Asset.Colors.orange.color, nbMuscles: 1))
+        allGames.append(Game(title: L10n.Game.Sheep.title, icon: Asset.Dashboard.sheepMenu.image, gameId: StoryboardScene.Games.sheepGameVC.identifier, color: Asset.Colors.pinky.color, nbMuscles: 1))
+        allGames.append(Game(title: L10n.Game.Space.title, icon: Asset.Dashboard.spaceshipMenu.image, gameId: StoryboardScene.Games.spaceshipGameVC.identifier, color: Asset.Colors.blueGreen.color, nbMuscles: 2))
+        allGames.append(Game(title: L10n.Game.Frog.title, icon: Asset.Dashboard.toadMenu.image, gameId: StoryboardScene.Games.crapaudGameVC.identifier, color: Asset.Colors.greyGreen.color, nbMuscles: 2))
+        
         title = L10n.Dashboard.title
-     
+        
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-       
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        
         navTintColor = Asset.Colors.pinky.color
-
+        
         games = allGames
         let cellHeight = tableView.bounds.height / CGFloat(games.count)
         iconHeight = cellHeight// - 2 * 10 - 2 * 3
@@ -91,14 +88,14 @@ class DashboardVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
     override func viewSafeAreaInsetsDidChange() {
         appDelegate.safeAreaInsets = view.safeAreaInsets
     }
-
+    
     override func configureBaahBox() {
         
         if appDelegate.shouldPresentConnectionPannel {
             presentConnectionPopup()
         }
     }
-
+    
     // ==========================
     // MARK: - TableView delegate
     // ==========================
@@ -114,6 +111,7 @@ class DashboardVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
         cell.setImage(games[index].icon)
         cell.title.text = games[index].title
         cell.colorView.backgroundColor = games[index].color
+        cell.configureMusclesStackView(nbMuscles: games[index].nbMuscles)
         return cell
     }
     
@@ -123,5 +121,14 @@ class DashboardVC: SettableVC, UITableViewDelegate, UITableViewDataSource {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Games", bundle: nil)
         let newViewController: UIViewController = storyBoard.instantiateViewController(withIdentifier: games[index].gameId)
         navigationController?.pushViewController(newViewController, animated: true)
+    }
+    
+    
+    // =========================
+    // MARK: - Settings
+    // ==========================
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
     }
 }

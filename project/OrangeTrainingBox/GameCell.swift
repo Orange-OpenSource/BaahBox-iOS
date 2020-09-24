@@ -26,6 +26,9 @@ final class GameCell: UITableViewCell {
     @IBOutlet weak var iconWidth: NSLayoutConstraint!
     @IBOutlet weak var iconHeight: NSLayoutConstraint!
     @IBOutlet weak var colorView: UIView!
+    @IBOutlet weak var musclesStackView: UIStackView!
+    
+    let capteurImage = UIImage(named: Asset.Dashboard.capteur.name)
     
     func setImage(_ image: UIImage) {
         let imageRatio = image.size.width / image.size.height
@@ -35,5 +38,21 @@ final class GameCell: UITableViewCell {
     
     func setIconHeight(height: CGFloat) {
         iconHeight.constant = height
+    }
+    
+    func configureMusclesStackView(nbMuscles: Int) {
+        emptyMusclesStackView()
+        for _ in 0..<nbMuscles {
+            let capteurView = UIImageView(image: capteurImage)
+            capteurView.heightAnchor.constraint(equalToConstant: 25.0).isActive = true
+            capteurView.widthAnchor.constraint(equalToConstant: 17.0).isActive = true
+            musclesStackView.addArrangedSubview(capteurView)
+        }
+    }
+    
+    func emptyMusclesStackView() {
+        for view in musclesStackView.arrangedSubviews {
+            view.removeFromSuperview()
+        }
     }
 }

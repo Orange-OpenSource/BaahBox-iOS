@@ -68,7 +68,10 @@ class BLEService: NSObject, CBPeripheralDelegate {
         peripheral = nil
     }
     
+    // ============================
     // MARK: - CBPeripheralDelegate
+    // ============================
+
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         
@@ -160,7 +163,10 @@ class BLEService: NSObject, CBPeripheralDelegate {
         }
     }
     
+    // ================
     // MARK: - Private
+    // ================
+
     
     func writeCommand(_ command: Data) {
         

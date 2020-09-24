@@ -21,7 +21,7 @@
 import UIKit
 
 
-@IBDesignable class UIButtonBordered: UIButton {
+@IBDesignable public class UIButtonBordered: UIButton {
     
     
     @IBInspectable var borderColor: UIColor = .clear {

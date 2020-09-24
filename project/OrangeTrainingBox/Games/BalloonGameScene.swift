@@ -20,101 +20,203 @@
 
 import SpriteKit
 
-class BalloonGameScene: SKScene, ParametersDefaultable {
+class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
     
+    weak var title: UILabel?
+    weak var subtitle: UILabel?
+    weak var feedback: UILabel?
+    weak var button: UIButtonBordered?
+    weak var gameSceneDelegate: GameSceneDelegate?
+    
+    var startY: CGFloat = CGFloat(0)
+    let balloon = SKSpriteNode(imageNamed: Asset.Games.BalloonGame.balloon00.name)
+    var strengthValue : Int = 0
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
-    var isGameStarted = false
-    var strengthValue: Int = 0
-    var startY: CGFloat = CGFloat (0)
-    var gameDelegate: BalloonGameInteractable?
-    let balloon = SKSpriteNode(imageNamed: Asset.Games.BalloonGame.balloon00.name)
-    let balloonAnimation: SKAction
-    var notificationObserver: NSObjectProtocol?
     
+    var isOnGoing: Bool {
+        if case .onGoing = self.state {
+            return true
+        }
+        return false
+    }
+    
+    var state: GameState {
+        didSet {
+            gameSceneDelegate?.onChanged(state: state)
+            switch state {
+                
+            case .notStarted:
+                strengthValue = 0
+                title?.isHidden = false
+                subtitle?.isHidden = false
+                feedback?.isHidden = true
+                feedback?.transform = CGAffineTransform(scaleX: 1, y: 1)
+                button?.setTitle(L10n.Game.start, for: .normal)
+                button?.isHidden = false
+                
+            case .onGoing:
+                title?.isHidden = true
+                subtitle?.isHidden = true
+                feedback?.isHidden = true
+                feedback?.transform = CGAffineTransform(scaleX: 1, y: 1)
+                button?.isHidden = true
+                
+            case .halted:
+                break
+                
+            case .ended:
+                strengthValue = 0
+                title?.isHidden = true
+                subtitle?.isHidden = true
+                feedback?.isHidden = false
+                feedback?.transform = CGAffineTransform(scaleX: 2, y: 2);
+                button?.setTitle(L10n.Game.reStart, for: .normal)
+                button?.isHidden = false
+            }
+        }
+    }
+ 
+    
+    // =============================
+    // MARK: - Init & configuration
+    // =============================
     
     override init(size: CGSize) {
-        
-        let balloonTextures = [SKTexture(imageNamed: Asset.Games.BalloonGame.balloon00.name),
-                               SKTexture(imageNamed: Asset.Games.BalloonGame.balloon01.name),
-                               SKTexture(imageNamed: Asset.Games.BalloonGame.balloon02.name),
-                               SKTexture(imageNamed: Asset.Games.BalloonGame.balloon03.name),
-                               SKTexture(imageNamed: Asset.Games.BalloonGame.balloon04.name)]
-        
-        balloonAnimation = SKAction.animate(with: balloonTextures,
-                                            timePerFrame: 1)
+        strengthValue = 0
+        state = .notStarted
         super.init(size: size)
     }
     
     required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented") 
+        fatalError("init(coder:) has not been implemented")
     }
     
+    func configure(title: UILabel, subtitle: UILabel, feedback: UILabel?, score: UILabel?, button: UIButtonBordered, delegate: GameSceneDelegate) {
+        self.title = title
+        self.subtitle = subtitle
+        self.button = button
+        self.feedback = feedback
+        self.gameSceneDelegate = delegate
+        
+        self.title?.text = L10n.Game.Balloon.Text.first
+        switch ParameterDataManager.sharedInstance.sensorType {
+        case .joystick:
+            self.subtitle?.text = L10n.Game.Balloon.Text.secondJoystick
+        default:
+            self.subtitle?.text = L10n.Game.Balloon.Text.secondMuscle
+        }
+        self.feedback?.isHidden = true
+    }
     
-    func startGame () {
+    func configureBalloonSpriteForStart() {
+        balloon.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         balloon.texture = SKTexture (imageNamed: Asset.Games.BalloonGame.balloon00.name)
         balloon.size = (balloon.texture?.size())!
-        strengthValue = 0
+        balloon.position = CGPoint(x: size.width/2 , y: size.height/2 + balloon.size.height/4)
     }
+  
+    
+    // ===============
+    // MARK: - SKView
+    // ===============
     
     override func willMove(from view: SKView) {
         super.willMove(from: view)
-        print("Balloon scene willMoveFromView")
         removeAllActions()
-        for node in self.children {
-            node.removeFromParent()
-        }
-        self.gameDelegate = nil
+        removeAllChildren()
         unsetNotifications()
     }
     
     override func didMove(to view: SKView) {
         backgroundColor = Asset.Colors.orange.color
-        
-        balloon.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        let balloonImage = UIImage(named: Asset.Games.BalloonGame.balloon00.name)
-        balloon.texture = SKTexture (image: balloonImage!)
-        let imageSize = balloon.texture!.size()
-        balloon.position = CGPoint(x: size.width/2, y: size.height/2 + imageSize.height/4)
+        configureBalloonSpriteForStart()
         addChild(balloon)
+        strengthValue = 0
+        state = .notStarted
         setNotifications()
     }
     
-    override func update(_ currentTime: TimeInterval) {
-        if lastUpdateTime > 0 {
-            dt = currentTime - lastUpdateTime
-        } else {
-            dt = 0
-        }
-        
-        lastUpdateTime = currentTime
-        
-        if isGameStarted {
-            print("Strength : \(strengthValue)")
-            switch strengthValue {
-            case 0...Int(20*hardnessCoeff):
-                balloon.texture = SKTexture (imageNamed: Asset.Games.BalloonGame.balloon00.name)
-                balloon.size = (balloon.texture?.size())!
-                gameDelegate?.swelling()
-            case Int(21*hardnessCoeff)...Int(90*hardnessCoeff):
-                let expansionCoeff = CGFloat (strengthValue + 30) / 100
-                balloon.texture = SKTexture (imageNamed: Asset.Games.BalloonGame.balloon03.name)
-                balloon.size.height = (balloon.texture?.size().height)! * expansionCoeff
-                balloon.size.width = (balloon.texture?.size().width)! * expansionCoeff
-                gameDelegate?.swelling()
-            default:
-                balloon.texture = SKTexture (imageNamed: Asset.Games.BalloonGame.balloon04.name)
-                balloon.size = (balloon.texture?.size())!
-                gameDelegate?.gameOver()
-                isGameStarted = false
-            }
-            
-        } else {
-            balloon.size = (balloon.texture?.size())!
-            strengthValue = 0
+    // ================
+    // MARK: - Actions
+    // ================
+    
+    func onButtonPressed() {
+        switch state {
+        case .notStarted:
+            state = .onGoing
+        case .onGoing, .halted: // shoud not happen in this game
+            break
+        case .ended:
+            state = .onGoing
         }
     }
     
+    // ==================
+    // MARK: - Game loop
+    // ==================
+    
+    override func update(_ currentTime: TimeInterval) {
+        guard isOnGoing else {
+            balloon.size = (balloon.texture?.size())!
+            strengthValue = 0
+            return
+        }
+        dt = lastUpdateTime > 0 ? currentTime - lastUpdateTime : 0
+        lastUpdateTime = currentTime
+        
+        switch strengthValue {
+        case 0...Int(5*hardnessCoeff):
+            balloon.texture = SKTexture (imageNamed: Asset.Games.BalloonGame.balloon00.name)
+            balloon.size = (balloon.texture?.size())!
+            
+            feedback?.isHidden = true
+            title?.isHidden = false
+            subtitle?.isHidden = false
+            
+        case Int(6*hardnessCoeff)...Int(30*hardnessCoeff):
+            inflateBalloon(using: strengthValue)
+            feedback?.text = L10n.Game.Balloon.Text.letsGo
+            feedback?.isHidden = false
+            title?.isHidden = true
+            subtitle?.isHidden = true
+            
+        case Int(31*hardnessCoeff)...Int(70*hardnessCoeff):
+            inflateBalloon(using: strengthValue)
+            feedback?.text = L10n.Game.keepGoing
+            feedback?.isHidden = false
+            title?.isHidden = true
+            subtitle?.isHidden = true
+            
+        case Int(71*hardnessCoeff)...Int(90*hardnessCoeff):
+            inflateBalloon(using: strengthValue)
+            feedback?.text = L10n.Game.Balloon.Text.almostDone
+            feedback?.isHidden = false
+            title?.isHidden = true
+            subtitle?.isHidden = true
+            
+        default:
+            balloon.texture = SKTexture (imageNamed: Asset.Games.BalloonGame.balloon04.name)
+            balloon.size = (balloon.texture?.size())!
+            title?.isHidden = true
+            subtitle?.isHidden = true
+            feedback?.text = L10n.Game.Balloon.Text.congrats
+            let score = Score(won: true, total: 0)
+            state = .ended(score)
+        }
+    }
+      
+    
+    func inflateBalloon(using strenghtValue: Int) {
+        let expansionCoeff = CGFloat (strengthValue + 30) / 100
+        balloon.texture = SKTexture (imageNamed: Asset.Games.BalloonGame.balloon03.name)
+        balloon.size.height = (balloon.texture?.size().height)! * expansionCoeff
+        balloon.size.width = (balloon.texture?.size().width)! * expansionCoeff
+    }
+    
+    // ========================
+    // MARK: - Data processing
+    // ========================
     
     private func getMuscleStrength() -> Int {
         if ParameterDataManager.sharedInstance.muscle1IsON {
@@ -126,26 +228,27 @@ class BalloonGameScene: SKScene, ParametersDefaultable {
         }
     }
     
-    
     @objc func updateData(_ notification: Notification) {
-        if isGameStarted {
-            switch ParameterDataManager.sharedInstance.sensorType {
-            case .joystick:
-                guard SensorInputManager.sharedInstance.joystickInput.up && strengthValue  <= Int(95*hardnessCoeff) else {
-                    return
-                }
-                strengthValue  = strengthValue + 1
-                print("updateData : Strength : \(strengthValue)")
-                
-            default: // using Muscle inputs
-                // The strength is in [0...1000] -> Have it fit into [0...100]
-                strengthValue = Int (getMuscleStrength() / 10)
-                
+        guard isOnGoing && !ParameterDataManager.sharedInstance.demoMode else {
+            return
+        }
+        switch ParameterDataManager.sharedInstance.sensorType {
+        case .joystick:
+            guard SensorInputManager.sharedInstance.joystickInput.up && strengthValue  <= Int(95*hardnessCoeff) else {
+                return
             }
+            strengthValue  = strengthValue + 1
+            
+        default: // using Muscle inputs
+            // The strength is in [0...1000] -> Have it fit into [0...100]
+            strengthValue = Int (getMuscleStrength() / 10)
         }
     }
     
+    
+    // ============================
     // MARK: - Notification Center
+    // ============================
     
     private func setNotifications() {
         //data from sensors
@@ -157,14 +260,17 @@ class BalloonGameScene: SKScene, ParametersDefaultable {
     private func unsetNotifications() {
         NotificationCenter.default.removeObserver(self)
     }
+     
     
+    // =========================
+    // MARK: - Touch handling
+    // =========================
     
-    // MARK: - touch handling
-    //======================================
     func sceneTouched(touchLocation: CGPoint) {
-        
+        guard ParameterDataManager.sharedInstance.demoMode && isOnGoing else {
+            return
+        }
         var distance = Int (abs (touchLocation.y - startY))
-        
         if distance > 600 {
             distance = 600
         }
@@ -176,7 +282,6 @@ class BalloonGameScene: SKScene, ParametersDefaultable {
             return
         }
         let touchLocation = touch.location(in: self)
-        
         startY = touchLocation.y
         sceneTouched(touchLocation: touchLocation)
     }
@@ -189,3 +294,4 @@ class BalloonGameScene: SKScene, ParametersDefaultable {
         sceneTouched(touchLocation: touchLocation)
     }
 }
+

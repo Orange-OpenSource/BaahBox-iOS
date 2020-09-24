@@ -17,102 +17,147 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
-
 import SpriteKit
 
 let collisionSpaceShipCategory: UInt32 = 0x1 << 0
 let collisionMeteorCategory: UInt32 = 0x1 << 1
 
-class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
+class SpaceshipGameScene: SKScene, GameScene, SKPhysicsContactDelegate {
     
-    var gameDelegate: SpaceShipGameInteractable?
+    weak var title: UILabel?
+    weak var subtitle: UILabel?
+    weak var feedback: UILabel?
+    weak var scoreLabel: UILabel?
+    weak var button: UIButtonBordered?
+    weak var gameSceneDelegate: GameSceneDelegate?
     
-    var lastUpdateTime: TimeInterval = 0
-    var dt: TimeInterval = 0
-    var isGameStarted = false
-    var gameState: GameState = .notStarted
-    
-    let secondPerScorePoint: TimeInterval = 1.0
-    var score: Int = 0
-    var lifes: Int = 0
-    var lastScoreTime: TimeInterval = 0
-    
-    let spaceShipScale: CGFloat = 0.75
-    var spaceShipInitialPosition = CGPoint(x: 0, y: 0)
-    let spaceShipNMLImage = UIImage(named: Asset.Games.SpaceshipGame.spaceshipNml.name)
-    let spaceShipLFTImage = UIImage(named: Asset.Games.SpaceshipGame.spaceshipLeft.name)
-    let spaceShipRGTImage = UIImage(named: Asset.Games.SpaceshipGame.spaceshipRight.name)
     var shipNmlTexture: SKTexture?
     var shipRightTexture: SKTexture?
     var shipLeftTexture: SKTexture?
+    
     var spaceShip =  SKSpriteNode(imageNamed: Asset.Games.SpaceshipGame.spaceshipNml.name)
+    let spaceShipScale: CGFloat = 0.75
+    var spaceShipInitialPosition = CGPoint(x: 0, y: 0)
+    
     var spaceShipAnimation = SKAction()
     
     var meteorAccelerationFactor: Double = 1.0
     var meteorSpawnAction = SKAction()
     
-    var crash = SKSpriteNode(imageNamed: Asset.Games.SpaceshipGame.crash.name)
-    var crashAnimation = SKAction()
+    var lastUpdateTime: TimeInterval = 0
+    var dt: TimeInterval = 0
+    let secondPerScorePoint: TimeInterval = 1.0
+    var score: Int = 0
+    var lifes: Int = 0
+    var lastScoreTime: TimeInterval = 0
+    let waitOneSecAction = SKAction.wait(forDuration: 1.0)
 
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    
+    
+    var isGameOnGoing: Bool {
+        if case .onGoing = self.state {
+            return true
+        }
+        return false
     }
     
+    var state: GameState {
+        didSet {
+            switch state {
+            case .notStarted:
+                //setNavigationBarHidden(true, animated: true)
+                configureLabelsForStart()
+                score = 0
+                lifes = ParameterDataManager.sharedInstance.numberOfSpaceShips
+                startSpaceShipAnimation()
+                configureSpritesForStart()
+                configureSpaceShipCollisionEffects()
+                
+            case .onGoing:
+                stopSpaceShipAnimation()
+                configureLabelsForPlay()
+                //  setNavigationBarHidden(true, animated: true)
+                refreshScore()
+                
+            case .halted:
+                stopSpaceShipAnimation()
+                scoreLabel?.isHidden  = false
+                button?.isHidden = true
+                refreshScore()
+            
+            case .ended:
+                configureLabelsForGameOver()
+                refreshScore()
+                lifes = ParameterDataManager.sharedInstance.numberOfSpaceShips
+            }
+            
+            gameSceneDelegate?.onChanged(state: state)
+        }
+    }
+    
+      let asteroidCollisionSoundAction = SKAction.playSoundFileNamed( "SNCRASH1.wav", waitForCompletion: false)
+    var crash = SKSpriteNode(imageNamed: Asset.Games.SpaceshipGame.crash.name)
+    var crashAnimation = SKAction()
+    
+    
+    
+    // =============
+    // MARK: - init
+    // =============
+    
     override init(size: CGSize) {
+        score = 0
+        state = .notStarted
+       
         super.init(size: size)
-        
-        shipNmlTexture = SKTexture(image: spaceShipNMLImage!)
-        shipRightTexture = SKTexture(image: spaceShipRGTImage!)
-        shipLeftTexture =  SKTexture(image: spaceShipLFTImage!)
-        
+        loadParameters()
+        loadTextures()
         let spaceShipTextures =
             [shipNmlTexture, shipRightTexture, shipNmlTexture, shipLeftTexture]
         spaceShipAnimation = SKAction.animate(with: spaceShipTextures as! [SKTexture],
                                               timePerFrame: 1)
-        
         meteorSpawnAction = SKAction.repeatForever(
             SKAction.sequence([SKAction.run() { [weak self] in
                 self?.spawnMeteors()
-            },
-            SKAction.wait(forDuration: 3.0)]))
+                },
+                               SKAction.wait(forDuration: 3.0)]))
     }
+    
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    
+    func configure(title: UILabel, subtitle: UILabel, feedback: UILabel?, score: UILabel?,  button: UIButtonBordered, delegate: GameSceneDelegate) {
+        self.title = title
+        self.subtitle = subtitle
+        self.button = button
+        self.feedback = feedback
+        self.scoreLabel = score
+        self.gameSceneDelegate = delegate
+        configureLabelsForStart()
+    }
+    
+    
+    // ===============
+    // MARK: - SKView
+    // ===============
     
     override func willMove(from view: SKView) {
         super.willMove(from: view)
-        print("space Scene willMoveFromView")
         removeAllActions()
-        for node in self.children {
-            node.removeFromParent()
-        }
-        shipNmlTexture = nil
-        shipRightTexture = nil
-        shipLeftTexture = nil
+        removeAllChildren()
         self.physicsWorld.contactDelegate = nil
-        gameDelegate = nil
-        NotificationCenter.default.removeObserver(self)
+        unloadTextures()
+        unsetNotifications()
     }
+    
     
     override func didMove(to view: SKView) {
         backgroundColor = Asset.Colors.blueGreen.color
-        gameState = .notStarted
-        spaceShip.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        // spaceShip.texture = shipRightTexture//SKTexture (imageNamed: Asset.Games.SpaceshipGame.spaceshipNml.name)
-        spaceShip.setScale(spaceShipScale)
-        spaceShipInitialPosition = CGPoint(x: size.width/2, y: size.height/4 + spaceShip.size.height)
-        spaceShip.position = spaceShipInitialPosition
-        spaceShip.setScale(spaceShipScale)
-        spaceShip.name = "ship"
-        let collisionSize = spaceShip.size
-        
-        // Add physics body for collision detection
-        spaceShip.physicsBody?.isDynamic = true
-        spaceShip.physicsBody = SKPhysicsBody(texture: spaceShip.texture!, size: collisionSize)
-        spaceShip.physicsBody?.affectedByGravity = false
-        spaceShip.physicsBody?.categoryBitMask = collisionSpaceShipCategory
-        spaceShip.physicsBody?.contactTestBitMask = collisionMeteorCategory
-        
-        spaceShip.physicsBody?.collisionBitMask = 0x0
-        
+        state = .notStarted
+        loadTextures()
         addChild(spaceShip)
         
         crash.anchorPoint = CGPoint(x: 0.3, y: 0.3)
@@ -127,36 +172,100 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         // – …
         // – Stars in back layer: dark, slow, small
         
-        var emitterNode = spaceStarEmitter(color: SKColor.lightGray, starSpeedY: 50, starsPerSecond: 1, starScaleFactor: 0.3)
-        emitterNode.zPosition = -10
-        self.addChild(emitterNode)
-        
-        emitterNode = spaceStarEmitter(color: SKColor.gray, starSpeedY: 30, starsPerSecond: 2, starScaleFactor: 0.2)
-        emitterNode.zPosition = -11
-        self.addChild(emitterNode)
-        
-        emitterNode = spaceStarEmitter(color: SKColor.darkGray, starSpeedY: 15, starsPerSecond: 4, starScaleFactor: 0.1)
-        emitterNode.zPosition = -12
-        self.addChild(emitterNode)
+        let starEmitterNodes = setStarEmitterNodes() // à effacer lors du didMove ?
+        for emitterNode in starEmitterNodes {
+            self.addChild(emitterNode)
+        }
     }
     
     
-    func initGame() {
+    func configureSpritesForStart() {
+        spaceShip.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        // spaceShip.texture = shipRightTexture//SKTexture (imageNamed: Asset.Games.SpaceshipGame.spaceshipNml.name)
+        spaceShip.setScale(spaceShipScale)
+        spaceShipInitialPosition = CGPoint(x: size.width/2, y: size.height/4 + spaceShip.size.height)
+        spaceShip.position = spaceShipInitialPosition
+        spaceShip.setScale(spaceShipScale)
+        spaceShip.name = "ship"
+    }
+    
+    func configureSpaceShipCollisionEffects() {
+        let collisionSize = spaceShip.size//CGSize(width: spaceShip.size.width * spaceShipScale, height: spaceShip.size.height * spaceShipScale)
+        
+        // Add physics body for collision detection
+        spaceShip.physicsBody?.isDynamic = true
+        spaceShip.physicsBody = SKPhysicsBody(texture: spaceShip.texture!, size: collisionSize)
+        spaceShip.physicsBody?.affectedByGravity = false
+        spaceShip.physicsBody?.categoryBitMask = collisionSpaceShipCategory
+        spaceShip.physicsBody?.contactTestBitMask = collisionMeteorCategory
+        
+        spaceShip.physicsBody?.collisionBitMask = 0x0
+    }
+    
+    
+    
+    // ============================
+    // MARK: - User's interactions
+    // ============================
+    
+    func onButtonPressed() {
+        button?.setTitle(L10n.Game.go, for: .normal)
+        switch state {
+            
+        case .notStarted:
+            initializeGame()
+            runGame()
+            
+        case .onGoing:
+            gameOver()
+        
+        case .halted:
+            initializeGame()
+            runGame()
+            
+        case .ended:
+            initializeGame()
+            runGame()
+        }
+    }
+    
+    
+    // ==============================
+    // MARK: - Game logic
+    // ==============================
+    
+    
+    func gameHalt() {
+        state = .halted
+        animateCrash()
+        self.run(SKAction.wait(forDuration: 1), completion: { self.runGame()})
+    }
+    
+    func gameOver() {
+        self.state = .ended(Score(won:false, total: self.score))
+        removeAllActions()
+        removeMeteors()
+        unsetNotifications()
+    }
+    
+    func initializeGame() {
         score = 0
-        lifes = ParameterDataManager.sharedInstance.numberOfSpaceShips
         loadParameters()
         spaceShip.position = spaceShipInitialPosition
-        setupNotificationCenter()
+        setNotifications()
     }
     
     func runGame() {
         crash.isHidden = true
         removeMeteors()
-        loadParameters()
-        // launch meteorites
-        run(meteorSpawnAction, withKey: "meteorSpawnAction")
-        gameState = .onGoing
+        launchMeteorRain()
+        state = .onGoing
     }
+    
+    
+    // ===================
+    // MARK: - Game loop
+    // ===================
     
     override func update(_ currentTime: TimeInterval) {
         if lastUpdateTime > 0 {
@@ -164,25 +273,36 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         } else {
             dt = 0
         }
-        
-        if self.gameState != .onGoing {
+        if !isGameOnGoing {
             lastScoreTime = currentTime
         }
         
         // score is calculated on elapsed time (x seconds = 1 point)
-        if (currentTime - lastScoreTime) > secondPerScorePoint, gameState == .onGoing {
+        if (currentTime - lastScoreTime) > secondPerScorePoint, isGameOnGoing {
             score += 1
             lastScoreTime = currentTime
-            self.gameDelegate?.refreshScore()
+            refreshScore()
         }
         
         lastUpdateTime = currentTime
     }
     
+    
+    override func didEvaluateActions() {
+        deleteOutOFBoundsMeteors()
+    }
+    
+    
+    
+    
+    // ======================
+    // MARK: - sprite moves
+    // ======================
+    
     private func analyseActions(leftAction: Bool, rightAction: Bool) {
-        if  gameState != .onGoing {
-            return
-        }
+        //        if  gameState != .onGoing {
+        //            return
+        //        }
         if leftAction && rightAction {
             spaceShip.texture = shipNmlTexture
             spaceShip.size = shipNmlTexture!.size()
@@ -202,6 +322,7 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
             return
         }
     }
+   
     
     private func goLeft() {
         
@@ -213,6 +334,7 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
             let newXPosition = xPosition - 120 //- velocity * 1//8
             slideTo(sprite: spaceShip, x: newXPosition)
         }
+        //  spaceShip.run(SKAction.animate(with: [shipNmlTexture], timePerFrame: 1))
     }
     
     private func goRight() {
@@ -224,33 +346,91 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    
-    override func didEvaluateActions() {
-        deleteOutOFBoundsMeteors()
+    private  func slideTo(sprite: SKSpriteNode, x: CGFloat) {
+        let actionSlide = SKAction.move(to: CGPoint(x: x, y: sprite.position.y), duration: 0.2)
+        sprite.run(actionSlide)
     }
     
-    func gameHalt() {
-        print("game halted")
-        gameState = .halted
-        gameDelegate?.collisionOccured()
+    
+    
+    // ==============================
+    // MARK: - Labels configuration
+    // ==============================
+    
+    ////    private func showScore() {
+    ////        guard let scene = scene else { return }
+    ////        scoreLabel.text = "Score: \(scene.score)"
+    ////    }
+    ////
+    func refreshScore() {
+        guard scene != nil else { return }
+        configureScoreLabel(with: score )
+        //   gameSceneDelegate.showLifeViews()
     }
     
-    func gameOver() {
-        print("game over")
-        gameState = .lost
-        gameDelegate?.gameOver()
-        removeAllActions()
-        removeMeteors()
-        NotificationCenter.default.removeObserver(self)
+    func configureLabelsForPlay() {
+        title?.isHidden = true
+        subtitle?.isHidden = true
+        button?.isHidden = false
+        button?.setTitle(L10n.Game.stop, for: .normal)
+        scoreLabel?.isHidden  = false
     }
     
-    //===============================
-    // MARK: - collision detection
-    //===============================
+    func configureScoreLabel(with score: Int) {
+        scoreLabel?.text = "Score: \(score)"
+    }
+    
+    func configureLabelsForStart() {
+        title?.text = L10n.Game.Space.Text.first
+        switch ParameterDataManager.sharedInstance.sensorType {
+        case .joystick:
+            subtitle?.text = L10n.Game.Space.Text.secondJoystick
+        default:
+            subtitle?.text = L10n.Game.Space.Text.secondMuscle
+        }
+        button?.isHidden = false
+        button?.setTitle(L10n.Game.start, for: .normal)
+        //stopButton.isHidden = true
+        scoreLabel?.isHidden = true
+        configureScoreLabel(with: 0)
+    }
+    
+    
+    func configureLabelsForGameOver() {
+        button?.setTitle(L10n.Game.reStart, for: .normal)
+        button?.isHidden = false
+    }
+    
+    
+    // =================
+    // MARK: - Textures
+    // =================
+    
+    func loadTextures() {
+        shipNmlTexture = SKTexture(imageNamed:
+            Asset.Games.SpaceshipGame.spaceshipNml.name)
+        shipRightTexture = SKTexture(imageNamed:
+            Asset.Games.SpaceshipGame.spaceshipRight.name)
+        shipLeftTexture =  SKTexture(imageNamed:
+            Asset.Games.SpaceshipGame.spaceshipLeft.name)
+    }
+    
+    func unloadTextures() {
+        shipNmlTexture = nil
+        shipRightTexture = nil
+        shipLeftTexture =  nil
+    }
+    
+    
+    
+    
+    //====================
+    // MARK: - collision
+    //====================
     
     func didBegin(_ contact: SKPhysicsContact) {
-        if case .onGoing = self.gameState {
-            _ = self.animateCrash()
+        if isGameOnGoing {
+            animateCrash()
             checkLifes()
         }
     }
@@ -267,7 +447,8 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func animateCrash() -> Bool {
+    func animateCrash() {
+        
         stopSpaceShipAnimation()
         
         switch ParameterDataManager.sharedInstance.explosionType {
@@ -280,13 +461,16 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
             let sequence = [increase, decrease]
             crash.run(SKAction.sequence(sequence))
             crash.run(SKAction.wait(forDuration: 3.0))
+           // run(asteroidCollisionSoundAction)
+           // [SKAction group:@[SKAction1, SKAction2, SKAction3]];
             
         default:
             stopSpaceShipAnimation()
             explosion(pos: spaceShip.position)
+            // run(asteroidCollisionSoundAction)
         }
-        return true
     }
+    
     
     func explosion(pos: CGPoint) {
         
@@ -298,9 +482,9 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
-    //==================
+    //====================
     // MARK: - SpaceShip
-    //==================
+    //====================
     
     public  func startSpaceShipAnimation() {
         if spaceShip.action(forKey: "spaceShipAnimation") == nil {
@@ -312,14 +496,14 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         spaceShip.removeAllActions()
     }
     
-    private  func slideTo(sprite: SKSpriteNode, x: CGFloat) {
-        let actionSlide = SKAction.move(to: CGPoint(x: x, y: sprite.position.y), duration: 0.2)
-        sprite.run(actionSlide)
-    }
     
     //==================
     // MARK: - Meteors
     //==================
+    
+    func launchMeteorRain() {
+        run(meteorSpawnAction, withKey: "meteorSpawnAction")
+    }
     
     private func spawnMeteors() {
         let i = Int(arc4random_uniform(5))
@@ -375,22 +559,15 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    //============================
-    // MARK: - Notification Center
-    //============================
     
-    private func setupNotificationCenter() {
-        NotificationCenter.default.addObserver(self, selector: #selector(loadParameters),
-                                               name: Notification.Name(rawValue: L10n.Notif.Parameter.update),
-                                               object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(updateData(_:)),
-                                               name: Notification.Name(rawValue: L10n.Notif.Ble.dataReceived),
-                                               object: nil)
-        
-    }
+    // =========================
+    // MARK: - data processing
+    // =========================
     
     @objc func updateData(_ notification: Notification) {
+        guard isGameOnGoing  && !ParameterDataManager.sharedInstance.demoMode else {
+            return
+        }
         var leftAction: Bool = false
         var rightAction: Bool = false
         
@@ -405,18 +582,64 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
             leftAction = strengthValue2 > 50
             rightAction = strengthValue1 > 50
         }
-        
         analyseActions(leftAction: leftAction, rightAction: rightAction)
     }
     
-    //=======================
+    
+    //==========================
+    // MARK: - Background Stars animation
+    //==========================
+    
+    func setStarEmitterNodes() -> [SKEmitterNode] {
+        let starEmitterNodeFront = spaceStarEmitter(color: SKColor.lightGray, starSpeedY: 50, starsPerSecond: 1, starScaleFactor: 0.2)
+        starEmitterNodeFront.zPosition = -10
+        
+        let starEmitterNodeMid = spaceStarEmitter(color: SKColor.gray, starSpeedY: 30, starsPerSecond: 2, starScaleFactor: 0.1)
+        starEmitterNodeMid.zPosition = -11
+        
+        let starEmitterNodeBack = spaceStarEmitter(color: SKColor.darkGray, starSpeedY: 15, starsPerSecond: 4, starScaleFactor: 0.05)
+        starEmitterNodeBack.zPosition = -12
+        
+        return [starEmitterNodeFront,starEmitterNodeMid, starEmitterNodeBack]
+    }
+    
+    
+    func spaceStarEmitter(color: SKColor, starSpeedY: CGFloat, starsPerSecond: CGFloat, starScaleFactor: CGFloat) -> SKEmitterNode {
+        
+        // Determine the time a star is visible on screen
+        let lifetime =  frame.size.height * UIScreen.main.scale / starSpeedY
+        
+        // Create the emitter node
+        let emitterNode = SKEmitterNode()
+        emitterNode.particleTexture = SKTexture(imageNamed: "Star.jpg")
+        emitterNode.particleBirthRate = starsPerSecond
+        emitterNode.particleColor = SKColor.lightGray
+        emitterNode.particleSpeed = starSpeedY * -1
+        emitterNode.particleScale = starScaleFactor
+        emitterNode.particleColorBlendFactor = 1
+        emitterNode.particleLifetime = lifetime
+        
+        // Position in the middle at top of the screen
+        emitterNode.position = CGPoint(x: frame.size.width/2, y: frame.size.height)
+        emitterNode.particlePositionRange = CGVector(dx: frame.size.width, dy: 0)
+        
+        // Fast forward the effect to start with a filled screen
+        emitterNode.advanceSimulationTime(TimeInterval(lifetime))
+        
+        return emitterNode
+    }
+    
+    
+    
+    //========================
     // MARK: - touch handling
-    //=======================
+    //========================
     
     func sceneTouched(touchLocation: CGPoint) {
-        if  gameState == .onGoing && ParameterDataManager.sharedInstance.demoMode {
-            slideTo(sprite: spaceShip, x: touchLocation.x)
+        guard isGameOnGoing && ParameterDataManager.sharedInstance.demoMode else {
+            return
         }
+        slideTo(sprite: spaceShip, x: touchLocation.x)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -435,34 +658,31 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
         sceneTouched(touchLocation: touchLocation)
     }
     
-    //  stars..
     
-    func spaceStarEmitter(color: SKColor, starSpeedY: CGFloat, starsPerSecond: CGFloat, starScaleFactor: CGFloat) -> SKEmitterNode {
-        
-        // Determine the time a star is visible on screen
-        let lifetime =  frame.size.height * UIScreen.main.scale / starSpeedY
-        
-        // Create the emitter node
-        let emitterNode = SKEmitterNode()
-        emitterNode.particleTexture = SKTexture(imageNamed: Asset.Games.SpaceshipGame.spaceStar.name)
-        emitterNode.particleBirthRate = starsPerSecond
-        emitterNode.particleColor = SKColor.lightGray
-        emitterNode.particleSpeed = starSpeedY * -1
-        emitterNode.particleScale = starScaleFactor
-        emitterNode.particleColorBlendFactor = 1
-        emitterNode.particleLifetime = lifetime
-        
-        // Position in the middle at top of the screen
-        emitterNode.position = CGPoint(x: frame.size.width/2, y: frame.size.height)
-        emitterNode.particlePositionRange = CGVector(dx: frame.size.width, dy: 0)
-        
-        // Fast forward the effect to start with a filled screen
-        emitterNode.advanceSimulationTime(TimeInterval(lifetime))
-        
-        return emitterNode
+    //============================
+    // MARK: - Notification Center
+    //============================
+    
+    private func setNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(loadParameters),
+                                               name: Notification.Name(rawValue: L10n.Notif.Parameter.update),
+                                               object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateData(_:)),
+                                               name: Notification.Name(rawValue: L10n.Notif.Ble.dataReceived),
+                                               object: nil)
     }
     
+    private func unsetNotifications() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    // ===================
+    // MARK: - Parameters
+    // ===================
+    
     @objc func loadParameters() {
+        lifes = ParameterDataManager.sharedInstance.numberOfSpaceShips
+        
         switch ParameterDataManager.sharedInstance.asteriodVelocity {
         case .average:
             meteorAccelerationFactor = 1.5
@@ -472,4 +692,5 @@ class SpaceshipGameScene: SKScene, SKPhysicsContactDelegate {
             meteorAccelerationFactor = 1.0
         }
     }
+    
 }

@@ -1,5 +1,5 @@
 // swiftlint:disable all
-// Generated using SwiftGen, by O.Halligon — https://github.com/SwiftGen/SwiftGen
+// Generated using SwiftGen — https://github.com/SwiftGen/SwiftGen
 
 import Foundation
 
@@ -14,13 +14,15 @@ internal enum L10n {
 
   internal enum Ble {
     internal enum Connection {
-      /// Activate Bluetooth to connect to the BaahBox.
+      /// Please go to your settings to authorize Baah to use Bluetooth
+      internal static let bleAuthorize = L10n.tr("Localizable", "Ble.Connection.BleAuthorize")
+      /// Activate Bluetooth to connect to the BaahBox
       internal static let bleSwitchON = L10n.tr("Localizable", "Ble.Connection.BleSwitchON")
       /// Please select a BaahBox in the list below
-      internal static let descritpion = L10n.tr("Localizable", "Ble.Connection.Descritpion")
+      internal static let description = L10n.tr("Localizable", "Ble.Connection.Description")
       /// Connect your BaahBox
       internal static let header = L10n.tr("Localizable", "Ble.Connection.Header")
-      /// Please select your BaahBox and start practicing.
+      /// Please select your BaahBox and start practicing
       internal static let popupTitle = L10n.tr("Localizable", "Ble.Connection.PopupTitle")
       /// Connection settings
       internal static let title = L10n.tr("Localizable", "Ble.Connection.Title")
@@ -35,10 +37,14 @@ internal enum L10n {
   }
 
   internal enum Game {
+    /// Great !
+    internal static let congrats = L10n.tr("Localizable", "Game.Congrats")
     /// Let's play !
     internal static let go = L10n.tr("Localizable", "Game.Go")
     /// Hop !
     internal static let hop = L10n.tr("Localizable", "Game.Hop")
+    /// Keep going !
+    internal static let keepGoing = L10n.tr("Localizable", "Game.KeepGoing")
     /// Ooops!
     internal static let oops = L10n.tr("Localizable", "Game.Oops")
     /// Restart
@@ -47,7 +53,7 @@ internal enum L10n {
     internal static let start = L10n.tr("Localizable", "Game.Start")
     /// Stop
     internal static let stop = L10n.tr("Localizable", "Game.Stop")
-    /// Try again.
+    /// Try again
     internal static let tryAgain = L10n.tr("Localizable", "Game.TryAgain")
     /// Wahoo !
     internal static let wahoo = L10n.tr("Localizable", "Game.Wahoo")
@@ -65,8 +71,14 @@ internal enum L10n {
         internal static let second = L10n.tr("Localizable", "Game.Balloon.congrats.second")
       }
       internal enum Text {
+        /// Almost there !
+        internal static let almostDone = L10n.tr("Localizable", "Game.Balloon.text.almostDone")
+        /// Well Done !
+        internal static let congrats = L10n.tr("Localizable", "Game.Balloon.text.congrats")
         /// Inflate the balloon
         internal static let first = L10n.tr("Localizable", "Game.Balloon.text.first")
+        /// Let's go !
+        internal static let letsGo = L10n.tr("Localizable", "Game.Balloon.text.letsGo")
         /// with the joystick up
         internal static let secondJoystick = L10n.tr("Localizable", "Game.Balloon.text.secondJoystick")
         /// by contracting your muscle
@@ -82,16 +94,20 @@ internal enum L10n {
       internal static let title = L10n.tr("Localizable", "Game.Sheep.title")
       internal enum Score {
         internal enum Pending {
-          /// You jumped over %d fences, still %d to go !
+          /// You jumped over %d fences out of %d 
           internal static func many(_ p1: Int, _ p2: Int) -> String {
             return L10n.tr("Localizable", "Game.Sheep.score.pending.many", p1, p2)
           }
-          /// You jumped over 1 fence, still %d to go !
+          /// You jumped over 1 fence out of %d 
           internal static func one(_ p1: Int) -> String {
             return L10n.tr("Localizable", "Game.Sheep.score.pending.one", p1)
           }
         }
         internal enum Result {
+          /// You only jumped %d fences out of %d!
+          internal static func notEnough(_ p1: Int, _ p2: Int) -> String {
+            return L10n.tr("Localizable", "Game.Sheep.score.result.notEnough", p1, p2)
+          }
           /// You jumped over all the fences !
           internal static let win = L10n.tr("Localizable", "Game.Sheep.score.result.win")
         }
@@ -110,19 +126,25 @@ internal enum L10n {
           internal static let first = L10n.tr("Localizable", "Game.Sheep.text.Jump.first")
           /// by contracting your muscle
           internal static let second = L10n.tr("Localizable", "Game.Sheep.text.Jump.second")
+          /// with the joystick up
+          internal static let secondJoystick = L10n.tr("Localizable", "Game.Sheep.text.Jump.secondJoystick")
         }
       }
     }
     internal enum Space {
-      /// Try to avoid collisions
-      internal static let header = L10n.tr("Localizable", "Game.Space.header")
-      /// by contracting your muscle
-      internal static let subHeader = L10n.tr("Localizable", "Game.Space.subHeader")
       /// Space Battle !
       internal static let title = L10n.tr("Localizable", "Game.Space.title")
       internal enum Button {
         /// Continue
         internal static let keepGoing = L10n.tr("Localizable", "Game.Space.button.keepGoing")
+      }
+      internal enum Text {
+        /// Try to avoid collisions
+        internal static let first = L10n.tr("Localizable", "Game.Space.text.first")
+        /// by moving the joystick
+        internal static let secondJoystick = L10n.tr("Localizable", "Game.Space.text.secondJoystick")
+        /// by contracting your left or right muscle
+        internal static let secondMuscle = L10n.tr("Localizable", "Game.Space.text.secondMuscle")
       }
     }
     internal enum Star {
@@ -270,6 +292,8 @@ internal enum L10n {
 
   internal enum Notif {
     internal enum Ble {
+      /// kBLEPeripheralAuthorizationNotification
+      internal static let authorization = L10n.tr("Localizable", "Notif.BLE.Authorization")
       /// kBLEPeripheralConnectionNotification
       internal static let connection = L10n.tr("Localizable", "Notif.BLE.Connection")
       /// kBLEDataReceivedNotification
@@ -349,6 +373,7 @@ internal enum L10n {
 
 extension L10n {
   private static func tr(_ table: String, _ key: String, _ args: CVarArg...) -> String {
+    // swiftlint:disable:next nslocalizedstring_key
     let format = NSLocalizedString(key, tableName: table, bundle: Bundle(for: BundleToken.self), comment: "")
     return String(format: format, locale: Locale.current, arguments: args)
   }
