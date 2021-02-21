@@ -97,6 +97,7 @@ internal enum Asset {
       internal static let meteor04 = ImageAsset(name: "Games/SpaceshipGame/meteor_04")
       internal static let meteor05 = ImageAsset(name: "Games/SpaceshipGame/meteor_05")
       internal static let spaceLife = ImageAsset(name: "Games/SpaceshipGame/space_life")
+      internal static let spaceStar = ImageAsset(name: "Games/SpaceshipGame/space_star")
       internal static let spaceshipLeft = ImageAsset(name: "Games/SpaceshipGame/spaceship_left")
       internal static let spaceshipNml = ImageAsset(name: "Games/SpaceshipGame/spaceship_nml")
       internal static let spaceshipRight = ImageAsset(name: "Games/SpaceshipGame/spaceship_right")
