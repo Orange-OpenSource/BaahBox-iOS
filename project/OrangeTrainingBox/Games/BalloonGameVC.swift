@@ -39,6 +39,13 @@ class BalloonGameVC: GameVC, GameSceneDelegate {
         super.viewDidLoad()
         title = L10n.Game.Balloon.title
         navTintColor = Asset.Colors.orange.color
+        if #available(iOS 13, *) {
+            if let navFont = UIFont(name: ".SFCompactText-Regular", size: 18) {
+                let navBarAttributesDictionary  = [NSAttributedString.Key.font: navFont]
+                
+                self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = navBarAttributesDictionary
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
