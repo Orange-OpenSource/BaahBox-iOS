@@ -1,0 +1,19 @@
+/* 
+  ESSAbout.strings
+  Pods
+
+  Created by Raphael on 03/11/2014.
+
+*/
+"ESSAbout.infoTitle" = "About";
+"ESSAbout.versionLabel" = "Version : %@";
+"ESSAbout.rightsLabel" = "Copyright Orange. All rights reserved.";
+
+//Predefined titles
+"ESSAbout.rubricTitle.AppNewFeaturesTitle" = "What's new";
+"ESSAbout.rubricTitle.TrustBadgeTitle" = "Trust Badge";
+"ESSAbout.rubricTitle.AppLegalInformationsTitle" = "Legal information";
+"ESSAbout.rubricTitle.AppTermOfUseTitle" = "General terms of use";
+"ESSAbout.rubricTitle.AppPrivacypolicyTitle" = "Privacy information";
+
+"ESSAbout.closeButtonIpad" = "Close";
