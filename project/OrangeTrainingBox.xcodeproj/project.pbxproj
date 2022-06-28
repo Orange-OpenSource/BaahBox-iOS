@@ -545,7 +545,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./swiftgen.sh\n./check-assets.sh\n./check-headers.sh\n";
+			shellScript = "./swiftgen.sh\n\n";
 		};
 		5192C01022FC3CDA000024E2 /* Check sources with SwftLint */ = {
 			isa = PBXShellScriptBuildPhase;
