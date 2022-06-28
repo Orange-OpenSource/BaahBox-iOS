@@ -1,28 +1,28 @@
-//
-//  GameVC.swift
-//  Baah Box
-//
-//  Copyright (C) 2017 – 2020 Orange SA
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-//  GNU General Public License for more details.
-//
-//  You should have received a copy of the GNU General Public License
-//  along with this program. If not, see <http://www.gnu.org/licenses/>.
-//
+ //
+ //  GameVC.swift
+ //  Baah Box
+ //
+ //  Copyright (C) 2017 – 2020 Orange SA
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation, either version 3 of the License, or
+ //  (at your option) any later version.
+ //
+ //  This program is distributed in the hope that it will be useful,
+ //  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ //  GNU General Public License for more details.
+ //
+ //  You should have received a copy of the GNU General Public License
+ //  along with this program. If not, see <http://www.gnu.org/licenses/>.
+ //
 
 
 import UIKit
 import SpriteKit
 
-class GameVC : UIViewController {
+class GameVC: UIViewController {
     let btManager = BLEDiscovery.shared()
     let dataManager = ParameterDataManager.sharedInstance
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -33,9 +33,9 @@ class GameVC : UIViewController {
         }
     }
     
-    // =======================
-    // MARK: - View Lifecycle
-    // =======================
+        // =======================
+        // MARK: - View Lifecycle
+        // =======================
     
     
     override func viewDidLoad() {
@@ -56,9 +56,9 @@ class GameVC : UIViewController {
         skView?.presentScene(nil)
     }
     
-    // =================
-    // MARK: - SKView
-    // =================
+        // =================
+        // MARK: - SKView
+        // =================
     
     
     func configureSkView(showData: Bool = false) -> SKView? {
@@ -69,9 +69,9 @@ class GameVC : UIViewController {
         return skView
     }
     
-    // ======================
-    // MARK: - Configuration
-    // ======================
+        // ======================
+        // MARK: - Configuration
+        // ======================
     
     func configureBaahBox() {
         if dataManager.demoMode {
@@ -86,7 +86,7 @@ class GameVC : UIViewController {
     
     func configureBarButtons () {
         var rightButtons: [UIBarButtonItem] = []
-        let parameterButton = UIBarButtonItem (image: Asset.Dashboard.settingsIcon.image,
+        let parameterButton = UIBarButtonItem(image: Asset.Dashboard.settingsIcon.image,
                                                style: UIBarButtonItem.Style.plain,
                                                target: self, action:#selector (onParameterButton))
         parameterButton.tintColor = navTintColor
@@ -106,15 +106,15 @@ class GameVC : UIViewController {
         
         if !ParameterDataManager.sharedInstance.demoMode {
             switch ParameterDataManager.sharedInstance.sensorType {
-            case .joystick:
-                sensorIcon = UIBarButtonItem(image: Asset.Dashboard.joystick.image,
-                                             style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-                
-            case .muscles:
-                sensorIcon = UIBarButtonItem(image: Asset.Dashboard.muscle.image,
-                                             style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-            case .buttons:
-                break
+                case .joystick:
+                    sensorIcon = UIBarButtonItem(image: Asset.Dashboard.joystick.image,
+                                                 style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+                    
+                case .muscles:
+                    sensorIcon = UIBarButtonItem(image: Asset.Dashboard.muscle.image,
+                                                 style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+                case .buttons:
+                    break
             }
         }
         
@@ -122,16 +122,34 @@ class GameVC : UIViewController {
     }
     
     func configureNavBar() {
+        if #available(iOS 13, *) {
+            if let localNavigationBar = navigationController?.navigationBar {
+                let standardAppearance = UINavigationBarAppearance()
+                standardAppearance.backgroundColor = .white
+                standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navTintColor]
+                
+                let compactAppearance = UINavigationBarAppearance()
+                compactAppearance.backgroundColor = .white
+                compactAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navTintColor]
+                
+                let scrollEdgeAppearance = UINavigationBarAppearance()
+                scrollEdgeAppearance.backgroundColor = .white
+                scrollEdgeAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navTintColor]
+                
+                localNavigationBar.standardAppearance = standardAppearance
+                localNavigationBar.compactAppearance = compactAppearance
+                localNavigationBar.scrollEdgeAppearance = scrollEdgeAppearance
+            }
+        } else {
+            navigationController?.barTextColor = navTintColor
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navTintColor]
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: navTintColor]
+        }
         navigationController?.tintColor = navTintColor
-        navigationController?.barTextColor = navTintColor
         navigationItem.rightBarButtonItem?.tintColor = navTintColor
-        
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navTintColor]
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: navTintColor]
         
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.isHidden = false
-        
         configureBarButtons()
     }
     
@@ -143,9 +161,9 @@ class GameVC : UIViewController {
     }
     
     
-    // ======================
-    // MARK: - BT handling
-    // ======================
+        // ======================
+        // MARK: - BT handling
+        // ======================
     
     @objc func onBTButton(button: UIButton) {
         let storyboard = UIStoryboard(name: "Settings", bundle: nil)
@@ -214,9 +232,9 @@ class GameVC : UIViewController {
     
     
     
-    // ========================
-    // MARK: BLE Notifications
-    // ========================
+        // ========================
+        // MARK: BLE Notifications
+        // ========================
     
     
     @objc func bleUp(_ notification: Notification) {
@@ -236,9 +254,9 @@ class GameVC : UIViewController {
     }
     
     
-    // ============================
-    // MARK: - Notification Center
-    // ============================
+        // ============================
+        // MARK: - Notification Center
+        // ============================
     
     func unsetNotifications() {
         NotificationCenter.default.removeObserver(self)
