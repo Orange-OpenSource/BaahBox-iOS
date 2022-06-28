@@ -64,7 +64,7 @@ class TaudGameParameterVC: UIViewController, UITableViewDelegate, UITableViewDat
                                                  attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
             
             cell.title.attributedText = text
-            cell.sliderItem.value = Float (dataManager.numberOfFlies)
+            cell.sliderItem.value = Float(dataManager.numberOfFlies)
             
             let val = NSMutableAttributedString(string: cell.sliderItem.value.clean,
                                                 attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16),
@@ -82,7 +82,7 @@ class TaudGameParameterVC: UIViewController, UITableViewDelegate, UITableViewDat
                                                  attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
             
             cell.title.attributedText = text
-            cell.sliderItem.value = Float (dataManager.flySteadyTime)
+            cell.sliderItem.value = Float(dataManager.flySteadyTime)
             
             let value = L10n.Parameters.Taud.timeValue(cell.sliderItem.value.clean)
             let val = NSMutableAttributedString(string: value,
@@ -112,12 +112,12 @@ class TaudGameParameterVC: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     @IBAction func onFlySelection(_ sender: UISlider) {
-        dataManager.numberOfFlies = Int (sender.value)
+        dataManager.numberOfFlies = Int(sender.value)
         tableView.reloadData()
     }
     
     @IBAction func onTimeSelection(_ sender: UISlider) {
-        dataManager.flySteadyTime = Int (sender.value)
+        dataManager.flySteadyTime = Int(sender.value)
         tableView.reloadData()
     }
     

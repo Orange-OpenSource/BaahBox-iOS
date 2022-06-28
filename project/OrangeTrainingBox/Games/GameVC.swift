@@ -22,7 +22,7 @@
 import UIKit
 import SpriteKit
 
-class GameVC : UIViewController {
+class GameVC: UIViewController {
     let btManager = BLEDiscovery.shared()
     let dataManager = ParameterDataManager.sharedInstance
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -86,9 +86,9 @@ class GameVC : UIViewController {
     
     func configureBarButtons () {
         var rightButtons: [UIBarButtonItem] = []
-        let parameterButton = UIBarButtonItem (image: Asset.Dashboard.settingsIcon.image,
+        let parameterButton = UIBarButtonItem(image: Asset.Dashboard.settingsIcon.image,
                                                style: UIBarButtonItem.Style.plain,
-                                               target: self, action:#selector (onParameterButton))
+                                               target: self, action: #selector(onParameterButton))
         parameterButton.tintColor = navTintColor
         rightButtons.append(parameterButton)
         
@@ -177,13 +177,13 @@ class GameVC : UIViewController {
         
         alert.view.tintColor = Asset.Colors.pinky.color
         
-        alert.addAction(UIAlertAction(title: L10n.Generic.cancel, style: .cancel, handler: {(action:UIAlertAction) in
+        alert.addAction(UIAlertAction(title: L10n.Generic.cancel, style: .cancel, handler: {(action: UIAlertAction) in
             self.dataManager.demoMode = true
             self.appDelegate.shouldPresentConnectionPannel = false
             self.configureNavBar()
         }))
         
-        alert.addAction(UIAlertAction(title: L10n.Generic.connect, style: .default, handler: {(action:UIAlertAction) in
+        alert.addAction(UIAlertAction(title: L10n.Generic.connect, style: .default, handler: {(action: UIAlertAction) in
             
             if self.btManager.getBTState() == .poweredOff {
                 self.appDelegate.shouldPresentConnectionPannel = true
@@ -199,20 +199,18 @@ class GameVC : UIViewController {
     
     
     func presentBLEConnectionPopup () {
-        let alert = UIAlertController(title: L10n.Generic.ble, message: L10n.Ble.Connection.bleSwitchON, preferredStyle: .alert);
+        let alert = UIAlertController(title: L10n.Generic.ble, message: L10n.Ble.Connection.bleSwitchON, preferredStyle: .alert)
         alert.view.tintColor = Asset.Colors.pinky.color
-        alert.addAction(UIAlertAction(title: L10n.Generic.cancel, style: .cancel, handler: {(action:UIAlertAction) in
+        alert.addAction(UIAlertAction(title: L10n.Generic.cancel, style: .cancel, handler: {(action: UIAlertAction) in
             self.dataManager.demoMode = true
             self.appDelegate.shouldPresentConnectionPannel = false
         }))
-        alert.addAction(UIAlertAction(title: L10n.Generic.activate, style: .default, handler: {(action:UIAlertAction) in
+        alert.addAction(UIAlertAction(title: L10n.Generic.activate, style: .default, handler: {(action: UIAlertAction) in
             self.presentBTSettingPanel()
         }))
         present(alert, animated: true, completion: nil)
         
     }
-    
-    
     
     // ========================
     // MARK: BLE Notifications

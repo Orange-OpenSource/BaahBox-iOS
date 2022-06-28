@@ -61,7 +61,7 @@ class SheepGameParameterVC: UIViewController, UITableViewDelegate, UITableViewDa
                                                 attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
             
             cell.title.attributedText = text
-            cell.sliderItem.value = Float (ParameterDataManager.sharedInstance.numberOfFences)
+            cell.sliderItem.value = Float(ParameterDataManager.sharedInstance.numberOfFences)
             
             let val = NSMutableAttributedString(string: cell.sliderItem.value.clean,
                                                  attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16),
@@ -111,7 +111,7 @@ class SheepGameParameterVC: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func onFenceSelection(_ sender: UISlider) {
-        ParameterDataManager.sharedInstance.numberOfFences = Int (sender.value)
+        ParameterDataManager.sharedInstance.numberOfFences = Int(sender.value)
         tableView.reloadData()
     }
 }

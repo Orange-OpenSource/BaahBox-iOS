@@ -141,7 +141,7 @@ class SpaceshipGameVC: GameVC, GameSceneDelegate  {
 //    }
     
     // =============================
-    // MARK : - User's interactions
+    // MARK: - User's interactions
     // =============================
     
     @IBAction func onButtonPressed(_ sender: Any) {
@@ -165,7 +165,6 @@ class SpaceshipGameVC: GameVC, GameSceneDelegate  {
        }
        
    
-    
     func setButtonLocation(forStart: Bool) {
         // removed the weak feature for those constraints for activation/deactivation.
         // see https://developer.apple.com/forums/thread/126384

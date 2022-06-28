@@ -68,7 +68,7 @@ class StarGameScene: SKScene, GameScene, ParametersDefaultable {
                 title?.isHidden = true
                 subtitle?.isHidden = true
                 feedback?.isHidden = false
-                feedback?.transform = CGAffineTransform(scaleX: 2, y: 2);
+                feedback?.transform = CGAffineTransform(scaleX: 2, y: 2)
                 button?.setTitle(L10n.Game.reStart, for: .normal)
                 button?.isHidden = false
             }
@@ -200,7 +200,7 @@ class StarGameScene: SKScene, GameScene, ParametersDefaultable {
         }
         switch strengthValue {
         case 0...Int(20 * hardnessCoeff):
-            star.texture = SKTexture (imageNamed: Asset.Games.StarGame.starLow.name)
+            star.texture = SKTexture(imageNamed: Asset.Games.StarGame.starLow.name)
             feedback?.isHidden = true
             title?.isHidden = false
             subtitle?.isHidden = false

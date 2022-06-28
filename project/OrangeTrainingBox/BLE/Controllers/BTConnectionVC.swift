@@ -76,7 +76,7 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
             button.setAttributedTitle(title, for: .normal)
             button.setTitleColor(UIColor.red, for: .normal)
             button.addTarget(self, action: #selector(doConnection(sender:)), for: .touchUpInside)
-            navigationItem.rightBarButtonItem = UIBarButtonItem (customView: button)
+            navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
         } else {
             
             if shouldShowAnimation {
@@ -133,7 +133,7 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
             navigationItem.rightBarButtonItem = getStartIndicatorButton()
             btManager.btDisconnect()
         default:
-            let newIndex = getPeripheralIndex (at: indexPath)
+            let newIndex = getPeripheralIndex(at: indexPath)
             
             let peripheralName = getPeripheralName(at: newIndex)
             toogleSelectedCells(with: peripheralName)
@@ -143,13 +143,13 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    func getStartIndicatorButton () -> UIBarButtonItem {
-        let customView = UIButton ()
+    func getStartIndicatorButton() -> UIBarButtonItem {
+        let customView = UIButton()
         
-        customView.frame = CGRect (x: 0, y: 0, width: 40, height: 40)
+        customView.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         customView.isUserInteractionEnabled = false
         
-        actInd.frame = CGRect (x: 0, y: 0, width: 40, height: 40)
+        actInd.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         actInd.center = customView.center
         actInd.hidesWhenStopped = true
         actInd.style = .gray
@@ -158,7 +158,7 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
         
         actInd.startAnimating()
         
-        let button = UIBarButtonItem (customView: customView)
+        let button = UIBarButtonItem(customView: customView)
         button.isEnabled = false
         
         return button
@@ -225,7 +225,7 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
                 return item.value
             }
             let connectedPeripheralName = btManager.peripheralNames[btManager.currentPeripheral]
-            cell.configure (activeButton: activeCells.first?.key == connectedPeripheralName)
+            cell.configure(activeButton: activeCells.first?.key == connectedPeripheralName)
         } else {
             cell.isHidden = true
         }
@@ -239,7 +239,7 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
             return UITableViewCell()
         }
         
-        let index = getPeripheralIndex (at: indexPath)
+        let index = getPeripheralIndex(at: indexPath)
         let peripheralName = getPeripheralName(at: index)
         cell.configure(with: peripheralName, shouldShowTick: selectedCells[peripheralName] ?? false)
         return cell
@@ -267,7 +267,8 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
                                                name: NSNotification.Name(rawValue: L10n.Notif.Ble.connection), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(peripheralDisconnected(_:)),
                                                name: NSNotification.Name(rawValue: L10n.Notif.Ble.disconnection), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(presentBLEAuthorizationPopup), name: NSNotification.Name(rawValue: L10n.Notif.Ble.authorization), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(presentBLEAuthorizationPopup),
+                                               name: NSNotification.Name(rawValue: L10n.Notif.Ble.authorization), object: nil)
     }
     
     func unsetNotifications() {
@@ -317,16 +318,16 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
     }
     
   @objc func presentBLEAuthorizationPopup() {
-        let alert = UIAlertController(title: L10n.Generic.ble, message: L10n.Ble.Connection.bleAuthorize, preferredStyle: .alert);
+        let alert = UIAlertController(title: L10n.Generic.ble, message: L10n.Ble.Connection.bleAuthorize, preferredStyle: .alert)
         alert.view.tintColor = Asset.Colors.pinky.color
     
-        alert.addAction(UIAlertAction(title: L10n.Generic.cancel, style: .cancel, handler: {(action:UIAlertAction) in
+        alert.addAction(UIAlertAction(title: L10n.Generic.cancel, style: .cancel, handler: {(action: UIAlertAction) in
             self.btManager.stopScanning()
             ParameterDataManager.sharedInstance.demoMode = true
             self.navigationController?.popViewController(animated: true)
         }))
     
-        alert.addAction(UIAlertAction(title: L10n.Generic.activate, style: .default, handler: {(action:UIAlertAction) in
+        alert.addAction(UIAlertAction(title: L10n.Generic.activate, style: .default, handler: {(action: UIAlertAction) in
             UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
         }))
     

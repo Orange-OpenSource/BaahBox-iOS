@@ -63,7 +63,7 @@ class SpaceShipParameterVC: UIViewController, UITableViewDelegate, UITableViewDa
                                                  attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
             
             cell.title.attributedText = text
-            cell.sliderItem.value = Float (dataManager.numberOfSpaceShips)
+            cell.sliderItem.value = Float(dataManager.numberOfSpaceShips)
             
             let val = NSMutableAttributedString(string: cell.sliderItem.value.clean,
                                                 attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16),
@@ -126,7 +126,7 @@ class SpaceShipParameterVC: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func onShipSelection(_ sender: UISlider) {
-        dataManager.numberOfSpaceShips = Int (sender.value)
+        dataManager.numberOfSpaceShips = Int(sender.value)
         tableView.reloadData()
     }
     

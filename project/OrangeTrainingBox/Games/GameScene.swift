@@ -21,7 +21,7 @@
 import UIKit
 import SpriteKit
 
-public protocol GameSceneDelegate: AnyObject{
+public protocol GameSceneDelegate: AnyObject {
     func onChanged(state: GameState)
 }
 
@@ -39,4 +39,3 @@ public protocol GameScene {
     func onButtonPressed()
     
 }
-

@@ -109,7 +109,7 @@ class MainParametersVC: GameVC, UITableViewDelegate, UITableViewDataSource {
      func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let frame = tableView.frame
         
-        let title = UILabel (frame: CGRect (x: 0, y: 0, width: frame.size.width, height: 10))
+        let title = UILabel(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 10))
         
         let textContent = NSMutableAttributedString(string: (SectionDescription.init(rawValue: section)?.title)!,
                                                     attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
@@ -119,7 +119,7 @@ class MainParametersVC: GameVC, UITableViewDelegate, UITableViewDataSource {
         title.lineBreakMode = .byWordWrapping
         title.translatesAutoresizingMaskIntoConstraints = false
         
-        let headerView = UIView (frame: CGRect (x: 0, y: 0, width: frame.size.width, height: 50))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 50))
         headerView.addSubview(title)
 
         headerView.addConstraint(NSLayoutConstraint(item: title, attribute: .leading, relatedBy: .equal,
@@ -129,7 +129,7 @@ class MainParametersVC: GameVC, UITableViewDelegate, UITableViewDataSource {
         headerView.addConstraint(NSLayoutConstraint(item: title, attribute: .top, relatedBy: .equal,
                                                      toItem: headerView, attribute: .top, multiplier: 1, constant: 5))
         
-        headerView.backgroundColor = UIColor (displayP3Red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        headerView.backgroundColor = UIColor(displayP3Red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
         return headerView
     }
     

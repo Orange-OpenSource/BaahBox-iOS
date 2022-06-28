@@ -38,7 +38,7 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
     weak var gameSceneDelegate: GameSceneDelegate?
     
     let happySheep = SKSpriteNode(imageNamed: Asset.Games.SheepGame.bigSheep.name)
-    let sheep = SKSpriteNode(imageNamed:  Asset.Games.SheepGame.sheep1.name)
+    let sheep = SKSpriteNode(imageNamed: Asset.Games.SheepGame.sheep1.name)
     let fence = SKSpriteNode(imageNamed: Asset.Games.SheepGame.sheepGate.name)
     let ground = SKSpriteNode(imageNamed: Asset.Games.SheepGame.sheepGround.name)
     let bang = SKSpriteNode(imageNamed: Asset.Games.SheepGame.sheepBang.name)
@@ -174,7 +174,7 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
         fence.zPosition = -1
         fence.isHidden = false
         
-        happySheep.anchorPoint = CGPoint(x:0.0, y:1.0)
+        happySheep.anchorPoint = CGPoint(x: 0.0, y: 1.0)
         happySheep.isHidden = true
         happySheep.position = CGPoint(x: size.width/2 - happySheep.size.width/2, y: size.height)// ground.position.y)
         hideHappySheep()
@@ -317,9 +317,9 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
         happySheep.isHidden = false
         happySheep.size.height = (happySheep.texture?.size().height)! * 1.2
         happySheep.size.width = (happySheep.texture?.size().width)! * 1.2
-        happySheep.position = CGPoint(x:(happySheep.texture?.size().width)! * 0.5, y: size.height)
+        happySheep.position = CGPoint(x: (happySheep.texture?.size().width)! * 0.5, y: size.height)
         
-        happySheep.anchorPoint  = CGPoint(x: 0.5 , y: 1.0)
+        happySheep.anchorPoint  = CGPoint(x: 0.5, y: 1.0)
         happySheep.run(gameWonAnimation)
         happySheep.run(SKAction.wait(forDuration: 3.0))
         startGameWonAnimation()
@@ -329,9 +329,6 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
         happySheep.isHidden = true
         stopGameWonAnimation() // should be in another scene
     }
-    
-    
-    
     
     // =========================
     // MARK: - data processing

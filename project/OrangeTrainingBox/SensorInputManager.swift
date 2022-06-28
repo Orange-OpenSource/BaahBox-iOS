@@ -38,7 +38,7 @@ class SensorInputManager {
         
         print("inputData: \(rawInput)")
         guard rawInput.count == 5 else {
-            print ("bad value")
+            print("bad value")
             return
         }
         

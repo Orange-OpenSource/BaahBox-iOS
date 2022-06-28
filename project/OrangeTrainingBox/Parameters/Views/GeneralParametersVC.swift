@@ -130,7 +130,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let frame = tableView.frame
         
-        let title = UILabel (frame: CGRect (x: 0, y: 0, width: frame.size.width, height: 10))
+        let title = UILabel(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 10))
         
         let textContent = NSMutableAttributedString(string: (SectionDescription.init(rawValue: section)?.title())!,
                                                     attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
@@ -141,18 +141,18 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
         title.translatesAutoresizingMaskIntoConstraints = false
         
         
-        let subTitle = UILabel (frame: CGRect (x: 0, y: 0, width: frame.size.width, height: 25))
+        let subTitle = UILabel(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 25))
         
         let textContent2 = NSMutableAttributedString(string: (SectionDescription.init(rawValue: section)?.subtitle())!,
                             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular),
-                                         NSAttributedString.Key.foregroundColor: UIColor (displayP3Red: 0.6, green: 0.6, blue: 0.6, alpha: 1)])
+                                         NSAttributedString.Key.foregroundColor: UIColor(displayP3Red: 0.6, green: 0.6, blue: 0.6, alpha: 1)])
         
         subTitle.attributedText = textContent2
         subTitle.numberOfLines = 0
         subTitle.lineBreakMode = .byWordWrapping
         subTitle.translatesAutoresizingMaskIntoConstraints = false
         
-        let headerView = UIView (frame: CGRect (x: 0, y: 0, width: frame.size.width, height: 50))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 50))
         headerView.addSubview(title)
         headerView.addSubview(subTitle)
         
@@ -171,7 +171,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
         headerView.addConstraint(NSLayoutConstraint(item: subTitle, attribute: .top, relatedBy: .equal, toItem: title,
                                                     attribute: .bottom, multiplier: 1, constant: 5))
 
-        headerView.backgroundColor = UIColor (displayP3Red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        headerView.backgroundColor = UIColor(displayP3Red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
         return headerView
     }
     
@@ -281,7 +281,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
                 return UITableViewCell()
             }
             
-            cell.sliderItem.value = Float (dataManager.threshold)
+            cell.sliderItem.value = Float(dataManager.threshold)
             
             let text = NSMutableAttributedString(string: cell.sliderItem.value.clean,
                                                  attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
@@ -331,7 +331,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
     
    
     @IBAction func onThresholdSelection(_ sender: UISlider) {
-        dataManager.threshold = Int (sender.value)
+        dataManager.threshold = Int(sender.value)
         tableView.reloadData()
     }
 }

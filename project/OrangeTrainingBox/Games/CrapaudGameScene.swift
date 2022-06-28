@@ -58,7 +58,7 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
     override init(size: CGSize) {
         crapaudBottomPosition = CGPoint(x: size.width/2, y: size.height/4)
         crapaud.anchorPoint = CGPoint(x: 0.5, y: 0)
-        crapaud.texture = SKTexture (imageNamed: Asset.Games.CrapaudGame.toad.name)
+        crapaud.texture = SKTexture(imageNamed: Asset.Games.CrapaudGame.toad.name)
         crapaud.position = crapaudBottomPosition
         crapaud.setScale(0)
         crapaud.zPosition = 1
@@ -67,11 +67,11 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
         crapaudLangue.anchorPoint = CGPoint(x: 0.5, y: 0)
         crapaudLangue.position = crapaudBottomPosition
         crapaudLangue.setScale(0)
-        crapaudLangue.zPosition = 0  //@@@
+        crapaudLangue.zPosition = 0  // @@@
 
         flyMaxSize = fly.size
         
-        super.init(size: size) //TODO: change the size according to texture !
+        super.init(size: size) // TODO: change the size according to texture !
         backgroundColor = Asset.Colors.greyGreen.color
         loadParameters()
         addChild(crapaud)
@@ -158,7 +158,7 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
             toadBlinkAnimation
 //            .run {self.autoShoot = true},
 //            .group([
-////                rotateAnimation,
+//               rotateAnimation,
 //                toadBlinkAnimation
 //            ])
         ]))

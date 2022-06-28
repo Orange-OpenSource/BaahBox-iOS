@@ -18,14 +18,6 @@
 //  along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 
-//
-//  CrapaudGameVC.swift
-//  Orange Training Box
-//
-//  Created by Frederique Pinson on 04/09/2018.
-//  Copyright © 2018 Orange. All rights reserved.
-//
-
 import UIKit
 import SpriteKit
 
@@ -99,9 +91,6 @@ class CrapaudGameVC: GameVC, CrapaudGameInteractable {
         super.viewWillDisappear(animated)
     }
 
-    
-
-        
     private func addScoreViews() {
         for scoreView in scoreViews {
             scoreView.removeFromSuperview()
@@ -184,7 +173,7 @@ class CrapaudGameVC: GameVC, CrapaudGameInteractable {
             }
             self.scene.startGame()
             self.displayTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
-                #selector(self.onDisplayTimerExpiration), userInfo: nil, repeats: false);
+                #selector(self.onDisplayTimerExpiration), userInfo: nil, repeats: false)
         }
     }
     

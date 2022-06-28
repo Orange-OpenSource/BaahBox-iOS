@@ -35,7 +35,7 @@ class BTHeaderCell: UITableViewCell {
                                          NSAttributedString.Key.foregroundColor: UIColor(displayP3Red: 0.6, green: 0.6, blue: 0.6, alpha: 1)])
         
         descriptionLabel.attributedText = text
-        backgroundColor = UIColor (displayP3Red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        backgroundColor = UIColor(displayP3Red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
         isUserInteractionEnabled = false
     }
 }
