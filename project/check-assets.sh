@@ -20,7 +20,7 @@
 # Run the program at TOOL_PATH to check if assets in TARGET contain LEGAL_NOTICE in metadata
 # https://github.com/Orange-OpenSource/Swift-AssetsLegalMentionsChecker
 
-LEGAL_NOTICE="Baah Box, (c) Copyright Orange SA 2017-2019, CC-BY-SA 4.0 "
+LEGAL_NOTICE="Baah Box, (c) Copyright Orange SA 2017-2020, CC-BY-SA 4.0 "
 TOOL_PATH="../tools/Swift-AssetsLegalMentionsChecker"
 TARGET="."
 

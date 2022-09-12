@@ -58,6 +58,7 @@
 "MainParameters.header.title" = "Parameters";
 "MainParameters.connection.title" = "Connection settings";
 "MainParameters.general.title" = "Global settings";
+"MainParameters.about" = "About";
 
 "MainParameters.games.title" = "Game settings";
 "MainParameters.games.star" = "Make the star shine";
