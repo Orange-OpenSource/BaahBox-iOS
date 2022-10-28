@@ -1,25 +1,27 @@
 // swiftlint:disable all
 // Generated using SwiftGen — https://github.com/SwiftGen/SwiftGen
 
-#if os(OSX)
-  import AppKit.NSImage
-  internal typealias AssetColorTypeAlias = NSColor
-  internal typealias AssetImageTypeAlias = NSImage
-#elseif os(iOS) || os(tvOS) || os(watchOS)
-  import UIKit.UIImage
-  internal typealias AssetColorTypeAlias = UIColor
-  internal typealias AssetImageTypeAlias = UIImage
+#if os(macOS)
+  import AppKit
+#elseif os(iOS)
+  import UIKit
+#elseif os(tvOS) || os(watchOS)
+  import UIKit
 #endif
 
-// swiftlint:disable superfluous_disable_command
-// swiftlint:disable file_length
+// Deprecated typealiases
+@available(*, deprecated, renamed: "ColorAsset.Color", message: "This typealias will be removed in SwiftGen 7.0")
+internal typealias AssetColorTypeAlias = ColorAsset.Color
+@available(*, deprecated, renamed: "ImageAsset.Image", message: "This typealias will be removed in SwiftGen 7.0")
+internal typealias AssetImageTypeAlias = ImageAsset.Image
+
+// swiftlint:disable superfluous_disable_command file_length implicit_return
 
 // MARK: - Asset Catalogs
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
   internal enum Colors {
-
     internal static let beurkGreen = ColorAsset(name: "Colors/BeurkGreen")
     internal static let blueGreen = ColorAsset(name: "Colors/BlueGreen")
     internal static let greenDash = ColorAsset(name: "Colors/GreenDash")
@@ -30,7 +32,6 @@ internal enum Asset {
     internal static let violet = ColorAsset(name: "Colors/Violet")
   }
   internal enum Dashboard {
-
     internal static let balloonMenu = ImageAsset(name: "Dashboard/balloon_menu")
     internal static let battery14 = ImageAsset(name: "Dashboard/battery14")
     internal static let battery34 = ImageAsset(name: "Dashboard/battery34")
@@ -51,7 +52,6 @@ internal enum Asset {
     internal static let toadMenu = ImageAsset(name: "Dashboard/toad_menu")
   }
   internal enum Games {
-
     internal enum BalloonGame {
       internal static let balloon00 = ImageAsset(name: "Games/BalloonGame/balloon_00")
       internal static let balloon01 = ImageAsset(name: "Games/BalloonGame/balloon_01")
@@ -114,22 +114,41 @@ internal enum Asset {
 
 // MARK: - Implementation Details
 
-internal struct ColorAsset {
+internal final class ColorAsset {
   internal fileprivate(set) var name: String
 
-  @available(iOS 11.0, tvOS 11.0, watchOS 4.0, OSX 10.13, *)
-  internal var color: AssetColorTypeAlias {
-    return AssetColorTypeAlias(asset: self)
+  #if os(macOS)
+  internal typealias Color = NSColor
+  #elseif os(iOS) || os(tvOS) || os(watchOS)
+  internal typealias Color = UIColor
+  #endif
+
+  @available(iOS 11.0, tvOS 11.0, watchOS 4.0, macOS 10.13, *)
+  internal private(set) lazy var color: Color = Color(asset: self)
+
+  #if os(iOS) || os(tvOS)
+  @available(iOS 11.0, tvOS 11.0, *)
+  internal func color(compatibleWith traitCollection: UITraitCollection) -> Color {
+    let bundle = BundleToken.bundle
+    guard let color = Color(named: name, in: bundle, compatibleWith: traitCollection) else {
+      fatalError("Unable to load color asset named \(name).")
+    }
+    return color
+  }
+  #endif
+
+  fileprivate init(name: String) {
+    self.name = name
   }
 }
 
-internal extension AssetColorTypeAlias {
-  @available(iOS 11.0, tvOS 11.0, watchOS 4.0, OSX 10.13, *)
+internal extension ColorAsset.Color {
+  @available(iOS 11.0, tvOS 11.0, watchOS 4.0, macOS 10.13, *)
   convenience init!(asset: ColorAsset) {
-    let bundle = Bundle(for: BundleToken.self)
+    let bundle = BundleToken.bundle
     #if os(iOS) || os(tvOS)
     self.init(named: asset.name, in: bundle, compatibleWith: nil)
-    #elseif os(OSX)
+    #elseif os(macOS)
     self.init(named: NSColor.Name(asset.name), bundle: bundle)
     #elseif os(watchOS)
     self.init(named: asset.name)
@@ -137,57 +156,53 @@ internal extension AssetColorTypeAlias {
   }
 }
 
-internal struct DataAsset {
+internal struct ImageAsset {
   internal fileprivate(set) var name: String
 
-  #if os(iOS) || os(tvOS) || os(OSX)
-  @available(iOS 9.0, tvOS 9.0, OSX 10.11, *)
-  internal var data: NSDataAsset {
-    return NSDataAsset(asset: self)
+  #if os(macOS)
+  internal typealias Image = NSImage
+  #elseif os(iOS) || os(tvOS) || os(watchOS)
+  internal typealias Image = UIImage
+  #endif
+
+  @available(iOS 8.0, tvOS 9.0, watchOS 2.0, macOS 10.7, *)
+  internal var image: Image {
+    let bundle = BundleToken.bundle
+    #if os(iOS) || os(tvOS)
+    let image = Image(named: name, in: bundle, compatibleWith: nil)
+    #elseif os(macOS)
+    let name = NSImage.Name(self.name)
+    let image = (bundle == .main) ? NSImage(named: name) : bundle.image(forResource: name)
+    #elseif os(watchOS)
+    let image = Image(named: name)
+    #endif
+    guard let result = image else {
+      fatalError("Unable to load image asset named \(name).")
+    }
+    return result
+  }
+
+  #if os(iOS) || os(tvOS)
+  @available(iOS 8.0, tvOS 9.0, *)
+  internal func image(compatibleWith traitCollection: UITraitCollection) -> Image {
+    let bundle = BundleToken.bundle
+    guard let result = Image(named: name, in: bundle, compatibleWith: traitCollection) else {
+      fatalError("Unable to load image asset named \(name).")
+    }
+    return result
   }
   #endif
 }
 
-#if os(iOS) || os(tvOS) || os(OSX)
-@available(iOS 9.0, tvOS 9.0, OSX 10.11, *)
-internal extension NSDataAsset {
-  convenience init!(asset: DataAsset) {
-    let bundle = Bundle(for: BundleToken.self)
-    #if os(iOS) || os(tvOS)
-    self.init(name: asset.name, bundle: bundle)
-    #elseif os(OSX)
-    self.init(name: NSDataAsset.Name(asset.name), bundle: bundle)
-    #endif
-  }
-}
-#endif
-
-internal struct ImageAsset {
-  internal fileprivate(set) var name: String
-
-  internal var image: AssetImageTypeAlias {
-    let bundle = Bundle(for: BundleToken.self)
-    #if os(iOS) || os(tvOS)
-    let image = AssetImageTypeAlias(named: name, in: bundle, compatibleWith: nil)
-    #elseif os(OSX)
-    let image = bundle.image(forResource: NSImage.Name(name))
-    #elseif os(watchOS)
-    let image = AssetImageTypeAlias(named: name)
-    #endif
-    guard let result = image else { fatalError("Unable to load image named \(name).") }
-    return result
-  }
-}
-
-internal extension AssetImageTypeAlias {
-  @available(iOS 1.0, tvOS 1.0, watchOS 1.0, *)
-  @available(OSX, deprecated,
+internal extension ImageAsset.Image {
+  @available(iOS 8.0, tvOS 9.0, watchOS 2.0, *)
+  @available(macOS, deprecated,
     message: "This initializer is unsafe on macOS, please use the ImageAsset.image property")
   convenience init!(asset: ImageAsset) {
     #if os(iOS) || os(tvOS)
-    let bundle = Bundle(for: BundleToken.self)
+    let bundle = BundleToken.bundle
     self.init(named: asset.name, in: bundle, compatibleWith: nil)
-    #elseif os(OSX)
+    #elseif os(macOS)
     self.init(named: NSImage.Name(asset.name))
     #elseif os(watchOS)
     self.init(named: asset.name)
@@ -195,4 +210,14 @@ internal extension AssetImageTypeAlias {
   }
 }
 
-private final class BundleToken {}
+// swiftlint:disable convenience_type
+private final class BundleToken {
+  static let bundle: Bundle = {
+    #if SWIFT_PACKAGE
+    return Bundle.module
+    #else
+    return Bundle(for: BundleToken.self)
+    #endif
+  }()
+}
+// swiftlint:enable convenience_type
