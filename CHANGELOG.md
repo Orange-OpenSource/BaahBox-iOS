@@ -9,5 +9,3 @@
 * Support joystick
 
 
-## ?.?.? (on going)
-
