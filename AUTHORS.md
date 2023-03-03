@@ -6,4 +6,3 @@
 * Balazs Kovesi <balazs(dot)kovesi(at)orange(dot)com>
 * Guillaume Margé <guillaume(dot)marge(at)orange(dot)com>
 * Philippe Besombe <philippe(dot)besombe(at)orange(dot)com>
-
