@@ -35,6 +35,7 @@
 		46B38EF32500EC2700B75C88 /* SpriteKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B38EF22500EC2700B75C88 /* SpriteKitHelper.swift */; };
 		46D5E73221CCAB3600E85B9B /* UIButtonBordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5E73121CCAB3600E85B9B /* UIButtonBordered.swift */; };
 		46D5E73421CCADBD00E85B9B /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5E73321CCADBD00E85B9B /* GameState.swift */; };
+		46E35103286B322500AE6758 /* SNCRASH1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 46E35102286B322500AE6758 /* SNCRASH1.wav */; };
 		46E5A95724FFA25D00F6EECD /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E5A95624FFA25D00F6EECD /* GameVC.swift */; };
 		46E5A95924FFA2FB00F6EECD /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E5A95824FFA2FB00F6EECD /* GameScene.swift */; };
 		46EBAB242215CC3600AA542D /* SensorInputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EBAB232215CC3600AA542D /* SensorInputManager.swift */; };
@@ -120,6 +121,7 @@
 		46B38EF22500EC2700B75C88 /* SpriteKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteKitHelper.swift; sourceTree = "<group>"; };
 		46D5E73121CCAB3600E85B9B /* UIButtonBordered.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonBordered.swift; sourceTree = "<group>"; };
 		46D5E73321CCADBD00E85B9B /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		46E35102286B322500AE6758 /* SNCRASH1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SNCRASH1.wav; sourceTree = "<group>"; };
 		46E5A95624FFA25D00F6EECD /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
 		46E5A95824FFA2FB00F6EECD /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		46EBAB232215CC3600AA542D /* SensorInputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorInputManager.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 		468CFC3E217E180D00E0553E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				46E35102286B322500AE6758 /* SNCRASH1.wav */,
 				465F8EC2220208E900F99669 /* Star.jpg */,
 				467ED80F217E1A7F006FB1DB /* LaunchScreen.storyboard */,
 				467ED80E217E1A7F006FB1DB /* Main.storyboard */,
@@ -511,6 +514,7 @@
 				467ED810217E1A7F006FB1DB /* Main.storyboard in Resources */,
 				46AFC78A217DCCF20052C063 /* Assets.xcassets in Resources */,
 				EB7A290421CAB073000DBA43 /* Settings.storyboard in Resources */,
+				46E35103286B322500AE6758 /* SNCRASH1.wav in Resources */,
 				467ED811217E1A7F006FB1DB /* LaunchScreen.storyboard in Resources */,
 				46AFC7E3217DD43C0052C063 /* Games.storyboard in Resources */,
 			);
@@ -817,6 +821,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = MG2LSJNJB6;
 				INFOPLIST_FILE = OrangeTrainingBox/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -824,6 +829,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = orange.OrangeTrainingBox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -837,6 +843,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = MG2LSJNJB6;
 				INFOPLIST_FILE = OrangeTrainingBox/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -844,6 +851,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = orange.OrangeTrainingBox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

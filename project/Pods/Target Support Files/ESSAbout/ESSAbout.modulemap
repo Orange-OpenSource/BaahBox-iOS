@@ -1,0 +1,6 @@
+framework module ESSAbout {
+  umbrella header "ESSAbout-umbrella.h"
+
+  export *
+  module * { export * }
+}

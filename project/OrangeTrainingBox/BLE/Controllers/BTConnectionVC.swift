@@ -239,7 +239,7 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
             return UITableViewCell()
         }
         
-        let index = getPeripheralIndex (at: indexPath)
+        let index = getPeripheralIndex(at: indexPath)
         let peripheralName = getPeripheralName(at: index)
         cell.configure(with: peripheralName, shouldShowTick: selectedCells[peripheralName] ?? false)
         return cell

@@ -58,10 +58,13 @@ class DashboardVC: GameVC, UITableViewDelegate, UITableViewDataSource {
         tableView.tableFooterView = UIView()
         
         allGames.append(Game(title: L10n.Game.Star.title, icon: Asset.Dashboard.starMenu.image, gameId: StoryboardScene.Games.starGameVC.identifier, color: Asset.Colors.violet.color, nbMuscles: 1))
-        allGames.append(Game(title: L10n.Game.Balloon.title, icon: Asset.Dashboard.balloonMenu.image, gameId: StoryboardScene.Games.balloonGameVC.identifier, color: Asset.Colors.orange.color, nbMuscles: 1))
+        allGames.append(Game(title: L10n.Game.Balloon.title,
+                             icon: Asset.Dashboard.balloonMenu.image, gameId: StoryboardScene.Games.balloonGameVC.identifier, color: Asset.Colors.orange.color, nbMuscles: 1))
         allGames.append(Game(title: L10n.Game.Sheep.title, icon: Asset.Dashboard.sheepMenu.image, gameId: StoryboardScene.Games.sheepGameVC.identifier, color: Asset.Colors.pinky.color, nbMuscles: 1))
-        allGames.append(Game(title: L10n.Game.Space.title, icon: Asset.Dashboard.spaceshipMenu.image, gameId: StoryboardScene.Games.spaceshipGameVC.identifier, color: Asset.Colors.blueGreen.color, nbMuscles: 2))
-        allGames.append(Game(title: L10n.Game.Frog.title, icon: Asset.Dashboard.toadMenu.image, gameId: StoryboardScene.Games.crapaudGameVC.identifier, color: Asset.Colors.greyGreen.color, nbMuscles: 2))
+        allGames.append(Game(title: L10n.Game.Space.title,
+                             icon: Asset.Dashboard.spaceshipMenu.image, gameId: StoryboardScene.Games.spaceshipGameVC.identifier, color: Asset.Colors.blueGreen.color, nbMuscles: 2))
+        allGames.append(Game(title: L10n.Game.Frog.title,
+                             icon: Asset.Dashboard.toadMenu.image, gameId: StoryboardScene.Games.crapaudGameVC.identifier, color: Asset.Colors.greyGreen.color, nbMuscles: 2))
         
         title = L10n.Dashboard.title
         

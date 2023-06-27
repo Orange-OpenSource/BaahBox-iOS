@@ -94,17 +94,19 @@ internal enum L10n {
       internal static let title = L10n.tr("Localizable", "Game.Sheep.title")
       internal enum Score {
         internal enum Pending {
-          /// You jumped over %d fences out of %d 
+          /// You jumped over %d fences out of %d !
           internal static func many(_ p1: Int, _ p2: Int) -> String {
             return L10n.tr("Localizable", "Game.Sheep.score.pending.many", p1, p2)
           }
-          /// You jumped over 1 fence out of %d 
+          /// You jumped over 1 fence out of %d !
           internal static func one(_ p1: Int) -> String {
             return L10n.tr("Localizable", "Game.Sheep.score.pending.one", p1)
           }
         }
         internal enum Result {
-          /// You only jumped %d fences out of %d!
+          /// You forgot to jump over the fence !
+          internal static let allMissed = L10n.tr("Localizable", "Game.Sheep.score.result.allMissed")
+          /// You only jumped %d fences out of %d !
           internal static func notEnough(_ p1: Int, _ p2: Int) -> String {
             return L10n.tr("Localizable", "Game.Sheep.score.result.notEnough", p1, p2)
           }
@@ -121,6 +123,8 @@ internal enum L10n {
         }
       }
       internal enum Text {
+        /// Land before the next fence !
+        internal static let goDown = L10n.tr("Localizable", "Game.Sheep.text.goDown")
         internal enum Jump {
           /// Make the sheep jump over the fences
           internal static let first = L10n.tr("Localizable", "Game.Sheep.text.Jump.first")

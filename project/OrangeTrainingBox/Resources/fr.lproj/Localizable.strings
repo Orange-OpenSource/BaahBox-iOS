@@ -141,11 +141,14 @@
 "Game.Sheep.title" = "Saute, Mouton, Saute !";
 "Game.Sheep.score.start.one" = "Essaie de sauter 1 barrière";
 "Game.Sheep.score.start.many" = "Essaie de sauter %d barrières";
-"Game.Sheep.score.pending.one" = "Tu as sauté 1 barrière sur %d!";
-"Game.Sheep.score.pending.many" = "Tu as sauté %d barrières sur %d!";
+"Game.Sheep.score.pending.one" = "Tu as sauté 1 barrière sur %d !";
+"Game.Sheep.score.pending.many" = "Tu as sauté %d barrières sur %d !";
 "Game.Sheep.score.result.win" = "Tu as sauté toutes les barrières !";
+"Game.Sheep.score.result.notEnough" = "Tu n'as sauté que %d barrière(s) sur %d !";
+"Game.Sheep.score.result.allMissed" = "Tu as oublié de sauter une barrière !";
+"Game.Sheep.text.goDown" = "Atterris avant la prochaine barrière !";
+
 "Game.Sheep.text.Jump.first" = "Fais sauter le mouton";
-"Game.Sheep.score.result.notEnough" = "Tu n'as sauté que %d barrière(s) sur %d!";
 "Game.Sheep.text.Jump.second" = "en contractant les muscles";
 "Game.Sheep.text.Jump.secondJoystick" = "en poussant le joystick en haut";
 
