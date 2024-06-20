@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="bottom" selectionStyle="none" indentationWidth="10" reuseIdentifier="GenericHeaderCell" rowHeight="206" id="lnQ-3b-rss" customClass="GenericHeaderCell" customModule="Application" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="206"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="lnQ-3b-rss" id="ifM-0e-f0I">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="206"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_about" translatesAutoresizingMaskIntoConstraints="NO" id="ycv-Gv-Mjh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="206"/>
+                        <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <bool key="isElement" value="YES"/>
+                        </accessibility>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="206" id="YcU-xN-et1"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="YcU-xN-et1"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="ycv-Gv-Mjh" secondAttribute="trailing" id="9bO-pQ-kIF"/>
+                    <constraint firstAttribute="bottom" secondItem="ycv-Gv-Mjh" secondAttribute="bottom" id="Ny5-uN-61o"/>
+                    <constraint firstItem="ycv-Gv-Mjh" firstAttribute="top" secondItem="ifM-0e-f0I" secondAttribute="top" id="Xb5-ES-sB2"/>
+                    <constraint firstItem="ycv-Gv-Mjh" firstAttribute="leading" secondItem="ifM-0e-f0I" secondAttribute="leading" id="psb-uz-lOf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="headerImage" destination="ycv-Gv-Mjh" id="KRh-0M-La8"/>
+            </connections>
+            <point key="canvasLocation" x="140" y="139"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="img_about" width="496" height="270"/>
+    </resources>
+</document>
