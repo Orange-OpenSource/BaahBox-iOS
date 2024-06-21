@@ -2,7 +2,7 @@
 //  GameViewController.swift
 //  Baah Box
 //
-//  Copyright (C) 2017 – 2020 Orange SA
+//  Copyright (C) 2017 – 2024 Orange SA
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -63,7 +63,7 @@ class BalloonGameVC: GameVC, GameSceneDelegate {
     // ===============
     
     func configureScene () {
-        scene = BalloonGameScene(size:CGSize(width: 1536, height: 2048))
+        scene = BalloonGameScene(size: CGSize(width: 1536, height: 2048))
         scene?.configure(title: titleLabel, subtitle: subtitleLabel, feedback: feedbackLabel, score: nil, button: button, delegate: self)
         scene.scaleMode = .aspectFill
         let skView = configureSkView()
@@ -88,4 +88,3 @@ class BalloonGameVC: GameVC, GameSceneDelegate {
         return false
     }
 }
-

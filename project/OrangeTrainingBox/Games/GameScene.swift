@@ -2,7 +2,7 @@
 //  GameScene.swift
 //  Baah Box
 //
-//  Copyright (C) 2017 – 2020 Orange SA
+//  Copyright (C) 2017 – 2024 Orange SA
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by

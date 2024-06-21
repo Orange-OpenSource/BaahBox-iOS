@@ -2,7 +2,7 @@
 //  SheepGameScene.swift
 //  Baah Box
 //
-//  Copyright (C) 2017 – 2020 Orange SA
+//  Copyright (C) 2017 – 2024 Orange SA
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -55,6 +55,7 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
     var successfullJumps: Int = 0
     var hasSheepStartedJumping = false
     var nbDisplayedFences: Int = 0
+    var didJumpOverFence: Bool = false
     var strengthValue: Int = 0
     
     var lastUpdateTime: TimeInterval = 0
@@ -82,6 +83,7 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
                 strengthValue = 0
                 successfullJumps = 0
                 nbDisplayedFences = 0
+                didJumpOverFence = false
                 configureLabelsForStart()
                 configureSpritesForStart()
                 
@@ -205,6 +207,7 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
         hasSheepStartedJumping = false
         successfullJumps = 0
         nbDisplayedFences = 0
+        didJumpOverFence = false
         startWalkingSheepAnimation()
         state = .onGoing
     }
@@ -225,22 +228,23 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
         if !isGameOnGoing {
             return
         }
-        if isSheepOnGround() {
-            startWalkingSheepAnimation()
+        if updateFencePosition() {
+            if !isSheepOnGround() && !didJumpOverFence {
+                state = .ended(Score(won: false, total: successfullJumps))
+            }
+            else if successfullJumps == gameObjective {
+                    state = .ended(Score(won: true, total: successfullJumps))
+            }
+            didJumpOverFence = false
         } else {
-            stopWalkingSheepAnimation()
-            sheep.texture = sheepJumpTexture
+            if isThereCollision() {
+                showCollision()
+                state = .ended(Score(won: false, total: -1))
+            } else {
+                checkSheepAndFencePositions()
+                }
+            }
         }
-        if isThereCollision() {
-            showCollision()
-            state = .ended(Score(won: false, total: -1))
-        } else {
-            moveFence()
-            checkSheepAndFencePositions()
-            checkDisplayedFences()
-        }
-    }
-    
     
     private func isThereCollision() -> Bool {
         return fence.frame.intersects(sheep.frame)
@@ -254,52 +258,53 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
     }
     
     func checkDisplayedFences() {
-        if nbDisplayedFences == gameObjective {
-            print("GAME OVER : \(successfullJumps)")
-            state = .ended(Score(won: true, total: successfullJumps))
-        }
+        
     }
+    
     func checkSheepAndFencePositions() {
         if isSheepOnGround() {
-            if isSheepBeyondTheFence() && hasSheepStartedJumping {
+            if isSheepBeyondTheFence() && hasSheepStartedJumping && !didJumpOverFence {
                 successfullJumps += 1
-                //                if successfullJumps == gameObjective {
-                //                    state = .ended(Score(won: true, total: successfullJumps))
-                //                } else {
+                didJumpOverFence = true
                 configureScoreLabel(with: successfullJumps)
-                configureLabelsForWalking()
-                //}
-            } else {
-                configureLabelsForWalking()
             }
             hasSheepStartedJumping = false
+            
+            startWalkingSheepAnimation()
+            configureLabelsForWalking()
         }
         else {
             hasSheepStartedJumping = true
-            configureLabelsForJumpInProgress()
+            
+            stopWalkingSheepAnimation()
+            sheep.texture = sheepJumpTexture
+            if isSheepBeyondTheFence() {
+                configureLabelsToGoDown()
+            }
+            else {
+                configureLabelsForJumpInProgress()
+            }
         }
     }
     
-    func moveFence() {
-        ensureFenceIsWithinBounds()
-        //if nbDisplayedFences < gameObjective {
-        fence.position.x -= CGFloat(2 * speedRate)
-        //}
-        
-    }
-    private func ensureFenceIsWithinBounds() {
+    func updateFencePosition() -> Bool {
+        // returns true if a new fence is coming from the right
         if fence.position.x <= 2.0 {
             fence.position.x = size.width - 5
             nbDisplayedFences += 1
+            return true
         }
+        fence.position.x -= CGFloat(2 * speedRate)
+        return false
     }
+    
     
     func isSheepOnGround() -> Bool {
         return sheep.position.y == groundPosition.y
     }
     
     func isSheepBeyondTheFence() -> Bool {
-        return  fence.position.x < size.width/2 - sheep.size.width/2
+        return fence.position.x < size.width/2 - sheep.size.width/2
     }
     
     
@@ -423,10 +428,19 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
         button?.isHidden = true
     }
     
+    func configureLabelsToGoDown() {
+        scoreLabel?.isHidden = false
+        title?.isHidden = false
+        title?.text = L10n.Game.Sheep.Text.goDown
+        subtitle?.isHidden = true
+        button?.isHidden = true
+    }
+    
     func configureLabelsForCollision() {
         title?.isHidden = true
         subtitle?.isHidden = true
         scoreLabel?.isHidden = true
+        configureScoreLabel(with: 0)
         button?.setTitle(L10n.Game.reStart, for: .normal)
         button?.isHidden = false
         
@@ -439,7 +453,9 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
             subtitle?.text = L10n.Game.Sheep.Score.Result.win
         } else {
             title?.text = L10n.Game.oops
-            subtitle?.text = L10n.Game.Sheep.Score.Result.notEnough(successfullJumps, gameObjective)
+            subtitle?.text = (successfullJumps == 0) ?
+                L10n.Game.Sheep.Score.Result.allMissed :
+                L10n.Game.Sheep.Score.Result.notEnough(successfullJumps, gameObjective)
         }
         configureScoreLabel(with: 0)
         scoreLabel?.isHidden = true

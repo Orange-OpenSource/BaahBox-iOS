@@ -9,10 +9,3 @@
 * Support joystick
 
 
-## ?.?.? (on going)
-
-### Tooling
-
-* Check assets' metadata
-* Check sources' headers
-
