@@ -90,3 +90,33 @@ extension Float {
         //return String(format: "%.2f", self)
     }
 }
+
+func rangeMap(_ value: Int, _ min1: Int, _ max1: Int, _ min2: Int, _ max2: Int) -> Int {
+    let slope = Float(max2 - min2) / Float(max1 - min1)
+    return min2 + lround(Double(slope *  Float(value - min1)))
+    }
+
+func calibrateForAmplitude(_ value: Int, _ min1: Int, _ max1: Int) -> Int {
+    let slope = Float((100) / (max1 - min1))
+    return lround(Double(slope * Float(value - min1)))
+    }
+
+
+func convertAngleToAnalog(_ angle: Int) -> Int {
+    return rangeMap(angle, 0, 180, 0, 1000)
+}
+
+func calibrateAnalogInput(_ value: Int) -> Int {
+    let range = ParameterDataManager.sharedInstance.analogInputRange
+    let lowerConvertedRange = convertAngleToAnalog(range.lowerBound)
+    let higherConvertedRange = convertAngleToAnalog(range.upperBound)
+    let slope = (Float(higherConvertedRange - lowerConvertedRange) / 1000.0 )
+    guard value >= lowerConvertedRange else {
+        return 0
+    }
+    guard value <= higherConvertedRange else {
+        return 1000
+    }
+    return  lround(Double(slope * Float(value - lowerConvertedRange)))
+}
+

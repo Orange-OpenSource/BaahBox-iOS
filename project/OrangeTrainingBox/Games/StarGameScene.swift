@@ -183,6 +183,10 @@ class StarGameScene: SKScene, GameScene, ParametersDefaultable {
         case .muscles: // using Muscle inputs
             // The strength is in [0...1000] -> Have it fit into [0...100]
             strengthValue = Int (getMuscleStrength() / 10)
+            
+        case .handle: // using handle ou slider inputs
+            // The strength is in [0...1000] ->  map to 20-150 -> Have it fit into [0...100]
+            strengthValue = Int (getMuscleStrength() / 10)
         case .buttons:
             break
         }

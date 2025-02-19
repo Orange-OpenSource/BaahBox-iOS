@@ -115,10 +115,10 @@ class GameVC: UIViewController {
                     sensorIcon = UIBarButtonItem(image: Asset.Dashboard.joystick.image,
                                                  style: UIBarButtonItem.Style.plain, target: nil, action: nil)
                     
-                case .muscles:
+                case .muscles, .handle:
                     sensorIcon = UIBarButtonItem(image: Asset.Dashboard.muscle.image,
                                                  style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-                case .buttons:
+            case .buttons:
                     break
             }
         }

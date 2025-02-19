@@ -35,6 +35,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
         case muscle = 2
         case sensitivity = 3
         case detection = 4
+        case range = 5
         
         func numberOfRows () -> Int {
             switch self {
@@ -47,6 +48,8 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
             case .sensitivity:
                 return 1
             case .detection:
+                return 1
+            case .range:
                 return 1
             }
         }
@@ -63,6 +66,8 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
                 return L10n.GeneralParameters.Section.Sensitivity.title
             case .detection:
                 return L10n.GeneralParameters.Section.Detection.title
+            case .range:
+                return "Amplitude" //TODO: translate
             }
         }
         
@@ -78,6 +83,8 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
                 return L10n.GeneralParameters.Section.Sensitivity.subtitle
             case .detection:
                 return L10n.GeneralParameters.Section.Detection.subtitle
+            case .range:
+                return "Sélectionnez l'amplitude du mouvement à détecter (angle min:0 - angle max 180"
             }
         }
         
@@ -93,6 +100,8 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
                 return [L10n.GeneralParameters.Section.Sensitivity.item1]
             case .detection:
                 return [""]
+            case .range:
+                return [""]
             }
         }
     }
@@ -101,6 +110,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         title = L10n.GeneralParameters.Header.title
         configureTableView()
+        ParameterDataManager.sharedInstance.analogInputRange = 20...150
 
     }
     
@@ -219,13 +229,16 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
                 cell.segmentItem.removeAllSegments()
                 cell.segmentItem.insertSegment(withTitle: L10n.Parameters.Global.Sensor.muscle, at: 0, animated: false)
                 cell.segmentItem.insertSegment(withTitle: L10n.Parameters.Global.Sensor.joystick, at: 1, animated: false)
-                cell.segmentItem.insertSegment(withTitle: L10n.Parameters.Global.Sensor.button, at: 2, animated: false)
-                
+                cell.segmentItem.insertSegment(withTitle: "Poignée", at: 2, animated: false)
+                cell.segmentItem.insertSegment(withTitle: L10n.Parameters.Global.Sensor.button, at: 3, animated: false)
+
                 switch dataManager.sensorType {
                 case .buttons:
-                    cell.segmentItem.selectedSegmentIndex = 2
+                    cell.segmentItem.selectedSegmentIndex = 3
                 case .joystick:
                     cell.segmentItem.selectedSegmentIndex = 1
+                case .handle:
+                    cell.segmentItem.selectedSegmentIndex = 2
                 default:
                     cell.segmentItem.selectedSegmentIndex = 0
                 }

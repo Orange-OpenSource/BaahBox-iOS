@@ -51,7 +51,8 @@ class ParameterDataManager: Codable {
     enum SensorType: Int, Codable {
         case muscles = 0
         case joystick = 1
-        case buttons = 2
+        case handle = 2
+        case buttons = 3
     }
     
     enum CodingKeys: String, CodingKey {
@@ -61,6 +62,7 @@ class ParameterDataManager: Codable {
         case sensitivity
         case threshold
         case sensorType
+        case analogInputRange
         
         // Sheep Game
         case numberOfFences
@@ -84,6 +86,11 @@ class ParameterDataManager: Codable {
     var sensitivity: SensitivitySelection = .low { didSet { self.archive() }}
     var threshold: Int = 250 { didSet { self.archive() }}
     var sensorType: SensorType = .muscles {
+        didSet {
+            self.archive()
+        }
+    }
+    var analogInputRange: ClosedRange<Int> = 0...180 {
         didSet {
             self.archive()
         }
