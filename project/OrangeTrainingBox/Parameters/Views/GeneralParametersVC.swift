@@ -21,7 +21,7 @@
 import UIKit
 
 class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     let dataManager = ParameterDataManager.sharedInstance
@@ -33,9 +33,9 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
         case demo = 0
         case sensor = 1
         case muscle = 2
-        case sensitivity = 3
-        case detection = 4
-        case range = 5
+        case range = 3
+        case sensitivity = 4
+        case detection = 5
         
         func numberOfRows () -> Int {
             switch self {
@@ -50,7 +50,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
             case .detection:
                 return 1
             case .range:
-                return 1
+                return 2
             }
         }
         
@@ -67,7 +67,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
             case .detection:
                 return L10n.GeneralParameters.Section.Detection.title
             case .range:
-                return "Amplitude" //TODO: translate
+                return L10n.GeneralParameters.Section.Range.title
             }
         }
         
@@ -84,7 +84,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
             case .detection:
                 return L10n.GeneralParameters.Section.Detection.subtitle
             case .range:
-                return "Sélectionnez l'amplitude du mouvement à détecter (angle min:0 - angle max 180"
+                return L10n.GeneralParameters.Section.Range.subtitle
             }
         }
         
@@ -101,7 +101,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
             case .detection:
                 return [""]
             case .range:
-                return [""]
+                return [L10n.GeneralParameters.Section.Range.item1]
             }
         }
     }
@@ -110,8 +110,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         title = L10n.GeneralParameters.Header.title
         configureTableView()
-        ParameterDataManager.sharedInstance.analogInputRange = 20...150
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,16 +124,36 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if section == SectionDescription.muscle.rawValue && dataManager.sensorType == .joystick {
-            return 0
-        } else {
-            return  SectionDescription.init(rawValue: section)?.numberOfRows() ?? 0
+        let nbRows = SectionDescription.init(rawValue: section)?.numberOfRows() ?? 0
+        switch dataManager.sensorType {
+        case .joystick, .buttons:
+            switch section
+            {
+            case  SectionDescription.demo.rawValue, SectionDescription.sensor.rawValue:
+                return nbRows
+            default:
+                return 0
+            }
+        case .handle:
+            switch section
+            {
+            case SectionDescription.detection.rawValue, SectionDescription.muscle.rawValue, SectionDescription.sensitivity.rawValue:
+                return 0
+                
+            default:
+                return nbRows
+            }
+        case .muscles:
+            if section == SectionDescription.range.rawValue {
+                return 0
+            } else {
+                return nbRows
+            }
         }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 6
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -154,8 +173,8 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
         let subTitle = UILabel (frame: CGRect (x: 0, y: 0, width: frame.size.width, height: 25))
         
         let textContent2 = NSMutableAttributedString(string: (SectionDescription.init(rawValue: section)?.subtitle())!,
-                            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular),
-                                         NSAttributedString.Key.foregroundColor: UIColor (displayP3Red: 0.6, green: 0.6, blue: 0.6, alpha: 1)])
+                                                     attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular),
+                                                                  NSAttributedString.Key.foregroundColor: UIColor (displayP3Red: 0.6, green: 0.6, blue: 0.6, alpha: 1)])
         
         subTitle.attributedText = textContent2
         subTitle.numberOfLines = 0
@@ -173,14 +192,14 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
                                                     attribute: .trailing, multiplier: 1, constant: -15))
         headerView.addConstraint(NSLayoutConstraint(item: title, attribute: .top, relatedBy: .equal, toItem: headerView,
                                                     attribute: .top, multiplier: 1, constant: 5))
-
+        
         headerView.addConstraint(NSLayoutConstraint(item: subTitle, attribute: .leading, relatedBy: .equal, toItem: headerView,
                                                     attribute: .leading, multiplier: 1, constant: 15))
         headerView.addConstraint(NSLayoutConstraint(item: subTitle, attribute: .trailing, relatedBy: .equal, toItem: headerView,
                                                     attribute: .trailing, multiplier: 1, constant: -15))
         headerView.addConstraint(NSLayoutConstraint(item: subTitle, attribute: .top, relatedBy: .equal, toItem: title,
                                                     attribute: .bottom, multiplier: 1, constant: 5))
-
+        
         headerView.backgroundColor = UIColor (displayP3Red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
         return headerView
     }
@@ -188,15 +207,38 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        var result: CGFloat = 60.0
+        var headerHeight: CGFloat = 60.0
         
-        if section == SectionDescription.detection.rawValue {
-            result = 80.0
+        switch dataManager.sensorType {
+        case .joystick, .buttons:
+            switch section
+            {
+            case SectionDescription.demo.rawValue, SectionDescription.sensor.rawValue:
+                return headerHeight
+            default:
+                return 0
+            }
+        case .handle:
+            switch section
+            {
+            case SectionDescription.detection.rawValue, SectionDescription.muscle.rawValue, SectionDescription.sensitivity.rawValue:
+                return 0
+            default:
+                if section == SectionDescription.range.rawValue {
+                    headerHeight = 80.0
+                }
+                return headerHeight
+            }
+        case .muscles:
+            if section == SectionDescription.range.rawValue {
+                return 0
+            } else {
+                if section == SectionDescription.detection.rawValue {
+                    headerHeight = 80.0
+                }
+                return headerHeight
+            }
         }
-        if section == SectionDescription.muscle.rawValue && dataManager.sensorType == .joystick {
-            result = 0.0
-        }
-        return result
     }
     
     
@@ -217,36 +259,36 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
             return cell
             
         case SectionDescription.sensor.rawValue:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "generalSegmentCell", for: indexPath) as? GeneralSegmentCell else {
-                    return UITableViewCell()
-                }
-                
-                let text = NSMutableAttributedString(string: SectionDescription.sensor.items()[indexPath.row],
-                                                     attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
-                
-                cell.label.attributedText = text
-                
-                cell.segmentItem.removeAllSegments()
-                cell.segmentItem.insertSegment(withTitle: L10n.Parameters.Global.Sensor.muscle, at: 0, animated: false)
-                cell.segmentItem.insertSegment(withTitle: L10n.Parameters.Global.Sensor.joystick, at: 1, animated: false)
-                cell.segmentItem.insertSegment(withTitle: "Poignée", at: 2, animated: false)
-                cell.segmentItem.insertSegment(withTitle: L10n.Parameters.Global.Sensor.button, at: 3, animated: false)
-
-                switch dataManager.sensorType {
-                case .buttons:
-                    cell.segmentItem.selectedSegmentIndex = 3
-                case .joystick:
-                    cell.segmentItem.selectedSegmentIndex = 1
-                case .handle:
-                    cell.segmentItem.selectedSegmentIndex = 2
-                default:
-                    cell.segmentItem.selectedSegmentIndex = 0
-                }
-                
-                cell.segmentItem.tag  = sensorTypeTag
-
-                return cell
-       
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "generalSegmentCell", for: indexPath) as? GeneralSegmentCell else {
+                return UITableViewCell()
+            }
+            
+            let text = NSMutableAttributedString(string: SectionDescription.sensor.items()[indexPath.row],
+                                                 attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
+            
+            cell.label.attributedText = text
+            
+            cell.segmentItem.removeAllSegments()
+            cell.segmentItem.insertSegment(withTitle: L10n.Parameters.Global.Sensor.muscle, at: 0, animated: false)
+            cell.segmentItem.insertSegment(withTitle: L10n.Parameters.Global.Sensor.joystick, at: 1, animated: false)
+            cell.segmentItem.insertSegment(withTitle: L10n.Parameters.Global.Sensor.handle, at: 2, animated: false)
+            cell.segmentItem.insertSegment(withTitle: L10n.Parameters.Global.Sensor.button, at: 3, animated: false)
+            
+            switch dataManager.sensorType {
+            case .buttons:
+                cell.segmentItem.selectedSegmentIndex = 3
+            case .joystick:
+                cell.segmentItem.selectedSegmentIndex = 1
+            case .handle:
+                cell.segmentItem.selectedSegmentIndex = 2
+            default:
+                cell.segmentItem.selectedSegmentIndex = 0
+            }
+            
+            cell.segmentItem.tag  = sensorTypeTag
+            
+            return cell
+            
         case SectionDescription.muscle.rawValue:
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "generalSwitchCell", for: indexPath) as? GeneralSwitchCell else {
@@ -261,6 +303,35 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
             cell.switchItem.tag = indexPath.row
             
             return cell
+        
+        case SectionDescription.range.rawValue:
+            var identifier = "rangeUpperBoundCell"
+            var titre = "Limite haute (entre 90° et 180°)"
+            if indexPath.row == 0 {
+                identifier = "rangeLowerBoundCell"
+                titre = "Limite basse (entre 0° et 90°)"
+            } else {
+                
+            }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as?  GeneralSliderPlusCell else {
+                return UITableViewCell()
+            }
+           
+            let text = NSMutableAttributedString(string: titre,
+                                                 attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
+            
+            cell.title.attributedText = text
+            cell.sliderItem.value = Float (indexPath.row == 0 ? dataManager.analogInputRange.lowerBound: dataManager.analogInputRange.upperBound)
+            
+            cell.sliderItem.tag = indexPath.row
+            
+            let value = L10n.GeneralParameters.Settings.angleValue(cell.sliderItem.value.clean)
+            let val = NSMutableAttributedString(string: value,
+                                                attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16),
+                                                             NSAttributedString.Key.foregroundColor: Asset.Colors.pinky.color])
+            cell.value.attributedText = val
+            return cell
+        
             
         case SectionDescription.sensitivity.rawValue:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "generalSegmentCell", for: indexPath) as? GeneralSegmentCell else {
@@ -286,7 +357,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
                 cell.segmentItem.selectedSegmentIndex = 2
             }
             cell.segmentItem.tag  = sensitivityTag
-
+            
             return cell
             
         case SectionDescription.detection.rawValue:
@@ -309,7 +380,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     // MARK: - User's actions
-
+    
     @IBAction func onSwitchSelection(_ sender: UISwitch) {
         
         if sender.tag == demoModeTag {
@@ -334,15 +405,32 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
             }
         } else if sender.tag == sensorTypeTag {
             switch sender.selectedSegmentIndex {
-            case 2:  dataManager.sensorType = .buttons
-            case 1:  dataManager.sensorType = .joystick
-            default: dataManager.sensorType = .muscles
+            case 3:
+                dataManager.sensorType = .buttons
+            case 2:
+                dataManager.sensorType = .handle
+            case 1:
+                dataManager.sensorType = .joystick
+            default:
+                dataManager.sensorType = .muscles
             }
             tableView.reloadData()
         }
     }
     
-   
+    
+    @IBAction func onBoundSelection(_ sender: UISlider) {
+        if sender.tag == 0 {
+            let newRange: ClosedRange<Int> = Int(sender.value)...dataManager.analogInputRange.upperBound
+            dataManager.analogInputRange = newRange
+        } else {
+            let newRange: ClosedRange<Int> = dataManager.analogInputRange.lowerBound...Int(sender.value)
+            dataManager.analogInputRange = newRange
+        }
+        tableView.reloadData()
+    }
+    
+    
     @IBAction func onThresholdSelection(_ sender: UISlider) {
         dataManager.threshold = Int (sender.value)
         tableView.reloadData()

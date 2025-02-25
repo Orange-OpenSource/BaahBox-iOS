@@ -92,6 +92,7 @@ class ParameterDataManager: Codable {
     }
     var analogInputRange: ClosedRange<Int> = 0...180 {
         didSet {
+            print("new Input range: \(analogInputRange)")
             self.archive()
         }
     }

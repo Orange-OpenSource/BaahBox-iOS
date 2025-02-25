@@ -43,10 +43,10 @@ class SensorInputManager {
         }
         
        
-       let uncalM1 = bytesToValue(coeff: rawInput[0], add: rawInput[1])
-       let uncalM2 = bytesToValue(coeff: rawInput[2], add: rawInput[3])
-        musclesInput.muscle1 = calibrateAnalogInput(uncalM1)
-        musclesInput.muscle2 = calibrateAnalogInput(uncalM2)
+       let rawM1 = bytesToValue(coeff: rawInput[0], add: rawInput[1])
+       let rawM2 = bytesToValue(coeff: rawInput[2], add: rawInput[3])
+        musclesInput.muscle1 = calibrateAnalogInput(rawM1)
+        musclesInput.muscle2 = calibrateAnalogInput(rawM2)
         
         let right = (rawInput[4] & 0x08 == 0x08)
         let left  = (rawInput[4] & 0x04 == 0x04)
@@ -54,7 +54,7 @@ class SensorInputManager {
         let up    = (rawInput[4] & 0x01 == 0x01)
         joystickInput = (up: up, down: down, left: left, right: right)
         
-        print("M1: \(musclesInput.muscle1), uncalM1:\(uncalM1), M2:\(musclesInput.muscle2), uncalM2:\(uncalM2), Up:\(up), Down:\(down), Left:\(left), Right:\(right)")
+        print("M1: \(musclesInput.muscle1), M2:\(musclesInput.muscle2),\nUp:\(up), Down:\(down), Left:\(left), Right:\(right)")
         
         DispatchQueue.main.sync {
             self.sendNotificationReceivedData()
