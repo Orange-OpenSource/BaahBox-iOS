@@ -2,7 +2,7 @@
 //  BTConnectionViewController.swift
 //  Baah Box
 //
-//  Copyright (C) 2017 – 2020 Orange SA
+//  Copyright (C) 2017 – 2024 Orange SA
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -158,7 +158,7 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
         
         actInd.startAnimating()
         
-        let button = UIBarButtonItem (customView: customView)
+        let button = UIBarButtonItem(customView: customView)
         button.isEnabled = false
         
         return button
@@ -225,7 +225,7 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
                 return item.value
             }
             let connectedPeripheralName = btManager.peripheralNames[btManager.currentPeripheral]
-            cell.configure (activeButton: activeCells.first?.key == connectedPeripheralName)
+            cell.configure(activeButton: activeCells.first?.key == connectedPeripheralName)
         } else {
             cell.isHidden = true
         }
@@ -239,7 +239,7 @@ class BTConnectionViewController: UIViewController, UITableViewDelegate, UITable
             return UITableViewCell()
         }
         
-        let index = getPeripheralIndex (at: indexPath)
+        let index = getPeripheralIndex(at: indexPath)
         let peripheralName = getPeripheralName(at: index)
         cell.configure(with: peripheralName, shouldShowTick: selectedCells[peripheralName] ?? false)
         return cell

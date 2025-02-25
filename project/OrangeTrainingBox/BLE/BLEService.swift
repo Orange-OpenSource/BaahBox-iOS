@@ -2,7 +2,7 @@
 //  BLEService.swift
 //  Baah Box
 //
-///  Copyright (C) 2017 – 2020 Orange SA
+//  Copyright (C) 2017 – 2024 Orange SA
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -80,7 +80,7 @@ class BLEService: NSObject, CBPeripheralDelegate {
         }
         
         if let error = error {
-            print ("BlueTooth error: \(error)")
+            print("BlueTooth error: \(error)")
             return
         }
         
@@ -88,7 +88,7 @@ class BLEService: NSObject, CBPeripheralDelegate {
             return
         }
         
-        let _ = peripheralServices.map {service in
+        let _ = peripheralServices.map{ service in
             
             if service.uuid == BLEServiceUUID {
                 peripheral.discoverCharacteristics([txPositionCharUUID, rxPositionCharUUID], for: service)
@@ -98,12 +98,12 @@ class BLEService: NSObject, CBPeripheralDelegate {
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         
-        if peripheral != self.peripheral {
+        if peripheral != self.peripheral{
             return
         }
         
         if let error = error {
-            print ("BlueTooth error: \(error)")
+            print("BlueTooth error: \(error)")
             return
         }
         
@@ -155,7 +155,7 @@ class BLEService: NSObject, CBPeripheralDelegate {
                 inputData.append(rxChar)
             } else {
                 #if TEST_BANDWIDTH
-                    self.counter = self.counter + 1
+                    self.counter += 1
                 #endif
                 SensorInputManager.sharedInstance.analyseCompressedRawInput(inputData)
                 inputData = []

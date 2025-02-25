@@ -6,11 +6,12 @@ import Foundation
 import UIKit
 
 // swiftlint:disable superfluous_disable_command
-// swiftlint:disable file_length
+// swiftlint:disable file_length implicit_return
 
 // MARK: - Storyboard Scenes
 
-// swiftlint:disable explicit_type_interface identifier_name line_length type_body_length type_name
+// swiftlint:disable explicit_type_interface identifier_name line_length prefer_self_in_static_references
+// swiftlint:disable type_body_length type_name
 internal enum StoryboardScene {
   internal enum Games: StoryboardType {
     internal static let storyboardName = "Games"
@@ -47,12 +48,17 @@ internal enum StoryboardScene {
   internal enum Settings: StoryboardType {
     internal static let storyboardName = "Settings"
 
+    internal static let aboutViewController = SceneType<OrangeTrainingBox.AboutViewController>(storyboard: Settings.self, identifier: "AboutViewController")
+
+    internal static let genericWebViewController = SceneType<OrangeTrainingBox.GenericWebViewController>(storyboard: Settings.self, identifier: "GenericWebViewController")
+
     internal static let connectionVC = SceneType<OrangeTrainingBox.BTConnectionViewController>(storyboard: Settings.self, identifier: "connectionVC")
 
     internal static let mainParametersVC = SceneType<OrangeTrainingBox.MainParametersVC>(storyboard: Settings.self, identifier: "mainParametersVC")
   }
 }
-// swiftlint:enable explicit_type_interface identifier_name line_length type_body_length type_name
+// swiftlint:enable explicit_type_interface identifier_name line_length prefer_self_in_static_references
+// swiftlint:enable type_body_length type_name
 
 // MARK: - Implementation Details
 
@@ -63,7 +69,7 @@ internal protocol StoryboardType {
 internal extension StoryboardType {
   static var storyboard: UIStoryboard {
     let name = self.storyboardName
-    return UIStoryboard(name: name, bundle: Bundle(for: BundleToken.self))
+    return UIStoryboard(name: name, bundle: BundleToken.bundle)
   }
 }
 
@@ -78,6 +84,11 @@ internal struct SceneType<T: UIViewController> {
     }
     return controller
   }
+
+  @available(iOS 13.0, tvOS 13.0, *)
+  internal func instantiate(creator block: @escaping (NSCoder) -> T?) -> T {
+    return storyboard.storyboard.instantiateViewController(identifier: identifier, creator: block)
+  }
 }
 
 internal struct InitialSceneType<T: UIViewController> {
@@ -89,6 +100,24 @@ internal struct InitialSceneType<T: UIViewController> {
     }
     return controller
   }
+
+  @available(iOS 13.0, tvOS 13.0, *)
+  internal func instantiate(creator block: @escaping (NSCoder) -> T?) -> T {
+    guard let controller = storyboard.storyboard.instantiateInitialViewController(creator: block) else {
+      fatalError("Storyboard \(storyboard.storyboardName) does not have an initial scene.")
+    }
+    return controller
+  }
 }
 
-private final class BundleToken {}
+// swiftlint:disable convenience_type
+private final class BundleToken {
+  static let bundle: Bundle = {
+    #if SWIFT_PACKAGE
+    return Bundle.module
+    #else
+    return Bundle(for: BundleToken.self)
+    #endif
+  }()
+}
+// swiftlint:enable convenience_type

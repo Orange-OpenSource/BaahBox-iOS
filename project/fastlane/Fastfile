@@ -1,0 +1,124 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+DEVELOPER_APP_ID = ENV["DEVELOPER_APP_ID"]
+DEVELOPER_APP_IDENTIFIER = ENV["DEVELOPER_APP_IDENTIFIER"]
+PROVISIONING_PROFILE_SPECIFIER = ENV["PROVISIONING_PROFILE_SPECIFIER"]
+APPLE_ISSUER_ID = ENV["APPLE_ISSUER_ID"]
+APPLE_KEY_ID = ENV["APPLE_KEY_ID"]
+APPLE_KEY_CONTENT = ENV["APPLE_KEY_CONTENT"]
+
+XCODE_XCWORKSPACE = "OrangeTrainingBox.xcworkspace"
+XCODE_PROJ = "OrangeTrainingBox.xcodeproj"
+XCODE_SCHEME = "Baah_FR"
+XCODE_TARGET = "OrangeTrainingBox"
+IPA_NAME = "OrangeTrainingBox.ipa"
+
+buildNumber = nil
+
+platform :ios do
+  
+  # ------------------------------------------------------------
+  # BUILD FOR TESTFLIGHT
+  # ------------------------------------------------------------
+  desc "Build for TestFlight"
+  lane :buildForTestFlight do
+    
+    incrementBuildNumber()
+
+    cocoapods
+
+    build_app(
+      derived_data_path: "build_fastlane/beta/DerivedData",
+      build_path: "build_fastlane/Archives",
+      buildlog_path: "build_fastlane/Log",
+      configuration: "Release",
+      workspace: "#{XCODE_XCWORKSPACE}",
+      scheme: "#{XCODE_SCHEME}",
+      export_method: "app-store",
+      skip_profile_detection: true,
+      export_options: {
+        provisioningProfiles: {
+            DEVELOPER_APP_IDENTIFIER => "#{PROVISIONING_PROFILE_SPECIFIER}"
+        }
+      }
+    )
+  end
+  
+  # ------------------------------------------------------------
+  # PUBLISH TO TESTFLIGHT
+  # ------------------------------------------------------------
+  desc "Publish to TestFlight"
+  lane :publishToTestFlight do
+  
+    app_store_connect_api_key(
+      key_id: "#{APPLE_KEY_ID}",
+      issuer_id: "#{APPLE_ISSUER_ID}",
+      key_content: "#{APPLE_KEY_CONTENT}",
+      duration: 1200,
+      in_house: false
+    )
+
+    appVersion = getAppVersion()
+    news = "Nouvelle version available : #{appVersion}.#{buildNumber}" 
+
+    upload_to_testflight(
+      changelog: news,
+      apple_id: "#{DEVELOPER_APP_ID}",
+      app_identifier: "#{DEVELOPER_APP_IDENTIFIER}",
+      skip_submission: false,
+      skip_waiting_for_build_processing: false,
+      distribute_external: true,
+      notify_external_testers: true,
+      groups: ["HumanLab", "testers"],
+      ipa: "./#{IPA_NAME}"
+    )
+
+  end
+end
+
+
+# ------------------------------------------------------------
+# FUNCTION GET BUILD NUMBER
+# ------------------------------------------------------------
+desc "Generate build number with timestamp"
+def getBuildNumber
+    timestamp = sh 'date +%s'
+    timestamp = timestamp.strip!
+    return timestamp
+end
+
+# ------------------------------------------------------------
+# FUNCTION INCREMENT BUILD NUMBER
+# ------------------------------------------------------------
+desc "Update build number with timestamp"
+def incrementBuildNumber
+    buildNumber = getBuildNumber()
+    increment_build_number(xcodeproj: "#{XCODE_PROJ}", build_number: "#{buildNumber}")
+end
+
+# ------------------------------------------------------------
+# FUNCTION GET APP VERSION
+# ------------------------------------------------------------
+def getAppVersion
+    version = get_version_number(
+        xcodeproj: "#{XCODE_PROJ}",
+        target: "#{XCODE_TARGET}",
+        configuration: "Release"
+    )
+    return version
+end

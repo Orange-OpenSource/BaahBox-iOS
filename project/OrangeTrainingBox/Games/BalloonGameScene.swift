@@ -2,7 +2,7 @@
 //  GameScene.swift
 //  Baah Box
 //
-//  Copyright (C) 2017 – 2020 Orange SA
+//  Copyright (C) 2017 – 2024 Orange SA
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
     
     var startY: CGFloat = CGFloat(0)
     let balloon = SKSpriteNode(imageNamed: Asset.Games.BalloonGame.balloon00.name)
-    var strengthValue : Int = 0
+    var strengthValue: Int = 0
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
     
@@ -70,7 +70,7 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
                 title?.isHidden = true
                 subtitle?.isHidden = true
                 feedback?.isHidden = false
-                feedback?.transform = CGAffineTransform(scaleX: 2, y: 2);
+                feedback?.transform = CGAffineTransform(scaleX: 2, y: 2)
                 button?.setTitle(L10n.Game.reStart, for: .normal)
                 button?.isHidden = false
             }
@@ -111,9 +111,9 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
     
     func configureBalloonSpriteForStart() {
         balloon.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        balloon.texture = SKTexture (imageNamed: Asset.Games.BalloonGame.balloon00.name)
+        balloon.texture = SKTexture(imageNamed: Asset.Games.BalloonGame.balloon00.name)
         balloon.size = (balloon.texture?.size())!
-        balloon.position = CGPoint(x: size.width/2 , y: size.height/2 + balloon.size.height/4)
+        balloon.position = CGPoint(x: size.width/2, y: size.height/2 + balloon.size.height/4)
     }
   
     
@@ -167,7 +167,7 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
         
         switch strengthValue {
         case 0...Int(5*hardnessCoeff):
-            balloon.texture = SKTexture (imageNamed: Asset.Games.BalloonGame.balloon00.name)
+            balloon.texture = SKTexture(imageNamed: Asset.Games.BalloonGame.balloon00.name)
             balloon.size = (balloon.texture?.size())!
             
             feedback?.isHidden = true
@@ -196,7 +196,7 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
             subtitle?.isHidden = true
             
         default:
-            balloon.texture = SKTexture (imageNamed: Asset.Games.BalloonGame.balloon04.name)
+            balloon.texture = SKTexture(imageNamed: Asset.Games.BalloonGame.balloon04.name)
             balloon.size = (balloon.texture?.size())!
             title?.isHidden = true
             subtitle?.isHidden = true
@@ -208,8 +208,8 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
       
     
     func inflateBalloon(using strenghtValue: Int) {
-        let expansionCoeff = CGFloat (strengthValue + 30) / 100
-        balloon.texture = SKTexture (imageNamed: Asset.Games.BalloonGame.balloon03.name)
+        let expansionCoeff = CGFloat(strengthValue + 30)/100
+        balloon.texture = SKTexture(imageNamed: Asset.Games.BalloonGame.balloon03.name)
         balloon.size.height = (balloon.texture?.size().height)! * expansionCoeff
         balloon.size.width = (balloon.texture?.size().width)! * expansionCoeff
     }
@@ -237,11 +237,11 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
             guard SensorInputManager.sharedInstance.joystickInput.up && strengthValue  <= Int(95*hardnessCoeff) else {
                 return
             }
-            strengthValue  = strengthValue + 1
+            strengthValue = strengthValue + 1
             
         default: // using Muscle inputs
             // The strength is in [0...1000] -> Have it fit into [0...100]
-            strengthValue = Int (getMuscleStrength() / 10)
+            strengthValue = Int(getMuscleStrength() / 10)
         }
     }
     
@@ -251,7 +251,7 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
     // ============================
     
     private func setNotifications() {
-        //data from sensors
+        // data from sensors
         NotificationCenter.default.addObserver(self, selector: #selector(updateData(_:)),
                                                name: Notification.Name(rawValue: L10n.Notif.Ble.dataReceived),
                                                object: nil)
@@ -270,11 +270,11 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
         guard ParameterDataManager.sharedInstance.demoMode && isOnGoing else {
             return
         }
-        var distance = Int (abs (touchLocation.y - startY))
+        var distance = Int(abs (touchLocation.y - startY))
         if distance > 600 {
             distance = 600
         }
-        strengthValue = Int (distance / 6)
+        strengthValue = Int(distance/6)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -294,4 +294,3 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
         sceneTouched(touchLocation: touchLocation)
     }
 }
-

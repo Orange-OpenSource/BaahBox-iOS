@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Wk-YY-FCi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Wk-YY-FCi">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,7 +12,7 @@
         <!--SheepGameVC-->
         <scene sceneID="NC9-Dk-wn5">
             <objects>
-                <viewControllerPlaceholder storyboardName="Games" referencedIdentifier="SheepGameVC" id="pdt-7b-TIH" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="SheepGameVC" storyboardName="Games" referencedIdentifier="SheepGameVC" id="pdt-7b-TIH" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Owf-Zc-lkb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1118" y="461"/>
@@ -20,7 +20,7 @@
         <!--StarGameVC-->
         <scene sceneID="uja-B6-mcR">
             <objects>
-                <viewControllerPlaceholder storyboardName="Games" referencedIdentifier="StarGameVC" id="RSG-1V-vhF" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="StarGameVC" storyboardName="Games" referencedIdentifier="StarGameVC" id="RSG-1V-vhF" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eLi-oa-obB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-538" y="461"/>
@@ -28,7 +28,7 @@
         <!--BalloonGameVC-->
         <scene sceneID="0r8-J7-ldI">
             <objects>
-                <viewControllerPlaceholder storyboardName="Games" referencedIdentifier="BalloonGameVC" id="ox3-Sz-Frx" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="BalloonGameVC" storyboardName="Games" referencedIdentifier="BalloonGameVC" id="ox3-Sz-Frx" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vDI-wM-qpj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-189" y="461"/>
@@ -36,7 +36,7 @@
         <!--SpaceshipGameVC-->
         <scene sceneID="f4c-hy-uz2">
             <objects>
-                <viewControllerPlaceholder storyboardName="Games" referencedIdentifier="SpaceshipGameVC" id="KfP-dl-GEB" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="SpaceShipGameVC" storyboardName="Games" referencedIdentifier="SpaceshipGameVC" id="KfP-dl-GEB" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eOA-Nh-9fO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-789" y="462"/>
@@ -50,11 +50,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X6g-pm-FYS">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GameCell" rowHeight="118" id="xTE-Vo-30K" customClass="GameCell" customModule="OrangeTrainingBox" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="118"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="118"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xTE-Vo-30K" id="TaN-IA-dQ9">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="118"/>
@@ -131,6 +131,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="QQc-xh-8nV"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="X6g-pm-FYS" firstAttribute="trailing" secondItem="QQc-xh-8nV" secondAttribute="trailing" id="eDm-K3-IPc"/>
@@ -138,7 +139,6 @@
                             <constraint firstItem="X6g-pm-FYS" firstAttribute="top" secondItem="QQc-xh-8nV" secondAttribute="top" id="mAU-ej-MwQ"/>
                             <constraint firstItem="X6g-pm-FYS" firstAttribute="leading" secondItem="QQc-xh-8nV" secondAttribute="leading" id="qTz-nK-ufg"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="QQc-xh-8nV"/>
                     </view>
                     <navigationItem key="navigationItem" id="tKC-xB-eNx"/>
                     <connections>
@@ -155,7 +155,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0Wk-YY-FCi" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fzP-qW-ytU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

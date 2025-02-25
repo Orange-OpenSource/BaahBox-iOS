@@ -1,0 +1,43 @@
+stages:
+  - build
+  - publish
+
+variables:
+  LC_ALL: "en_US.UTF-8"
+  LANG: "en_US.UTF-8"
+
+before_script:
+  - cd project
+  - gem install bundler
+  - bundle install
+
+build_project:
+  stage: build
+  artifacts:
+    paths:
+      - ./project/*.ipa
+    expire_in: 1 week
+  only:
+    - dev
+    - web
+  script:
+    - pwd
+    - bundle exec fastlane buildForTestFlight
+    - ls -l *.ipa
+  tags:
+    - ios
+    - m1
+    
+test_flight:
+  dependencies:
+    - build_project
+  stage: publish
+  script:
+    - pwd
+    - ls -ltra
+    - bundle exec fastlane publishToTestFlight
+  tags:
+    - ios
+    - m1
+  only:
+    - web

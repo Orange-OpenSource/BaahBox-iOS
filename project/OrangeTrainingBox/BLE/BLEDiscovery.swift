@@ -2,7 +2,7 @@
 //  BLEDiscovery.swift
 //  Baah Box
 //
-//  Copyright (C) 2017 – 2020 Orange SA
+//  Copyright (C) 2017 – 2024 Orange SA
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -189,7 +189,7 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
         }
 
         if !peripherals.contains(peripheral) {
-            peripherals.append (peripheral)
+            peripherals.append(peripheral)
             peripheralNames[peripheral] = localName
         }
     }
@@ -197,7 +197,7 @@ class BLEDiscovery: NSObject, CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         
         if peripheral == currentPeripheral {
-            bleService = BLEService (with: peripheral)
+            bleService = BLEService(with: peripheral)
         }
 
         central.stopScan()
