@@ -15,6 +15,7 @@
 			dependencies = (
 			);
 			name = SwiftGen;
+			productName = SwiftGen;
 		};
 /* End PBXAggregateTarget section */
 
@@ -41,12 +42,12 @@
 		6A877487FE0787993068DF0FF3D0A3A9 /* Pods-OrangeTrainingBox.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-OrangeTrainingBox.modulemap"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		8730DC0A26FF6B527095B99E61F73248 /* Pods-OrangeTrainingBox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OrangeTrainingBox.debug.xcconfig"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9F27ED3188A5A569FA94B4D8CB48112B /* Pods-OrangeTrainingBox-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OrangeTrainingBox-acknowledgements.plist"; sourceTree = "<group>"; };
 		AAFF169D5718C23D16A08E48D0A127FD /* Pods-OrangeTrainingBox-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OrangeTrainingBox-Info.plist"; sourceTree = "<group>"; };
 		B4263489E673801EC37C1F15D4E531D8 /* SwiftGen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftGen.release.xcconfig; sourceTree = "<group>"; };
 		C8C06D67ED51BEA30CFCE8A715038A38 /* Pods-OrangeTrainingBox-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OrangeTrainingBox-acknowledgements.markdown"; sourceTree = "<group>"; };
-		F79213A3BBDEFD578691C8D54218E2FE /* Pods-OrangeTrainingBox */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-OrangeTrainingBox"; path = Pods_OrangeTrainingBox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F79213A3BBDEFD578691C8D54218E2FE /* Pods_OrangeTrainingBox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OrangeTrainingBox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD691AE7128F940D3B179941FCEC2F54 /* SwiftGen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftGen.debug.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,7 +82,7 @@
 		2EB4BB7A875FA23ED8C58DD7456F5095 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F79213A3BBDEFD578691C8D54218E2FE /* Pods-OrangeTrainingBox */,
+				F79213A3BBDEFD578691C8D54218E2FE /* Pods_OrangeTrainingBox.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,7 +116,6 @@
 			children = (
 				AB4F699EB2CE4C63CBA1FEFDD0861DAA /* Support Files */,
 			);
-			name = SwiftGen;
 			path = SwiftGen;
 			sourceTree = "<group>";
 		};
@@ -178,7 +178,7 @@
 			);
 			name = "Pods-OrangeTrainingBox";
 			productName = Pods_OrangeTrainingBox;
-			productReference = F79213A3BBDEFD578691C8D54218E2FE /* Pods-OrangeTrainingBox */;
+			productReference = F79213A3BBDEFD578691C8D54218E2FE /* Pods_OrangeTrainingBox.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
