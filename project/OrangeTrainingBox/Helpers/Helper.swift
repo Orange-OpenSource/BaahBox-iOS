@@ -2,7 +2,7 @@
 //  Helper.swift
 //  Baah Box
 //
-//  Copyright (C) 2017 – 2024 Orange SA
+//  Copyright (C) 2017 – 2025 Orange SA
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -90,3 +90,30 @@ extension Float {
         //return String(format: "%.2f", self)
     }
 }
+
+func rangeMap(_ value: Int, _ min1: Int, _ max1: Int, _ min2: Int, _ max2: Int) -> Int {
+    let slope = Float(max2 - min2) / Float(max1 - min1)
+    return min2 + lround(Double(slope *  Float(value - min1)))
+    }
+
+func calibrateForAmplitude(_ value: Int, _ min1: Int, _ max1: Int) -> Int {
+    let slope = Float((100) / (max1 - min1))
+    return lround(Double(slope * Float(value - min1)))
+    }
+
+
+func convertAngleToAnalog(_ angle: Int) -> Int {
+    return rangeMap(angle, 0, 180, 0, 1000)
+}
+
+func calibrateAnalogInput(_ value: Int) -> Int {
+    let range = ParameterDataManager.sharedInstance.analogInputRange
+    let lowerConvertedAngle = convertAngleToAnalog(range.lowerBound)
+    let higherConvertedAngle = convertAngleToAnalog(range.upperBound)
+    let slope = Double(1000.0 / Double(higherConvertedAngle - lowerConvertedAngle))
+    guard value >= lowerConvertedAngle else {
+        return 0
+    }
+    return  min(1000, lround(Double(value - lowerConvertedAngle) * slope))
+}
+

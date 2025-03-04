@@ -2,7 +2,7 @@
  //  GameVC.swift
  //  Baah Box
  //
- //  Copyright (C) 2017 – 2024 Orange SA
+ //  Copyright (C) 2017 – 2025 Orange SA
  //
  //  This program is free software: you can redistribute it and/or modify
  //  it under the terms of the GNU General Public License as published by
@@ -115,10 +115,10 @@ class GameVC: UIViewController {
                     sensorIcon = UIBarButtonItem(image: Asset.Dashboard.joystick.image,
                                                  style: UIBarButtonItem.Style.plain, target: nil, action: nil)
                     
-                case .muscles:
+                case .muscles, .handle:
                     sensorIcon = UIBarButtonItem(image: Asset.Dashboard.muscle.image,
                                                  style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-                case .buttons:
+            case .buttons:
                     break
             }
         }

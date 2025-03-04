@@ -1,7 +1,8 @@
 #!/bin/sh
 
 ROOT=$(dirname "$0")
-SWIFTGEN="$PODS_ROOT/SwiftGen/bin/swiftgen"
+#SWIFTGEN="$PODS_ROOT/SwiftGen/bin/swiftgen"
+SWIFTGEN="$ROOT/Pods/SwiftGen/bin/swiftgen"
 INDIR="$ROOT/OrangeTrainingBox/Resources"
 OUTDIR="$ROOT/OrangeTrainingBox/Resources/CodeGen/Constants"
 
