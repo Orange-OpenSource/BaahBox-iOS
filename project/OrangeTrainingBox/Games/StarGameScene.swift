@@ -2,7 +2,7 @@
 //  StarGameScene.swift
 //  Baah Box
 //
-//  Copyright (C) 2017 – 2024 Orange SA
+//  Copyright (C) 2017 – 2025 Orange SA
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -182,6 +182,10 @@ class StarGameScene: SKScene, GameScene, ParametersDefaultable {
             strengthValue = strengthValue + 1
         case .muscles: // using Muscle inputs
             // The strength is in [0...1000] -> Have it fit into [0...100]
+            strengthValue = Int (getMuscleStrength() / 10)
+            
+        case .handle: // using handle ou slider inputs
+            // The strength is in [0...1000] ->  map to 20-150 -> Have it fit into [0...100]
             strengthValue = Int (getMuscleStrength() / 10)
         case .buttons:
             break

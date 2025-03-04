@@ -2,7 +2,7 @@
 //  Localizable.strings
 //  Baah Box
 //
-//  Copyright (C) 2017 – 2024 Orange SA
+//  Copyright (C) 2017 – 2025 Orange SA
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -78,18 +78,25 @@
 "GeneralParameters.Section.Sensitivity.subtitle" = "Paramétrez la sensibilité des capteurs";
 "GeneralParameters.Section.Detection.title" = "Seuil de détection";
 "GeneralParameters.Section.Detection.subtitle" = "Indiquez le seuil à partir duquel votre pression exercée est détectée";
+"GeneralParameters.Section.Range.title" = "Amplitude de mouvement";
+"GeneralParameters.Section.Range.subtitle" = "Sélectionnez l'amplitude du mouvement à détecter (en degré de rotation)";
+"GeneralParameters.Settings.angleValue" = "%@°";
+
 
 "GeneralParameters.Section.Demo.item1" = "Mode demo";
 "GeneralParameters.Section.Sensor.item1" = "Capteur utilisé";
 "GeneralParameters.Section.Muscle.item1" = "Muscle 1";
 "GeneralParameters.Section.Muscle.item2" = "Muscle 2";
 "GeneralParameters.Section.Sensitivity.item1" = "Sensibilité";
+"GeneralParameters.Section.Range.item1" = "Amplitude de mouvement";
+
 
 "Parameters.Global.title" = "Paramètres globaux";
 "Parameters.Global.muscle" = "Muscle de travail";
 "Parameters.Global.sensor.muscle" = "Muscle";
 "Parameters.Global.sensor.joystick" = "Joystick";
 "Parameters.Global.sensor.button" = "Bouton";
+"Parameters.Global.sensor.handle" = "Poignée";
 
 "Parameters.Global.sensitivity"  = "Sensibilité";
 "Parameters.Global.threshold" = "Seuil de détection";
