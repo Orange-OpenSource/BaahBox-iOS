@@ -190,6 +190,14 @@ internal enum L10n {
         /// Working muscle
         internal static let title = L10n.tr("Localizable", "GeneralParameters.Section.Muscle.title", fallback: "Working muscle")
       }
+      internal enum Range {
+        /// Range
+        internal static let item1 = L10n.tr("Localizable", "GeneralParameters.Section.Range.item1", fallback: "Range")
+        /// Sets detectable range for movement (in angle)
+        internal static let subtitle = L10n.tr("Localizable", "GeneralParameters.Section.Range.subtitle", fallback: "Sets detectable range for movement (in angle)")
+        /// Movement range
+        internal static let title = L10n.tr("Localizable", "GeneralParameters.Section.Range.title", fallback: "Movement range")
+      }
       internal enum Sensitivity {
         /// Sensitivity
         internal static let item1 = L10n.tr("Localizable", "GeneralParameters.Section.Sensitivity.item1", fallback: "Sensitivity")
@@ -205,6 +213,12 @@ internal enum L10n {
         internal static let subtitle = L10n.tr("Localizable", "GeneralParameters.Section.Sensor.subtitle", fallback: "Select the sensor you are using")
         /// Sensor type
         internal static let title = L10n.tr("Localizable", "GeneralParameters.Section.Sensor.title", fallback: "Sensor type")
+      }
+    }
+    internal enum Settings {
+      /// %@°
+      internal static func angleValue(_ p1: Any) -> String {
+        return L10n.tr("Localizable", "GeneralParameters.Settings.angleValue", String(describing: p1), fallback: "%@°")
       }
     }
     internal enum Header {
@@ -321,6 +335,8 @@ internal enum L10n {
       internal enum Sensor {
         /// Button
         internal static let button = L10n.tr("Localizable", "Parameters.Global.sensor.button", fallback: "Button")
+        /// Handle
+        internal static let handle = L10n.tr("Localizable", "Parameters.Global.sensor.handle", fallback: "Handle")
         /// Joystick
         internal static let joystick = L10n.tr("Localizable", "Parameters.Global.sensor.joystick", fallback: "Joystick")
         /// Muscle

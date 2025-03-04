@@ -78,18 +78,23 @@
 "GeneralParameters.Section.Sensitivity.subtitle" = "Sets the sensitivity of the sensors";
 "GeneralParameters.Section.Detection.title" = "Pressure detection threshold";
 "GeneralParameters.Section.Detection.subtitle" = "Sets the threshold to detect the pressure";
+"GeneralParameters.Section.Range.title" = "Movement range";
+"GeneralParameters.Section.Range.subtitle" = "Sets detectable range for movement (in angle)";
+"GeneralParameters.Settings.angleValue" = "%@°";
 
 "GeneralParameters.Section.Demo.item1" = "Demo mode";
 "GeneralParameters.Section.Sensor.item1" = "Sensor";
 "GeneralParameters.Section.Muscle.item1" = "Muscle 1";
 "GeneralParameters.Section.Muscle.item2" = "Muscle 2";
 "GeneralParameters.Section.Sensitivity.item1" = "Sensitivity";
+"GeneralParameters.Section.Range.item1" = "Range";
 
 "Parameters.Global.title" = "Global parameters";
 "Parameters.Global.muscle" = "Working muscle";
 "Parameters.Global.sensor.muscle" = "Muscle";
 "Parameters.Global.sensor.joystick" = "Joystick";
 "Parameters.Global.sensor.button" = "Button";
+"Parameters.Global.sensor.handle" = "Handle";
 
 "Parameters.Global.sensitivity"  = "Sensitivity";
 "Parameters.Global.threshold" = "Threshold level";
