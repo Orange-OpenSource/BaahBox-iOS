@@ -35,7 +35,6 @@ class BLEService: NSObject, CBPeripheralDelegate {
     var rxPositionCharacteristic: CBCharacteristic?
     var rxData: [UInt8] = [0]
     var inputData: [UInt8] = []
-    var packCounter = 0
 
     #if TEST_BANDWIDTH
     var counter = 0
@@ -68,7 +67,6 @@ class BLEService: NSObject, CBPeripheralDelegate {
     }
     
     func reset() {
-        packCounter = 0
         peripheral = nil
     }
     
@@ -155,10 +153,9 @@ class BLEService: NSObject, CBPeripheralDelegate {
         }
         
         guard let data = characteristic.value else { return }
-        
         rxData = [UInt8](repeating: 0, count: data.count)
         data.copyBytes(to: &rxData, count: data.count)
-        
+     
         // Frame 6 Bytes
         // [b1...b5,\n]
         for rxChar in rxData {
@@ -168,12 +165,8 @@ class BLEService: NSObject, CBPeripheralDelegate {
                 #if TEST_BANDWIDTH
                     self.counter += 1
                 #endif
-                packCounter += 1
-                if packCounter == 10 {
                     SensorInputManager.sharedInstance.analyseCompressedRawInput(inputData)
-                    inputData = []
-                    packCounter = 0
-                }
+                inputData = []
             }
         }
     }
