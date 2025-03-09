@@ -35,6 +35,7 @@ class BLEService: NSObject, CBPeripheralDelegate {
     var rxPositionCharacteristic: CBCharacteristic?
     var rxData: [UInt8] = [0]
     var inputData: [UInt8] = []
+    var packCounter = 0
 
     #if TEST_BANDWIDTH
     var counter = 0
@@ -49,7 +50,9 @@ class BLEService: NSObject, CBPeripheralDelegate {
         #if TEST_BANDWIDTH
         DispatchQueue.main.sync {
             timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { timer in
+#if DEBUG
                 print("count: \(self.counter)")
+#endif
                 self.counter = 0
             })
         }
@@ -65,6 +68,7 @@ class BLEService: NSObject, CBPeripheralDelegate {
     }
     
     func reset() {
+        packCounter = 0
         peripheral = nil
     }
     
@@ -80,7 +84,10 @@ class BLEService: NSObject, CBPeripheralDelegate {
         }
         
         if let error = error {
+#if DEBUG
             print("BlueTooth error: \(error)")
+#endif
+            
             return
         }
         
@@ -103,7 +110,9 @@ class BLEService: NSObject, CBPeripheralDelegate {
         }
         
         if let error = error {
+#if DEBUG
             print("BlueTooth error: \(error)")
+#endif
             return
         }
         
@@ -139,7 +148,9 @@ class BLEService: NSObject, CBPeripheralDelegate {
         }
         
         if let error = error {
-            print("BlueTooth error : \(error)")
+#if DEBUG
+            print("BlueTooth error: \(error)")
+#endif
             return
         }
         
@@ -157,8 +168,12 @@ class BLEService: NSObject, CBPeripheralDelegate {
                 #if TEST_BANDWIDTH
                     self.counter += 1
                 #endif
-                SensorInputManager.sharedInstance.analyseCompressedRawInput(inputData)
-                inputData = []
+                packCounter += 1
+                if packCounter == 10 {
+                    SensorInputManager.sharedInstance.analyseCompressedRawInput(inputData)
+                    inputData = []
+                    packCounter = 0
+                }
             }
         }
     }

@@ -92,7 +92,9 @@ class ParameterDataManager: Codable {
     }
     var analogInputRange: ClosedRange<Int> = 0...180 {
         didSet {
+#if DEBUG
             print("new Input range: \(analogInputRange)")
+#endif
             self.archive()
         }
     }
@@ -120,15 +122,22 @@ extension ParameterDataManager {
     // MARK: Archive/Unarchive
     static func unarchive() -> ParameterDataManager? {
         guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: ParameterDataManager.archivePath(archiveFileName)) as? Data else {
+#if DEBUG
             print("No data available")
+#endif
+            
             return nil
         }
         do {
             let manager = try PropertyListDecoder().decode(ParameterDataManager.self, from: data)
+#if DEBUG
             print("Parameters successfuly loaded")
+#endif
             return manager
         } catch {
+#if DEBUG
             print("Unarchive Failed")
+#endif
             return nil
         }
     }
@@ -138,9 +147,13 @@ extension ParameterDataManager {
         do {
             let data = try PropertyListEncoder().encode(ParameterDataManager.sharedInstance)
             let success = NSKeyedArchiver.archiveRootObject(data, toFile: ParameterDataManager.archivePath(ParameterDataManager.archiveFileName))
+#if DEBUG
             print("Parameters (\(success ? "successfuly saved)" : "save failed")")
+#endif
         } catch {
-            print("Achive failed")
+#if DEBUG
+            print("Archive Failed")
+#endif
         }
     }
     

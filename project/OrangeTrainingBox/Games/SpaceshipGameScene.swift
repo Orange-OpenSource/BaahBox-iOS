@@ -436,7 +436,9 @@ class SpaceshipGameScene: SKScene, GameScene, SKPhysicsContactDelegate {
     }
     
     func checkLifes() {
+#if DEBUG
         print("Check Lifes !!!")
+#endif
         stopMeteors()
         removeAction(forKey: "meteorSpawnAction")
         lifes -= 1
