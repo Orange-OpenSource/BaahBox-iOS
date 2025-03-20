@@ -62,7 +62,7 @@ class ParameterDataManager: Codable {
         case sensitivity
         case threshold
         case sensorType
-        case analogInputRange
+        case analogInputRangeForHandle
         
         // Sheep Game
         case numberOfFences
@@ -90,9 +90,11 @@ class ParameterDataManager: Codable {
             self.archive()
         }
     }
-    var analogInputRange: ClosedRange<Int> = 0...180 {
+    var analogInputRangeForHandle: ClosedRange<Int> = 10...100 {
         didSet {
-            print("new Input range: \(analogInputRange)")
+#if DEBUG
+            print("new Input range: \(analogInputRangeForHandle)")
+#endif
             self.archive()
         }
     }
@@ -110,6 +112,10 @@ class ParameterDataManager: Codable {
     var numberOfFlies: Int = 5 { didSet { self.archive() }}
     var flySteadyTime: Int = 5 { didSet { self.archive() }}
     var shootingType: ShootingType = .automatic { didSet { self.archive() }}
+    
+    func getAnalogInputRange() -> ClosedRange<Int> {
+        return sensorType == .handle ? self.analogInputRangeForHandle : 0...180
+    }
 }
 
 
@@ -120,15 +126,22 @@ extension ParameterDataManager {
     // MARK: Archive/Unarchive
     static func unarchive() -> ParameterDataManager? {
         guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: ParameterDataManager.archivePath(archiveFileName)) as? Data else {
+#if DEBUG
             print("No data available")
+#endif
+            
             return nil
         }
         do {
             let manager = try PropertyListDecoder().decode(ParameterDataManager.self, from: data)
+#if DEBUG
             print("Parameters successfuly loaded")
+#endif
             return manager
         } catch {
+#if DEBUG
             print("Unarchive Failed")
+#endif
             return nil
         }
     }
@@ -138,9 +151,13 @@ extension ParameterDataManager {
         do {
             let data = try PropertyListEncoder().encode(ParameterDataManager.sharedInstance)
             let success = NSKeyedArchiver.archiveRootObject(data, toFile: ParameterDataManager.archivePath(ParameterDataManager.archiveFileName))
+#if DEBUG
             print("Parameters (\(success ? "successfuly saved)" : "save failed")")
+#endif
         } catch {
-            print("Achive failed")
+#if DEBUG
+            print("Archive Failed")
+#endif
         }
     }
     

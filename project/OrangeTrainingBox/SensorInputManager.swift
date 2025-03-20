@@ -36,9 +36,13 @@ class SensorInputManager {
     // EndOfFrame = 90 -> '\n'
     public func analyseCompressedRawInput(_ rawInput: [UInt8]) {
         
+#if DEBUG
         print("inputData: \(rawInput)")
+#endif
         guard rawInput.count == 5 else {
+#if DEBUG
             print ("bad value")
+#endif
             return
         }
         
@@ -53,9 +57,9 @@ class SensorInputManager {
         let down  = (rawInput[4] & 0x02 == 0x02)
         let up    = (rawInput[4] & 0x01 == 0x01)
         joystickInput = (up: up, down: down, left: left, right: right)
-        
+#if DEBUG
         print("M1: \(musclesInput.muscle1), M2:\(musclesInput.muscle2),\nUp:\(up), Down:\(down), Left:\(left), Right:\(right)")
-        
+#endif
         DispatchQueue.main.sync {
             self.sendNotificationReceivedData()
         }

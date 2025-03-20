@@ -101,10 +101,12 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
     }
     override func willMove(from view: SKView) {
         super.willMove(from: view)
+#if DEBUG
         print("Toad scene willMoveFromView")
+#endif
         removeAllActions()
         removeAllChildren()
-
+        
         self.physicsWorld.contactDelegate = nil
         self.delegate = nil
         NotificationCenter.default.removeObserver(self)
@@ -139,7 +141,9 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
         isFlyThere = /*(hypot(fly.position.x - flyPosition.x, fly.position.y - flyPosition.y) < 0.1) &&*/ (fly.xScale > 0.99)
         isToadJumping = (crapaud.position.y - crapaudBottomPosition.y) > 1
         if abs(-crapaud.zRotation - flyAngle) < 0.011 && flyAngle != flyCaughtAngle && isFlyThere && !isToadJumping && autoShoot {
+#if DEBUG
             print("-----> FLY 1! ")
+#endif
             shootTongue(angle: flyAngle)
             flyCaughtAngle = flyAngle
         }
@@ -152,7 +156,9 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
     
     private func startCrapaudAnimation() {
         crapaud.removeAllActions()
+#if DEBUG
         print("-----> toad init! ")
+#endif
         crapaud.run(.sequence([
             initToadAnimations,
             toadBlinkAnimation
@@ -189,7 +195,9 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
         shouldStartGame = true
         playToadAnimation = false
         crapaud.removeAllActions()
+#if DEBUG
         print("-----> toad init! ")
+#endif
         crapaud.run(initToadAnimations) { [weak self] in self?.flyRestart() }
         crapaud.run(toadBlinkAnimation)
     }
@@ -281,7 +289,9 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
         let maxAngle = CGFloat(maxTime) * turnSpeed
         let maxAngle2 = CGFloat(maxTime + 0.2) * turnSpeed
         let angleToTurn = flyAngle - toadAngle
+#if DEBUG
         print("@@@ toadAngle: \(toadAngle), flyAngle: \(flyAngle), maxAngle: \(maxAngle), angleToTurn: \(angleToTurn), maxTime: \(maxTime)")
+#endif
         if abs(angleToTurn) > maxAngle { // wont reach the fly but turns
             crapaud.run(.sequence([
                 .wait(forDuration: waitBeforeTurn),
@@ -289,7 +299,9 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
             ]))
         } else {
             let turnTime = TimeInterval(abs(angleToTurn) / turnSpeed)
+#if DEBUG
             print("@@@ turnTime: \(turnTime)")
+#endif
             crapaud.run(.sequence([
                 .wait(forDuration: waitBeforeTurn),
                 .rotate(toAngle: -flyAngle, duration: turnTime, shortestUnitArc: true),
@@ -402,7 +414,9 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
             let shootInterval = Double(currentTime.uptimeNanoseconds - lastShootTime.uptimeNanoseconds) / 1_000_000_000
             if !isToadJumping && !autoShoot && shootInterval > 3 * GameConstants.toadJumpTime {
                 lastShootTime = currentTime
+#if DEBUG
                 print("-----> FLY 2! ")
+#endif
                 shootTongue(angle: -crapaud.zRotation)
             }
             return
