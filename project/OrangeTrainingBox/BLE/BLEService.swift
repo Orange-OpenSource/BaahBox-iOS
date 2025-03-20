@@ -165,7 +165,7 @@ class BLEService: NSObject, CBPeripheralDelegate {
                 #if TEST_BANDWIDTH
                     self.counter += 1
                 #endif
-                    SensorInputManager.sharedInstance.analyseCompressedRawInput(inputData)
+                SensorInputManager.sharedInstance.analyseCompressedRawInput(inputData)
                 inputData = []
             }
         }

@@ -112,6 +112,10 @@ class ParameterDataManager: Codable {
     var numberOfFlies: Int = 5 { didSet { self.archive() }}
     var flySteadyTime: Int = 5 { didSet { self.archive() }}
     var shootingType: ShootingType = .automatic { didSet { self.archive() }}
+    
+    var currentAnalogInputRange: ClosedRange<Int> {
+        return sensorType == .handle ? self.analogInputRange : 0...180
+    }
 }
 
 
