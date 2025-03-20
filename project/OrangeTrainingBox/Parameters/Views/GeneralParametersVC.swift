@@ -321,7 +321,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
                                                  attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
             
             cell.title.attributedText = text
-            cell.sliderItem.value = Float (indexPath.row == 0 ? dataManager.analogInputRange.lowerBound: dataManager.analogInputRange.upperBound)
+            cell.sliderItem.value = Float (indexPath.row == 0 ? dataManager.analogInputRangeForHandle.lowerBound: dataManager.analogInputRangeForHandle.upperBound)
             
             cell.sliderItem.tag = indexPath.row
             
@@ -421,11 +421,11 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func onBoundSelection(_ sender: UISlider) {
         if sender.tag == 0 {
-            let newRange: ClosedRange<Int> = Int(sender.value)...dataManager.analogInputRange.upperBound
-            dataManager.analogInputRange = newRange
+            let newRange: ClosedRange<Int> = Int(sender.value)...dataManager.analogInputRangeForHandle.upperBound
+            dataManager.analogInputRangeForHandle = newRange
         } else {
-            let newRange: ClosedRange<Int> = dataManager.analogInputRange.lowerBound...Int(sender.value)
-            dataManager.analogInputRange = newRange
+            let newRange: ClosedRange<Int> = dataManager.analogInputRangeForHandle.lowerBound...Int(sender.value)
+            dataManager.analogInputRangeForHandle = newRange
         }
         tableView.reloadData()
     }

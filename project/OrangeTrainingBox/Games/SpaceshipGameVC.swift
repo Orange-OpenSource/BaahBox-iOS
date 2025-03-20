@@ -118,7 +118,9 @@ class SpaceshipGameVC: GameVC, GameSceneDelegate  {
         let padding: CGFloat = 15.0
         let lifeHeight: CGFloat = 45.0
         let lifeWidthPadded: CGFloat = lifeWidth + padding
+#if DEBUG
         print("lifes : \(String(describing: scene?.lifes))")
+#endif
 
         guard let lifeCount = scene?.lifes else { return }
         for i in 0 ..< lifeCount {

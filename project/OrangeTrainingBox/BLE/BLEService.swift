@@ -49,7 +49,9 @@ class BLEService: NSObject, CBPeripheralDelegate {
         #if TEST_BANDWIDTH
         DispatchQueue.main.sync {
             timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { timer in
+#if DEBUG
                 print("count: \(self.counter)")
+#endif
                 self.counter = 0
             })
         }
@@ -80,7 +82,10 @@ class BLEService: NSObject, CBPeripheralDelegate {
         }
         
         if let error = error {
+#if DEBUG
             print("BlueTooth error: \(error)")
+#endif
+            
             return
         }
         
@@ -103,7 +108,9 @@ class BLEService: NSObject, CBPeripheralDelegate {
         }
         
         if let error = error {
+#if DEBUG
             print("BlueTooth error: \(error)")
+#endif
             return
         }
         
@@ -139,15 +146,16 @@ class BLEService: NSObject, CBPeripheralDelegate {
         }
         
         if let error = error {
-            print("BlueTooth error : \(error)")
+#if DEBUG
+            print("BlueTooth error: \(error)")
+#endif
             return
         }
         
         guard let data = characteristic.value else { return }
-        
         rxData = [UInt8](repeating: 0, count: data.count)
         data.copyBytes(to: &rxData, count: data.count)
-        
+     
         // Frame 6 Bytes
         // [b1...b5,\n]
         for rxChar in rxData {
