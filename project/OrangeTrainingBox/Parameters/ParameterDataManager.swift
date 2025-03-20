@@ -62,7 +62,7 @@ class ParameterDataManager: Codable {
         case sensitivity
         case threshold
         case sensorType
-        case analogInputRange
+        case analogInputRangeForHandle
         
         // Sheep Game
         case numberOfFences
@@ -90,10 +90,10 @@ class ParameterDataManager: Codable {
             self.archive()
         }
     }
-    var analogInputRange: ClosedRange<Int> = 0...180 {
+    var analogInputRangeForHandle: ClosedRange<Int> = 10...100 {
         didSet {
 #if DEBUG
-            print("new Input range: \(analogInputRange)")
+            print("new Input range: \(analogInputRangeForHandle)")
 #endif
             self.archive()
         }
@@ -113,8 +113,8 @@ class ParameterDataManager: Codable {
     var flySteadyTime: Int = 5 { didSet { self.archive() }}
     var shootingType: ShootingType = .automatic { didSet { self.archive() }}
     
-    var currentAnalogInputRange: ClosedRange<Int> {
-        return sensorType == .handle ? self.analogInputRange : 0...180
+    func getAnalogInputRange() -> ClosedRange<Int> {
+        return sensorType == .handle ? self.analogInputRangeForHandle : 0...180
     }
 }
 

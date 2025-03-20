@@ -107,7 +107,7 @@ func convertAngleToAnalog(_ angle: Int) -> Int {
 }
 
 func calibrateAnalogInput(_ value: Int) -> Int {
-    let range = ParameterDataManager.sharedInstance.currentAnalogInputRange
+    let range = ParameterDataManager.sharedInstance.getAnalogInputRange()
     let lowerConvertedAngle = convertAngleToAnalog(range.lowerBound)
     let higherConvertedAngle = convertAngleToAnalog(range.upperBound)
     let slope = Double(1000.0 / Double(higherConvertedAngle - lowerConvertedAngle))
