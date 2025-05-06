@@ -52,7 +52,7 @@ class ParameterDataManager: Codable {
         case muscles = 0
         case joystick = 1
         case handle = 2
-        case buttons = 3
+        case analogJoystick = 3
     }
     
     enum CodingKeys: String, CodingKey {
@@ -90,6 +90,7 @@ class ParameterDataManager: Codable {
             self.archive()
         }
     }
+    
     var analogInputRangeForHandle: ClosedRange<Int> = 10...100 {
         didSet {
 #if DEBUG

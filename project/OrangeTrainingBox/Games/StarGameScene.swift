@@ -180,6 +180,7 @@ class StarGameScene: SKScene, GameScene, ParametersDefaultable {
                 return
             }
             strengthValue = strengthValue + 1
+            
         case .muscles: // using Muscle inputs
             // The strength is in [0...1000] -> Have it fit into [0...100]
             strengthValue = Int (getMuscleStrength() / 10)
@@ -187,8 +188,10 @@ class StarGameScene: SKScene, GameScene, ParametersDefaultable {
         case .handle: // using handle ou slider inputs
             // The strength is in [0...1000] ->  map to 20-150 -> Have it fit into [0...100]
             strengthValue = Int (getMuscleStrength() / 10)
-        case .buttons:
-            break
+            
+        case .analogJoystick:
+            let value = SensorInputManager.sharedInstance.musclesInput.muscle1
+            strengthValue = value >= 50 ? Int (value / 10) : 0
         }
     }
     

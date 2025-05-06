@@ -333,12 +333,12 @@ internal enum L10n {
       /// Global parameters
       internal static let title = L10n.tr("Localizable", "Parameters.Global.title", fallback: "Global parameters")
       internal enum Sensor {
-        /// Button
-        internal static let button = L10n.tr("Localizable", "Parameters.Global.sensor.button", fallback: "Button")
+        /// A Joystick
+        internal static let analogJoystick = L10n.tr("Localizable", "Parameters.Global.sensor.analogJoystick", fallback: "A Joystick")
         /// Handle
         internal static let handle = L10n.tr("Localizable", "Parameters.Global.sensor.handle", fallback: "Handle")
-        /// Joystick
-        internal static let joystick = L10n.tr("Localizable", "Parameters.Global.sensor.joystick", fallback: "Joystick")
+        /// D Joystick
+        internal static let joystick = L10n.tr("Localizable", "Parameters.Global.sensor.joystick", fallback: "D Joystick")
         /// Muscle
         internal static let muscle = L10n.tr("Localizable", "Parameters.Global.sensor.muscle", fallback: "Muscle")
       }

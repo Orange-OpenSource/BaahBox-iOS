@@ -107,13 +107,20 @@ func convertAngleToAnalog(_ angle: Int) -> Int {
 }
 
 func calibrateAnalogInput(_ value: Int) -> Int {
-    let range = ParameterDataManager.sharedInstance.getAnalogInputRange()
-    let lowerConvertedAngle = convertAngleToAnalog(range.lowerBound)
-    let higherConvertedAngle = convertAngleToAnalog(range.upperBound)
-    let slope = Double(1000.0 / Double(higherConvertedAngle - lowerConvertedAngle))
-    guard value >= lowerConvertedAngle else {
-        return 0
+    switch ParameterDataManager.sharedInstance.sensorType.rawValue {
+    case 0,2:
+        let range = ParameterDataManager.sharedInstance.getAnalogInputRange()
+        let lowerConvertedAngle = convertAngleToAnalog(range.lowerBound)
+        let higherConvertedAngle = convertAngleToAnalog(range.upperBound)
+        let slope = Double(1000.0 / Double(higherConvertedAngle - lowerConvertedAngle))
+        guard value >= lowerConvertedAngle else {
+            return 0
+        }
+        return  min(1000, lround(Double(value - lowerConvertedAngle) * slope))
+    case 3:
+        return (value - 500) * 2
+    default:
+        return value
     }
-    return  min(1000, lround(Double(value - lowerConvertedAngle) * slope))
 }
 

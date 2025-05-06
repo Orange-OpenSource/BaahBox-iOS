@@ -239,7 +239,11 @@ class BalloonGameScene: SKScene, GameScene, ParametersDefaultable {
             }
             strengthValue = strengthValue + 1
             
-        default: // using Muscle inputs
+        case .analogJoystick:
+            let value = SensorInputManager.sharedInstance.musclesInput.muscle1
+            strengthValue = value >= 50 ? Int (value / 10) : 0
+            
+        case .muscles, .handle:
             // The strength is in [0...1000] -> Have it fit into [0...100]
             strengthValue = Int(getMuscleStrength() / 10)
         }

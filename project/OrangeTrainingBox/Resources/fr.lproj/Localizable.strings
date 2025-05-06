@@ -94,8 +94,8 @@
 "Parameters.Global.title" = "Paramètres globaux";
 "Parameters.Global.muscle" = "Muscle de travail";
 "Parameters.Global.sensor.muscle" = "Muscle";
-"Parameters.Global.sensor.joystick" = "Joystick";
-"Parameters.Global.sensor.button" = "Bouton";
+"Parameters.Global.sensor.joystick" = "Joystick N";
+"Parameters.Global.sensor.analogJoystick" = "Joystick A ";
 "Parameters.Global.sensor.handle" = "Poignée";
 
 "Parameters.Global.sensitivity"  = "Sensibilité";
