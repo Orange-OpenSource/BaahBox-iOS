@@ -577,12 +577,23 @@ class SpaceshipGameScene: SKScene, GameScene, SKPhysicsContactDelegate {
         case .joystick:
             leftAction = SensorInputManager.sharedInstance.joystickInput.left
             rightAction = SensorInputManager.sharedInstance.joystickInput.right
-        default:
+        case .muscles:
             // The strength is in [0...1000] -> Have it fit into [0...100]
             let strengthValue1 = SensorInputManager.sharedInstance.musclesInput.muscle1 / 10
             let strengthValue2 = SensorInputManager.sharedInstance.musclesInput.muscle2 / 10
             leftAction = strengthValue2 > 50
             rightAction = strengthValue1 > 50
+            
+        case .analogJoystick:
+            let value = SensorInputManager.sharedInstance.musclesInput.muscle2
+            leftAction = value > 100
+            
+            rightAction = value < 0
+            
+        case .handle:
+            let value = SensorInputManager.sharedInstance.musclesInput.muscle1 / 10
+            leftAction = value < 50
+            rightAction = value > 50
         }
         analyseActions(leftAction: leftAction, rightAction: rightAction)
     }

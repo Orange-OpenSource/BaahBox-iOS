@@ -372,7 +372,16 @@ class SheepGameScene: SKScene, GameScene, ParametersDefaultable {
                 jumpTo(sprite: sheep, height: heightTarget)
             }
             
-        default:
+        case .analogJoystick:
+            let value = SensorInputManager.sharedInstance.musclesInput.muscle1
+            if value <= threshold + 50 { return }
+            
+            var heightConstraint = (CGFloat(value) - CGFloat (hardnessCoeff*350)) / 1000
+            if heightConstraint < 0 { heightConstraint = 0 }
+            let jumpheightWithConstraint = groundPosition.y + (maxHeigthJump * heightConstraint)
+            jumpTo(sprite: sheep, height: jumpheightWithConstraint)
+            
+        case .muscles, .handle:
             if getMuscleStrength() <= threshold { return }
             
             let strengthValue = getMuscleStrength()

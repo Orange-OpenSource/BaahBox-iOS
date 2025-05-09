@@ -111,15 +111,13 @@ class GameVC: UIViewController {
         
         if !ParameterDataManager.sharedInstance.demoMode {
             switch ParameterDataManager.sharedInstance.sensorType {
-                case .joystick:
+                case .joystick, .analogJoystick:
                     sensorIcon = UIBarButtonItem(image: Asset.Dashboard.joystick.image,
                                                  style: UIBarButtonItem.Style.plain, target: nil, action: nil)
                     
                 case .muscles, .handle:
                     sensorIcon = UIBarButtonItem(image: Asset.Dashboard.muscle.image,
                                                  style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-            case .buttons:
-                    break
             }
         }
         

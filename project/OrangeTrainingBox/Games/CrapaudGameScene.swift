@@ -456,12 +456,27 @@ class CrapaudGameScene: SKScene, SKSceneDelegate {
                 leftAction = SensorInputManager.sharedInstance.joystickInput.left
                 rightAction = SensorInputManager.sharedInstance.joystickInput.right
             }
-        default:
+        case .muscles:
             // The strength is in [0...1000] -> Have it fit into [0...100]
             let strengthValue1 = SensorInputManager.sharedInstance.musclesInput.muscle1 / 10
             let strengthValue2 = SensorInputManager.sharedInstance.musclesInput.muscle2 / 10
             leftAction = strengthValue2 > 50
             rightAction = strengthValue1 > 50
+            
+        case .handle:
+            let strengthValue1 = SensorInputManager.sharedInstance.musclesInput.muscle1
+            leftAction = strengthValue1 <= 500
+            rightAction = strengthValue1 > 500
+            
+        case .analogJoystick:
+            if SensorInputManager.sharedInstance.joystickInput.up || SensorInputManager.sharedInstance.musclesInput.muscle1 > 900 {
+                leftAction = true
+                rightAction = true
+            } else {
+                let value = SensorInputManager.sharedInstance.musclesInput.muscle2
+                leftAction = value > 100
+                rightAction = value < 0
+            }
         }
         analyseActions(leftAction: leftAction, rightAction: rightAction)
     }

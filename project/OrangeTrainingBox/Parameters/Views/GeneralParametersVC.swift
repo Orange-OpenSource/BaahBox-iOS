@@ -126,7 +126,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let nbRows = SectionDescription.init(rawValue: section)?.numberOfRows() ?? 0
         switch dataManager.sensorType {
-        case .joystick, .buttons:
+        case .joystick, .analogJoystick:
             switch section
             {
             case  SectionDescription.demo.rawValue, SectionDescription.sensor.rawValue:
@@ -210,7 +210,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
         var headerHeight: CGFloat = 60.0
         
         switch dataManager.sensorType {
-        case .joystick, .buttons:
+        case .joystick, .analogJoystick:
             switch section
             {
             case SectionDescription.demo.rawValue, SectionDescription.sensor.rawValue:
@@ -272,10 +272,10 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
             cell.segmentItem.insertSegment(withTitle: L10n.Parameters.Global.Sensor.muscle, at: 0, animated: false)
             cell.segmentItem.insertSegment(withTitle: L10n.Parameters.Global.Sensor.joystick, at: 1, animated: false)
             cell.segmentItem.insertSegment(withTitle: L10n.Parameters.Global.Sensor.handle, at: 2, animated: false)
-            cell.segmentItem.insertSegment(withTitle: L10n.Parameters.Global.Sensor.button, at: 3, animated: false)
+            cell.segmentItem.insertSegment(withTitle: L10n.Parameters.Global.Sensor.analogJoystick, at: 3, animated: false)
             
             switch dataManager.sensorType {
-            case .buttons:
+            case .analogJoystick:
                 cell.segmentItem.selectedSegmentIndex = 3
             case .joystick:
                 cell.segmentItem.selectedSegmentIndex = 1
@@ -406,7 +406,7 @@ class GeneralParametersVC: UIViewController, UITableViewDelegate, UITableViewDat
         } else if sender.tag == sensorTypeTag {
             switch sender.selectedSegmentIndex {
             case 3:
-                dataManager.sensorType = .buttons
+                dataManager.sensorType = .analogJoystick
             case 2:
                 dataManager.sensorType = .handle
             case 1:
